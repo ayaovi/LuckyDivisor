@@ -11,19 +11,26 @@
 	<script language="javascript" type="text/javascript" src="config.js"></script>
 	<script language="javascript" type="text/javascript" src="main.js"></script>
 	<script language="javascript" type="text/javascript" src="cube.js"></script>
-	<!-- <script language="javascript" type="text/javascript" src="player.js"></script> -->
+	<script language="javascript" type="text/javascript" src="player.js"></script>
 	<style>
 		body
 		{
 			padding: 0;
 			margin: 0;
 		}
+		/*html
+		{
+			--padding-left: 400px 
+		}*/
+		div.static
+		{
+			top: 30px;
+    		/*left: var(--element-width);*/
+    		position: absolute;
+		}
 	</style>
 </head>
 <body>
-	<!-- <script type="text/javascript">
-		setup();
-	</script> -->
-	<div id='myContainer'></div>
+	<div class ="static" id='gameFrameContainer'></div>
 </body>
 </html>
