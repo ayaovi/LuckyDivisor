@@ -1,6 +1,6 @@
 /**
  * @file : config.js
- * @description : 
+ * @description : Config is simply an assembly of all global variables and functions.
  * @author : Ayaovi Espoir Djissenou
  * @version : 
  */
@@ -29,12 +29,16 @@ var DEFAULT_PN_CUBE_SPEED = 0.02;
 var PN_CUBE_SPEED_VARIANT_MULTIPLIER = 0.01;
 var DEFAULT_PLAYER_CUBE_SPEED = 10;
 
-var DEFAULT_CANVAS_BACKGROUND_COLOUR = 0;
+var DEFAULT_CANVAS_BACKGROUND_COLOUR = 100;
 var DEFAULT_CANVAS_BACKGROUND_IMAGE;
+
+var CUBE_NUMBER_PADDING = 5;
+
+var DEFAULT_CUBE_NUMBER_TEXT_SIZE = SIDE_OF_CUBE - 2 * CUBE_NUMBER_PADDING;
 
 var CUBE_COLOUR_MAP = {};
 
-var divisors = [];
+var playerNumberDivisors = [];
 
 var gameCubes = [];
 
@@ -69,12 +73,32 @@ function isPrime(number)
 	}
 }
 
-// A fuction that given a list divisors, returns a combinition of all their colours put together.
+// A function that given a list divisors, returns a combination of all their colours put together.
 function combineColours(divisors)
 {
 	// TODO.
 }
 
+
+// A function that generates the divisors of a number
+function getDivisors(number)
+{
+	var divisors = [];
+	divisors.push(1);	/* The number 1 is a divisor of every number. */
+	
+	var endOfRange = floor(number / 2);
+	var i = 2;
+	
+	while (i <= endOfRange)
+	{
+		if (number % i == 0)
+		{
+			divisors.push(i);
+		}
+		i++;
+	}
+	return divisors;
+}
 
 function gameOver()
 {

@@ -1,11 +1,15 @@
 /**
  * @file : cube.js
- * @description : 
+ * @description : A Cube is simply a rectangle with a number inscribed on it.
+ * and this number has to be prime and less than 10 except in the case of the player's cube.
+ * As such a Cube is classified as either a PlayerCube or a PnCube (where Pn stands for prime number).
+ * A PnCube starts its journey at the top of the canvas and falls downward whereas the PlayerCube is 
+ * always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
  * @author : Ayaovi Espoir Djissenou
  * @version : 
  */
 
-
+// Function constructor.
 function Cube(primeNumber, id, position)
 {
 	this.number = primeNumber;
@@ -40,6 +44,10 @@ function Cube(primeNumber, id, position)
 
 			fill(this.colour);
 			rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);	
+			fill(0);
+			//strokeWeight(2);
+			textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
+			text(this.number, this.position.x + CUBE_NUMBER_PADDING, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
 		}
 		else
 		{
@@ -47,6 +55,10 @@ function Cube(primeNumber, id, position)
 			{
 				fill(this.colour);
 				rect(this.position.x + DEFAULT_COLUMN_PADDING, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
+				fill(0);
+				//strokeWeight(2);
+				textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
+				text(this.number, this.position.x + CUBE_NUMBER_PADDING, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
 			}
 		}
 	}

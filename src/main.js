@@ -7,13 +7,11 @@
 
 function setup()
 {
+	// console.log("Height of screen is : " + windowHeight);
 	var gameCanvasContainer = document.getElementById('gameCanvasContainer');
-	gameCanvasContainer.style.left = (screen.width - WIDTH_OF_GAME_FRAME) / 2 + 'px';
+	gameCanvasContainer.style.left = (displayWidth - WIDTH_OF_GAME_FRAME) / 2 + 'px'; /* displayWidth is a p5 variable. */
+	gameCanvasContainer.style.top = (windowHeight - HEIGHT_OF_GAME_FRAME) / 2 + 'px';
 
-	// var sidePanelContainer = document.getElementById('sidePanelContainer');
-	// sidePanelContainer.style.left = (gameCanvasContainer.style.left + WIDTH_OF_CANVAS) + 'px';
-	// sidePanelContainer.style.background = 'red';
-	
 	// Initialise the map of colours.
 	CUBE_COLOUR_MAP[1] = color('#F8CECC');
 	CUBE_COLOUR_MAP[2] = color('#D5E8D4');
@@ -25,6 +23,13 @@ function setup()
 	gameCanvas.parent('gameCanvasContainer');
 	
 	gameCubes.push(new Cube(20, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1)));
+	
+	// var divisors = getDivisors(gameCubes[0].number);
+	
+	// for (var i = 0; i < divisors.length; i++)
+	// {
+		// console.log(divisors[i]);
+	// }
 }
 
 function draw()
