@@ -86,7 +86,7 @@ function combineColours(divisors)
 	// Instead of doing it the way above, we can convert the color from 
 	// every divisor to LAB sum them up and average them and convert the 
 	// resulting average back to RGB.
-	return resultingColour;
+	return color(resultingColour[0], resultingColour[1], resultingColour[2]);
 }
 
 
@@ -217,9 +217,7 @@ function deltaE(labA, labB)
 function getPrimeDivisors(number)
 {
 	var primeDivisors = [];
-	primeDivisors.push(1);	/* The number 1 is a divisor of every number. */
-	
-	// var endOfRange = floor(number / 2);
+	primeDivisors.push(1);
 	var i = 2;
 	
 	while (i <= number)

@@ -19,7 +19,6 @@ function Cube(primeNumber, id, position)
 	this.speed = DEFAULT_PN_CUBE_SPEED + (PN_CUBE_SPEED_VARIANT_MULTIPLIER * primeNumber);
 	this.owner = (id == 0) ? "Player" : undefined;
 	this.colour = (id == 0) ? color(255) : CUBE_COLOUR_MAP[primeNumber];
-	// this.colour = CUBE_COLOUR_MAP[1];
 	this.divisors = [];
 	this.alreadyCollectedDivisors = [];
 	this.yetToBeCollectedDivisors = [];
@@ -48,7 +47,8 @@ function Cube(primeNumber, id, position)
 			fill(0);
 			//strokeWeight(2);
 			textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-			text(this.number, this.position.x + CUBE_NUMBER_PADDING, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
+			var padding = (SIDE_OF_CUBE - textWidth(this.number + "")) / 2;
+			text(this.number, this.position.x + padding, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
 		}
 		else
 		{
@@ -59,6 +59,7 @@ function Cube(primeNumber, id, position)
 				fill(0);
 				//strokeWeight(2);
 				textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
+				var padding = (SIDE_OF_CUBE - textWidth(this.number + "")) / 2;
 				text(this.number, this.position.x + CUBE_NUMBER_PADDING, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
 			}
 		}

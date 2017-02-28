@@ -7,9 +7,10 @@
 
 function setup()
 {
-	// console.log("Height of screen is : " + windowHeight);
 	var gameCanvasContainer = document.getElementById('gameCanvasContainer');
-	gameCanvasContainer.style.left = (displayWidth - WIDTH_OF_GAME_FRAME) / 2 + 'px'; /* displayWidth is a p5 variable. */
+	// displayWindow is a p5.js variable.
+	gameCanvasContainer.style.left = (displayWidth - WIDTH_OF_GAME_FRAME) / 2 + 'px';
+	// windowHeight is a p5.js variable.
 	gameCanvasContainer.style.top = (windowHeight - HEIGHT_OF_GAME_FRAME) / 2 + 'px';
 
 	// Initialise the map of colours.
@@ -27,27 +28,8 @@ function setup()
 	var gameCanvas = createCanvas(WIDTH_OF_CANVAS, HEIGHT_OF_CANVAS);
 	gameCanvas.parent('gameCanvasContainer');
 	
-	var playerCube = new Cube(10, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1))
+	var playerCube = new Cube(5, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1))
 	gameCubes.push(playerCube);
-	
-	// var primeDivisors = getPrimeDivisors(playerCube.number);
-
-	// for (var i = 0; i < primeDivisors.length; i++) 
-	// {
-	// 	console.log(primeDivisors[i]);
-	// }
-
-	var combinedColour = combineColours(getPrimeDivisors(playerCube.number));
-	// var combinedColour = addRGBs(CUBE_COLOUR_MAP[1], CUBE_COLOUR_MAP[5]);
-	// var combinedColour = addRGBs(color('red'), color('blue'));
-
-	// for (var i = 0; i < combinedColour.length; i++) 
-	// {
-	// 	console.log(combinedColour[i]);
-	// }
-
-	playerCube.colour = color(combinedColour[0], combinedColour[1], combinedColour[2]);
-	// playerCube.colour = CUBE_COLOUR_MAP[1];
 }
 
 function draw()
