@@ -19,6 +19,7 @@ function Cube(primeNumber, id, position)
 	this.speed = DEFAULT_PN_CUBE_SPEED + (PN_CUBE_SPEED_VARIANT_MULTIPLIER * primeNumber);
 	this.owner = (id == 0) ? "Player" : undefined;
 	this.colour = (id == 0) ? color(255) : CUBE_COLOUR_MAP[primeNumber];
+	// this.colour = CUBE_COLOUR_MAP[1];
 	this.divisors = [];
 	this.alreadyCollectedDivisors = [];
 	this.yetToBeCollectedDivisors = [];

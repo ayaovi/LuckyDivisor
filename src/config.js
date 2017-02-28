@@ -59,7 +59,7 @@ function isPrime(number)
 	else
 	{
 		var endOfRange = floor(sqrt(number));
-		var i = 0;
+		var i = 2;
 		
 		while (i <= endOfRange)
 		{
@@ -76,28 +76,164 @@ function isPrime(number)
 // A function that given a list divisors, returns a combination of all their colours put together.
 function combineColours(divisors)
 {
-	// TODO.
+	var resultingColour = addRGBs(CUBE_COLOUR_MAP[divisors[0]], CUBE_COLOUR_MAP[divisors[1]]);
+
+	for (var i = 2; i < divisors.length; i++) 
+	{
+		resultingColour = addRGBs(resultingColour, CUBE_COLOUR_MAP[divisors[i]]);
+	}
+
+	// Instead of doing it the way above, we can convert the color from 
+	// every divisor to LAB sum them up and average them and convert the 
+	// resulting average back to RGB.
+	return resultingColour;
+}
+
+
+// A function that adds two RGN colours
+function addRGBs(rgb1, rgb2)
+{
+	var lab1 = RGBtoLAB([red(rgb1), green(rgb1), blue(rgb1)]);
+	var lab2 = RGBtoLAB([red(rgb2), green(rgb2), blue(rgb2)]);
+
+	var resultingLab = [];
+	for (var i = 0; i < lab1.length; i++) 
+	{
+		resultingLab[i] = (lab1[i] + lab2[i]) / 2.0;
+	}
+
+	return LABtoRGB(resultingLab);
+}
+
+// A function to convert RGB to CMYK.
+function RGBtoCMYK(colour)
+{
+	var red = red(colour);
+	var green = green(colour);
+	var blue = blue(colour);
+
+	var k = min(255 - red, min(255 - green, 255 - blue));
+	var c = 255 * (255 - red - k) / (255 - k);
+	var m = 255 * (255 - green - k) / (255 - k);
+	var y = 255 * (255 - blue - k) / (255 - k);
+
+	var cmyk = [];
+	cmyk.push(c);
+	cmyk.push(m);
+	cmyk.push(y);
+	cmyk.push(k);
+
+	return cmyk;
+}
+
+
+// A function to convert CMYK to RGB.
+function CMYKtoRGB(cmyk)
+{
+	var c = cmyk[0];
+	var m = cmyk[1];
+	var y = cmyk[2];
+	var k = cmyk[3];
+
+	var r = -((c * (255 - k)) / 255 + k - 255);
+	var g = -((m * (255 - k)) / 255 + k - 255);
+	var b = -((y * (255 - k)) / 255 + k - 255);
+
+	return color(r, g, b);
+}
+
+
+// A function to convert RGB to LAB.
+function RGBtoLAB(rgb)
+{
+	var r = rgb[0] / 255;
+	var g = rgb[1] / 255;
+	var b = rgb[2] / 255;
+	var x, y, z;
+
+	r = (r > 0.04045) ? pow((r + 0.055) / 1.055, 2.4) : r / 12.92;
+	g = (g > 0.04045) ? pow((g + 0.055) / 1.055, 2.4) : g / 12.92;
+	b = (b > 0.04045) ? pow((b + 0.055) / 1.055, 2.4) : b / 12.92;
+
+	x = (r * 0.4124 + g * 0.3576 + b * 0.1805) / 0.95047;
+	y = (r * 0.2126 + g * 0.7152 + b * 0.0722) / 1.00000;
+	z = (r * 0.0193 + g * 0.1192 + b * 0.9505) / 1.08883;
+
+	x = (x > 0.008856) ? pow(x, 1/3) : (7.787 * x) + 16/116;
+	y = (y > 0.008856) ? pow(y, 1/3) : (7.787 * y) + 16/116;
+	z = (z > 0.008856) ? pow(z, 1/3) : (7.787 * z) + 16/116;
+
+	return [(116 * y) - 16, 500 * (x - y), 200 * (y - z)];
+}
+
+
+// A function to convert LAB to RGB.
+function LABtoRGB(lab)
+{
+	var y = (lab[0] + 16) / 116;
+	var x = lab[1] / 500 + y;
+	var z = y - lab[2] / 200;
+	var r, g, b;
+
+	x = 0.95047 * ((pow(x, 3) > 0.008856) ? pow(x, 3) : (x - 16/116) / 7.787);
+	y = 1.00000 * ((pow(y, 3) > 0.008856) ? pow(y, 3) : (y - 16/116) / 7.787);
+	z = 1.08883 * ((pow(z, 3) > 0.008856) ? pow(z, 3) : (z - 16/116) / 7.787);
+
+	r = x *  3.2406 + y * -1.5372 + z * -0.4986;
+	g = x * -0.9689 + y *  1.8758 + z *  0.0415;
+	b = x *  0.0557 + y * -0.2040 + z *  1.0570;
+
+	r = (r > 0.0031308) ? (1.055 * pow(r, 1/2.4) - 0.055) : 12.92 * r;
+	g = (g > 0.0031308) ? (1.055 * pow(g, 1/2.4) - 0.055) : 12.92 * g;
+	b = (b > 0.0031308) ? (1.055 * pow(b, 1/2.4) - 0.055) : 12.92 * b;
+
+	return [max(0, min(1, r)) * 255, max(0, min(1, g)) * 255, max(0, min(1, b)) * 255];
+}
+
+
+// calculate the perceptual distance between colors in CIELAB.
+function deltaE(labA, labB)
+{
+	var deltaL = labA[0] - labB[0];
+	var deltaA = labA[1] - labB[1];
+	var deltaB = labA[2] - labB[2];
+	var c1 = sqrt(labA[1] * labA[1] + labA[2] * labA[2]);
+	var c2 = sqrt(labB[1] * labB[1] + labB[2] * labB[2]);
+	var deltaC = c1 - c2;
+	var deltaH = deltaA * deltaA + deltaB * deltaB - deltaC * deltaC;
+	deltaH = (deltaH < 0) ? 0 : sqrt(deltaH);
+	var sc = 1.0 + 0.045 * c1;
+	var sh = 1.0 + 0.015 * c1;
+	var deltaLKlsl = deltaL / (1.0);
+	var deltaCkcsc = deltaC / (sc);
+	var deltaHkhsh = deltaH / (sh);
+	var i = deltaLKlsl * deltaLKlsl + deltaCkcsc * deltaCkcsc + deltaHkhsh * deltaHkhsh;
+	
+	return (i < 0) ? 0 : sqrt(i);
 }
 
 
 // A function that generates the divisors of a number
-function getDivisors(number)
+function getPrimeDivisors(number)
 {
-	var divisors = [];
-	divisors.push(1);	/* The number 1 is a divisor of every number. */
+	var primeDivisors = [];
+	primeDivisors.push(1);	/* The number 1 is a divisor of every number. */
 	
-	var endOfRange = floor(number / 2);
+	// var endOfRange = floor(number / 2);
 	var i = 2;
 	
-	while (i <= endOfRange)
+	while (i <= number)
 	{
 		if (number % i == 0)
 		{
-			divisors.push(i);
+			if (isPrime(i))
+			{
+				primeDivisors.push(i);
+			}
 		}
 		i++;
 	}
-	return divisors;
+	return primeDivisors;
 }
 
 function gameOver()
