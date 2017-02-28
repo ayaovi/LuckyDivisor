@@ -7,8 +7,12 @@
 
 function setup()
 {
-	var element = document.getElementById('gameFrameContainer');
-	element.style.left = (screen.width - WIDTH_OF_GAME_FRAME) / 2 + 'px';
+	var gameCanvasContainer = document.getElementById('gameCanvasContainer');
+	gameCanvasContainer.style.left = (screen.width - WIDTH_OF_GAME_FRAME) / 2 + 'px';
+
+	// var sidePanelContainer = document.getElementById('sidePanelContainer');
+	// sidePanelContainer.style.left = (gameCanvasContainer.style.left + WIDTH_OF_CANVAS) + 'px';
+	// sidePanelContainer.style.background = 'red';
 	
 	// Initialise the map of colours.
 	CUBE_COLOUR_MAP[1] = color('#F8CECC');
@@ -18,7 +22,7 @@ function setup()
 	CUBE_COLOUR_MAP[7] = color('#FFFF88');
 
 	var gameCanvas = createCanvas(WIDTH_OF_CANVAS, HEIGHT_OF_CANVAS);
-	gameCanvas.parent('gameFrameContainer');
+	gameCanvas.parent('gameCanvasContainer');
 	
 	gameCubes.push(new Cube(20, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1)));
 }
