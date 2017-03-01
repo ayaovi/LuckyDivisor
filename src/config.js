@@ -50,7 +50,7 @@ var playerControls = [37, 39];
 // None of the number's prime factors must be bigger than 10.
 function generatePlayerCubeNumber()
 {
-	var number = floor(random(1, 100));
+	var number = floor(random(2, 100));
 	var divisors = getPrimeFactors(number);
 	var primeDivisorGreaterThanTen = false;
 	
@@ -71,7 +71,7 @@ function generatePlayerCubeNumber()
 		}
 		else
 		{
-			number = floor(random(1, 100));
+			number = floor(random(2, 100));
 			divisors = getPrimeFactors(number);
 			primeDivisorGreaterThanTen = false;
 		}
