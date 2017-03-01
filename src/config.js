@@ -5,7 +5,7 @@
  * @version : 
  */
 
-
+ 
 var WIDTH_OF_GAME_FRAME = 500;
 var HEIGHT_OF_GAME_FRAME = 600;
 
@@ -44,6 +44,62 @@ var gameCubes = [];
 
 var playerControls = [37, 39];
 
+
+// A function that randomly generate a player cube number.
+// The number must be in the range 1-99 inclusive.
+// None of the number's prime factors must be bigger than 10.
+function generatePlayerCubeNumber()
+{
+	var number = floor(random(1, 100));
+	var divisors = getPrimeFactors(number);
+	var primeDivisorGreaterThanTen = false;
+	
+	while (true)
+	{
+		for (var i = 0; i < divisors.length; i++)
+		{
+			if (divisors[i] > 10)
+			{
+				primeDivisorGreaterThanTen = true;
+				break;
+			}
+		}
+		
+		if (!primeDivisorGreaterThanTen)
+		{
+			break;
+		}
+		else
+		{
+			number = floor(random(1, 100));
+			divisors = getPrimeFactors(number);
+			primeDivisorGreaterThanTen = false;
+		}
+	}
+	return number;
+}
+
+
+// A function that calculate all the prime factors of a number.
+function getPrimeFactors(number)
+{
+	var factors = [];
+	factors.push(1);
+	
+	for (var i = 2; i <= number / i; i++)
+	{
+		while (number % i == 0)
+		{
+			factors.push(i);
+			number /= i;
+		}
+	}
+	if (number > 1)
+	{
+		factors.push(number);
+	}
+	return factors;
+}
 
 // A function to check whether a number is prime.
 function isPrime(number)
@@ -112,16 +168,16 @@ function RGBtoCMYK(colour)
 	var green = green(colour);
 	var blue = blue(colour);
 
-	var k = min(255 - red, min(255 - green, 255 - blue));
-	var c = 255 * (255 - red - k) / (255 - k);
-	var m = 255 * (255 - green - k) / (255 - k);
-	var y = 255 * (255 - blue - k) / (255 - k);
+	var key = min(255 - red, min(255 - green, 255 - blue));
+	var cyan = 255 * (255 - red - key) / (255 - key);
+	var magenta = 255 * (255 - green - key) / (255 - key);
+	var yellow = 255 * (255 - blue - key) / (255 - key);
 
 	var cmyk = [];
-	cmyk.push(c);
-	cmyk.push(m);
-	cmyk.push(y);
-	cmyk.push(k);
+	cmyk.push(cyan);
+	cmyk.push(magenta);
+	cmyk.push(yellow);
+	cmyk.push(key);
 
 	return cmyk;
 }
@@ -130,16 +186,16 @@ function RGBtoCMYK(colour)
 // A function to convert CMYK to RGB.
 function CMYKtoRGB(cmyk)
 {
-	var c = cmyk[0];
-	var m = cmyk[1];
-	var y = cmyk[2];
-	var k = cmyk[3];
+	var cyan = cmyk[0];
+	var magenta = cmyk[1];
+	var yellow = cmyk[2];
+	var key = cmyk[3];
 
-	var r = -((c * (255 - k)) / 255 + k - 255);
-	var g = -((m * (255 - k)) / 255 + k - 255);
-	var b = -((y * (255 - k)) / 255 + k - 255);
+	var red = -((cyan * (255 - key)) / 255 + key - 255);
+	var green = -((magenta * (255 - key)) / 255 + key - 255);
+	var blue = -((yellow * (255 - key)) / 255 + key - 255);
 
-	return color(r, g, b);
+	return color(red, green, blue);
 }
 
 
@@ -183,9 +239,9 @@ function LABtoRGB(lab)
 	g = x * -0.9689 + y *  1.8758 + z *  0.0415;
 	b = x *  0.0557 + y * -0.2040 + z *  1.0570;
 
-	r = (r > 0.0031308) ? (1.055 * pow(r, 1/2.4) - 0.055) : 12.92 * r;
-	g = (g > 0.0031308) ? (1.055 * pow(g, 1/2.4) - 0.055) : 12.92 * g;
-	b = (b > 0.0031308) ? (1.055 * pow(b, 1/2.4) - 0.055) : 12.92 * b;
+	r = (r > 0.0031308) ? (1.055 * pow(r, 1 / 2.4) - 0.055) : 12.92 * r;
+	g = (g > 0.0031308) ? (1.055 * pow(g, 1 / 2.4) - 0.055) : 12.92 * g;
+	b = (b > 0.0031308) ? (1.055 * pow(b, 1 / 2.4) - 0.055) : 12.92 * b;
 
 	return [max(0, min(1, r)) * 255, max(0, min(1, g)) * 255, max(0, min(1, b)) * 255];
 }
@@ -214,25 +270,25 @@ function deltaE(labA, labB)
 
 
 // A function that generates the divisors of a number
-function getPrimeDivisors(number)
-{
-	var primeDivisors = [];
-	primeDivisors.push(1);
-	var i = 2;
+// function getPrimeDivisors(number)
+// {
+	// var primeDivisors = [];
+	// primeDivisors.push(1);
+	// var i = 2;
 	
-	while (i <= number)
-	{
-		if (number % i == 0)
-		{
-			if (isPrime(i))
-			{
-				primeDivisors.push(i);
-			}
-		}
-		i++;
-	}
-	return primeDivisors;
-}
+	// while (i <= number)
+	// {
+		// if (number % i == 0)
+		// {
+			// if (isPrime(i))
+			// {
+				// primeDivisors.push(i);
+			// }
+		// }
+		// i++;
+	// }
+	// return primeDivisors;
+// }
 
 function gameOver()
 {

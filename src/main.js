@@ -28,8 +28,18 @@ function setup()
 	var gameCanvas = createCanvas(WIDTH_OF_CANVAS, HEIGHT_OF_CANVAS);
 	gameCanvas.parent('gameCanvasContainer');
 	
-	var playerCube = new Cube(5, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1))
+	var playerCubeNumber = generatePlayerCubeNumber();
+	
+	var playerCube = new Cube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
 	gameCubes.push(playerCube);
+	
+	console.log(playerCube.number);
+	// var factors = getPrimeFactors(5);
+	var factors = playerCube.divisors;
+	for (var i = 0; i < factors.length; i++)
+	{
+		console.log(factors[i]);
+	}
 }
 
 function draw()

@@ -18,10 +18,11 @@ function Cube(primeNumber, id, position)
 	this.visibility = true;
 	this.speed = DEFAULT_PN_CUBE_SPEED + (PN_CUBE_SPEED_VARIANT_MULTIPLIER * primeNumber);
 	this.owner = (id == 0) ? "Player" : undefined;
-	this.divisors = (id == 0) ? getPrimeDivisors(this.number) : [];
+	this.divisors = (id == 0) ? getPrimeFactors(this.number) : [];
+	// this.colour = (id == 0) ? color(255) : CUBE_COLOUR_MAP[primeNumber];
 	this.colour = (id == 0) ? combineColours(this.divisors) : CUBE_COLOUR_MAP[primeNumber];
 	this.alreadyCollectedDivisors = [];
-	this.yetToBeCollectedDivisors = [];
+	this.yetToBeCollectedDivisors = (id == 0) ? getPrimeFactors(this.number) : [];
 	
 	// A function that displays this Cube.
 	this.show = function()
