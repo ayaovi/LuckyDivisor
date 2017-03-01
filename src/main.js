@@ -40,6 +40,8 @@ function setup()
 	{
 		console.log(factors[i]);
 	}
+	
+	panel = new Panel(createVector(0, 0), WIDTH_OF_CANVAS, 40)
 }
 
 function draw()
@@ -50,4 +52,6 @@ function draw()
 	{
 		gameCubes[i].show();
 	}
+	
+	panel.show();
 }

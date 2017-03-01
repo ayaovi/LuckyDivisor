@@ -44,6 +44,8 @@ var gameCubes = [];
 
 var playerControls = [37, 39];
 
+var panel;
+
 
 // A function that randomly generate a player cube number.
 // The number must be in the range 1-99 inclusive.
