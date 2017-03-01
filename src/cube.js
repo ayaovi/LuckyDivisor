@@ -27,6 +27,7 @@ function Cube(primeNumber, id, position)
 	// A function that displays this Cube.
 	this.show = function()
 	{
+		// stroke();
 		if (this.owner == "Player")
 		{
 			if (keyIsDown(playerControls[0]))

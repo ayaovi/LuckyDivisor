@@ -6,17 +6,19 @@
  * @version : 
  */
 
-function Panel(position, width, height)
+function Panel()
 {
-	this.position = position;
-	this.width = width;
-	this.height = height;
+	this.position = createVector(0, 0);
+	this.width = WIDTH_OF_CANVAS;
+	this.height = HEIGHT_TOP_PANEL;
 	this.colour = color('white');
 	this.playerLifeStars = [];
+	// this.star = 
 	
 	for (var i = 0; i < NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
 	{
-		// this.playerLifeStars.push(new Star());
+		this.playerLifeStars.push(new Star(createVector(this.position.x + i * SIZE_OF_A_PLAYER_STAR + 
+			PLAYER_STARS_STARTING_POSITION, this.position.y + this.height / 2), this.height / 4));
 	}
 	
 	this.show = function()
@@ -24,5 +26,11 @@ function Panel(position, width, height)
 		fill(255);
 		// noStroke();
 		rect(this.position.x, this.position.y, this.width - 1, this.height);
+		// this.star.show();
+
+		for (var i = 0; i < this.playerLifeStars.length; i++) 
+		{
+			this.playerLifeStars[i].show();
+		}
 	}
 }
