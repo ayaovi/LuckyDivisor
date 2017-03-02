@@ -26,6 +26,13 @@ function Player()
 		{
 			this.score += hit;
 		}
+		
+		// Check whether player has collected all required divisors.
+		if (this.score == playerCube.number)
+		{
+			// Then this mark the end of play.
+			endPlay();
+		}
 	}
 	
 	this.burn = function()

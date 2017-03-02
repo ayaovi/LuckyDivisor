@@ -371,27 +371,6 @@ function deltaE(labA, labB)
 }
 
 
-// A function that generates the divisors of a number
-// function getPrimeDivisors(number)
-// {
-	// var primeDivisors = [];
-	// primeDivisors.push(1);
-	// var i = 2;
-	
-	// while (i <= number)
-	// {
-		// if (number % i == 0)
-		// {
-			// if (isPrime(i))
-			// {
-				// primeDivisors.push(i);
-			// }
-		// }
-		// i++;
-	// }
-	// return primeDivisors;
-// }
-
 /**
  * A game over even handler.
  */
@@ -406,4 +385,12 @@ function gameOver()
 function pause()
 {
 	// If possible Stack() everything.
+}
+
+/**
+ * An end of play handler.
+ */
+function endPlay()
+{
+	
 }
