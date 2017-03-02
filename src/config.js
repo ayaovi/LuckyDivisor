@@ -19,6 +19,7 @@ var HEIGHT_OF_CANVAS = HEIGHT_OF_GAME_FRAME;
 // var HEIGHT_OF_SIDE_PANEL = HEIGHT_OF_GAME_FRAME;
 
 var NUMBER_OF_COLUMNS = 10;
+var COLUMN_WIDTH = WIDTH_OF_CANVAS / NUMBER_OF_COLUMNS;
 var NUMBER_OF_ROWS = NUMBER_OF_COLUMNS * 5;
 
 var DEFAULT_COLUMN_PADDING = 5;
@@ -34,29 +35,39 @@ var gameStatus = "stopped";
 var NUMBER_OF_PLAYER_STARTING_LIFE_STARS = 5;
 var PLAYER_STARS_STARTING_POSITION = WIDTH_OF_CANVAS * 0.70;
 
-var DEFAULT_PN_CUBE_SPEED = 0.02;
-var PN_CUBE_SPEED_VARIANT_MULTIPLIER = 0.01;
+var DEFAULT_PN_CUBE_SPEED = 0.5;
+var PN_CUBE_SPEED_VARIANT_MULTIPLIER = 0.1;
 var DEFAULT_PLAYER_CUBE_SPEED = 10;
 
 var DEFAULT_CANVAS_BACKGROUND_COLOUR = 100;
-var DEFAULT_CANVAS_BACKGROUND_IMAGE;
+var DEFAULT_CANVAS_BACKGROUND_IMAGE = "../assets/milky_way.jpg";
 
 var CUBE_NUMBER_PADDING = 5;
 
 var DEFAULT_CUBE_NUMBER_TEXT_SIZE = SIDE_OF_CUBE - 2 * CUBE_NUMBER_PADDING;
 var DEFAULT_TIMER_TEXT_SIZE = HEIGHT_TOP_PANEL * 0.8;
+var DEFAULT_TIMER_PADDING = HEIGHT_TOP_PANEL / 4;
+
+var ID = 0;
 
 var CUBE_COLOUR_MAP = {};
 
 var playerNumberDivisors = [];
-var defaultPlayDuration = [1, 0];	/* 1 min 0 sec. */
+var defaultPlayDuration = [0, 10];	/* 1 min 0 sec. */
 
 var gameCubes = [];
+var columns = [];
+
+var playerCube;
 
 var playerControls = [37, 39];
+var primeNumbers = [1, 2, 3, 5, 7];
 
 var panel;
 
+var player;
+
+var img;
 
 /** 
  * A function that randomly generate a player cube number.

@@ -20,6 +20,7 @@ function Cube(primeNumber, id, position)
 	this.id = id;
 	this.position = position;
 	this.visibility = true;
+	this.column;
 	this.speed = DEFAULT_PN_CUBE_SPEED + (PN_CUBE_SPEED_VARIANT_MULTIPLIER * primeNumber);
 	this.owner = (id == 0) ? "Player" : undefined;
 	this.divisors = (id == 0) ? getPrimeFactors(this.number) : [];
@@ -53,7 +54,7 @@ function Cube(primeNumber, id, position)
 			fill(0);
 			//strokeWeight(2);
 			textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-			var padding = (SIDE_OF_CUBE - textWidth(this.number + "")) / 2;
+			var padding = (SIDE_OF_CUBE - textWidth(this.number)) / 2;
 			text(this.number, this.position.x + padding, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
 		}
 		else
@@ -61,12 +62,12 @@ function Cube(primeNumber, id, position)
 			if (this.visibility == true)
 			{
 				fill(this.colour);
-				rect(this.position.x + DEFAULT_COLUMN_PADDING, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
+				rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
 				fill(0);
 				//strokeWeight(2);
 				textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-				var padding = (SIDE_OF_CUBE - textWidth(this.number + "")) / 2;
-				text(this.number, this.position.x + CUBE_NUMBER_PADDING, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
+				var padding = (SIDE_OF_CUBE - textWidth(this.number)) / 2;
+				text(this.number, this.position.x + padding, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
 			}
 		}
 	}
@@ -81,5 +82,11 @@ function Cube(primeNumber, id, position)
 		{
 			this.visibility = false;
 		}
+	}
+	
+	// A collision handler.
+	this.cameInContactWith = function(otherCube)
+	{
+		
 	}
 }

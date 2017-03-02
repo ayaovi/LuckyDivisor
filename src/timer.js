@@ -79,7 +79,7 @@ function Timer(position)
 		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.minute, this.second, minute(), second());	
 		fill(0);
 		textSize(DEFAULT_TIMER_TEXT_SIZE);
-		text(this.stringTimeTillEndOfPlay, this.position.x + 10, this.position.y + DEFAULT_TIMER_TEXT_SIZE);
+		text(this.stringTimeTillEndOfPlay, this.position.x + DEFAULT_TIMER_PADDING, this.position.y + DEFAULT_TIMER_TEXT_SIZE);
 
 		// restore back to state previous.
 		pop();

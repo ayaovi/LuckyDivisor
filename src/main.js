@@ -8,6 +8,13 @@
  * @version : 
  */
 
+ 
+// function preload() 
+// {
+	// img = loadImage(DEFAULT_CANVAS_BACKGROUND_IMAGE);
+// }
+
+
 function setup()
 {
 	var gameCanvasContainer = document.getElementById('gameCanvasContainer');
@@ -31,11 +38,19 @@ function setup()
 	var gameCanvas = createCanvas(WIDTH_OF_CANVAS, HEIGHT_OF_CANVAS);
 	gameCanvas.parent('gameCanvasContainer');
 	
+	// image(img, 0, 0);
+	
 	var playerCubeNumber = generatePlayerCubeNumber();
 	console.log(playerCubeNumber);
 	
-	var playerCube = new Cube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
-	gameCubes.push(playerCube);
+	playerCube = new Cube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
+	// gameCubes.push(playerCube);
+	
+	for (var i = 0; i < NUMBER_OF_COLUMNS; i++)
+	{
+		// gameCubes.push(new Cube(3, i + 1, createVector(COLUMN_WIDTH * i, 0)));
+		columns.push(new Column(COLUMN_WIDTH * i));
+	}
 	
 	// var factors = getPrimeFactors(5);
 	var factors = playerCube.divisors;
@@ -44,6 +59,7 @@ function setup()
 		console.log(factors[i]);
 	}
 	
+	player = new Player();
 	panel = new Panel();
 }
 
@@ -51,11 +67,35 @@ function draw()
 {
 	background(DEFAULT_CANVAS_BACKGROUND_COLOUR);
 	
-	for (var i = 0; i < gameCubes.length; i++)
+	playerCube.show();
+	
+	for (var i = 0; i < columns.length; i++)
 	{
-		gameCubes[i].show();
+		// if (i > 0)
+		// {
+			// gameCubes[i].fall();
+		// }
+		columns[i].show();
 	}
-
+	
+	for (var i = 0; i < columns.length; i++)
+	{
+		for (var j = 0; j < columns[i].cubes.length; j++)
+		{
+			var pnCube = columns[i].cubes[j];
+			var x1 = pnCube.position.x;
+			var y1 = pnCube.position.y;
+			var x2 = playerCube.position.x;
+			var y2 = playerCube.position.y;
+			var w = SIDE_OF_CUBE;
+			
+			if (collideRectRect(x1, y1, w, w, x2, y2, w, w))
+			{
+				console.log("HIT");
+			}
+		}
+	}
+	
 	if (!panel.timer.isStarted)
 	{
 		panel.timer.start();
