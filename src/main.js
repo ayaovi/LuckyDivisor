@@ -63,7 +63,7 @@ function draw()
 	
 	panel.show();
 
-	if (panel.timer.timeTillEndOfPlay == "00:00")
+	if (panel.timer.stringTimeTillEndOfPlay == "00:00")
 	{
 		noLoop();
 	}

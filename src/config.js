@@ -58,9 +58,11 @@ var playerControls = [37, 39];
 var panel;
 
 
-// A function that randomly generate a player cube number.
-// The number must be in the range 1-99 inclusive.
-// None of the number's prime factors must be bigger than 10.
+/** 
+ * A function that randomly generate a player cube number.
+ * The number must be in the range 1-99 inclusive.
+ * None of the number's prime factors must be bigger than 10.
+ */
 function generatePlayerCubeNumber()
 {
 	var number = floor(random(2, 100));
@@ -93,11 +95,12 @@ function generatePlayerCubeNumber()
 }
 
 
-// A function to calculate the difference in time as [minute, second].
+/**
+ * A function to calculate the difference in time as [minute, second].
+ */
 function getTimeDifference(previousMinute, previousSecond, currentMinute, currentSecond)
 {
-	var timeDifference = (currentMinute * 60 + currentSecond) - 
-	(previousMinute * 60 + previousSecond);
+	var timeDifference = (currentMinute * 60 + currentSecond) - (previousMinute * 60 + previousSecond);
 
 	var minute = floor(timeDifference / 60);
 	var second = timeDifference % 60;
@@ -106,7 +109,9 @@ function getTimeDifference(previousMinute, previousSecond, currentMinute, curren
 }
 
 
-// A function to format the game duration a string.
+/**
+ * A function to format the game duration a string.
+ */
 function getStringGameDuration(startMinute, startSecond, currentMinute, currentSecond)
 {
 	var duration = getTimeDifference(previousMinute, previousSecond, currentMinute, currentSecond);
@@ -114,23 +119,28 @@ function getStringGameDuration(startMinute, startSecond, currentMinute, currentS
 }
 
 
-// A function to determine how much time till end of play.
+/**
+ * A function to determine how much time till end of play.
+ */
 function getStringTimeTillEndOfPlay(startMinute, startSecond, currentMinute, currentSecond)
 {
 	var duration = getTimeDifference(startMinute, startSecond, currentMinute, currentSecond);
-	var timeTillEndOfPlay = getTimeDifference(defaultPlayDuration[0], defaultPlayDuration[1], 
-		duration[0], duration[1]);
+	var timeTillEndOfPlay = getTimeDifference(duration[0], duration[1], defaultPlayDuration[0], defaultPlayDuration[1]);
 	return (padWithZero(abs(timeTillEndOfPlay[0])) + ":" + padWithZero(abs(timeTillEndOfPlay[1])));
 }
 
 
-// A function that pad number with zeros if necessary.
+/**
+ * A function that pad number with zeros if necessary.
+ */
 function padWithZero(number)
 {
 	return ((number < 10) ? "0" + number : number);
 }
 
-// A function that calculate all the prime factors of a number.
+/**
+ * A function that calculate all the prime factors of a number.
+ */
 function getPrimeFactors(number)
 {
 	var factors = [];
@@ -151,7 +161,9 @@ function getPrimeFactors(number)
 	return factors;
 }
 
-// A function to check whether a number is prime.
+/**
+ * A function to check whether a number is prime.
+ */
 function isPrime(number)
 {
 	if (number <= 0)
@@ -179,7 +191,9 @@ function isPrime(number)
 	}
 }
 
-// A function that given a list divisors, returns a combination of all their colours put together.
+/**
+ * A function that given a list divisors, returns a combination of all their colours put together.
+ */
 function combineColours(divisors)
 {
 	var resultingColour = addRGBs(CUBE_COLOUR_MAP[divisors[0]], CUBE_COLOUR_MAP[divisors[1]]);
@@ -196,7 +210,9 @@ function combineColours(divisors)
 }
 
 
-// A function that adds two RGN colours
+/**
+ * A function that adds two RGN colours.
+ */
 function addRGBs(rgb1, rgb2)
 {
 	var lab1 = RGBtoLAB([red(rgb1), green(rgb1), blue(rgb1)]);
@@ -211,7 +227,9 @@ function addRGBs(rgb1, rgb2)
 	return LABtoRGB(resultingLab);
 }
 
-// A function to convert RGB to CMYK.
+/**
+ * A function to convert RGB to CMYK.
+ */
 function RGBtoCMYK(colour)
 {
 	var red = red(colour);
@@ -233,7 +251,9 @@ function RGBtoCMYK(colour)
 }
 
 
-// A function to convert CMYK to RGB.
+/**
+ * A function to convert CMYK to RGB.
+ */
 function CMYKtoRGB(cmyk)
 {
 	var cyan = cmyk[0];
@@ -249,7 +269,9 @@ function CMYKtoRGB(cmyk)
 }
 
 
-// A function to convert RGB to LAB.
+/**
+ * A function to convert RGB to LAB.
+ */
 function RGBtoLAB(rgb)
 {
 	var r = rgb[0] / 255;
@@ -273,7 +295,9 @@ function RGBtoLAB(rgb)
 }
 
 
-// A function to convert LAB to RGB.
+/**
+ * A function to convert LAB to RGB.
+ */
 function LABtoRGB(lab)
 {
 	var y = (lab[0] + 16) / 116;
@@ -297,7 +321,9 @@ function LABtoRGB(lab)
 }
 
 
-// calculate the perceptual distance between colors in CIELAB.
+/**
+ * calculate the perceptual distance between colours in CIELAB.
+ */
 function deltaE(labA, labB)
 {
 	var deltaL = labA[0] - labB[0];
@@ -340,11 +366,17 @@ function deltaE(labA, labB)
 	// return primeDivisors;
 // }
 
+/**
+ * A game over even handler.
+ */
 function gameOver()
 {
 	// TODO : Reset all the necessary stuff.
 }
 
+/**
+ * A pause event handler.
+ */
 function pause()
 {
 	// If possible Stack() everything.

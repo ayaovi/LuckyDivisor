@@ -19,32 +19,38 @@
 function Timer(position)
 {
 	this.position = createVector(0, 0);
-	this.width = TIMER_ICON_WIDTH;
+	// this.width = TIMER_ICON_WIDTH;
 	// this.height = TIMER_ICON_WIDTH;
-	this.day;
-	this.hour;
+	// this.day;
+	// this.hour;
 	this.minute;
 	this.seconds;
 	this.isStarted = false;
-	this.timeTillEndOfPlay;
+	this.stringTimeTillEndOfPlay;
 
 	this.init = function()
 	{
-		this.day = day();
-		this.hour = hour();
+		// this.day = day();
+		// this.hour = hour();
 		this.minute = minute();
 		this.second = second();
-		this.timeTillEndOfPlay = padWithZero(defaultPlayDuration[0]) + 
+		this.stringTimeTillEndOfPlay = padWithZero(defaultPlayDuration[0]) + 
 				":" + padWithZero(defaultPlayDuration[1]);
 	}
 
+	/**
+	 * A start event handler.
+	 */
 	this.start = function()
 	{
 		this.init();
 		this.isStarted = true;
-		this.timeTillEndOfPlay = getStringTimeTillEndOfPlay(this.minute, this.second, minute(), second());
+		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.minute, this.second, minute(), second());
 	}
 
+	/**
+	 * A reset event handler.
+	 */
 	this.reset = function()
 	{
 		if (isStarted)
@@ -54,7 +60,10 @@ function Timer(position)
 		}
 	}
 
-
+	
+	/**
+	 * Responsible for displaying this timer.
+	 */
 	this.show = function()
 	{
 		// save current state.
@@ -67,10 +76,10 @@ function Timer(position)
 		// // Then create a white arc on the circle.
 		// fill(255);
 		// arc(this.position.x, this.position.y, this.width, this.width, -HALF_PI, -HALF_PI/3);
-		this.timeTillEndOfPlay = getStringTimeTillEndOfPlay(this.minute, this.second, minute(), second());	
+		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.minute, this.second, minute(), second());	
 		fill(0);
 		textSize(DEFAULT_TIMER_TEXT_SIZE);
-		text(this.timeTillEndOfPlay, this.position.x + 10, this.position.y + DEFAULT_TIMER_TEXT_SIZE);
+		text(this.stringTimeTillEndOfPlay, this.position.x + 10, this.position.y + DEFAULT_TIMER_TEXT_SIZE);
 
 		// restore back to state previous.
 		pop();
