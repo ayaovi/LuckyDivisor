@@ -17,6 +17,7 @@ function Panel()
 	this.colour = color('white');
 	this.playerLifeStars = [];
 	this.timer = new Timer();
+	this.playerLifeStarsLocked = true;
 	// this.star = 
 	
 	for (var i = 0; i < NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
@@ -36,5 +37,14 @@ function Panel()
 		{
 			this.playerLifeStars[i].show();
 		}
+	}
+	
+	this.takeOffAPlayerLifeStar = function()
+	{
+		if (!this.playerLifeStarsLocked)
+		{
+			this.playerLifeStars.splice(this.playerLifeStars.length - 1, 1);
+		}
+		this.playerLifeStarsLocked = true;
 	}
 }

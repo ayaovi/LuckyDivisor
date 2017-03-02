@@ -27,4 +27,11 @@ function Player()
 			this.score += hit;
 		}
 	}
+	
+	this.burn = function()
+	{
+		panel.playerLifeStarsLocked = false;
+		panel.takeOffAPlayerLifeStar();
+		console.log("Player burnt");
+	}
 }

@@ -87,6 +87,55 @@ function Cube(primeNumber, id, position)
 	// A collision handler.
 	this.cameInContactWith = function(otherCube)
 	{
+		var pnCube;
 		
+		// This method is only supposed to be called on a playerCube, however we still need to make sure.
+		if (this === playerCube)
+		{
+			pnCube = otherCube;
+		}
+		else if (otherCube === playerCube)
+		{
+			pnCube = this;
+		}
+		else 
+		{
+			// Neither Cubes is a player Cube.
+			this.mergeWith(otherCube);
+			return;
+		}
+		
+		if (this.yetToBeCollectedDivisors.includes(pnCube.number))
+		{
+			// Move pnCube.number to the lot of alreadyCollectedDivisors.
+			this.registerDivisorCollection(pnCube.number);
+			// Change the colour of playerCube
+			// this.colour = combineColours(yetToBeCollectedDivisors)
+			// Update Player score.
+			player.updateScore(pnCube.number);
+			// Make pnCube invisible
+			pnCube.visibility = false;
+		}
+		else if (this.alreadyCollectedDivisors.includes(pnCube.number))
+		{
+			// Do nothing for now to the playerCube
+			// Make pnCube invisible
+			pnCube.visibility = false;
+		}
+		else
+		{
+			// Burn the player for collecting a non-divisor cube
+			player.burn();
+			// Make pnCube invisible
+			pnCube.visibility = false;
+		}
+	}
+	
+	this.registerDivisorCollection = function(divisor)
+	{
+		// Add this divisor to the list of already collected divisors
+		this.alreadyCollectedDivisors.push(divisor);
+		// Then remove this divisor from the list of divisor yet to be collected
+		removeFromArray(this.yetToBeCollectedDivisors, divisor);
 	}
 }

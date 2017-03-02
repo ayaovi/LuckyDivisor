@@ -89,9 +89,11 @@ function draw()
 			var y2 = playerCube.position.y;
 			var w = SIDE_OF_CUBE;
 			
-			if (collideRectRect(x1, y1, w, w, x2, y2, w, w))
+			if (pnCube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w))
 			{
 				console.log("HIT");
+				playerCube.cameInContactWith(pnCube);
+				pnCube.visibility = false;
 			}
 		}
 	}
@@ -107,4 +109,6 @@ function draw()
 	{
 		noLoop();
 	}
+	
+	console.log("Player score is " + player.score);
 }

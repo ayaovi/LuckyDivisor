@@ -35,7 +35,7 @@ var gameStatus = "stopped";
 var NUMBER_OF_PLAYER_STARTING_LIFE_STARS = 5;
 var PLAYER_STARS_STARTING_POSITION = WIDTH_OF_CANVAS * 0.70;
 
-var DEFAULT_PN_CUBE_SPEED = 0.5;
+var DEFAULT_PN_CUBE_SPEED = 1.3;
 var PN_CUBE_SPEED_VARIANT_MULTIPLIER = 0.1;
 var DEFAULT_PLAYER_CUBE_SPEED = 10;
 
@@ -105,6 +105,21 @@ function generatePlayerCubeNumber()
 	return number;
 }
 
+
+/**
+ * A function to remove the last occurrence of an element.
+ */
+function removeFromArray(array, target)
+{
+	for (var i = array.length - 1; i >= 0; i--) 
+	{
+		if (array[i] == target)
+		{
+			array.splice(i, 1);
+			break;
+		}
+	}
+}
 
 /**
  * A function to calculate the difference in time as [minute, second].
