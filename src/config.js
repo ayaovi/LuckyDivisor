@@ -1,7 +1,10 @@
 /**
  * @file : config.js
+ *
  * @description : Config is simply an assembly of all global variables and functions.
+ *
  * @author : Ayaovi Espoir Djissenou
+ *
  * @version : 
  */
 
@@ -9,7 +12,7 @@
 var WIDTH_OF_GAME_FRAME = 500;
 var HEIGHT_OF_GAME_FRAME = 600;
 
-var WIDTH_OF_CANVAS = (WIDTH_OF_GAME_FRAME * 4) / 5;
+var WIDTH_OF_CANVAS = WIDTH_OF_GAME_FRAME * 0.8;
 var HEIGHT_OF_CANVAS = HEIGHT_OF_GAME_FRAME;
 
 // var WIDTH_OF_SIDE_PANEL = WIDTH_OF_GAME_FRAME / 5;
@@ -21,8 +24,10 @@ var NUMBER_OF_ROWS = NUMBER_OF_COLUMNS * 5;
 var DEFAULT_COLUMN_PADDING = 5;
 var SIDE_OF_CUBE = (WIDTH_OF_CANVAS / NUMBER_OF_COLUMNS) - (DEFAULT_COLUMN_PADDING * 2);
 
-var HEIGHT_TOP_PANEL = (2 * HEIGHT_OF_GAME_FRAME) / 30;
-var SIZE_OF_A_PLAYER_STAR = (HEIGHT_TOP_PANEL / 2) * 1.2;
+var HEIGHT_TOP_PANEL = HEIGHT_OF_GAME_FRAME / 15;
+var SIZE_OF_A_PLAYER_STAR = HEIGHT_TOP_PANEL * 0.6;
+
+var TIMER_ICON_WIDTH = HEIGHT_TOP_PANEL * 0.75;
 
 var gameStatus = "stopped";
 
@@ -39,10 +44,12 @@ var DEFAULT_CANVAS_BACKGROUND_IMAGE;
 var CUBE_NUMBER_PADDING = 5;
 
 var DEFAULT_CUBE_NUMBER_TEXT_SIZE = SIDE_OF_CUBE - 2 * CUBE_NUMBER_PADDING;
+var DEFAULT_TIMER_TEXT_SIZE = HEIGHT_TOP_PANEL * 0.8;
 
 var CUBE_COLOUR_MAP = {};
 
 var playerNumberDivisors = [];
+var defaultPlayDuration = [1, 0];	/* 1 min 0 sec. */
 
 var gameCubes = [];
 
@@ -85,6 +92,43 @@ function generatePlayerCubeNumber()
 	return number;
 }
 
+
+// A function to calculate the difference in time as [minute, second].
+function getTimeDifference(previousMinute, previousSecond, currentMinute, currentSecond)
+{
+	var timeDifference = (currentMinute * 60 + currentSecond) - 
+	(previousMinute * 60 + previousSecond);
+
+	var minute = floor(timeDifference / 60);
+	var second = timeDifference % 60;
+
+	return [minute, second];
+}
+
+
+// A function to format the game duration a string.
+function getStringGameDuration(startMinute, startSecond, currentMinute, currentSecond)
+{
+	var duration = getTimeDifference(previousMinute, previousSecond, currentMinute, currentSecond);
+	return (padWithZero(duration[0]) + ":" + padWithZero(duration[1]));
+}
+
+
+// A function to determine how much time till end of play.
+function getStringTimeTillEndOfPlay(startMinute, startSecond, currentMinute, currentSecond)
+{
+	var duration = getTimeDifference(startMinute, startSecond, currentMinute, currentSecond);
+	var timeTillEndOfPlay = getTimeDifference(defaultPlayDuration[0], defaultPlayDuration[1], 
+		duration[0], duration[1]);
+	return (padWithZero(abs(timeTillEndOfPlay[0])) + ":" + padWithZero(abs(timeTillEndOfPlay[1])));
+}
+
+
+// A function that pad number with zeros if necessary.
+function padWithZero(number)
+{
+	return ((number < 10) ? "0" + number : number);
+}
 
 // A function that calculate all the prime factors of a number.
 function getPrimeFactors(number)

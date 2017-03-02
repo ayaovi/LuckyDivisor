@@ -1,7 +1,10 @@
 /**
  * @file : main.js
+ *
  * @description : 
+ *
  * @author : Ayaovi Espoir Djissenou
+ *
  * @version : 
  */
 
@@ -41,7 +44,7 @@ function setup()
 		console.log(factors[i]);
 	}
 	
-	panel = new Panel(createVector(0, 0), WIDTH_OF_CANVAS, 40)
+	panel = new Panel();
 }
 
 function draw()
@@ -52,6 +55,16 @@ function draw()
 	{
 		gameCubes[i].show();
 	}
+
+	if (!panel.timer.isStarted)
+	{
+		panel.timer.start();
+	}
 	
 	panel.show();
+
+	if (panel.timer.timeTillEndOfPlay == "00:00")
+	{
+		noLoop();
+	}
 }
