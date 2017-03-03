@@ -40,24 +40,7 @@ function setup()
 	
 	// image(img, 0, 0);
 	
-	var playerCubeNumber = generatePlayerCubeNumber();
-	console.log(playerCubeNumber);
-	
-	playerCube = new Cube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
-	// gameCubes.push(playerCube);
-	
-	for (var i = 0; i < NUMBER_OF_COLUMNS; i++)
-	{
-		// gameCubes.push(new Cube(3, i + 1, createVector(COLUMN_WIDTH * i, 0)));
-		columns.push(new Column(COLUMN_WIDTH * i));
-	}
-	
-	// var factors = getPrimeFactors(5);
-	var factors = playerCube.divisors;
-	for (var i = 0; i < factors.length; i++)
-	{
-		console.log(factors[i]);
-	}
+	startPlay();
 	
 	player = new Player();
 	panel = new Panel();

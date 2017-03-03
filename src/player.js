@@ -28,13 +28,26 @@ function Player()
 		}
 		
 		// Check whether player has collected all required divisors.
-		if (this.score == playerCube.number)
+		if (this.hasCollectedAll())
 		{
 			// Then this mark the end of play.
 			endPlay();
 		}
 	}
 	
+	
+	/**
+	 * A function that checks whether the player has collected all necessary cubes.
+	 */
+	this.hasCollectedAll = function()
+	{
+		return playerCube.hasCollectedAll();
+	}
+	
+	
+	/**
+	 * A function that takes action when the player collects a cube that he is 
+	 */
 	this.burn = function()
 	{
 		panel.playerLifeStarsLocked = false;

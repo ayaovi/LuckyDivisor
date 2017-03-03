@@ -12,8 +12,9 @@
  * @version : 
  */
 
-
-// Function constructor.
+/**
+ * Function constructor.
+ */
 function Cube(primeNumber, id, position)
 {
 	this.number = primeNumber;
@@ -29,7 +30,10 @@ function Cube(primeNumber, id, position)
 	this.alreadyCollectedDivisors = [];
 	this.yetToBeCollectedDivisors = (id == 0) ? getPrimeFactors(this.number) : [];
 	
-	// A function that displays this Cube.
+	
+	/**
+	 * A function that displays this Cube.
+	 */
 	this.show = function()
 	{
 		// stroke();
@@ -72,7 +76,10 @@ function Cube(primeNumber, id, position)
 		}
 	}
 	
-	// A function that makes this cube fall.
+	
+	/**
+	 * A function that makes this cube fall.
+	 */
 	this.fall = function()
 	{
 		this.position.y += this.speed;
@@ -84,7 +91,9 @@ function Cube(primeNumber, id, position)
 		}
 	}
 	
-	// A collision handler.
+	/**
+	 * A collision handler.
+	 */
 	this.cameInContactWith = function(otherCube)
 	{
 		var pnCube;
@@ -112,6 +121,7 @@ function Cube(primeNumber, id, position)
 			// Change the colour of playerCube
 			// this.colour = combineColours(yetToBeCollectedDivisors)
 			// Update Player score.
+			this.changeColour();
 			player.updateScore(pnCube.number);
 			// Make pnCube invisible
 			pnCube.visibility = false;
@@ -131,11 +141,39 @@ function Cube(primeNumber, id, position)
 		}
 	}
 	
+	
+	/**
+	 * A function that checks whether the player has collected all necessary cubes.
+	 */
+	this.hasCollectedAll = function()
+	{
+		return (this.yetToBeCollectedDivisors.length == 0);
+	}
+	
+	/**
+	 * A function.
+	 */
 	this.registerDivisorCollection = function(divisor)
 	{
 		// Add this divisor to the list of already collected divisors
 		this.alreadyCollectedDivisors.push(divisor);
 		// Then remove this divisor from the list of divisor yet to be collected
 		removeFromArray(this.yetToBeCollectedDivisors, divisor);
+	}
+	
+	this.changeColour = function()
+	{
+		if (this.yetToBeCollectedDivisors.length == 0)
+		{
+			this.colour = color('white');
+		}
+		else if (this.yetToBeCollectedDivisors.length == 1)
+		{
+			this.colour = CUBE_COLOUR_MAP[this.yetToBeCollectedDivisors[0]];
+		}
+		else
+		{
+			this.colour = combineColours(this.yetToBeCollectedDivisors);
+		}
 	}
 }

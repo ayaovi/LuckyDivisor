@@ -122,7 +122,9 @@ function removeFromArray(array, target)
 }
 
 /**
- * A function to calculate the difference in time as [minute, second].
+ * @description A function to calculate the difference in time as [minute, second].
+ * @param 
+ * @return 
  */
 function getTimeDifference(previousMinute, previousSecond, currentMinute, currentSecond)
 {
@@ -136,7 +138,9 @@ function getTimeDifference(previousMinute, previousSecond, currentMinute, curren
 
 
 /**
- * A function to format the game duration a string.
+ * @description A function to format the game duration a string.
+ * @param 
+ * @return 
  */
 function getStringGameDuration(startMinute, startSecond, currentMinute, currentSecond)
 {
@@ -146,7 +150,14 @@ function getStringGameDuration(startMinute, startSecond, currentMinute, currentS
 
 
 /**
- * A function to determine how much time till end of play.
+ * @description A function to determine how much time till end of play.
+ * @param startMinute, startSecond, currentMinute and currentSecond 
+ * which are all integers. Like their names imply they are all in the 
+ * range 0-59. The currentMinute and currentSecond can be determined 
+ * inside this function; which I initially did. However for some reason 
+ * I am not allowed to make a call to minute() and second() from p5.js 
+ * reason why I reverted back to passing them as arguments.
+ * @return the minute and second as a colon separated string.
  */
 function getStringTimeTillEndOfPlay(startMinute, startSecond, currentMinute, currentSecond)
 {
@@ -157,7 +168,10 @@ function getStringTimeTillEndOfPlay(startMinute, startSecond, currentMinute, cur
 
 
 /**
- * A function that pad number with zeros if necessary.
+ * @description A function that pad number with zeros if necessary.
+ * @param a positive number.
+ * @return the number preceded with 0, should it be less than 10 or 
+ * just the number itself otherwise.
  */
 function padWithZero(number)
 {
@@ -165,7 +179,9 @@ function padWithZero(number)
 }
 
 /**
- * A function that calculate all the prime factors of a number.
+ * @description A function that calculate all the prime factors of a number.
+ * @param a positive non-zero integer.
+ * @return an array of prime factors of the supplied number.
  */
 function getPrimeFactors(number)
 {
@@ -188,7 +204,9 @@ function getPrimeFactors(number)
 }
 
 /**
- * A function to check whether a number is prime.
+ * @description A function to check whether a number is prime.
+ * @param an integer.
+ * @return true or false.
  */
 function isPrime(number)
 {
@@ -218,7 +236,11 @@ function isPrime(number)
 }
 
 /**
- * A function that given a list divisors, returns a combination of all their colours put together.
+ * @description A function that given a list divisors, returns a 
+ * combination of all their colours put together.
+ * @param an array of prime numbers less than 10 and excluding 0.
+ * @return an RGB colour that is equally made up of colour 
+ * corresponding to the prime number.
  */
 function combineColours(divisors)
 {
@@ -237,7 +259,9 @@ function combineColours(divisors)
 
 
 /**
- * A function that adds two RGN colours.
+ * @description A function that adds two RGN colours.
+ * @param rgb1 and rgb2 which are two RGB colours.
+ * @retun an RGB colour that is a combination of rgb1 and rgb2.
  */
 function addRGBs(rgb1, rgb2)
 {
@@ -254,7 +278,10 @@ function addRGBs(rgb1, rgb2)
 }
 
 /**
- * A function to convert RGB to CMYK.
+ * @description A function to convert RGB to CMYK.
+ * @param an RGB colour.
+ * @return an array of the corresponding cyan, magenta, yellow 
+ * values/percentages and the key that make up the RGB colour.
  */
 function RGBtoCMYK(colour)
 {
@@ -278,7 +305,11 @@ function RGBtoCMYK(colour)
 
 
 /**
- * A function to convert CMYK to RGB.
+ * @description A function to convert CMYK to RGB.
+ * @param an array that contains the cyan, magenta, yellow 
+ * and key values corresponding to an RGB colour.
+ * @return an array containing the red, green and blue values
+ * or percentages that make up the RGB colour.
  */
 function CMYKtoRGB(cmyk)
 {
@@ -296,7 +327,10 @@ function CMYKtoRGB(cmyk)
 
 
 /**
- * A function to convert RGB to LAB.
+ * @description A function to convert RGB to LAB.
+ * @param an rgb colour.
+ * @return an array containing the L, A and B values make up 
+ * the corresponding RGB colour.
  */
 function RGBtoLAB(rgb)
 {
@@ -322,7 +356,11 @@ function RGBtoLAB(rgb)
 
 
 /**
- * A function to convert LAB to RGB.
+ * @description A function to convert LAB to RGB.
+ * @param an array of containing the L, A and B values make up 
+ * an RGB colour.
+ * @return an array containing the red, green and yellow values 
+ * make up the corresponding RGB colour
  */
 function LABtoRGB(lab)
 {
@@ -372,7 +410,9 @@ function deltaE(labA, labB)
 
 
 /**
- * A game over even handler.
+ * @description A game over even handler.
+ * @param none.
+ * @retun none.
  */
 function gameOver()
 {
@@ -380,7 +420,9 @@ function gameOver()
 }
 
 /**
- * A pause event handler.
+ * @description A pause event handler.
+ * @param none.
+ * @return none.
  */
 function pause()
 {
@@ -388,9 +430,39 @@ function pause()
 }
 
 /**
- * An end of play handler.
+ * @description An end of play handler.
+ * @param none.
+ * @return none.
  */
 function endPlay()
 {
+	// Config and sorting
+}
+
+/**
+ * @description A start of play handler.
+ * @param none.
+ * @return none.
+ */
+function startPlay()
+{
+	var playerCubeNumber = generatePlayerCubeNumber();
+	console.log(playerCubeNumber);
 	
+	playerCube = new Cube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
+	
+	for (var i = 0; i < NUMBER_OF_COLUMNS; i++)
+	{
+		// gameCubes.push(new Cube(3, i + 1, createVector(COLUMN_WIDTH * i, 0)));
+		columns.push(new Column(COLUMN_WIDTH * i));
+	}
+	
+	// DEBUGGING
+	var factors = playerCube.divisors;
+	
+	for (var i = 0; i < factors.length; i++)
+	{
+		console.log(factors[i]);
+	}
+	// END OF DEBUGGING
 }
