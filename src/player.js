@@ -18,7 +18,9 @@ function Player()
 	// this.numberOfLifeStars = NUMBER_OF_PLAYER_STARTING_LIFE_STARS;
 	
 	/**
-	 * A function to update the player score.
+	 * @desciption A function to update the player score.
+	 * @param a positive non-zero integer.
+	 * @return none
 	 */
 	this.updateScore = function(hit)
 	{
@@ -52,6 +54,6 @@ function Player()
 	{
 		panel.playerLifeStarsLocked = false;
 		panel.takeOffAPlayerLifeStar();
-		console.log("Player burnt");
+		// console.log("Player burnt");
 	}
 }

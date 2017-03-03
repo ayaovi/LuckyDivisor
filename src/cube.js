@@ -32,7 +32,11 @@ function Cube(primeNumber, id, position)
 	
 	
 	/**
-	 * A function that displays this Cube.
+	 * @description a function that displays this Cube.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
 	 */
 	this.show = function()
 	{
@@ -78,7 +82,11 @@ function Cube(primeNumber, id, position)
 	
 	
 	/**
-	 * A function that makes this cube fall.
+	 * @description a function that makes this cube fall.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
 	 */
 	this.fall = function()
 	{
@@ -91,8 +99,13 @@ function Cube(primeNumber, id, position)
 		}
 	}
 	
+
 	/**
-	 * A collision handler.
+	 * @description a collision handler.
+	 *
+	 * @param a Pn cube.
+	 *
+	 * @return none.
 	 */
 	this.cameInContactWith = function(otherCube)
 	{
@@ -118,17 +131,20 @@ function Cube(primeNumber, id, position)
 		{
 			// Move pnCube.number to the lot of alreadyCollectedDivisors.
 			this.registerDivisorCollection(pnCube.number);
+			
 			// Change the colour of playerCube
-			// this.colour = combineColours(yetToBeCollectedDivisors)
-			// Update Player score.
 			this.changeColour();
+			
+			// Update Player score.
 			player.updateScore(pnCube.number);
+			
 			// Make pnCube invisible
 			pnCube.visibility = false;
 		}
 		else if (this.alreadyCollectedDivisors.includes(pnCube.number))
 		{
 			// Do nothing for now to the playerCube
+			
 			// Make pnCube invisible
 			pnCube.visibility = false;
 		}
@@ -136,6 +152,7 @@ function Cube(primeNumber, id, position)
 		{
 			// Burn the player for collecting a non-divisor cube
 			player.burn();
+			
 			// Make pnCube invisible
 			pnCube.visibility = false;
 		}
@@ -143,24 +160,44 @@ function Cube(primeNumber, id, position)
 	
 	
 	/**
-	 * A function that checks whether the player has collected all necessary cubes.
+	 * @description A function that checks whether the player has collected all necessary cubes.
+	 *
+	 * @param none.
+	 *
+	 * @return true or false.
 	 */
 	this.hasCollectedAll = function()
 	{
 		return (this.yetToBeCollectedDivisors.length == 0);
 	}
 	
+
 	/**
-	 * A function.
+	 * @description a function.
+	 *
+	 * @param a non-zero prime number less than 10.
+	 *
+	 * @return none.
 	 */
 	this.registerDivisorCollection = function(divisor)
 	{
 		// Add this divisor to the list of already collected divisors
 		this.alreadyCollectedDivisors.push(divisor);
+		
 		// Then remove this divisor from the list of divisor yet to be collected
 		removeFromArray(this.yetToBeCollectedDivisors, divisor);
 	}
 	
+
+	/**
+	 * @description a function that cahnges the colour of of this Pn cube 
+	 * according to prime numbers in the yetToBeCollectedDivisors array. This 
+	 * is in response to the player collecting a prime divisor Pn cube.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
 	this.changeColour = function()
 	{
 		if (this.yetToBeCollectedDivisors.length == 0)

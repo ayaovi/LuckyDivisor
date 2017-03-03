@@ -15,9 +15,6 @@ var HEIGHT_OF_GAME_FRAME = 600;
 var WIDTH_OF_CANVAS = WIDTH_OF_GAME_FRAME * 0.8;
 var HEIGHT_OF_CANVAS = HEIGHT_OF_GAME_FRAME;
 
-// var WIDTH_OF_SIDE_PANEL = WIDTH_OF_GAME_FRAME / 5;
-// var HEIGHT_OF_SIDE_PANEL = HEIGHT_OF_GAME_FRAME;
-
 var NUMBER_OF_COLUMNS = 10;
 var COLUMN_WIDTH = WIDTH_OF_CANVAS / NUMBER_OF_COLUMNS;
 var NUMBER_OF_ROWS = NUMBER_OF_COLUMNS * 5;
@@ -69,10 +66,15 @@ var player;
 
 var img;
 
+
 /** 
- * A function that randomly generate a player cube number.
+ * @description randomly generate a player cube number.
  * The number must be in the range 1-99 inclusive.
  * None of the number's prime factors must be bigger than 10.
+ *
+ * @param none.
+ *
+ * @return a non-zero positive integer between 2-99.
  */
 function generatePlayerCubeNumber()
 {
@@ -107,7 +109,11 @@ function generatePlayerCubeNumber()
 
 
 /**
- * A function to remove the last occurrence of an element.
+ * @description removes the last occurrence of an element.
+ *
+ * @param an array and a target element.
+ *
+ * @return none.
  */
 function removeFromArray(array, target)
 {
@@ -121,10 +127,14 @@ function removeFromArray(array, target)
 	}
 }
 
+
 /**
  * @description A function to calculate the difference in time as [minute, second].
- * @param 
- * @return 
+ *
+ * @param previousMinute, previousSecond, currentMinute and currentSecond, which are 
+ * all positive integers less than 60. 
+ *
+ * @return an array containing the time difference minute and second.
  */
 function getTimeDifference(previousMinute, previousSecond, currentMinute, currentSecond)
 {
@@ -139,7 +149,9 @@ function getTimeDifference(previousMinute, previousSecond, currentMinute, curren
 
 /**
  * @description A function to format the game duration a string.
+ *
  * @param 
+ *
  * @return 
  */
 function getStringGameDuration(startMinute, startSecond, currentMinute, currentSecond)
@@ -151,12 +163,14 @@ function getStringGameDuration(startMinute, startSecond, currentMinute, currentS
 
 /**
  * @description A function to determine how much time till end of play.
+ *
  * @param startMinute, startSecond, currentMinute and currentSecond 
  * which are all integers. Like their names imply they are all in the 
  * range 0-59. The currentMinute and currentSecond can be determined 
  * inside this function; which I initially did. However for some reason 
  * I am not allowed to make a call to minute() and second() from p5.js 
  * reason why I reverted back to passing them as arguments.
+ *
  * @return the minute and second as a colon separated string.
  */
 function getStringTimeTillEndOfPlay(startMinute, startSecond, currentMinute, currentSecond)
@@ -169,7 +183,9 @@ function getStringTimeTillEndOfPlay(startMinute, startSecond, currentMinute, cur
 
 /**
  * @description A function that pad number with zeros if necessary.
+ *
  * @param a positive number.
+ *
  * @return the number preceded with 0, should it be less than 10 or 
  * just the number itself otherwise.
  */
@@ -180,7 +196,9 @@ function padWithZero(number)
 
 /**
  * @description A function that calculate all the prime factors of a number.
+ *
  * @param a positive non-zero integer.
+ *
  * @return an array of prime factors of the supplied number.
  */
 function getPrimeFactors(number)
@@ -205,7 +223,9 @@ function getPrimeFactors(number)
 
 /**
  * @description A function to check whether a number is prime.
+ *
  * @param an integer.
+ *
  * @return true or false.
  */
 function isPrime(number)
@@ -238,7 +258,9 @@ function isPrime(number)
 /**
  * @description A function that given a list divisors, returns a 
  * combination of all their colours put together.
+ *
  * @param an array of prime numbers less than 10 and excluding 0.
+ *
  * @return an RGB colour that is equally made up of colour 
  * corresponding to the prime number.
  */
@@ -260,7 +282,9 @@ function combineColours(divisors)
 
 /**
  * @description A function that adds two RGN colours.
+ *
  * @param rgb1 and rgb2 which are two RGB colours.
+ *
  * @retun an RGB colour that is a combination of rgb1 and rgb2.
  */
 function addRGBs(rgb1, rgb2)
@@ -279,7 +303,9 @@ function addRGBs(rgb1, rgb2)
 
 /**
  * @description A function to convert RGB to CMYK.
+ *
  * @param an RGB colour.
+ *
  * @return an array of the corresponding cyan, magenta, yellow 
  * values/percentages and the key that make up the RGB colour.
  */
@@ -306,8 +332,10 @@ function RGBtoCMYK(colour)
 
 /**
  * @description A function to convert CMYK to RGB.
+ *
  * @param an array that contains the cyan, magenta, yellow 
  * and key values corresponding to an RGB colour.
+ *
  * @return an array containing the red, green and blue values
  * or percentages that make up the RGB colour.
  */
@@ -328,7 +356,9 @@ function CMYKtoRGB(cmyk)
 
 /**
  * @description A function to convert RGB to LAB.
+ *
  * @param an rgb colour.
+ *
  * @return an array containing the L, A and B values make up 
  * the corresponding RGB colour.
  */
@@ -357,8 +387,10 @@ function RGBtoLAB(rgb)
 
 /**
  * @description A function to convert LAB to RGB.
+ *
  * @param an array of containing the L, A and B values make up 
  * an RGB colour.
+ *
  * @return an array containing the red, green and yellow values 
  * make up the corresponding RGB colour
  */
@@ -386,7 +418,11 @@ function LABtoRGB(lab)
 
 
 /**
- * calculate the perceptual distance between colours in CIELAB.
+ * @description calculate the perceptual distance between colours in CIELAB.
+ *
+ * @param 
+ *
+ * @return 
  */
 function deltaE(labA, labB)
 {
@@ -411,7 +447,9 @@ function deltaE(labA, labB)
 
 /**
  * @description A game over even handler.
+ *
  * @param none.
+ *
  * @retun none.
  */
 function gameOver()
@@ -419,9 +457,12 @@ function gameOver()
 	// TODO : Reset all the necessary stuff.
 }
 
+
 /**
  * @description A pause event handler.
+ *
  * @param none.
+ *
  * @return none.
  */
 function pause()
@@ -429,9 +470,12 @@ function pause()
 	// If possible Stack() everything.
 }
 
+
 /**
  * @description An end of play handler.
+ *
  * @param none.
+ *
  * @return none.
  */
 function endPlay()
@@ -439,9 +483,12 @@ function endPlay()
 	// Config and sorting
 }
 
+
 /**
  * @description A start of play handler.
+ *
  * @param none.
+ *
  * @return none.
  */
 function startPlay()
@@ -453,7 +500,6 @@ function startPlay()
 	
 	for (var i = 0; i < NUMBER_OF_COLUMNS; i++)
 	{
-		// gameCubes.push(new Cube(3, i + 1, createVector(COLUMN_WIDTH * i, 0)));
 		columns.push(new Column(COLUMN_WIDTH * i));
 	}
 	

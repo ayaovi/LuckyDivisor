@@ -26,6 +26,14 @@ function Panel()
 			PLAYER_STARS_STARTING_POSITION, this.position.y + this.height / 2), this.height / 4));
 	}
 	
+
+	/**
+	 * @description a function to display the content of this Panel.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
 	this.show = function()
 	{
 		fill(255);
@@ -39,6 +47,15 @@ function Panel()
 		}
 	}
 	
+
+	/**
+	 * @description a function that takes off a player life star 
+	 * in response to him or her collecting a Pn cube they are not supposed to.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
 	this.takeOffAPlayerLifeStar = function()
 	{
 		if (!this.playerLifeStarsLocked)
