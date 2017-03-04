@@ -504,11 +504,11 @@ function startPlay()
 	}
 	
 	// DEBUGGING
-	var factors = playerCube.divisors;
+	// var factors = playerCube.divisors;
 	
-	for (var i = 0; i < factors.length; i++)
-	{
-		console.log(factors[i]);
-	}
+	// for (var i = 0; i < factors.length; i++)
+	// {
+	// 	console.log(factors[i]);
+	// }
 	// END OF DEBUGGING
 }
