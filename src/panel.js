@@ -9,23 +9,80 @@
  * @version : 
  */
 
+
+/**
+ * @description A function constructor.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
 function Panel()
 {
-	this.position = createVector(0, 0);
-	this.width = WIDTH_OF_CANVAS;
-	this.height = HEIGHT_TOP_PANEL;
-	this.colour = color('white');
-	this.playerLifeStars = [];
-	this.timer = new Timer();
-	this.playerLifeStarsLocked = true;
-	// this.star = 
+	/**
+	 * The position of this panel as a vector with coordinates (x, y).
+	 */
+	this.position;
 	
-	for (var i = 0; i < NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
+	/**
+	 * The panel is is represented as a rectangle with width and height.
+	 */
+	this.width;
+	
+	/**
+	 * Height of the panel.
+	 */
+	this.height;
+	
+	/**
+	 * The panel is filled in white.
+	 */
+	// this.colour;
+	
+	/**
+	 * A collection of player life stars.
+	 */
+	this.playerLifeStars;
+	
+	/**
+	 * The timer to appear on the panel.
+	 */
+	this.timer;
+	
+	/**
+	 * A lock on the access of player life stars. This lock prevents the 
+	 * removal of more than one life stars when a player is burnt.
+	 */
+	this.playerLifeStarsLocked;
+	
+
+	/**
+	 * @description an initialiser of the panel.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	this.init = function()
 	{
-		this.playerLifeStars.push(new Star(createVector(this.position.x + i * SIZE_OF_A_PLAYER_STAR + 
-			PLAYER_STARS_STARTING_POSITION, this.position.y + this.height / 2), this.height / 4));
+		this.position = createVector(0, 0);
+		this.width = WIDTH_OF_CANVAS;
+		this.height = HEIGHT_TOP_PANEL;
+		// this.colour = color('white');
+		this.playerLifeStars = [];
+		this.timer = new Timer();
+		this.playerLifeStarsLocked = true;
+
+		/**
+		 * create the player life stars objects.
+		 */
+		for (var i = 0; i < NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
+		{
+			this.playerLifeStars.push(new Star(createVector(this.position.x + i * SIZE_OF_A_PLAYER_STAR + 
+				PLAYER_STARS_STARTING_POSITION, this.position.y + this.height / 2), this.height / 4));
+		}
 	}
-	
+
 
 	/**
 	 * @description a function to display the content of this Panel.
@@ -37,10 +94,10 @@ function Panel()
 	this.show = function()
 	{
 		fill(255);
-		// noStroke();
 		rect(this.position.x, this.position.y, this.width - 1, this.height);
-		// this.star.show();
+		
 		this.timer.show();
+		
 		for (var i = 0; i < this.playerLifeStars.length; i++) 
 		{
 			this.playerLifeStars[i].show();

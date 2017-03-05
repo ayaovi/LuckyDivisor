@@ -15,31 +15,64 @@
  */
 
 
-// Function constructor.
+/**
+ * @description Function constructor.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
 function Timer(position)
 {
+	/**
+	 * The position of the timer as a vector with coordinates (x, y).
+	 */
 	this.position = createVector(0, 0);
-	// this.width = TIMER_ICON_WIDTH;
-	// this.height = TIMER_ICON_WIDTH;
-	// this.day;
-	// this.hour;
+	
+	/**
+	 * The minute at which this timer has started.
+	 */
 	this.minute;
+	
+	/**
+	 * The second at which this timer has started.
+	 */
 	this.seconds;
+	
+	/**
+	 * Confirmation that the timer has started or not.
+	 */
 	this.isStarted = false;
+	
+	/**
+	 * A string representation of the time till the end of current play.
+	 * Displayed as minute:second.
+	 */
 	this.stringTimeTillEndOfPlay;
 
+
+	/**
+	 * @description a timer intialiser.
+	 *
+	 * @param none.
+	 *
+	 * @return return.
+	 */
 	this.init = function()
 	{
-		// this.day = day();
-		// this.hour = hour();
 		this.minute = minute();
 		this.second = second();
 		this.stringTimeTillEndOfPlay = padWithZero(defaultPlayDuration[0]) + 
 				":" + padWithZero(defaultPlayDuration[1]);
 	}
 
+
 	/**
-	 * A start event handler.
+	 * @description A start event handler.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
 	 */
 	this.start = function()
 	{
@@ -49,7 +82,11 @@ function Timer(position)
 	}
 
 	/**
-	 * A reset event handler.
+	 * @description A reset event handler.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
 	 */
 	this.reset = function()
 	{
@@ -62,7 +99,11 @@ function Timer(position)
 
 	
 	/**
-	 * Responsible for displaying this timer.
+	 * @decsription Responsible for displaying this timer.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
 	 */
 	this.show = function()
 	{

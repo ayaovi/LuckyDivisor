@@ -44,6 +44,7 @@ function setup()
 	
 	player = new Player();
 	panel = new Panel();
+	panel.init();
 }
 
 function draw()

@@ -13,24 +13,98 @@
  */
 
 /**
- * Function constructor.
+ * @description Function constructor.
+ *
+ * @param none.
+ *
+ * @return none.
  */
 function Cube(primeNumber, id, position)
 {
+	/**
+	 * The following variable the number that appears on the cube. In the case 
+	 * of a Pn cube, this number is always a non-zero prime less than 10. A 
+	 * player cube on the other hand may have any number between 2 and 99.
+	 */
 	this.number = primeNumber;
+
+	/**
+	 * The id is a unique parameter to this cube. The id's start from 0. Where 
+	 * an id 0 is always reserved to the player's cube.
+	 */
 	this.id = id;
+
+	/**
+	 * A cube requires a position for display on the canvas. The position tells 
+	 * the coordinates of the cube at all time. It is implemented as a p5.js vector.
+	 */
 	this.position = position;
+
+	/**
+	 * The following is a variable that advises on the visibility of this Cube. This 
+	 * is mostly useful when displaying the Cube on the canvas. As such a non 
+	 * visible (i.e. this.visibility == false) will never be displayed on the canvas.
+	 */
 	this.visibility = true;
-	this.column;
+
+	/**
+	 * The following simply keeps track for which Column this Cube belongs to. The 
+	 * importance of this variable is apparent when we want to automatically start 
+	 * a new Cube once the current has fallen off the canvas. The idea is to use 
+	 * this variable to get the hosting column and initiate a new cube fall.
+	 */
+	this.hostingColumnIndex;
+
+	/**
+	 * The speed tells us how has this Cube is falling. One assumption made at the 
+	 * design stage is that bigger Pn cubes are made of denser material and thus 
+	 * fall faster than the smaller one (e.g. a Cube with Pn 5 will alway fall 
+	 * faster than one with Pn 2). 
+	 */
 	this.speed = DEFAULT_PN_CUBE_SPEED + (PN_CUBE_SPEED_VARIANT_MULTIPLIER * primeNumber);
-	this.owner = (id == 0) ? "Player" : undefined;
+	
+	/**
+	 * The following variable is needed to confirm the identity of the Cube during 
+	 * certain operations.
+	 */
+	// this.owner = (id == 0) ? "Player" : undefined;
+	
+	/**
+	 * The following is only needed for player cubes. It is a collection all the 
+	 * prime divisors of player cube's number.
+	 */
 	this.divisors = (id == 0) ? getPrimeFactors(this.number) : [];
-	// this.colour = (id == 0) ? color(255) : CUBE_COLOUR_MAP[primeNumber];
+	
+	/**
+	 * A colour is the colour in which the cube appears when displayed on the canvas 
+	 * Every Pn Cube has a dedicated colour whereas a player cube's colour is a 
+	 * combination of the colour of all its diviors.
+	 */
 	this.colour = (id == 0) ? combineColours(this.divisors) : CUBE_COLOUR_MAP[primeNumber];
+	
+	/**
+	 * The following is a collection of numbers of pn Cube that have been collect are 
+	 * divisors of the player cube number.
+	 */
 	this.alreadyCollectedDivisors = [];
+	
+	/**
+	 * The following is a collection of numbers of pn Cube that are divisors of the 
+	 * player's cube number but have not yet been collected.
+	 */
 	this.yetToBeCollectedDivisors = (id == 0) ? getPrimeFactors(this.number) : [];
 	
-	
+	/**
+	 * A confirmation on whether this cube is falling or not, reason why it is initially 
+	 * set to false.
+	 */
+	// this.hasStarted = false;
+
+	/**
+	 * keeps a reccord of when this cube started falling.
+	 */
+	// this.startTime;
+
 	/**
 	 * @description a function that displays this Cube.
 	 *
@@ -41,7 +115,7 @@ function Cube(primeNumber, id, position)
 	this.show = function()
 	{
 		// stroke();
-		if (this.owner == "Player")
+		if (this.id == 0)
 		{
 			if (keyIsDown(playerControls[0]))
 			{
@@ -97,6 +171,19 @@ function Cube(primeNumber, id, position)
 		{
 			this.visibility = false;
 		}
+
+		// if (!this.hasStarted)
+		// {
+		// 	this.hasStarted = true;
+		// }
+		// else
+		// {
+		// 	// Check whether we are half way through.
+		// 	if (this.position.y >= HEIGHT_OF_CANVAS / 2)
+		// 	{
+		// 		// Create an event for a new cube to fall after this one down the same coloumn.
+		// 	}
+		// }
 	}
 	
 
@@ -111,7 +198,10 @@ function Cube(primeNumber, id, position)
 	{
 		var pnCube;
 		
-		// This method is only supposed to be called on a playerCube, however we still need to make sure.
+		/**
+		 * This method is only supposed to be called on a playerCube, however 
+		 * we still need to make sure.
+		 */
 		if (this === playerCube)
 		{
 			pnCube = otherCube;
