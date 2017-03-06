@@ -15,55 +15,50 @@
  */
 
 
-/**
- * @description Function constructor.
- *
- * @param none.
- *
- * @return none.
- */
-function Timer(position)
+class Timer
 {
 	/**
-	 * The position of the timer as a vector with coordinates (x, y).
+	 * @description constructor.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
 	 */
-	this.position = createVector(0, 0);
+	constructor(position)
+	{
+		/**
+		 * The position of the timer as a vector with coordinates (x, y).
+		 */
+		this.position = createVector(0, 0);
+		
+		/**
+		 * The time at which this timer has started.
+		 */
+		this.time;
+		
+		/**
+		 * Confirmation that the timer has started or not.
+		 */
+		this.isStarted = false;
+		
+		/**
+		 * A string representation of the time till the end of current play.
+		 * Displayed as minute:second.
+		 */
+		this.stringTimeTillEndOfPlay;
+	}
 	
 	/**
-	 * The minute at which this timer has started.
-	 */
-	this.minute;
-	
-	/**
-	 * The second at which this timer has started.
-	 */
-	this.seconds;
-	
-	/**
-	 * Confirmation that the timer has started or not.
-	 */
-	this.isStarted = false;
-	
-	/**
-	 * A string representation of the time till the end of current play.
-	 * Displayed as minute:second.
-	 */
-	this.stringTimeTillEndOfPlay;
-
-
-	/**
-	 * @description a timer intialiser.
+	 * @description a timer initialiser.
 	 *
 	 * @param none.
 	 *
 	 * @return return.
 	 */
-	this.init = function()
+	init()
 	{
-		this.minute = minute();
-		this.second = second();
-		this.stringTimeTillEndOfPlay = padWithZero(defaultPlayDuration[0]) + 
-				":" + padWithZero(defaultPlayDuration[1]);
+		this.time = new Time(minute(), second());
+		this.stringTimeTillEndOfPlay = padWithZero(defaultPlayDuration[0]) + ":" + padWithZero(defaultPlayDuration[1]);
 	}
 
 
@@ -74,11 +69,11 @@ function Timer(position)
 	 *
 	 * @return none.
 	 */
-	this.start = function()
+	start()
 	{
 		this.init();
 		this.isStarted = true;
-		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.minute, this.second, minute(), second());
+		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.time.minute, this.time.second, minute(), second());
 	}
 
 	/**
@@ -88,7 +83,7 @@ function Timer(position)
 	 *
 	 * @return none.
 	 */
-	this.reset = function()
+	reset()
 	{
 		if (isStarted)
 		{
@@ -97,7 +92,7 @@ function Timer(position)
 		}
 	}
 
-	
+		
 	/**
 	 * @decsription Responsible for displaying this timer.
 	 *
@@ -105,7 +100,7 @@ function Timer(position)
 	 *
 	 * @return none.
 	 */
-	this.show = function()
+	show()
 	{
 		// save current state.
 		push();
@@ -117,7 +112,7 @@ function Timer(position)
 		// // Then create a white arc on the circle.
 		// fill(255);
 		// arc(this.position.x, this.position.y, this.width, this.width, -HALF_PI, -HALF_PI/3);
-		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.minute, this.second, minute(), second());	
+		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.time.minute, this.time.second, minute(), second());	
 		fill(0);
 		textSize(DEFAULT_TIMER_TEXT_SIZE);
 		text(this.stringTimeTillEndOfPlay, this.position.x + DEFAULT_TIMER_PADDING, this.position.y + DEFAULT_TIMER_TEXT_SIZE);

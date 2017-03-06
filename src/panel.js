@@ -10,52 +10,55 @@
  */
 
 
-/**
- * @description A function constructor.
- *
- * @param none.
- *
- * @return none.
- */
-function Panel()
+class Panel
 {
 	/**
-	 * The position of this panel as a vector with coordinates (x, y).
+	 * @description A function constructor.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
 	 */
-	this.position;
+	constructor()
+	{
+		/**
+		 * The position of this panel as a vector with coordinates (x, y).
+		 */
+		this.position;
+		
+		/**
+		 * The panel is is represented as a rectangle with width and height.
+		 */
+		this.width;
+		
+		/**
+		 * Height of the panel.
+		 */
+		this.height;
+		
+		/**
+		 * The panel is filled in white.
+		 */
+		// this.colour;
+		
+		/**
+		 * A collection of player life stars.
+		 */
+		this.playerLifeStars;
+		
+		/**
+		 * The timer to appear on the panel.
+		 */
+		this.timer;
+		
+		/**
+		 * A lock on the access of player life stars. This lock prevents the 
+		 * removal of more than one life stars when a player is burnt.
+		 */
+		this.playerLifeStarsLocked;	
+	}
 	
-	/**
-	 * The panel is is represented as a rectangle with width and height.
-	 */
-	this.width;
 	
-	/**
-	 * Height of the panel.
-	 */
-	this.height;
-	
-	/**
-	 * The panel is filled in white.
-	 */
-	// this.colour;
-	
-	/**
-	 * A collection of player life stars.
-	 */
-	this.playerLifeStars;
-	
-	/**
-	 * The timer to appear on the panel.
-	 */
-	this.timer;
-	
-	/**
-	 * A lock on the access of player life stars. This lock prevents the 
-	 * removal of more than one life stars when a player is burnt.
-	 */
-	this.playerLifeStarsLocked;
-	
-
 	/**
 	 * @description an initialiser of the panel.
 	 *
@@ -63,7 +66,7 @@ function Panel()
 	 *
 	 * @return none.
 	 */
-	this.init = function()
+	init()
 	{
 		this.position = createVector(0, 0);
 		this.width = WIDTH_OF_CANVAS;
@@ -91,7 +94,7 @@ function Panel()
 	 *
 	 * @return none.
 	 */
-	this.show = function()
+	show()
 	{
 		fill(255);
 		rect(this.position.x, this.position.y, this.width - 1, this.height);
@@ -103,7 +106,7 @@ function Panel()
 			this.playerLifeStars[i].show();
 		}
 	}
-	
+		
 
 	/**
 	 * @description a function that takes off a player life star 
@@ -113,7 +116,7 @@ function Panel()
 	 *
 	 * @return none.
 	 */
-	this.takeOffAPlayerLifeStar = function()
+	takeOffAPlayerLifeStar()
 	{
 		if (!this.playerLifeStarsLocked)
 		{

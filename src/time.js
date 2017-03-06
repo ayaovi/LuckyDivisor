@@ -9,27 +9,29 @@
  */
 
 
-
-/**
- * @description a constructor.
- *
- * @param a minute and second. These values are constrained between 0-59.
- *
- * @return none.
- */
-function Time(minute, second)
+class Time
 {
 	/**
-	 * The following refers to the minute part of this as it is represented as 
-	 * minute and second.
+	 * @description a constructor.
+	 *
+	 * @param a minute and second. These values are constrained between 0-59.
+	 *
+	 * @return none.
 	 */
-	this.minute = minute;
-	
-	/**
-	 * The following refers to the second part of this as it is represented as 
-	 * minute and second.
-	 */
-	this.second = second;
+	constructor(minute, second)
+	{
+		/**
+		 * The following refers to the minute part of this as it is represented as 
+		 * minute and second.
+		 */
+		this.minute = minute;
+		
+		/**
+		 * The following refers to the second part of this as it is represented as 
+		 * minute and second.
+		 */
+		this.second = second;
+	}
 
 
 	/**
@@ -39,7 +41,7 @@ function Time(minute, second)
 	 *
 	 * @return none.
 	 */
-	this.validate = function()
+	validate()
 	{
 		if (this.minute > 59)
 		{
@@ -52,7 +54,14 @@ function Time(minute, second)
 		}
 	}
 
-	this.equals = function(otherTime)
+	/**
+	 * @description 
+	 *
+	 * @param another Time object.
+	 *
+	 * @return true or false.
+	 */
+	equals(otherTime)
 	{
 		return (this.minute == otherTime.minute && this.second == otherTime.second);
 	}

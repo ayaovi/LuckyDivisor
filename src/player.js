@@ -9,29 +9,40 @@
  * @version : 
  */
 
-function Player()
+ 
+class Player
 {
 	/**
-	 * The name of the player. Ultimatly a record of the players would be 
-	 * kept. That way a player be simply be required to login (if necessary).
+	 * @desciption a constructor
+	 *
+	 * @param none.
+	 *
+	 * @return none.
 	 */
-	this.name = "PLAYER";
-	
-	/**
-	 * The score of the player so far.
-	 */
-	this.score = 0;
-	
-	/**
-	 * The player's best score so far.
-	 */
-	this.bestScore = 0;
-	
-	/**
-	 * The player's credit point so far.
-	 */
-	this.creditPoints = 0;
-	// this.numberOfLifeStars = NUMBER_OF_PLAYER_STARTING_LIFE_STARS;
+	constructor()
+	{
+		/**
+		 * The name of the player. Ultimately a record of the players would be 
+		 * kept. That way a player be simply be required to login (if necessary).
+		 */
+		this.name = "PLAYER";
+		
+		/**
+		 * The score of the player so far.
+		 */
+		this.score = 0;
+		
+		/**
+		 * The player's best score so far.
+		 */
+		this.bestScore = 0;
+		
+		/**
+		 * The player's credit point so far.
+		 */
+		this.creditPoints = 0;
+		// this.numberOfLifeStars = NUMBER_OF_PLAYER_STARTING_LIFE_STARS;
+	}
 	
 	/**
 	 * @desciption A function to update the player score.
@@ -40,7 +51,7 @@ function Player()
 	 *
 	 * @return none
 	 */
-	this.updateScore = function(hit)
+	updateScore(hit)
 	{
 		if (hit > 0)
 		{
@@ -63,7 +74,7 @@ function Player()
 	 *
 	 * @return none.
 	 */
-	this.hasCollectedAll = function()
+	hasCollectedAll()
 	{
 		return playerCube.hasCollectedAll();
 	}
@@ -76,7 +87,7 @@ function Player()
 	 *
 	 * @return none.
 	 */
-	this.burn = function()
+	burn()
 	{
 		panel.playerLifeStarsLocked = false;
 		panel.takeOffAPlayerLifeStar();

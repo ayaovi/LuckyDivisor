@@ -40,7 +40,7 @@ function setup()
 	
 	// image(img, 0, 0);
 	
-	startPlay();
+	utilities.startPlay();
 	
 	player = new Player();
 	panel = new Panel();

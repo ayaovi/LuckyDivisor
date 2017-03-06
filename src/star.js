@@ -15,26 +15,28 @@
  */
 
 
-/**
- * @description a constructor.
- *
- * @param none.
- *
- * @return none.
- */
-function Star(position, lengthOfArm)
+class Star
 {
 	/**
-	 * The position of this star.
+	 * @description a constructor.
+	 *
+	 * @param the position of the star and the length of the arm.
+	 *
+	 * @return none.
 	 */
-	this.position = position;
-	
-	/**
-	 * The star is displayed as a star. And this varaiable makes allusion to 
-	 * the length of the arm or the star.
-	 */
-	this.lengthOfArm = lengthOfArm;
-	
+	constructor(position, lengthOfArm)
+	{
+		/**
+		 * The position of this star.
+		 */
+		this.position = position;
+		
+		/**
+		 * The star is displayed as a star. And this variable makes allusion to 
+		 * the length of the arm or the star.
+		 */
+		this.lengthOfArm = lengthOfArm;
+	}
 
 	/**
 	 * @description displays the this player star.
@@ -43,7 +45,7 @@ function Star(position, lengthOfArm)
 	 *
 	 * @return none.
 	 */
-	this.show = function()
+	show()
 	{
 		/**
 		 * save current state.
@@ -78,7 +80,7 @@ function Star(position, lengthOfArm)
 		line(0, 0, 0, -this.lengthOfArm);
 
 		/**
-		 * fith arm.
+		 * fifth arm.
 		 */
 		rotate(TWO_PI / 5);
 		line(0, 0, 0, -this.lengthOfArm);
