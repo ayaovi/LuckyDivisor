@@ -6,7 +6,7 @@
  *
  * @author : Ayaovi Espoir Djissenou
  *
- * @version : 
+ * @version : v1
  */
 
 
@@ -35,11 +35,6 @@ class Panel
 		 * Height of the panel.
 		 */
 		this.height;
-		
-		/**
-		 * The panel is filled in white.
-		 */
-		// this.colour;
 		
 		/**
 		 * A collection of player life stars.
@@ -71,7 +66,6 @@ class Panel
 		this.position = createVector(0, 0);
 		this.width = WIDTH_OF_CANVAS;
 		this.height = HEIGHT_TOP_PANEL;
-		// this.colour = color('white');
 		this.playerLifeStars = [];
 		this.timer = new Timer();
 		this.playerLifeStarsLocked = true;
@@ -99,8 +93,19 @@ class Panel
 		fill(255);
 		rect(this.position.x, this.position.y, this.width - 1, this.height);
 		
+		/**
+		 * Display clock. 
+		 */
 		this.timer.show();
 		
+		/**
+		 * Followed by player score.
+		 */
+		player.score.show();
+		
+		/**
+		 * And finally player life stars.
+		 */
 		for (var i = 0; i < this.playerLifeStars.length; i++) 
 		{
 			this.playerLifeStars[i].show();

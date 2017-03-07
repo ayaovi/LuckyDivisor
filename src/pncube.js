@@ -8,7 +8,7 @@
  *
  * @author : Ayaovi Espoir Djissenou
  *
- * @version : 
+ * @version : v1
  */
 
 class PnCube extends Cube

@@ -6,7 +6,7 @@
  *
  * @author : Ayaovi Espoir Djissenou
  *
- * @version : 
+ * @version : v1
  */
 
  
@@ -30,7 +30,7 @@ class Player
 		/**
 		 * The score of the player so far.
 		 */
-		this.score = 0;
+		this.score = new Score(createVector());
 		
 		/**
 		 * The player's best score so far.
@@ -53,13 +53,10 @@ class Player
 	 */
 	updateScore(hit)
 	{
-		if (hit > 0)
-		{
-			this.score += hit;
-		}
+		this.score.update();
 		
 		// Check whether player has collected all required divisors.
-		if (this.hasCollectedAll())
+		if (player.hasCollectedAll())
 		{
 			// Then this mark the end of play.
 			endPlay();

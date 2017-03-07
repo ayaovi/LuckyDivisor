@@ -5,7 +5,7 @@
  *
  * @author : Ayaovi Espoir Djissenou
  *
- * @version : 
+ * @version : v1
  */
 
 
@@ -128,10 +128,21 @@ var DEFAULT_CUBE_NUMBER_TEXT_SIZE = SIDE_OF_CUBE - 2 * CUBE_NUMBER_PADDING;
 var DEFAULT_TIMER_TEXT_SIZE = HEIGHT_TOP_PANEL * 0.8;
 
 /**
+ * The default score text size is set to be 80% the height of the top panel.
+ */
+var DEFAULT_SCORE_TEXT_SIZE = HEIGHT_TOP_PANEL * 0.8;
+
+/**
  * We want some space off the left-hand side of the top panel before we 
  * start printing the time.
  */
 var DEFAULT_TIMER_PADDING = HEIGHT_TOP_PANEL / 4;
+
+/**
+ * We want some space off the left-hand side of the top panel before we 
+ * start printing the time.
+ */
+var DEFAULT_SCORE_PADDING = 0;
 
 /**
  * Its value is used for the ID of every cube in the game. It is to be 

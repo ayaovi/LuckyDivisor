@@ -1,20 +1,33 @@
 /**
  * @file : main.js
  *
- * @description : 
+ * @description : This is the main file where the magic happens :).
  *
  * @author : Ayaovi Espoir Djissenou
  *
- * @version : 
+ * @version : v1
  */
 
- 
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
 // function preload() 
 // {
 	// img = loadImage(DEFAULT_CANVAS_BACKGROUND_IMAGE);
 // }
 
 
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
 function setup()
 {
 	var gameCanvasContainer = document.getElementById('gameCanvasContainer');
@@ -24,15 +37,10 @@ function setup()
 	gameCanvasContainer.style.top = (windowHeight - HEIGHT_OF_GAME_FRAME) / 2 + 'px';
 
 	// Initialise the map of colours.
-	// CUBE_COLOUR_MAP[1] = color('#F8CECC');
 	CUBE_COLOUR_MAP[1] = color('#FFED00');
-	// CUBE_COLOUR_MAP[2] = color('#D5E8D4');
 	CUBE_COLOUR_MAP[2] = color('#FF0000');
-	// CUBE_COLOUR_MAP[3] = color('#E1D5E7');
 	CUBE_COLOUR_MAP[3] = color('#0047AB');
-	// CUBE_COLOUR_MAP[5] = color('#DAE8FC');
 	CUBE_COLOUR_MAP[5] = color('#00B500');
-	// CUBE_COLOUR_MAP[7] = color('#FFFF88');
 	CUBE_COLOUR_MAP[7] = color('#805B00');
 
 	var gameCanvas = createCanvas(WIDTH_OF_CANVAS, HEIGHT_OF_CANVAS);
@@ -47,6 +55,14 @@ function setup()
 	panel.init();
 }
 
+
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
 function draw()
 {
 	background(DEFAULT_CANVAS_BACKGROUND_COLOUR);
@@ -71,7 +87,6 @@ function draw()
 			
 			if (pnCube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w))
 			{
-				// console.log("HIT");
 				playerCube.cameInContactWith(pnCube);
 				pnCube.visibility = false;
 			}
