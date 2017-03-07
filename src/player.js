@@ -86,8 +86,8 @@ class Player
 	 */
 	burn()
 	{
-		panel.playerLifeStarsLocked = false;
-		panel.takeOffAPlayerLifeStar();
+		topPanel.playerLifeStarsLocked = false;
+		topPanel.takeOffAPlayerLifeStar();
 		// console.log("Player burnt");
 	}
 }

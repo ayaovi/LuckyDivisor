@@ -30,6 +30,16 @@ var WIDTH_OF_CANVAS = WIDTH_OF_GAME_FRAME * 0.8;
 var HEIGHT_OF_CANVAS = HEIGHT_OF_GAME_FRAME;
 
 /**
+ * Defines how wide the side panel (where the list of cubes to collect is displayed).
+ */
+var WIDTH_OF_SIDE_PANEL = WIDTH_OF_GAME_FRAME * 0.2;
+
+/**
+ * Defines how high the side panel is.
+ */
+var HEIGHT_OF_SIDE_PANEL = HEIGHT_OF_GAME_FRAME;
+
+/**
  * Defines the number of columns on the game canvas.
  */
 var NUMBER_OF_COLUMNS = 10;
@@ -196,7 +206,12 @@ var primeNumbers = [2, 7, 3, 1, 5];
 /**
  * A reference to the top panel.
  */
-var panel;
+var topPanel;
+
+/**
+ * A reference to the side panel.
+ */
+var sidePanel;
 
 /**
  * A reference to the player.
@@ -223,3 +238,11 @@ var previousColumnStartingTime;
  * Keeps track of the starting cube of the previous column during start up.
  */
 var previousColumnStartingCube;
+
+/**
+ * A canvas alternative for the side panel. This became an issue du to the 
+ * fact that p5.js requires only one canvas be drawn.
+ */
+var sidePanelBuffer;
+
+var DEFAULT_SIDE_PANEL_PADDING = 15;

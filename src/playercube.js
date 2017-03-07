@@ -91,16 +91,29 @@
 	{
 		if (this.yetToBeCollectedDivisors.includes(pnCube.number))
 		{
-			// Move pnCube.number to the lot of alreadyCollectedDivisors.
+			/**
+			 * Move pnCube.number to the lot of alreadyCollectedDivisors.
+			 */
 			this.registerDivisorCollection(pnCube.number);
 			
-			// Change the colour of playerCube.
+			/**
+			 * Change the colour of playerCube.
+			 */
 			this.changeColour();
 			
-			// Update Player score.
+			/**
+			 * Update Player score.
+			 */
 			player.updateScore(pnCube.number);
+
+			/**
+			 * Update side panel.
+			 */
+			sidePanel.update(pnCube.number);
 			
-			// Make pnCube invisible.
+			/**
+			 * Make pnCube invisible.
+			 */
 			pnCube.visibility = false;
 		}
 		else if (this.alreadyCollectedDivisors.includes(pnCube.number))

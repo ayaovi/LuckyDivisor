@@ -43,16 +43,20 @@ function setup()
 	CUBE_COLOUR_MAP[5] = color('#00B500');
 	CUBE_COLOUR_MAP[7] = color('#805B00');
 
-	var gameCanvas = createCanvas(WIDTH_OF_CANVAS, HEIGHT_OF_CANVAS);
+	var gameCanvas = createCanvas(WIDTH_OF_GAME_FRAME, HEIGHT_OF_CANVAS);
 	gameCanvas.parent('gameCanvasContainer');
-	
+
 	// image(img, 0, 0);
 	
 	startPlay();
 	
 	player = new Player();
-	panel = new Panel();
-	panel.init();
+
+	topPanel = new TopPanel();
+	topPanel.init();
+
+	sidePanel = new SidePanel();
+	sidePanel.init();
 }
 
 
@@ -93,17 +97,19 @@ function draw()
 		}
 	}
 	
-	if (!panel.timer.isStarted)
+	if (!topPanel.timer.isStarted)
 	{
-		panel.timer.start();
+		topPanel.timer.start();
 	}
 	
-	panel.show();
+	topPanel.show();
 
-	if (panel.timer.stringTimeTillEndOfPlay == "00:00")
+	if (topPanel.timer.stringTimeTillEndOfPlay == "00:00")
 	{
 		noLoop();
 	}
+
+	sidePanel.show();
 	
 	// console.log("Player score is " + player.score);
 }

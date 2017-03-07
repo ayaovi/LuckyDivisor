@@ -377,6 +377,25 @@ function removeFromArray(array, target)
 	}
 }
 
+/**
+ * @description 
+ *
+ * @param 
+ *
+ * @return 
+ */
+function removeCubeFromYetToBeCollecteList(array, targetCubeNumber)
+{
+	for (var i = array.length - 1; i >= 0; i--) 
+	{
+		if (array[i].number == targetCubeNumber)
+		{
+			array.splice(i, 1);
+			break;
+		}
+	}
+}
+
 
 /**
  * @description A function to calculate the difference in time as [minute, second].
