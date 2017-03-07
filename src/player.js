@@ -30,7 +30,7 @@ class Player
 		/**
 		 * The score of the player so far.
 		 */
-		this.score = new Score(createVector());
+		this.score = new Score(createVector(DEFAULT_SCORE_STARTING_POSITION, 0));
 		
 		/**
 		 * The player's best score so far.
@@ -53,7 +53,7 @@ class Player
 	 */
 	updateScore(hit)
 	{
-		this.score.update();
+		this.score.update(hit);
 		
 		// Check whether player has collected all required divisors.
 		if (player.hasCollectedAll())

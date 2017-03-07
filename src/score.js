@@ -55,14 +55,18 @@ class Score
 	 */
 	show()
 	{
-		// save current state.
+		/**
+		 * save current state.
+		 */
 		push();
 		
 		fill(0);
 		textSize(DEFAULT_SCORE_TEXT_SIZE);
 		text(this.score, this.position.x + DEFAULT_SCORE_PADDING, this.position.y + DEFAULT_SCORE_TEXT_SIZE);
 
-		// restore back to state previous.
+		/**
+		 * restore back to state previous.
+		 */
 		pop();
 	}
 }

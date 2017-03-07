@@ -145,6 +145,12 @@ var DEFAULT_TIMER_PADDING = HEIGHT_TOP_PANEL / 4;
 var DEFAULT_SCORE_PADDING = 0;
 
 /**
+ * We want the player score displayed just far enough from the clock to be 
+ * be on its own.
+ */
+var DEFAULT_SCORE_STARTING_POSITION = WIDTH_OF_CANVAS * 0.45;
+
+/**
  * Its value is used for the ID of every cube in the game. It is to be 
  * restarted at the beginning of every play and incremented once a cube 
  * takes on its current value.
