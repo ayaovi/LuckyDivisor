@@ -56,4 +56,17 @@ class Cube
 		 */
 		this.colour;
 	}
+	
+	
+	/**
+	 * @description Tests equality of two cubes. By checking the equality of their numbers.
+	 *
+	 * @param another cube.
+	 *
+	  @return true or false.
+	 */
+	equals(otherCube)
+	{
+		return (this.number == otherCube.number);
+	}
 }

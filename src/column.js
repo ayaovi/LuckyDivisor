@@ -110,7 +110,7 @@ class Column
 	reset()
 	{
 		this.cubesHaveStartedFalling = false;
-		this.cubes = (floor(random(2)) > 0) ? [new PnCube(random(primeNumbers), ++ID, createVector(this.x + DEFAULT_COLUMN_PADDING, 0))] : [];
+		this.cubes = (floor(random(2)) > 0) ? [getNewColumnStartingCube(this.x)] : [];
 		this.startingTime = getNewColumnStartingTime();
 	}
 

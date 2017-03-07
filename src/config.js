@@ -40,11 +40,6 @@ var NUMBER_OF_COLUMNS = 10;
 var COLUMN_WIDTH = WIDTH_OF_CANVAS / NUMBER_OF_COLUMNS;
 
 /**
- * 
- */
-// var NUMBER_OF_ROWS = NUMBER_OF_COLUMNS * 5;
-
-/**
  * A Cube falling down a Column need to be centred in that Column.
  * Hence the need for a default padding pixel of any Cube in any 
  * Column.
@@ -69,11 +64,6 @@ var HEIGHT_TOP_PANEL = HEIGHT_OF_GAME_FRAME / 15;
  * nicely fitted into the top panel. Hence the need for a size for it.
  */
 var SIZE_OF_A_PLAYER_STAR = HEIGHT_TOP_PANEL * 0.6;
-
-/**
- * 
- */
-// var TIMER_ICON_WIDTH = HEIGHT_TOP_PANEL * 0.75;
 
 /**
  * Keeps track to game status as either Running, Paused, Stopped.
@@ -211,3 +201,8 @@ var cubeDelays = [3, 5, 1, 4, 2, 0];
  * Keeps track of the starting time of the previous column during start up.
  */
 var previousColumnStartingTime;
+
+/**
+ * Keeps track of the starting cube of the previous column during start up.
+ */
+var previousColumnStartingCube;

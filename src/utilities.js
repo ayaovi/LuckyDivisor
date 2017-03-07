@@ -9,11 +9,12 @@
  */
 
 /**
- * @description 
+ * @description creates a new time for the current column being is different 
+ * from that of the previous column.
  *
- * @param 
+ * @param none.
  *
- * @return 
+ * @return a new starting time.
  */
 function getNewColumnStartingTime()
 {
@@ -28,6 +29,29 @@ function getNewColumnStartingTime()
 	previousColumnStartingTime = newColumnStartingTime;
 	
 	return newColumnStartingTime;
+}
+
+
+/**
+ * @description creates a new Cube for the current column being is different 
+ * from that of the previous column.
+ *
+ * @param xCoordinate.
+ *
+ * @return a new PnCube.
+ */
+function getNewColumnStartingCube(xCoordinate)
+{
+	var newColumnStartingCube = new PnCube(random(primeNumbers), ++ID, createVector(xCoordinate + DEFAULT_COLUMN_PADDING, 0));
+	
+	while(previousColumnStartingCube != undefined && newColumnStartingCube.equals(previousColumnStartingCube))
+	{
+		newColumnStartingCube = new PnCube(random(primeNumbers), ++ID, createVector(xCoordinate + DEFAULT_COLUMN_PADDING, 0));
+	}
+	
+	previousColumnStartingCube = newColumnStartingCube;
+	
+	return newColumnStartingCube;
 }
 
 /** 
