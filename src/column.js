@@ -111,7 +111,7 @@ class Column
 	{
 		this.cubesHaveStartedFalling = false;
 		this.cubes = (floor(random(2)) > 0) ? [new PnCube(random(primeNumbers), ++ID, createVector(this.x + DEFAULT_COLUMN_PADDING, 0))] : [];
-		this.startingTime = (this.cubes.length == 0) ? new Time(minute(), random(cubeDelays) + second()) : new Time(minute(), random(cubeDelays) + second());
+		this.startingTime = getNewColumnStartingTime();
 	}
 
 

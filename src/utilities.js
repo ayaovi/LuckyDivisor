@@ -8,6 +8,27 @@
  * @version : 
  */
 
+/**
+ * @description 
+ *
+ * @param 
+ *
+ * @return 
+ */
+function getNewColumnStartingTime()
+{
+	var newColumnStartingTime = new Time(minute(), second() + random(cubeDelays));
+	
+	while(previousColumnStartingTime != undefined && newColumnStartingTime.equals(previousColumnStartingTime))
+	{
+		// console.log("OOPS SAME TIME");
+		newColumnStartingTime = new Time(minute(), second() + random(cubeDelays));
+	}
+	
+	previousColumnStartingTime = newColumnStartingTime;
+	
+	return newColumnStartingTime;
+}
 
 /** 
  * @description randomly generate a player cube number.
