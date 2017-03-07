@@ -29,9 +29,9 @@
 		 * The following is only needed for player cubes. It is a collection all the 
 		 * prime divisors of player cube's number.
 		 */
-		this.divisors = Utilities.getPrimeFactors(this.number);
+		this.divisors = getPrimeFactors(this.number);
 		
-		this.colour = Utilities.combineColours(this.divisors);
+		this.colour = combineColours(this.divisors);
 		
 		/**
 		 * The following is a collection of numbers of pn Cube that have been collect are 
@@ -43,7 +43,7 @@
 		 * The following is a collection of numbers of pn Cube that are divisors of the 
 		 * player's cube number but have not yet been collected.
 		 */
-		this.yetToBeCollectedDivisors = Utilities.getPrimeFactors(this.number);
+		this.yetToBeCollectedDivisors = getPrimeFactors(this.number);
 	}
 	
 	

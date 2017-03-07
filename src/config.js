@@ -206,8 +206,3 @@ var img;
  * generated. However the result was not appealing. Hence this.
  */
 var cubeDelays = [3, 5, 1, 4, 2, 0];
-
-/**
- * 
- */
-const utilities = new Utilities();
