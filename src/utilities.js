@@ -22,7 +22,6 @@ function getNewColumnStartingTime()
 	
 	while(previousColumnStartingTime != undefined && newColumnStartingTime.equals(previousColumnStartingTime))
 	{
-		// console.log("OOPS SAME TIME");
 		newColumnStartingTime = new Time(minute(), second() + random(cubeDelays));
 	}
 	
@@ -531,11 +530,11 @@ function startPlay()
 	}
 	
 	// DEBUGGING
-	var factors = playerCube.divisors;
+	// var factors = playerCube.divisors;
 	
-	for (var i = 0; i < factors.length; i++)
-	{
-		console.log(factors[i]);
-	}
+	// for (var i = 0; i < factors.length; i++)
+	// {
+		// console.log(factors[i]);
+	// }
 	// END OF DEBUGGING
 }

@@ -120,6 +120,13 @@ var DEFAULT_CANVAS_BACKGROUND_COLOUR = 75;
 var DEFAULT_CANVAS_BACKGROUND_IMAGE = "../assets/milky_way.jpg";
 
 /**
+ * The occurrence multiplier needs to be displayed/printed next to the cube in 
+ * the side panel. As such the x-coordinate of the position of the text (e.g. x2) 
+ * would be the cube.position.x plus this default padding.
+ */
+var DEFAULT_PADDING_OF_CUBE_OCCURENCE_IN_SIDE_PANEL = SIDE_OF_CUBE + 10;
+
+/**
  * The default padding of the numbers on the cubes. That way having them 
  * centred.
  */

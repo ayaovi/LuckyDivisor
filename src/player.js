@@ -41,7 +41,6 @@ class Player
 		 * The player's credit point so far.
 		 */
 		this.creditPoints = 0;
-		// this.numberOfLifeStars = NUMBER_OF_PLAYER_STARTING_LIFE_STARS;
 	}
 	
 	/**
@@ -53,12 +52,19 @@ class Player
 	 */
 	updateScore(hit)
 	{
+		/**
+		 * Update the player score.
+		 */
 		this.score.update(hit);
 		
-		// Check whether player has collected all required divisors.
+		/**
+		 * Check whether player has collected all required divisors.
+		 */
 		if (player.hasCollectedAll())
 		{
-			// Then this mark the end of play.
+			/**
+			 * Then this mark the end of play.
+			 */
 			endPlay();
 		}
 	}
@@ -86,8 +92,14 @@ class Player
 	 */
 	burn()
 	{
+		/**
+		 * Unlock the player life stars in the top panel. This allow for a life stars to be taken off.
+		 */
 		topPanel.playerLifeStarsLocked = false;
+		
+		/**
+		 * Only thereafter can we take off a player life star.
+		 */
 		topPanel.takeOffAPlayerLifeStar();
-		// console.log("Player burnt");
 	}
 }

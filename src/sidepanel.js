@@ -1,8 +1,7 @@
 /**
  * @file : sidepanel.js
  *
- * @description : A panel is more of a container to hold the player's 
- * life stars, a timer and the player's score.
+ * @description : A side panel is a panel that contains the list of yet to be collected Pn cubes by the player.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -31,7 +30,17 @@ class SidePanel extends Panel
 		this.pnCubesYetToBeCollected;
 
 		/**
-		 * A map of pn cube number and the number of instances to be collected.
+		 * A map of pn cube number and the number of instances to be collected. Theoretically it 
+		 * can map every prime factor in the game to a number of occurrence. We can get meticulous 
+		 * by only mapping the prime factors that the player is required to collect during every 
+		 * play. But I opted for the former. As such this map would initially look like the following:
+		 *{
+		 *	1 --> 0
+		 *	2 --> 0
+		 *	3 --> 0
+		 *	5 --> 0
+		 *	7 --> 0
+		 *}
 		 */
 		this.numberOfPnCubesYetToBeCollected;
 	}
@@ -62,13 +71,26 @@ class SidePanel extends Panel
 	reset()
 	{
 		this.pnCubesYetToBeCollected = [];
+		
 		this.numberOfPnCubesYetToBeCollected = {};
 		this.numberOfPnCubesYetToBeCollected[1] = 0;
 		this.numberOfPnCubesYetToBeCollected[2] = 0;
 		this.numberOfPnCubesYetToBeCollected[3] = 0;
 		this.numberOfPnCubesYetToBeCollected[5] = 0;
 		this.numberOfPnCubesYetToBeCollected[7] = 0;
+		
+		/**
+		 * List of prime factor divisors of the player cube's number. Bear in mind it may well contain duplicate.
+		 * And this is done on purpose; to allow us to simple delete a divisor once its pn cube has been collected 
+		 * and not keep track of how many times it is supposed to be collected. An example would be, given a player 
+		 * number 9, its divisors would be {1, 3, 3}.
+		 */
 		var divisors = playerCube.divisors;
+		
+		/**
+		 * This is used to keep track of how much offset is needed to be added to the cube y-coordinate.
+		 */
+		var counter = 0;
 
 		/**
 		 * create the cubes to be collected objects.
@@ -77,11 +99,28 @@ class SidePanel extends Panel
 		{
 			if (this.numberOfPnCubesYetToBeCollected[divisors[i]] == 0)
 			{
-				this.pnCubesYetToBeCollected.push(new PnCube(divisors[i], ++ID, 
-					createVector(this.position.x + DEFAULT_SIDE_PANEL_PADDING, 
-						DEFAULT_SIDE_PANEL_PADDING + i * (DEFAULT_SIDE_PANEL_PADDING + SIDE_OF_CUBE))));
+				/**
+				 * The cube to displayed in the side panel needs to be offset a little bit as to not be too close to the game canvas.
+				 */
+				var cubePositionX = this.position.x + DEFAULT_SIDE_PANEL_PADDING;
+				
+				/**
+				 * The cubes are aligned vertically and spaced by the DEFAULT_SIDE_PANEL_PADDING.
+				 */
+				var cubePositionY = DEFAULT_SIDE_PANEL_PADDING + counter * (DEFAULT_SIDE_PANEL_PADDING + SIDE_OF_CUBE);
+				
+				this.pnCubesYetToBeCollected.push(new PnCube(divisors[i], ++ID, createVector(cubePositionX, cubePositionY)));
+				
+				/**
+				 * Increment counter to cater for next cube to be displayed/printed.
+				 */
+				++counter;
 			}
-			this.numberOfPnCubesYetToBeCollected[divisors[i]]++;
+			
+			/**
+			 * Record the new occurrence of the cube to be collected.
+			 */
+			++this.numberOfPnCubesYetToBeCollected[divisors[i]];
 		}
 	}
 
@@ -110,16 +149,25 @@ class SidePanel extends Panel
 		pop();
 
 		/**
-		 * Display lis of cubes yet to be collect.
+		 * Display list of cubes yet to be collect.
 		 */
 		for (var i = 0; i < this.pnCubesYetToBeCollected.length; i++) 
 		{
+			/**
+			 * A local reference to the pn cube for the sake of not having to type out 
+			 * this.pnCubesYetToBeCollected[i] every time.
+			 */
 			var cube = this.pnCubesYetToBeCollected[i];
-			var number = this.numberOfPnCubesYetToBeCollected[cube.number];
-			if (number != 0)
+			
+			/**
+			 * A local reference to the number of time still a pn cube has be collected.
+			 */
+			var numberOfOccurence = this.numberOfPnCubesYetToBeCollected[cube.number];
+			
+			if (numberOfOccurence != 0)
 			{
 				cube.show();
-				text("x" + number, cube.position.x + SIDE_OF_CUBE, cube.position.y + SIDE_OF_CUBE);
+				text("x" + numberOfOccurence, cube.position.x + DEFAULT_PADDING_OF_CUBE_OCCURENCE_IN_SIDE_PANEL, cube.position.y + SIDE_OF_CUBE * 0.75);
 			}
 		}
 	}
@@ -128,16 +176,17 @@ class SidePanel extends Panel
 	/**
 	 * @description updates the list of yet to be collected pn cubes.
 	 *
-	 * @param 
+	 * @param a prime number of a pn cube that has just been collected.
 	 *
 	 * @return none.
 	 */
 	update(number)
 	{
 		/**
-		 * Remove last pn cube with prime number the supplied number.
+		 * When updating the list of cubes to be collected we can just decrement its number of occurrences.
+		 * Following this approach, the cube object still lives in pnCubesYetToBeCollected collection until 
+		 * next reset. We can be anal about this and delete the object itself but I chose not to do that.
 		 */
-		// removeCubeFromYetToBeCollecteList(this.pnCubesYetToBeCollected, number);
 		--this.numberOfPnCubesYetToBeCollected[number];
 	}
 }

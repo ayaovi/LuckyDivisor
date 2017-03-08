@@ -31,6 +31,10 @@
 		 */
 		this.divisors = getPrimeFactors(this.number);
 		
+		/**
+		 * The player cube's colour is a combination in equal proportion of all its prime 
+		 * divisors colours.
+		 */
 		this.colour = combineColours(this.divisors);
 		
 		/**
@@ -58,25 +62,32 @@
 	{
 		if (keyIsDown(playerControls[0]))
 		{
-			// Move player's cube one unit to the left.
+			/**
+			 * Move player's cube one unit to the left.
+			 */
 			this.position.x -= DEFAULT_PLAYER_CUBE_SPEED;
 		}
 		if (keyIsDown(playerControls[1]))
 		{
-			// Move player's cube one unit to the right.
+			/**
+			 * Move player's cube one unit to the right.
+			 */
 			this.position.x += DEFAULT_PLAYER_CUBE_SPEED;
 		}
 		
-		// Ensure the Player's Cube does not slide off the canvas.
+		/**
+		 * Ensure the Player's Cube does not slide off the canvas.
+		 */
 		this.position.x = constrain(this.position.x, 1, WIDTH_OF_CANVAS - SIDE_OF_CUBE - 1);
 
 		fill(this.colour);
 		rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);	
+		
 		fill(0);
-		//strokeWeight(2);
 		textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-		var padding = (SIDE_OF_CUBE - textWidth(this.number)) / 2;
-		text(this.number, this.position.x + padding, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
+		var x = this.position.x + (SIDE_OF_CUBE - textWidth(this.number)) / 2;
+		var y = this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING;
+		text(this.number, x, y);
 	}
 	
 	
@@ -120,15 +131,21 @@
 		{
 			// Do nothing for now to the playerCube.
 			
-			// Make pnCube invisible
+			/**
+			 * Make pnCube invisible
+			 */
 			pnCube.visibility = false;
 		}
 		else
 		{
-			// Burn the player for collecting a non-divisor cube
+			/**
+			 * Burn the player for collecting a non-divisor cube
+			 */
 			player.burn();
 			
-			// Make pnCube invisible
+			/**
+			 * Make pnCube invisible.
+			 */
 			pnCube.visibility = false;
 		}
 	}
@@ -155,10 +172,14 @@
 	 */
 	registerDivisorCollection(divisor)
 	{
-		// Add this divisor to the list of already collected divisors
+		/**
+		 * Add this divisor to the list of already collected divisors.
+		 */
 		this.alreadyCollectedDivisors.push(divisor);
 		
-		// Then remove this divisor from the list of divisor yet to be collected
+		/**
+		 * Then remove this divisor from the list of divisor yet to be collected.
+		 */
 		removeFromArray(this.yetToBeCollectedDivisors, divisor);
 	}
 	
