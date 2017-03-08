@@ -140,7 +140,7 @@ class PnCube extends Cube
 				/**
 				 * DEBUGGING.
 				 */
-				console.log("Cube " + this.number + " has scheduled a new start for " + eventTime.toString());
+				// console.log("Cube " + this.number + " has scheduled a new start for " + eventTime.toString() + " @ " + getCurrentTime().toString());
 				
 				/**
 				 * Stop this cube from initiating further new starts.

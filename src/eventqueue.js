@@ -1,7 +1,8 @@
 /**
  * @file : eventqueue.js
  *
- * @description : An EventQueue is an array with order property/ It is sorted in increasing order of scheduled time.
+ * @description : An EventQueue is an array with order property. 
+ * It is sorted in increasing order of scheduled time.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -34,7 +35,7 @@ class EventQueue
 	{
 		if (this.queue.length == 0)
 		{
-			queue.push();
+			this.queue.push(newEvent);
 		}
 		else
 		{
@@ -45,9 +46,9 @@ class EventQueue
 				 * then push the current event at this index further into the queue and insert 
 				 * the new event at this position.
 				 */
-				if (newEvent.time.isLessThan(this.queue[i]))
+				if (newEvent.time.isLessThan(this.queue[i].time))
 				{
-					queue.splice(i, 0, newEvent);
+					this.queue.splice(i, 0, newEvent);
 					break;
 				}
 			}
@@ -64,9 +65,35 @@ class EventQueue
 	 */
 	hasEvents()
 	{
-		return this.queue.length > 0;
+		return (this.queue.length > 0);
 	}
 	
+
+	/**
+	 * @description returns the element in front of the queue.
+	 *
+	 * @param none.
+	 *
+	 * @return event.
+	 */
+	getFront()
+	{
+		return this.queue[0];
+	}
+
+
+	/**
+	 * @description remove the event at the specified index.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	remove(index)
+	{
+		this.queue.splice(index, 1);
+	}
+
 	
 	/**
 	 * @description resets the internal queue to an empty string.

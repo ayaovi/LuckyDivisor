@@ -126,17 +126,17 @@ function draw()
 	/**
 	 * Check whether there is any current event sitting in the event queue.
 	 */
-	if (eventQueue.length.hasEvents())
+	if (eventQueue.hasEvents())
 	{
 		/**
 		 * The next to be fired event would be the one in front of the queue.
 		 */
-		var nextToBeFiredEvent = eventQueue[0];
+		var nextToBeFiredEvent = eventQueue.getFront();
 		
 		/**
 		 * Should the event time be same as the system time.
 		 */
-		if (getCurrentTime().equals(nextToBeFiredEvent.time))
+		if (nextToBeFiredEvent.time.isLessOrEqualTo(getCurrentTime()))
 		{
 			/**
 			 * Then process the event.
@@ -146,7 +146,7 @@ function draw()
 			/**
 			 * Delete the event once it has been processed.
 			 */
-			eventQueue.splice(0, 1);
+			eventQueue.remove(0);
 		}
 	}
 }

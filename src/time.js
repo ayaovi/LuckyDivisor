@@ -128,4 +128,16 @@ class Time
 	{
 		return (this.minute == otherTime.minute && this.second == otherTime.second);
 	}
+
+	/**
+	 * @description checks the equality of two times.
+	 *
+	 * @param another Time object.
+	 *
+	 * @return true or false.
+	 */
+	isLessOrEqualTo(otherTime)
+	{
+		return (this.isLessThan(otherTime) || this.equals(otherTime));
+	}
 }
