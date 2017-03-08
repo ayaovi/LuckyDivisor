@@ -53,9 +53,72 @@ class Time
 			this.second %= 60;
 		}
 	}
+	
+	
+	/**
+	 * @description subtraction of two times.
+	 *
+	 * @param another Time object.
+	 *
+	 * @return a new time.
+	 */
+	minus(otherTime)
+	{
+		/**
+		 * Get the time difference in seconds.
+		 */
+		var timeDifference = abs((this.minute * 60 + this.second) - (otherTime.minute * 60 + otherTime.second));
+
+		/**
+		 * Then convert it to minute and seconds.
+		 */
+		var minute = floor(timeDifference / 60);
+		var second = timeDifference % 60;
+
+		return new Time(minute, second);
+	}
+	
 
 	/**
-	 * @description 
+	 * @description convert this time to seconds.
+	 *
+	 * @param none.
+	 *
+	 * @return an integer.
+	 */
+	toSeconds()
+	{
+		return (this.minute * 60 + this.second);
+	}
+	
+	
+	/**
+	 * @description check whether this time is less than the other time.
+	 *
+	 * @param another time.
+	 *
+	 * @return true or false.
+	 */
+	isLessThan(otherTime)
+	{
+		return (this.toSeconds() < otherTime.toSeconds());
+	}
+	
+	
+	/**
+	 * @description prints this time.
+	 *
+	 * @param none.
+	 *
+	 * @return this time a string minute:second.
+	 */
+	toString()
+	{
+		return (this.minute + ":" + this.second);
+	}
+	
+	/**
+	 * @description checks the equality of two times.
 	 *
 	 * @param another Time object.
 	 *

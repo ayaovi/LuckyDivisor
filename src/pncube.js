@@ -41,17 +41,28 @@ class PnCube extends Cube
 		 */
 		this.hostingColumnIndex;
 		
+		/**
+		 * Keeps track which column this cube is falling in. Having the column, we can 
+		 * initiate a new cube start/fall similar to this, columns[columnIndex].startNewCube().
+		 */
+		this.columnIndex;
 		
 		/**
 		 * A confirmation on whether this cube is falling or not, reason why it is initially 
 		 * set to false.
 		 */
-		// this.hasStarted = false;
+		this.hasStarted = false;
 
 		/**
 		 * keeps a record of when this cube started falling.
 		 */
-		// this.startTime;
+		this.startTime;
+		
+		/**
+		 * Safety measure to stop this cube from initiating more than one new cube start.
+		 * This is by default false;
+		 */
+		this.hasAlreadyInitiatedNewCubeStart = false;
 	}
 	
 	
@@ -88,23 +99,54 @@ class PnCube extends Cube
 	{
 		this.position.y += this.speed;
 		
-		// Check whether the Cube has fallen off the canvas.
+		/**
+		 * Check whether the Cube has fallen off the canvas.
+		 */
 		if (this.position.y > HEIGHT_OF_CANVAS)
 		{
 			this.visibility = false;
 		}
 
-		// if (!this.hasStarted)
-		// {
-		// 	this.hasStarted = true;
-		// }
-		// else
-		// {
-		// 	// Check whether we are half way through.
-		// 	if (this.position.y >= HEIGHT_OF_CANVAS / 2)
-		// 	{
-		// 		// Create an event for a new cube to fall after this one down the same coloumn.
-		// 	}
-		// }
+		/**
+		 * Should this be the first time we come here, mark this.hasStarted as true.
+		 * Otherwise check whether we are pass the halfway point. If so create a new 
+		 * StartNewCubeEvent and schedule it for sometime now until this cube falls 
+		 * off the canvas.
+		 */
+		if (!this.hasStarted)
+		{
+			this.hasStarted = true;
+			this.startTime = getCurrentTime();
+		}
+		else
+		{
+			/**
+			 * Check whether we are half way through.
+			 */
+			if ((this.position.y >= HEIGHT_OF_CANVAS / 2) && !this.hasAlreadyInitiatedNewCubeStart)
+			{
+				/**
+				 * Create an event for a new cube to fall after this one down the same column.
+				 * First create the event time. Then create the event with the time.
+				 */
+				var timeDifference = getCurrentTime().minus(this.startTime);
+				var eventTime = new Time(minute(), floor(random(timeDifference.toSeconds())) + second());
+				
+				/**
+				 * Create the event and add it to the event queue.
+				 */
+				eventQueue.push(new StartNewCubeEvent(eventTime, this.columnIndex));
+				
+				/**
+				 * DEBUGGING.
+				 */
+				console.log("Cube " + this.number + " has scheduled a new start for " + eventTime.toString());
+				
+				/**
+				 * Stop this cube from initiating further new starts.
+				 */
+				this.hasAlreadyInitiatedNewCubeStart = true;
+			}
+		}
 	}
 }

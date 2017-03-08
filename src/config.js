@@ -252,4 +252,13 @@ var previousColumnStartingCube;
  */
 var sidePanelBuffer;
 
+/**
+ * Is used to offset the cubes in the side panel so that they are not too 
+ * close to the game canvas (i.e. where the pn cubes are falling).
+ */
 var DEFAULT_SIDE_PANEL_PADDING = 15;
+
+/**
+ * At this point in time is being used to store StartNewCubeEvent's.
+ */
+var eventQueue;

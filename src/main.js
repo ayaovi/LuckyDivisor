@@ -122,4 +122,31 @@ function draw()
 	 * Finally display the side panel.
 	 */
 	sidePanel.show();
+	
+	/**
+	 * Check whether there is any current event sitting in the event queue.
+	 */
+	if (eventQueue.length.hasEvents())
+	{
+		/**
+		 * The next to be fired event would be the one in front of the queue.
+		 */
+		var nextToBeFiredEvent = eventQueue[0];
+		
+		/**
+		 * Should the event time be same as the system time.
+		 */
+		if (getCurrentTime().equals(nextToBeFiredEvent.time))
+		{
+			/**
+			 * Then process the event.
+			 */
+			nextToBeFiredEvent.process();
+			
+			/**
+			 * Delete the event once it has been processed.
+			 */
+			eventQueue.splice(0, 1);
+		}
+	}
 }

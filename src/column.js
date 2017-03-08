@@ -17,7 +17,7 @@ class Column
 	 *
 	 * @return none.
 	 */
-	constructor(xCordinate)
+	constructor(xCordinate, index)
 	{
 		/**
 		 * Because there are multiple Columns side by side on the game canvas, there is a 
@@ -28,6 +28,11 @@ class Column
 		 * look at it.
 		 */
 		this.x = xCordinate;
+		
+		/**
+		 * A column has an index that can be used to reference it.
+		 */
+		this.index = index;
 
 		/**
 		 * A Columns contains Cube that are falling. But at the start of a play, it is not 
@@ -61,24 +66,30 @@ class Column
 	{
 		if (this.cubesHaveStartedFalling)
 		{
+			/**
+			 * Yes we are up and running, all we need to do is make the cubes still on screen fall and display them.
+			 */
 			this.routine();
-			// console.log("CUBES HAVE BEEN FALLING");
 		}
 		else
 		{
 			if (this.startingTime.equals(new Time(minute(), second())))
 			{
-				// console.log("TIME FOR CUBES TO BE FALLING");
+				/**
+				 * Set this.cubesHaveStartedFalling to true so we do not come here again.
+				 */
 				this.cubesHaveStartedFalling = true;
 				
-				if (this.cubes.length == 0)
-				{
-					this.addCube();
-				}
+				/**
+				 * Because the collection of cubes at this point in time is empty, we need to add the very first cube.
+				 */
+				this.addCube();
 				
+				/**
+				 * Finally go about making that very first cube fall and displayed.
+				 */
 				this.routine();
 			}
-			// console.log("NO CUBES HAVE BEEN FALLING");
 		}
 	}
 
@@ -94,7 +105,14 @@ class Column
 	{
 		for (var i = 0; i < this.cubes.length; i++)
 		{
+			/**
+			 * First make the cube fall.
+			 */
 			this.cubes[i].fall();
+			
+			/**
+			 * Then display it.
+			 */
 			this.cubes[i].show();
 		}
 	}
@@ -109,11 +127,39 @@ class Column
 	 */
 	reset()
 	{
+		/**
+		 * At the start, no cube is falling yet.
+		 */
 		this.cubesHaveStartedFalling = false;
-		this.cubes = (floor(random(2)) > 0) ? [getNewColumnStartingCube(this.x)] : [];
+		
+		/**
+		 * A column always starts empty.
+		 */
+		this.cubes = [];
+		
+		/**
+		 * Generate a random starting time for this columns.
+		 */
 		this.startingTime = getNewColumnStartingTime();
 	}
 
+	/**
+	 * @description is called upon to initiate a new cube.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	startNewCube()
+	{
+		/**
+		 * Make sure this column is up and running, then add a cube to its cube collection.
+		 */
+		if (this.cubesHaveStartedFalling)
+		{
+			this.addCube();
+		}
+	}
 
 	/**
 	 * @description adds a new Cube to the queue of this Column.
@@ -124,6 +170,19 @@ class Column
 	 */
 	addCube()
 	{
-		this.cubes.push(new PnCube(random(primeNumbers), ++ID, createVector(this.x + DEFAULT_COLUMN_PADDING, 0)));
+		/**
+		 * Create a new cube.
+		 */
+		var newCube = new PnCube(random(primeNumbers), ++ID, createVector(this.x + DEFAULT_COLUMN_PADDING, 0));
+		
+		/**
+		 * Set its column index to this one's
+		 */
+		newCube.columnIndex = this.index;
+		
+		/**
+		 * And finally add it to the cubes collection.
+		 */
+		this.cubes.push(newCube);
 	}
 }

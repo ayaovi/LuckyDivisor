@@ -383,17 +383,17 @@ function removeFromArray(array, target)
  *
  * @return 
  */
-function removeCubeFromYetToBeCollecteList(array, targetCubeNumber)
-{
-	for (var i = array.length - 1; i >= 0; i--) 
-	{
-		if (array[i].number == targetCubeNumber)
-		{
-			array.splice(i, 1);
-			break;
-		}
-	}
-}
+// function removeCubeFromYetToBeCollecteList(array, targetCubeNumber)
+// {
+	// for (var i = array.length - 1; i >= 0; i--) 
+	// {
+		// if (array[i].number == targetCubeNumber)
+		// {
+			// array.splice(i, 1);
+			// break;
+		// }
+	// }
+// }
 
 
 /**
@@ -414,6 +414,18 @@ function getTimeDifference(previousMinute, previousSecond, currentMinute, curren
 	return [minute, second];
 }
 
+
+/**
+ * @description returns the current system minute and second.
+ *
+ * @param none. 
+ *
+ * @return a new time.
+ */
+function getCurrentTime()
+{
+	return new Time(minute(), second());
+}
 
 /**
  * @description A function to format the game duration a string.
@@ -516,16 +528,19 @@ function startPlay()
 	 * reset ID to zero.
 	 */
 	ID = 0;
+	
+	/**
+	 * Reset the event queue.
+	 */
+	eventQueue = new EventQueue();
 
 	var playerCubeNumber = generatePlayerCubeNumber();
-	
-	console.log(playerCubeNumber);
 	
 	playerCube = new PlayerCube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
 	
 	for (var i = 0; i < NUMBER_OF_COLUMNS; i++)
 	{
-		columns.push(new Column(COLUMN_WIDTH * i));
+		columns.push(new Column(COLUMN_WIDTH * i, i));
 		columns[i].reset();
 	}
 	
