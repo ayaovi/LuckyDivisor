@@ -183,7 +183,7 @@ var CUBE_COLOUR_MAP = {};
  * The default play duration upon release would be 1 min 0 sec. There may 
  * be a feature in future releases that extends this play duration.
  */
-var defaultPlayDuration = [0, 10];
+var defaultPlayDuration = [0, 20];
 
 /**
  * A record of all cubes in the game.

@@ -67,6 +67,20 @@ class TopPanel extends Panel
 
 
 	/**
+	 * @description resets anything that need be reset.
+	 * So far it seems to be just the clock.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	reset()
+	{
+		this.timer = new Timer();
+	}
+
+
+	/**
 	 * @description a function to display the content of this Panel.
 	 *
 	 * @param none.
@@ -108,10 +122,17 @@ class TopPanel extends Panel
 	 */
 	takeOffAPlayerLifeStar()
 	{
+		/**
+		 * We can only take away a player life star if it is not locked.
+		 */
 		if (!this.playerLifeStarsLocked)
 		{
 			this.playerLifeStars.splice(this.playerLifeStars.length - 1, 1);
+
+			/**
+			 * Put the lock on the player life stars back on.
+			 */
+			this.playerLifeStarsLocked = true;
 		}
-		this.playerLifeStarsLocked = true;
 	}
 }

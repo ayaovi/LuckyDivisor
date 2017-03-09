@@ -57,7 +57,6 @@ class SidePanel extends Panel
 		this.position = createVector(WIDTH_OF_CANVAS, 0);
 		this.width = WIDTH_OF_SIDE_PANEL;
 		this.height = HEIGHT_OF_SIDE_PANEL;
-		this.reset();
 	}
 
 

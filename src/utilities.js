@@ -101,6 +101,7 @@ function generatePlayerCubeNumber()
 			primeDivisorGreaterThanTen = false;
 		}
 	}
+
 	return number;
 }
 
@@ -494,10 +495,12 @@ function getPrimeFactors(number)
 			number /= i;
 		}
 	}
+	
 	if (number > 1)
 	{
 		factors.push(number);
 	}
+
 	return factors;
 }
 
@@ -509,9 +512,17 @@ function getPrimeFactors(number)
  *
  * @return none.
  */
-function endPlay()
+function endCurrentPlay()
 {
-	// Config and sorting
+	/**
+	 * Empty all columns.
+	 */
+	columns = [];
+
+	/**
+	 * Then start a new play.
+	 */
+	startNewPlay();
 }
 
 
@@ -522,10 +533,10 @@ function endPlay()
  *
  * @return none.
  */
-function startPlay()
+function startNewPlay()
 {
 	/**
-	 * reset ID to zero.
+	 * Reset ID to zero.
 	 */
 	ID = 0;
 	
@@ -534,22 +545,28 @@ function startPlay()
 	 */
 	eventQueue = new EventQueue();
 
+	/**
+	 * Reset the clock in the top panel.
+	 */
+	topPanel.reset();
+
+	/**
+	 * Create a new player cube.
+	 */
 	var playerCubeNumber = generatePlayerCubeNumber();
-	
 	playerCube = new PlayerCube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
 	
+	/**
+	 * Reset the side panel.
+	 */
+	sidePanel.reset();
+
+	/**
+	 * Create all columns.
+	 */
 	for (var i = 0; i < NUMBER_OF_COLUMNS; i++)
 	{
 		columns.push(new Column(COLUMN_WIDTH * i, i));
 		columns[i].reset();
 	}
-	
-	// DEBUGGING
-	// var factors = playerCube.divisors;
-	
-	// for (var i = 0; i < factors.length; i++)
-	// {
-		// console.log(factors[i]);
-	// }
-	// END OF DEBUGGING
 }

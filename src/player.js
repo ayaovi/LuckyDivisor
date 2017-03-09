@@ -65,7 +65,7 @@ class Player
 			/**
 			 * Then this mark the end of play.
 			 */
-			endPlay();
+			endCurrentPlay();
 		}
 	}
 	

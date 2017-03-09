@@ -39,8 +39,6 @@ function setup()
 	var gameCanvas = createCanvas(WIDTH_OF_GAME_FRAME, HEIGHT_OF_CANVAS);
 	gameCanvas.parent('gameCanvasContainer');
 
-	startPlay();
-	
 	player = new Player();
 
 	topPanel = new TopPanel();
@@ -48,6 +46,8 @@ function setup()
 
 	sidePanel = new SidePanel();
 	sidePanel.init();
+
+	startNewPlay();	
 }
 
 
