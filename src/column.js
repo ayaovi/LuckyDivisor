@@ -73,7 +73,7 @@ class Column
 		}
 		else
 		{
-			if (this.startingTime.equals(new Time(minute(), second())))
+			if (this.startingTime.isLessOrEqualTo(getCurrentTime()))
 			{
 				/**
 				 * Set this.cubesHaveStartedFalling to true so we do not come here again.
