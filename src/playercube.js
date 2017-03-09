@@ -132,7 +132,7 @@
 			// Do nothing for now to the playerCube.
 			
 			/**
-			 * Make pnCube invisible
+			 * Make pnCube invisible.
 			 */
 			pnCube.visibility = false;
 		}
