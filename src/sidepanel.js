@@ -164,7 +164,7 @@ class SidePanel extends Panel
 			 */
 			var numberOfOccurence = this.numberOfPnCubesYetToBeCollected[cube.number];
 			
-			if (numberOfOccurence != 0)
+			if (numberOfOccurence > 0)
 			{
 				cube.show();
 				text("x" + numberOfOccurence, cube.position.x + DEFAULT_PADDING_OF_CUBE_OCCURENCE_IN_SIDE_PANEL, cube.position.y + SIDE_OF_CUBE * 0.75);

@@ -113,14 +113,14 @@
 			this.changeColour();
 			
 			/**
-			 * Update Player score.
-			 */
-			player.updateScore(pnCube.number);
-
-			/**
 			 * Update side panel.
 			 */
 			sidePanel.update(pnCube.number);
+			
+			/**
+			 * Update Player score.
+			 */
+			player.updateScore(pnCube.number);
 			
 			/**
 			 * Make pnCube invisible.
