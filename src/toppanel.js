@@ -91,7 +91,7 @@ class TopPanel extends Panel
 	start()
 	{
 		this.timer.start();
-	}	
+	}
 
 	/**
 	 * @description a function to display the content of this Panel.

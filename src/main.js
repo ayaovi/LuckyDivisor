@@ -84,6 +84,9 @@ function draw()
 	{
 		for (var j = 0; j < columns[i].cubes.length; j++)
 		{
+			/**
+			 * Create new references for the sake of simplicity.
+			 */
 			var pnCube = columns[i].cubes[j];
 			var x1 = pnCube.position.x;
 			var y1 = pnCube.position.y;

@@ -84,7 +84,7 @@ class SidePanel extends Panel
 		 * and not keep track of how many times it is supposed to be collected. An example would be, given a player 
 		 * number 9, its divisors would be {1, 3, 3}.
 		 */
-		var divisors = playerCube.divisors;
+		var primeFactors = playerCube.divisors;
 		
 		/**
 		 * This is used to keep track of how much offset is needed to be added to the cube y-coordinate.
@@ -94,10 +94,11 @@ class SidePanel extends Panel
 		/**
 		 * create the cubes to be collected objects.
 		 */
-		for (var i = 0; i < divisors.length; i++)
+		for (var i = 0; i < primeFactors.length; i++)
 		{
-			if (this.numberOfPnCubesYetToBeCollected[divisors[i]] == 0)
+			if (this.numberOfPnCubesYetToBeCollected[primeFactors[i]] == 0)
 			{
+				console.log("Added cube " + primeFactors[i] + " in side panel.");
 				/**
 				 * The cube to displayed in the side panel needs to be offset a little bit as to not be too close to the game canvas.
 				 */
@@ -108,7 +109,7 @@ class SidePanel extends Panel
 				 */
 				var cubePositionY = DEFAULT_SIDE_PANEL_PADDING + counter * (DEFAULT_SIDE_PANEL_PADDING + SIDE_OF_CUBE);
 				
-				this.pnCubesYetToBeCollected.push(new PnCube(divisors[i], ++ID, createVector(cubePositionX, cubePositionY)));
+				this.pnCubesYetToBeCollected.push(new PnCube(primeFactors[i], ++ID, createVector(cubePositionX, cubePositionY)));
 				
 				/**
 				 * Increment counter to cater for next cube to be displayed/printed.
@@ -119,7 +120,7 @@ class SidePanel extends Panel
 			/**
 			 * Record the new occurrence of the cube to be collected.
 			 */
-			++this.numberOfPnCubesYetToBeCollected[divisors[i]];
+			++this.numberOfPnCubesYetToBeCollected[primeFactors[i]];
 		}
 	}
 
