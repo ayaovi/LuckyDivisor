@@ -515,6 +515,10 @@ function getPrimeFactors(number)
 function endCurrentPlay()
 {
 	/**
+	 * Reset the previous column starting time tracker to undefined.
+	 */
+	previousColumnStartingTime = undefined;
+	/**
 	 * Empty all columns.
 	 */
 	columns = [];
