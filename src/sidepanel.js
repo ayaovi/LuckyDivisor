@@ -34,13 +34,13 @@ class SidePanel extends Panel
 		 * can map every prime factor in the game to a number of occurrence. We can get meticulous 
 		 * by only mapping the prime factors that the player is required to collect during every 
 		 * play. But I opted for the former. As such this map would initially look like the following:
-		 *{
+		 * {
 		 *	1 --> 0
 		 *	2 --> 0
 		 *	3 --> 0
 		 *	5 --> 0
 		 *	7 --> 0
-		 *}
+		 * }
 		 */
 		this.numberOfPnCubesYetToBeCollected;
 	}
@@ -61,11 +61,11 @@ class SidePanel extends Panel
 
 
 	/**
-	 * @description 
+	 * @description resets all the necessary stuff.
 	 *
-	 * @param 
+	 * @param none.
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	reset()
 	{

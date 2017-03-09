@@ -556,7 +556,11 @@ function startNewPlay()
 	var playerCubeNumber = generatePlayerCubeNumber();
 	playerCube = new PlayerCube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
 	
-
+	/**
+	 * DEBUGGING.
+	 */
+	console.log(playerCube.divisors.toString());
+	
 	/**
 	 * Create all columns.
 	 */
@@ -570,6 +574,4 @@ function startNewPlay()
 	 * Reset the side panel.
 	 */
 	sidePanel.reset();
-
-	console.log(playerCube.divisors.toString());
 }
