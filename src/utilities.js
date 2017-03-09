@@ -543,7 +543,7 @@ function startNewPlay()
 	/**
 	 * Reset the event queue.
 	 */
-	eventQueue = new EventQueue();
+	eventQueue.reset();
 
 	/**
 	 * Reset the clock in the top panel.
@@ -569,4 +569,6 @@ function startNewPlay()
 		columns.push(new Column(COLUMN_WIDTH * i, i));
 		columns[i].reset();
 	}
+
+	topPanel.start();
 }

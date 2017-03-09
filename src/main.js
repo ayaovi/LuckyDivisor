@@ -47,6 +47,8 @@ function setup()
 	sidePanel = new SidePanel();
 	sidePanel.init();
 
+	eventQueue = new EventQueue();
+
 	startNewPlay();	
 }
 

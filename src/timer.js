@@ -24,12 +24,12 @@ class Timer
 	 *
 	 * @return none.
 	 */
-	constructor(position)
+	constructor()
 	{
 		/**
 		 * The position of the timer as a vector with coordinates (x, y).
 		 */
-		this.position = createVector(0, 0);
+		this.position;
 		
 		/**
 		 * The time at which this timer has started.
@@ -39,7 +39,7 @@ class Timer
 		/**
 		 * Confirmation that the timer has started or not.
 		 */
-		this.isStarted = false;
+		this.isStarted;
 		
 		/**
 		 * A string representation of the time till the end of current play.
@@ -57,6 +57,8 @@ class Timer
 	 */
 	init()
 	{
+		this.isStarted = false;
+		this.position = createVector(0, 0);
 		this.time = new Time(minute(), second());
 		this.stringTimeTillEndOfPlay = padWithZero(defaultPlayDuration[0]) + ":" + padWithZero(defaultPlayDuration[1]);
 	}
@@ -71,7 +73,7 @@ class Timer
 	 */
 	start()
 	{
-		this.init();
+		// this.init();
 		this.isStarted = true;
 		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.time.minute, this.time.second, minute(), second());
 	}
@@ -85,7 +87,7 @@ class Timer
 	 */
 	reset()
 	{
-		if (isStarted)
+		if (this.isStarted)
 		{
 			this.init();
 			this.isStarted = false;
@@ -102,22 +104,26 @@ class Timer
 	 */
 	show()
 	{
-		// save current state.
+		/**
+		 * save current state.
+		 */
 		push();
 
-		// // First create a black circle.
-		// fill(0);
-		// ellipse(this.position.x, this.position.y, this.width);
-
-		// // Then create a white arc on the circle.
-		// fill(255);
-		// arc(this.position.x, this.position.y, this.width, this.width, -HALF_PI, -HALF_PI/3);
-		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.time.minute, this.time.second, minute(), second());	
+		/**
+		 * Before updating time till end of play, check that the clock has indeed been started.
+		 */
+		if (this.isStarted)
+		{
+			this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.time.minute, this.time.second, minute(), second());
+		}
+		
 		fill(0);
 		textSize(DEFAULT_TIMER_TEXT_SIZE);
 		text(this.stringTimeTillEndOfPlay, this.position.x + DEFAULT_TIMER_PADDING, this.position.y + DEFAULT_TIMER_TEXT_SIZE);
 
-		// restore back to state previous.
+		/**
+		 * restore back to state previous.
+		 */
 		pop();
 	}
 }

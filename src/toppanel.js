@@ -53,6 +53,7 @@ class TopPanel extends Panel
 		this.height = HEIGHT_TOP_PANEL;
 		this.playerLifeStars = [];
 		this.timer = new Timer();
+		this.timer.init();
 		this.playerLifeStarsLocked = true;
 
 		/**
@@ -76,9 +77,21 @@ class TopPanel extends Panel
 	 */
 	reset()
 	{
-		this.timer = new Timer();
+		this.timer.reset();
 	}
 
+
+	/**
+	 * @description a function to display the content of this Panel.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	start()
+	{
+		this.timer.start();
+	}	
 
 	/**
 	 * @description a function to display the content of this Panel.
