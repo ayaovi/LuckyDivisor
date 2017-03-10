@@ -269,3 +269,19 @@ var DEFAULT_SIDE_PANEL_PADDING = 15;
  * At this point in time is being used to store StartNewCubeEvent's.
  */
 var eventQueue;
+
+/**
+ * A text to display onto the screen when the user go GAME OVER (i.e. runs 
+ * out of life stars).
+ */
+var GAME_OVER_TEXT = "GAME OVER";
+
+/**
+ * A text to display onto the screen when the clock run out.
+ */
+var TIME_OUT_TEXT = "TIME OUT";
+
+/**
+ * A text to display onto the screen when the clock run out.
+ */
+var END_OF_GAME_TEXT_SIZE = HEIGHT_OF_GAME_FRAME / 10;

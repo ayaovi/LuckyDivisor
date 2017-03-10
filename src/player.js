@@ -33,6 +33,22 @@ class Player
 		this.score = new Score(createVector(DEFAULT_SCORE_STARTING_POSITION, 0));
 		
 		/**
+		 * A collection of player life stars.
+		 */
+		this.playerLifeStars;
+		
+		/**
+		 * Keeps track of the x-coordinate of the next player star.
+		 */
+		this.nextPlayerStarPositionX;
+		
+		/**
+		 * A lock on the access of player life stars. This lock prevents the 
+		 * removal of more than one life stars when a player is burnt.
+		 */
+		this.playerLifeStarsLocked;
+		
+		/**
 		 * The player's best score so far.
 		 */
 		this.bestScore = 0;
@@ -41,6 +57,57 @@ class Player
 		 * The player's credit point so far.
 		 */
 		this.creditPoints = 0;
+	}
+	
+	
+	/**
+	 * @description an initialiser of the player.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	init()
+	{
+		this.playerLifeStars = [];
+		this.nextPlayerStarPositionX = PLAYER_STARS_STARTING_POSITION;
+		this.playerLifeStarsLocked = true;
+
+		/**
+		 * create the player life stars objects.
+		 */
+		for (var i = 0; i < NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
+		{
+			/**
+			 * Add a new life star.
+			 */
+			this.addNewLifeStar();
+
+			/**
+			 * Update next player life star coordinate.
+			 */
+			this.nextPlayerStarPositionX += SIZE_OF_A_PLAYER_STAR;
+		}
+	}
+	
+	/**
+	 * @desciption adds a new life stars to the life stars collection.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	addNewLifeStar()
+	{
+		/**
+		 * New references for the sake of simplicity.
+		 */
+		var starPositionX = this.nextPlayerStarPositionX;
+		var starPositionY = HEIGHT_TOP_PANEL / 2;
+		var starPosition = createVector(starPositionX, starPositionY);
+		var starArmLength = HEIGHT_TOP_PANEL / 4;
+
+		this.playerLifeStars.push(new Star(starPosition, starArmLength));
 	}
 	
 	/**
@@ -71,6 +138,26 @@ class Player
 	
 	
 	/**
+	 * @description gives a one life stars reward to the player if he does not
+	 * already possess the maximum amount.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	rewardLifeStar()
+	{
+		if (this.playerLifeStars.length < NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
+		{
+			/**
+			 * Add a life star.
+			 */
+			this.addNewLifeStar();
+		}
+	}
+	
+	
+	/**
 	 * @description A function that checks whether the player has collected all necessary cubes.
 	 *
 	 * @param none.
@@ -95,11 +182,64 @@ class Player
 		/**
 		 * Unlock the player life stars in the top panel. This allow for a life stars to be taken off.
 		 */
-		topPanel.playerLifeStarsLocked = false;
+		this.playerLifeStarsLocked = false;
 		
 		/**
 		 * Only thereafter can we take off a player life star.
 		 */
-		topPanel.takeOffAPlayerLifeStar();
+		this.takeOffAPlayerLifeStar();
+		
+		/**
+		 * Check if player has no more life stars.
+		 */
+		this.checkIfGameOver();
+	}
+	
+	
+	/**
+	 * @desciption check whether the player is Game Over by running out of life stars.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	checkIfGameOver()
+	{
+		if (this.playerLifeStars.length == 0)
+		{
+			/**
+			 * The player is indeed Game Over.
+			 */
+			endGame(0);
+		}
+	}
+	
+	/**
+	 * @description a function that takes off a player life star 
+	 * in response to him or her collecting a Pn cube they are not supposed to.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	takeOffAPlayerLifeStar()
+	{
+		/**
+		 * We can only take away a player life star if it is not locked.
+		 */
+		if (!this.playerLifeStarsLocked)
+		{
+			this.playerLifeStars.splice(this.playerLifeStars.length - 1, 1);
+
+			/**
+			 * Put the lock on the player life stars back on.
+			 */
+			this.playerLifeStarsLocked = true;
+
+			/**
+			 * Update next player life star coordinate.
+			 */
+			this.nextPlayerStarPositionX -= SIZE_OF_A_PLAYER_STAR;
+		}
 	}
 }

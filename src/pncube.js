@@ -80,7 +80,6 @@ class PnCube extends Cube
 			fill(this.colour);
 			rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
 			fill(0);
-			//strokeWeight(2);
 			textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
 			var padding = (SIDE_OF_CUBE - textWidth(this.number)) / 2;
 			text(this.number, this.position.x + padding, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);

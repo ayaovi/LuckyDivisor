@@ -35,12 +35,6 @@ class TopPanel extends Panel
 		 * The timer to appear on the panel.
 		 */
 		this.timer;
-		
-		/**
-		 * A lock on the access of player life stars. This lock prevents the 
-		 * removal of more than one life stars when a player is burnt.
-		 */
-		this.playerLifeStarsLocked;
 
 		/**
 		 * Keeps track of the x-coordinate of the next player star.
@@ -60,55 +54,11 @@ class TopPanel extends Panel
 		this.position = createVector(0, 0);
 		this.width = WIDTH_OF_CANVAS;
 		this.height = HEIGHT_TOP_PANEL;
-		this.playerLifeStars = [];
+		this.playerLifeStars = player.playerLifeStars;
 		this.timer = new Timer();
 		this.timer.init();
-		this.playerLifeStarsLocked = true;
-		this.nextPlayerStarPositionX = this.position.x + PLAYER_STARS_STARTING_POSITION;
-
-		/**
-		 * create the player life stars objects.
-		 */
-		for (var i = 0; i < NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
-		{
-			/**
-			 * New references for the sake of simplicity.
-			 */
-			var starPositionX = this.nextPlayerStarPositionX;
-			var starPositionY = this.position.y + this.height / 2;
-			var starPosition = createVector(starPositionX, starPositionY);
-			var starArmLength = this.height / 4;
-
-			this.playerLifeStars.push(new Star(starPosition, starArmLength));
-
-			/**
-			 * Update next player life star coordinate.
-			 */
-			this.nextPlayerStarPositionX += SIZE_OF_A_PLAYER_STAR;
-		}
 	}
 
-
-	/**
-	 * @description gives a one life stars reward to the player if he does not
-	 * already possess the maximum amount.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	rewardLifeStar()
-	{
-		if (this.playerLifeStars.length < NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
-		{
-			var starPositionX = this.nextPlayerStarPositionX;
-			var starPositionY = this.position.y + this.height / 2;
-			var starPosition = createVector(starPositionX, starPositionY);
-			var starArmLength = this.height / 4;
-			
-			this.playerLifeStars.push(new Star(starPosition, starArmLength));
-		}
-	}
 
 	/**
 	 * @description resets anything that need be reset.
@@ -164,36 +114,6 @@ class TopPanel extends Panel
 		for (var i = 0; i < this.playerLifeStars.length; i++) 
 		{
 			this.playerLifeStars[i].show();
-		}
-	}
-
-
-	/**
-	 * @description a function that takes off a player life star 
-	 * in response to him or her collecting a Pn cube they are not supposed to.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	takeOffAPlayerLifeStar()
-	{
-		/**
-		 * We can only take away a player life star if it is not locked.
-		 */
-		if (!this.playerLifeStarsLocked)
-		{
-			this.playerLifeStars.splice(this.playerLifeStars.length - 1, 1);
-
-			/**
-			 * Put the lock on the player life stars back on.
-			 */
-			this.playerLifeStarsLocked = true;
-
-			/**
-			 * Update next player life star coordinate.
-			 */
-			this.nextPlayerStarPositionX -= SIZE_OF_A_PLAYER_STAR;
 		}
 	}
 }

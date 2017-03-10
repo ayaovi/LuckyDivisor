@@ -39,14 +39,27 @@ function setup()
 	var gameCanvas = createCanvas(WIDTH_OF_GAME_FRAME, HEIGHT_OF_CANVAS);
 	gameCanvas.parent('gameCanvasContainer');
 
+	/**
+	 * Create the Player object.
+	 */
 	player = new Player();
-
+	player.init();
+	
+	/**
+	 * Create the top panel.
+	 */
 	topPanel = new TopPanel();
 	topPanel.init();
 
+	/**
+	 * A SidePanl is a requirement.
+	 */
 	sidePanel = new SidePanel();
 	sidePanel.init();
 
+	/**
+	 * We also need an EventQueue.
+	 */
 	eventQueue = new EventQueue();
 
 	startNewPlay();	
@@ -120,7 +133,7 @@ function draw()
 	 */
 	if (topPanel.timer.stringTimeTillEndOfPlay == "00:00")
 	{
-		noLoop();
+		endGame(1);
 	}
 
 	/**

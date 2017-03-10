@@ -311,19 +311,6 @@ function deltaE(labA, labB)
 
 
 /**
- * @description A game over even handler.
- *
- * @param none.
- *
- * @retun none.
- */
-function gameOver()
-{
-	// TODO : Reset all the necessary stuff.
-}
-
-
-/**
  * @description A pause event handler.
  *
  * @param none.
@@ -506,6 +493,37 @@ function getPrimeFactors(number)
 
 
 /**
+ * @description A game over even handler.
+ *
+ * @param none.
+ *
+ * @retun none.
+ */
+function endGame(endOfGameCode)
+{
+	/**
+	 * Determine the text to display on screen.
+	 * code 0 ----> Game Over.
+	 * code 1 ----> Time Out.
+	 */
+	var endOfGameText = (endOfGameCode == 0) ? GAME_OVER_TEXT : TIME_OUT_TEXT;
+	
+	fill(255);
+	textSize(END_OF_GAME_TEXT_SIZE);
+	
+	var x = (WIDTH_OF_CANVAS - textWidth(endOfGameText)) / 2;
+	var y = HEIGHT_OF_CANVAS / 2;
+	
+	text(endOfGameText, x, y);
+	
+	/**
+	 * Stop looping.
+	 */
+	noLoop();
+}
+
+
+/**
  * @description An end of play handler.
  *
  * @param none.
@@ -517,7 +535,7 @@ function endCurrentPlay()
 	/**
 	 * Reward a life star for completing play.
 	 */
-	topPanel.rewardLifeStar();
+	player.rewardLifeStar();
 
 	/**
 	 * Reset the previous column starting time tracker to undefined.
