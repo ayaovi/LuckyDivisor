@@ -17,6 +17,7 @@ hs_err_pid*
 node_modules/*
 test/*
 assets/*
+docs/*
 
 *.conf.js
 

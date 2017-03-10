@@ -95,7 +95,7 @@ class Timer
 	 */
 	reset()
 	{
-		if (this.isStarted)
+		if (this.hasStarted)
 		{
 			this.init();
 		}

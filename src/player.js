@@ -82,11 +82,6 @@ class Player
 			 * Add a new life star.
 			 */
 			this.addNewLifeStar();
-
-			/**
-			 * Update next player life star coordinate.
-			 */
-			this.nextPlayerStarPositionX += SIZE_OF_A_PLAYER_STAR;
 		}
 	}
 	
@@ -99,15 +94,23 @@ class Player
 	 */
 	addNewLifeStar()
 	{
-		/**
-		 * New references for the sake of simplicity.
-		 */
-		var starPositionX = this.nextPlayerStarPositionX;
-		var starPositionY = HEIGHT_TOP_PANEL / 2;
-		var starPosition = createVector(starPositionX, starPositionY);
-		var starArmLength = HEIGHT_TOP_PANEL / 4;
+		if (this.playerLifeStars.length < NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
+		{
+			/**
+			 * New references for the sake of simplicity.
+			 */
+			var starPositionX = this.nextPlayerStarPositionX;
+			var starPositionY = HEIGHT_TOP_PANEL / 2;
+			var starPosition = createVector(starPositionX, starPositionY);
+			var starArmLength = HEIGHT_TOP_PANEL / 4;
 
-		this.playerLifeStars.push(new Star(starPosition, starArmLength));
+			this.playerLifeStars.push(new Star(starPosition, starArmLength));
+
+			/**
+			 * Update next player life star coordinate.
+			 */
+			this.nextPlayerStarPositionX += SIZE_OF_A_PLAYER_STAR;
+		}
 	}
 	
 	/**
