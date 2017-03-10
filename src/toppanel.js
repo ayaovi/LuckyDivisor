@@ -20,7 +20,11 @@ class TopPanel extends Panel
 	 */
 	constuctor()
 	{
-		// super();
+		/**
+		 * I thought about calling super() here. In fact I did, but the browser was 
+		 * complaining. I think it might be because the panel constructor takes no 
+		 * argument. As such I took it out, and it is still working properly.
+		 */
 
 		/**
 		 * A collection of player life stars.
@@ -36,7 +40,12 @@ class TopPanel extends Panel
 		 * A lock on the access of player life stars. This lock prevents the 
 		 * removal of more than one life stars when a player is burnt.
 		 */
-		this.playerLifeStarsLocked;	
+		this.playerLifeStarsLocked;
+
+		/**
+		 * Keeps track of the x-coordinate of the next player star.
+		 */
+		this.nextPlayerStarPositionX;
 	}
 
 	/**
@@ -55,17 +64,51 @@ class TopPanel extends Panel
 		this.timer = new Timer();
 		this.timer.init();
 		this.playerLifeStarsLocked = true;
+		this.nextPlayerStarPositionX = this.position.x + PLAYER_STARS_STARTING_POSITION;
 
 		/**
 		 * create the player life stars objects.
 		 */
 		for (var i = 0; i < NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
 		{
-			this.playerLifeStars.push(new Star(createVector(this.position.x + i * SIZE_OF_A_PLAYER_STAR + 
-				PLAYER_STARS_STARTING_POSITION, this.position.y + this.height / 2), this.height / 4));
+			/**
+			 * New references for the sake of simplicity.
+			 */
+			var starPositionX = this.nextPlayerStarPositionX;
+			var starPositionY = this.position.y + this.height / 2;
+			var starPosition = createVector(starPositionX, starPositionY);
+			var starArmLength = this.height / 4;
+
+			this.playerLifeStars.push(new Star(starPosition, starArmLength));
+
+			/**
+			 * Update next player life star coordinate.
+			 */
+			this.nextPlayerStarPositionX += SIZE_OF_A_PLAYER_STAR;
 		}
 	}
 
+
+	/**
+	 * @description gives a one life stars reward to the player if he does not
+	 * already possess the maximum amount.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	rewardLifeStar()
+	{
+		if (this.playerLifeStars.length < NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
+		{
+			var starPositionX = this.nextPlayerStarPositionX;
+			var starPositionY = this.position.y + this.height / 2;
+			var starPosition = createVector(starPositionX, starPositionY);
+			var starArmLength = this.height / 4;
+			
+			this.playerLifeStars.push(new Star(starPosition, starArmLength));
+		}
+	}
 
 	/**
 	 * @description resets anything that need be reset.
@@ -146,6 +189,11 @@ class TopPanel extends Panel
 			 * Put the lock on the player life stars back on.
 			 */
 			this.playerLifeStarsLocked = true;
+
+			/**
+			 * Update next player life star coordinate.
+			 */
+			this.nextPlayerStarPositionX -= SIZE_OF_A_PLAYER_STAR;
 		}
 	}
 }

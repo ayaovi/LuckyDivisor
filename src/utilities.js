@@ -515,6 +515,11 @@ function getPrimeFactors(number)
 function endCurrentPlay()
 {
 	/**
+	 * Reward a life star for completing play.
+	 */
+	topPanel.rewardLifeStar();
+
+	/**
 	 * Reset the previous column starting time tracker to undefined.
 	 */
 	previousColumnStartingTime = undefined;
