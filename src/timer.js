@@ -35,11 +35,16 @@ class Timer
 		 * The time at which this timer has started.
 		 */
 		this.time;
+
+		/**
+		 * The duration of a play.
+		 */
+		this.playDuration;
 		
 		/**
 		 * Confirmation that the timer has started or not.
 		 */
-		this.isStarted;
+		this.hasStarted;
 		
 		/**
 		 * A string representation of the time till the end of current play.
@@ -57,10 +62,10 @@ class Timer
 	 */
 	init()
 	{
-		this.isStarted = false;
+		this.hasStarted = false;
 		this.position = createVector(0, 0);
-		this.time = new Time(minute(), second());
-		this.stringTimeTillEndOfPlay = padWithZero(defaultPlayDuration[0]) + ":" + padWithZero(defaultPlayDuration[1]);
+		this.playDuration = new Time(defaultPlayDuration[0], defaultPlayDuration[1]);
+		this.stringTimeTillEndOfPlay = this.playDuration.toString();
 	}
 
 
@@ -73,9 +78,12 @@ class Timer
 	 */
 	start()
 	{
-		// this.init();
-		this.isStarted = true;
-		this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.time.minute, this.time.second, minute(), second());
+		/**
+		 * When the clock is called up to start, we set the hasStarted variable to true.
+		 */
+		this.hasStarted = true;
+		this.time = new Time(minute(), second());
+		this.stringTimeTillEndOfPlay = this.time.plus(this.playDuration).minus(getCurrentTime()).toString();
 	}
 
 	/**
@@ -90,7 +98,6 @@ class Timer
 		if (this.isStarted)
 		{
 			this.init();
-			this.isStarted = false;
 		}
 	}
 
@@ -112,9 +119,9 @@ class Timer
 		/**
 		 * Before updating time till end of play, check that the clock has indeed been started.
 		 */
-		if (this.isStarted)
+		if (this.hasStarted)
 		{
-			this.stringTimeTillEndOfPlay = getStringTimeTillEndOfPlay(this.time.minute, this.time.second, minute(), second());
+			this.stringTimeTillEndOfPlay = this.time.plus(this.playDuration).minus(getCurrentTime()).toString();
 		}
 		
 		fill(0);

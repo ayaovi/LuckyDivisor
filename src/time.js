@@ -60,7 +60,7 @@ class Time
 	 *
 	 * @param another Time object.
 	 *
-	 * @return a new time.
+	 * @return a new Time object.
 	 */
 	minus(otherTime)
 	{
@@ -69,15 +69,46 @@ class Time
 		 */
 		var timeDifference = abs((this.minute * 60 + this.second) - (otherTime.minute * 60 + otherTime.second));
 
+		return this.toMinuteAndSecond(timeDifference);
+	}
+	
+
+	/**
+	 * @description sddition of two times.
+	 *
+	 * @param another Time object.
+	 *
+	 * @return a new Time object.
+	 */
+	plus(otherTime)
+	{
 		/**
-		 * Then convert it to minute and seconds.
+		 * Get the time difference in seconds.
 		 */
-		var minute = floor(timeDifference / 60);
-		var second = timeDifference % 60;
+		var timeAddition = abs((this.minute * 60 + this.second) + (otherTime.minute * 60 + otherTime.second));
+
+		return this.toMinuteAndSecond(timeAddition);
+	}
+
+
+	/**
+	 * @description converts a time in seconds to a new time in minutes and seconds.
+	 *
+	 * @param number of seconds.
+	 *
+	 * @return a new time in minutes and seconds.
+	 */
+	toMinuteAndSecond(seconds)
+	{
+		/**
+		 * Convert the seconds to minute and seconds.
+		 */
+		var minute = floor(seconds / 60);
+		var second = seconds % 60;
 
 		return new Time(minute, second);
 	}
-	
+
 
 	/**
 	 * @description convert this time to seconds.
@@ -114,8 +145,9 @@ class Time
 	 */
 	toString()
 	{
-		return (this.minute + ":" + this.second);
+		return (padWithZero(this.minute) + ":" + padWithZero(this.second));
 	}
+	
 	
 	/**
 	 * @description checks the equality of two times.

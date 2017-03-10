@@ -81,18 +81,6 @@ class TopPanel extends Panel
 	 *
 	 * @return none.
 	 */
-	start()
-	{
-		this.timer.start();
-	}
-
-	/**
-	 * @description a function to display the content of this Panel.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
 	show()
 	{
 		fill(255);

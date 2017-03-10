@@ -364,44 +364,6 @@ function removeFromArray(array, target)
 	}
 }
 
-/**
- * @description 
- *
- * @param 
- *
- * @return 
- */
-// function removeCubeFromYetToBeCollecteList(array, targetCubeNumber)
-// {
-	// for (var i = array.length - 1; i >= 0; i--) 
-	// {
-		// if (array[i].number == targetCubeNumber)
-		// {
-			// array.splice(i, 1);
-			// break;
-		// }
-	// }
-// }
-
-
-/**
- * @description A function to calculate the difference in time as [minute, second].
- *
- * @param previousMinute, previousSecond, currentMinute and currentSecond, which are 
- * all positive integers less than 60. 
- *
- * @return an array containing the time difference minute and second.
- */
-function getTimeDifference(previousMinute, previousSecond, currentMinute, currentSecond)
-{
-	var timeDifference = (currentMinute * 60 + currentSecond) - (previousMinute * 60 + previousSecond);
-
-	var minute = floor(timeDifference / 60);
-	var second = timeDifference % 60;
-
-	return [minute, second];
-}
-
 
 /**
  * @description returns the current system minute and second.
@@ -413,39 +375,6 @@ function getTimeDifference(previousMinute, previousSecond, currentMinute, curren
 function getCurrentTime()
 {
 	return new Time(minute(), second());
-}
-
-/**
- * @description A function to format the game duration a string.
- *
- * @param 
- *
- * @return 
- */
-function getStringGameDuration(startMinute, startSecond, currentMinute, currentSecond)
-{
-	var duration = getTimeDifference(previousMinute, previousSecond, currentMinute, currentSecond);
-	return (padWithZero(duration[0]) + ":" + padWithZero(duration[1]));
-}
-
-
-/**
- * @description A function to determine how much time till end of play.
- *
- * @param startMinute, startSecond, currentMinute and currentSecond 
- * which are all integers. Like their names imply they are all in the 
- * range 0-59. The currentMinute and currentSecond can be determined 
- * inside this function; which I initially did. However for some reason 
- * I am not allowed to make a call to minute() and second() from p5.js 
- * reason why I reverted back to passing them as arguments.
- *
- * @return the minute and second as a colon separated string.
- */
-function getStringTimeTillEndOfPlay(startMinute, startSecond, currentMinute, currentSecond)
-{
-	var duration = getTimeDifference(startMinute, startSecond, currentMinute, currentSecond);
-	var timeTillEndOfPlay = getTimeDifference(duration[0], duration[1], defaultPlayDuration[0], defaultPlayDuration[1]);
-	return (padWithZero(abs(timeTillEndOfPlay[0])) + ":" + padWithZero(abs(timeTillEndOfPlay[1])));
 }
 
 

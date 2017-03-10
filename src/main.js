@@ -10,20 +10,14 @@
 
 
 /**
- * @description required by p5.js to operate properly.
+ * @description Initialises the cube colour map.
  *
  * @param none.
  *
  * @return none.
  */
-function setup()
+function initialiseCubeColourMap()
 {
-	var gameCanvasContainer = document.getElementById('gameCanvasContainer');
-	// displayWindow is a p5.js variable.
-	gameCanvasContainer.style.left = (displayWidth - WIDTH_OF_GAME_FRAME) / 2 + 'px';
-	// windowHeight is a p5.js variable.
-	gameCanvasContainer.style.top = (windowHeight - HEIGHT_OF_GAME_FRAME) / 2 + 'px';
-
 	/**
 	 * Initialise the map of colours.
 	 * It was decided at the design stage to paint the pn cube in different colour in order 
@@ -35,10 +29,19 @@ function setup()
 	CUBE_COLOUR_MAP[3] = color('#0047AB');
 	CUBE_COLOUR_MAP[5] = color('#00B500');
 	CUBE_COLOUR_MAP[7] = color('#805B00');
+}
 
-	var gameCanvas = createCanvas(WIDTH_OF_GAME_FRAME, HEIGHT_OF_CANVAS);
-	gameCanvas.parent('gameCanvasContainer');
 
+
+/**
+ * @description creates the game components (i.e. a Player, a Top Panel, a Side Panel etc...).
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function createGameComponents()
+{
 	/**
 	 * Create the Player object.
 	 */
@@ -61,7 +64,61 @@ function setup()
 	 * We also need an EventQueue.
 	 */
 	eventQueue = new EventQueue();
+}
 
+
+/**
+ * @description Initialises the dimensions of the container in the HTML file.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function initialiseHTMLContainer()
+{
+	/**
+	 * displayWindow and windowHeight are p5.js variables.
+	 */
+	var gameCanvasContainer = document.getElementById('gameCanvasContainer');
+	gameCanvasContainer.style.left = (displayWidth - WIDTH_OF_GAME_FRAME) / 2 + 'px';
+	gameCanvasContainer.style.top = (windowHeight - HEIGHT_OF_GAME_FRAME) / 2 + 'px';
+}
+
+
+
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function setup()
+{
+	/**
+	 * First intialise the HTML container.
+	 */
+	initialiseHTMLContainer();
+
+	/**
+	 * Then create the canvas.
+	 */
+	var gameCanvas = createCanvas(WIDTH_OF_GAME_FRAME, HEIGHT_OF_CANVAS);
+	gameCanvas.parent('gameCanvasContainer');
+	
+	/**
+	 * And initialise the cube colour map.
+	 */
+	initialiseCubeColourMap();
+
+	/**
+	 * Carry on to create the game components.
+	 */
+	createGameComponents();
+
+	/**
+	 * Finally start a new play.
+	 */
 	startNewPlay();	
 }
 
@@ -118,7 +175,7 @@ function draw()
 	/**
 	 * Start the clock if it not started.
 	 */
-	if (!topPanel.timer.isStarted)
+	if (!topPanel.timer.hasStarted)
 	{
 		topPanel.timer.start();
 	}
