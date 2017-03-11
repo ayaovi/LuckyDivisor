@@ -206,12 +206,12 @@ var playerCube;
 var playerControls = [37, 39];
 
 /**
- * The game controls is made up of pause and play, which is the same button p.
- * When the game is pause, the game status is changed. That way when "p" is 
+ * The game controls is made up of pause and play, which is the same button space bar.
+ * When the game is pause, the game status is changed. That way when "space bar" is 
  * pressed again, the play can continue.
  */
- var gameControl = [80];
- 
+ var gameControls = [32];
+
 /**
  * A record of all prime numbers in the game so far.
  */

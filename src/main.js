@@ -117,23 +117,27 @@ function setup()
 	createGameComponents();
 
 	/**
+	 * Set the game status to Running.
+	 */
+	gameStatus = "Running";
+
+	/**
 	 * Finally start a new play.
 	 */
 	startNewPlay();	
 }
 
 
+
 /**
- * @description required by p5.js to operate properly.
+ * @description displays the game components on-screen.
  *
  * @param none.
  *
  * @return none.
  */
-function draw()
+function showGameComponents()
 {
-	background(DEFAULT_CANVAS_BACKGROUND_COLOUR);
-	
 	/**
 	 * Display the player cube at the bottom of the canvas.
 	 */
@@ -146,10 +150,34 @@ function draw()
 	{
 		columns[i].show();
 	}
-	
+
 	/**
 	 * Then check whether the player has collected any pn cube.
 	 */
+	checkForPnCubeCollection();
+
+	/**
+	 * Display the top panel.
+	 */
+	topPanel.show();
+
+	/**
+	 * Finally display the side panel.
+	 */
+	sidePanel.show();
+}
+
+
+
+/**
+ * @description checks whether the player has collected a Pn Cube.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function checkForPnCubeCollection()
+{
 	for (var i = 0; i < columns.length; i++)
 	{
 		for (var j = 0; j < columns[i].cubes.length; j++)
@@ -171,20 +199,18 @@ function draw()
 			}
 		}
 	}
-	
-	/**
-	 * Start the clock if it not started.
-	 */
-	if (!topPanel.timer.hasStarted)
-	{
-		topPanel.timer.start();
-	}
-	
-	/**
-	 * Display the top panel.
-	 */
-	topPanel.show();
+}
 
+
+/**
+ * @description makes sure the game is ended when a time out occurs.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function checkForTimeOut()
+{
 	/**
 	 * The game is ended (i.e. game over) if the clock reaches "00:00".
 	 */
@@ -192,12 +218,39 @@ function draw()
 	{
 		endGame(1);
 	}
+}
 
+
+/**
+ * @description makes sure the timer is started.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function checkForRunningTimer()
+{
 	/**
-	 * Finally display the side panel.
+	 * Start the clock if it not started.
 	 */
-	sidePanel.show();
-	
+	if (!topPanel.timer.hasStarted)
+	{
+		topPanel.timer.start();
+	}
+}
+
+
+
+/**
+ * @description check whether there is an event scheduled to be executed at this time.
+ * If so it executes it
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function checkAndProcessNextEvent()
+{
 	/**
 	 * Check whether there is any current event sitting in the event queue.
 	 */
@@ -223,5 +276,27 @@ function draw()
 			 */
 			eventQueue.remove(0);
 		}
+	}
+}
+
+
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function draw()
+{
+	background(DEFAULT_CANVAS_BACKGROUND_COLOUR);
+
+	if (gameStatus == "Running")
+	{
+		checkForRunningTimer();
+		showGameComponents();
+		checkForPnCubeCollection();
+		checkAndProcessNextEvent();
+		checkForTimeOut();
 	}
 }
