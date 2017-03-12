@@ -285,3 +285,9 @@ var TIME_OUT_TEXT = "TIME OUT";
  * A text to display onto the screen when the clock run out.
  */
 var END_OF_GAME_TEXT_SIZE = HEIGHT_OF_GAME_FRAME / 10;
+
+/**
+ * This is a more of a flag to indicate that we ended up in a new day.
+ * I theoritically expect it value to be either 0 or 1.
+ */
+var newDay = 0;

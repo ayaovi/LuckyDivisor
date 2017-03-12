@@ -295,10 +295,12 @@ function pauseOrPlay()
 	if (gameStatus == "Running")
 	{
 		gameStatus = "Paused";
+		noLoop();
 	}
 	else if (gameStatus == "Paused")
 	{
 		gameStatus = "Running";
+		loop();
 	}
 }
 
@@ -378,7 +380,19 @@ function removeFromArray(array, target)
  */
 function getCurrentTime()
 {
-	return new Time(minute(), second());
+	return new Time(hour(), minute(), second());
+}
+
+/**
+ * @description returns the current system minute and second.
+ *
+ * @param none. 
+ *
+ * @return a new time.
+ */
+function getCurrentDate()
+{
+	return new Date(year(), month(), day());
 }
 
 
@@ -441,18 +455,32 @@ function endGame(endOfGameCode)
 	 */
 	var endOfGameText = (endOfGameCode == 0) ? GAME_OVER_TEXT : TIME_OUT_TEXT;
 	
+	displayMessageOnCanvas(endOfGameText);
+	
+	/**
+	 * Stop the draw() loop.
+	 */
+	noLoop();
+}
+
+
+
+/**
+ * @description displays a message on the game canvas.
+ *
+ * @param none.
+ *
+ * @retun none.
+ */
+function displayMessageOnCanvas(message)
+{
 	fill(255);
 	textSize(END_OF_GAME_TEXT_SIZE);
 	
-	var x = (WIDTH_OF_CANVAS - textWidth(endOfGameText)) / 2;
+	var x = (WIDTH_OF_CANVAS - textWidth(message)) / 2;
 	var y = HEIGHT_OF_CANVAS / 2;
 	
-	text(endOfGameText, x, y);
-	
-	/**
-	 * Stop looping.
-	 */
-	noLoop();
+	text(message, x, y);
 }
 
 

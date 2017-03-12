@@ -1,7 +1,10 @@
 /**
  * @file : time.js
  *
- * @description : a Column is a tube or a line that Cubes are falling off.
+ * @description : a Time has the following properties:
+ * 				hour,
+ *				minute,
+ *				second.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -18,24 +21,30 @@ class Time
 	 *
 	 * @return none.
 	 */
-	constructor(minute, second)
+	constructor(hour, minute, second)
 	{
 		/**
-		 * The following refers to the minute part of this as it is represented as 
-		 * minute and second.
+		 * The following refers to the hour part of this Time.
+		 * This value is expected to be between 0-23.
+		 */
+		this.hour = hour;
+
+		/**
+		 * The following refers to the minute part of this Time.
+		 * This value is expected to be between 0-59.
 		 */
 		this.minute = minute;
 		
 		/**
-		 * The following refers to the second part of this as it is represented as 
-		 * minute and second.
+		 * The following refers to the second part of this Time.
+		 * This value is expected to be between 0-59.
 		 */
 		this.second = second;
 	}
-
+	
 
 	/**
-	 * @description ensures minute and second of this time are constrained between 0-59.
+	 * @description ensures that the Time properties are constained within boudaries.
 	 *
 	 * @param none.
 	 *
@@ -43,8 +52,18 @@ class Time
 	 */
 	validate()
 	{
+		if (this.hour > 23)
+		{
+			/**
+			 * Should the hour value be more than 23, this can only mean that 
+			 * we leapt into a new day. As such we should set the newDay flag.
+			 */
+			newDay = floor(this.hour / 24);
+			this.hour %= 24;
+		}
 		if (this.minute > 59)
 		{
+			this.hour += floor(this.minute / 60);
 			this.minute %= 60;
 		}
 		if (this.second > 59)
@@ -53,7 +72,6 @@ class Time
 			this.second %= 60;
 		}
 	}
-	
 	
 	/**
 	 * @description subtraction of two times.
@@ -67,9 +85,10 @@ class Time
 		/**
 		 * Get the time difference in seconds.
 		 */
-		var timeDifference = abs((this.minute * 60 + this.second) - (otherTime.minute * 60 + otherTime.second));
+		var seconds = abs((this.hour * 3600 + this.minute * 60 + this.second) - 
+			(otherTime.hour * 3600 + otherTime.minute * 60 + otherTime.second));
 
-		return this.toMinuteAndSecond(timeDifference);
+		return this.toFullTime(seconds);
 	}
 	
 
@@ -85,9 +104,10 @@ class Time
 		/**
 		 * Get the time difference in seconds.
 		 */
-		var timeAddition = abs((this.minute * 60 + this.second) + (otherTime.minute * 60 + otherTime.second));
+		var seconds = abs((this.hour * 3600 + this.minute * 60 + this.second) + 
+			(otherTime.hour * 3600 + otherTime.minute * 60 + otherTime.second));
 
-		return this.toMinuteAndSecond(timeAddition);
+		return this.toFullTime(seconds);
 	}
 
 
@@ -98,15 +118,17 @@ class Time
 	 *
 	 * @return a new time in minutes and seconds.
 	 */
-	toMinuteAndSecond(seconds)
+	toFullTime(seconds)
 	{
 		/**
 		 * Convert the seconds to minute and seconds.
 		 */
-		var minute = floor(seconds / 60);
-		var second = seconds % 60;
+		var hour = floor(seconds / 3600);
+		var minuteRemainder = seconds % 3600;
+		var minute = floor(minuteRemainder / 60);
+		var second = minuteRemainder % 60;
 
-		return new Time(minute, second);
+		return new Time(hour, minute, second);
 	}
 
 

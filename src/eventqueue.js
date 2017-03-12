@@ -8,7 +8,7 @@
  *
  * @version : v1
  */
- 
+
 class EventQueue
 {
 	/**

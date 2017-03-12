@@ -287,16 +287,29 @@ function checkAndProcessNextEvent()
  *
  * @return none.
  */
+function checkIfGamePaused()
+{
+	if (gameStatus == "Paused")
+	{
+		displayMessageOnCanvas("PAUSED");
+	}
+}
+
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
 function draw()
 {
 	background(DEFAULT_CANVAS_BACKGROUND_COLOUR);
 
-	if (gameStatus == "Running")
-	{
-		checkForRunningTimer();
-		showGameComponents();
-		checkForPnCubeCollection();
-		checkAndProcessNextEvent();
-		checkForTimeOut();
-	}
+	checkForRunningTimer();
+	showGameComponents();
+	checkForPnCubeCollection();
+	checkAndProcessNextEvent();
+	checkForTimeOut();
+	checkIfGamePaused();
 }
