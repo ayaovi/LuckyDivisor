@@ -28,6 +28,7 @@ The following are the cool features that can be added to the game in future vers
 - Add more player controls. This goes hand in hand with the previous feature. We can add a control (say "s") that speed up the falling cube (the player probably needs to achieve some level before accessing this feature). The scenario where this mau help is the following. Say you are targetting a specific cube (yet again, let's make it 2), and this cube just appear on the canvas. Because there is a possibility that it might get stolen from you, should you have the "s" control operational, you might consider using it.
 - Currently at the end of the game, depending on how one gpt there, a "GAME OVER" or "TIME OUT" message is display on the canvas. The colour of this string can possibly change. Moreover, I am thinking making the message flash (i.e. on and off) instead of it being static is cooler, I mean the guy lost so let's give him comfort in his loss.
 - Another feature that may go hand in hand with the one above would be covering up the cubes on the canvas with a transparent colour-ish layer before displaying the end of game message.
+- Currently When the game is paused, a text message "PAUSED" is display on the canvas, we change that to an icon.
 
 ## Dependencies
 The game can be played on in the following browsers:
