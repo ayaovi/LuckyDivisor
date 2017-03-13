@@ -20,7 +20,7 @@ function getNewColumnStartingDate()
 {
 	var newColumnStartingDate = new ExtendedDate(getCurrentDate().getTime() + random(cubeDelays) * 1000);
 	
-	while(previousColumnStartingDate != undefined && newColumnStartingDate.equals(previousColumnStartingDate))
+	while(previousColumnStartingDate != undefined && newColumnStartingDate.minus(previousColumnStartingDate).getTime() >= 500)
 	{
 		newColumnStartingDate = new ExtendedDate(getCurrentDate() + random(cubeDelays) * 1000);
 	}
@@ -550,6 +550,7 @@ function endCurrentPlay()
 	 * Reset the previous column starting time tracker to undefined.
 	 */
 	previousColumnStartingDate = undefined;
+	
 	/**
 	 * Empty all columns.
 	 */
@@ -650,11 +651,16 @@ function restart()
 	 * Reset the previous column starting time tracker to undefined.
 	 */
 	previousColumnStartingDate = undefined;
+	
 	/**
 	 * Empty all columns.
 	 */
 	columns = [];
 	
 	startNewPlay();
+
+	/**
+	 * Bring back the draw() looping.
+	 */
 	loop();
 }

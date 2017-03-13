@@ -198,7 +198,7 @@ var CUBE_COLOUR_MAP = {};
  * The default play duration upon release would be 1 min 0 sec. There may 
  * be a feature in future releases that extends this play duration.
  */
-var defaultPlayDuration = [0, 5];
+var defaultPlayDuration = [0, 20];
 
 /**
  * A record of all cubes in the game.
@@ -256,7 +256,7 @@ var img;
  * A record of all possible delays. These were supposed to be randomly 
  * generated. However the result was not appealing. Hence this.
  */
-var cubeDelays = [3, 5, 1, 4, 2, 0];
+var cubeDelays = [3, 1, 2, 0];
 
 /**
  * Keeps track of the starting time of the previous column during start up.

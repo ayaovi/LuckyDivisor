@@ -40,11 +40,7 @@ class ExtendedDate extends Date
 		/**
 		 * Get the time difference of this date and the other date in milliseconds.
 		 */
-		if (this.isLessThan(otherDate))
-		{
-			return null;
-		}
-		return new ExtendedDate(this.getTime() - otherDate.getTime());
+		return new ExtendedDate(abs(this.getTime() - otherDate.getTime()));
 	}
 	
 

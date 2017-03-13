@@ -41,8 +41,7 @@ class Clock
 		this.hasStarted;
 		
 		/**
-		 * A string representation of the time till the end of current play.
-		 * Displayed as minute:second.
+		 * A string representation of the time till the end of current play displayed as minute:second.
 		 */
 		this.stringTimeTillEndOfPlay;
 	}
@@ -59,7 +58,7 @@ class Clock
 		this.hasStarted = false;
 		this.position = createVector(0, 0);
 		this.playDuration = new ExtendedDate(defaultPlayDuration[0] * 60000 + defaultPlayDuration[1] * 1000);
-		console.log("Play Duration is: " + this.playDuration.toString());
+		// console.log("Play Duration is: " + this.playDuration.toString());
 		this.stringTimeTillEndOfPlay = this.playDuration.toString();
 	}
 
@@ -78,12 +77,18 @@ class Clock
 		 */
 		this.hasStarted = true;
 		this.date = getCurrentDate();
-		console.log("Current Date is: " + this.date.toString());
+		// console.log("Current Date is: " + this.date.toString());
 		this.timeTillEndOfPlay();
 	}
 
 
-
+	/**
+	 * @description computes the time till end of play. The result of this computation is automatically stored in the internal variable stringTimeTillEndOfPlay.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
 	timeTillEndOfPlay()
 	{
 		this.stringTimeTillEndOfPlay = this.date.plus(this.playDuration).minus(getCurrentDate()).toString();
