@@ -294,12 +294,36 @@ function pauseOrPlay()
 	// console.log("key is: " + key);
 	if (gameStatus == "Running")
 	{
+		/**
+		 * Set the game status to Paused.
+		 */
 		gameStatus = "Paused";
+		
+		/**
+		 * Record this pause date.
+		 */
+		pauseDate = getCurrentDate();
+		
+		/**
+		 * Stop the looping of the draw() in main.js.
+		 */
 		noLoop();
 	}
 	else if (gameStatus == "Paused")
 	{
+		/**
+		 * Set the game status to Running.
+		 */
 		gameStatus = "Running";
+		
+		/**
+		 * Update the play duration of the clock.
+		 */
+		topPanel.clock.playDuration = topPanel.clock.playDuration.plus(new ExtendedDate(getCurrentDate().minus(pauseDate)));
+		
+		/**
+		 * Bring back the draw() looping.
+		 */
 		loop();
 	}
 }

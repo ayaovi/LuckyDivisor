@@ -2,8 +2,7 @@
  * @file : time.js
  *
  * @description : a Time has the following properties:
- * 				hour,
- *				minute,
+ * 				minute,
  *				second.
  *
  * @author : Ayaovi Espoir Djissenou
@@ -93,7 +92,7 @@ class Time
 	
 
 	/**
-	 * @description sddition of two times.
+	 * @description addition of two times.
 	 *
 	 * @param another Time object.
 	 *

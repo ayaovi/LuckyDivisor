@@ -54,7 +54,12 @@ class PnCube extends Cube
 		this.hasStarted = false;
 
 		/**
-		 * keeps a record of when this cube started falling.
+		 * Keeps a record of when this cube started falling. At first start date may seem a 
+		 * extreme, because intuitively a time should be just fine. In fact I started 
+		 * out with a time. However with the introduction of the pause feature and the possibility 
+		 * of the game being paused for as long as the player may want (which may well be days, 
+		 * weeks or months). As such it became a requirement to change from start time to start 
+		 * date as the latter is more complete.
 		 */
 		this.startDate;
 		
@@ -120,16 +125,31 @@ class PnCube extends Cube
 		else
 		{
 			/**
-			 * Check whether we are half way through.
+			 * Check whether this cube is a third of the way through.
 			 */
-			if ((this.position.y >= HEIGHT_OF_CANVAS / 2) && !this.hasAlreadyInitiatedNewCubeStart)
+			if ((this.position.y >= HEIGHT_OF_CANVAS / 3) && !this.hasAlreadyInitiatedNewCubeStart)
 			{
 				/**
 				 * Create an event for a new cube to fall after this one down the same column.
-				 * First create the event time. Then create the event with the time.
+				 * First create the event date. Then create the event and schedule it to be fired 
+				 * at the event date.
+				 */
+				
+				/**
+				 * The following refers to how much seconds it took this cube to go a 3rd of the way.
 				 */
 				var secondDifference = getCurrentDate().minus(this.startDate).getTime() / 1000;
-				console.log("Second Difference is: " + secondDifference);
+				// console.log("Second Difference is: " + secondDifference);
+				
+				/**
+				 * The next cube in the column of this cube will be set to fall sometimes now and the 
+				 * time it took this cube to fall a 3rd of the way in the future.
+				 * The following floor(random(secondDifference) * 1000) may appear confusing. You would 
+				 * pose the question, why not have milliseconds different instead and have 
+				 * floor(random(millisecondsDifference)), which is perfectly fine. But I do not want to 
+				 * make the random number generator range too wide, reason why I choose to generate a 
+				 * random second and convert it back to millisecond.
+				 */
 				var eventDate = new ExtendedDate(getCurrentDate().getTime() + floor(random(secondDifference) * 1000));
 				
 				/**
