@@ -211,7 +211,7 @@ class Player
 		if (this.playerLifeStars.length == 0)
 		{
 			/**
-			 * The player is indeed Game Over.
+			 * End the game with code 0 (i.e. GAME OVER).
 			 */
 			endGame(0);
 		}

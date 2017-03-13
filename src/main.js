@@ -85,7 +85,6 @@ function initialiseHTMLContainer()
 }
 
 
-
 /**
  * @description required by p5.js to operate properly.
  *
@@ -96,7 +95,7 @@ function initialiseHTMLContainer()
 function setup()
 {
 	/**
-	 * First intialise the HTML container.
+	 * First initialise the HTML container.
 	 */
 	initialiseHTMLContainer();
 
@@ -216,6 +215,9 @@ function checkForTimeOut()
 	 */
 	if (topPanel.clock.stringTimeTillEndOfPlay == "00:00")
 	{
+		/**
+		 * End the game with code 1 (i.e. TIME OUT).
+		 */
 		endGame(1);
 	}
 }
@@ -240,7 +242,6 @@ function checkForRunningClock()
 }
 
 
-
 /**
  * @description check whether there is an event scheduled to be executed at this time.
  * If so it executes it
@@ -259,7 +260,7 @@ function checkAndProcessNextEvent()
 		/**
 		 * The next to be fired event would be the one in front of the queue.
 		 */
-		var nextToBeFiredEvent = eventQueue.getFront();
+		var nextToBeFiredEvent = eventQueue.peek();
 		
 		/**
 		 * Should the event time be same as the system time.
@@ -281,7 +282,7 @@ function checkAndProcessNextEvent()
 
 
 /**
- * @description required by p5.js to operate properly.
+ * @description check whether the game is paused, and if so, it displays a pause message on the canvas.
  *
  * @param none.
  *

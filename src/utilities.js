@@ -291,7 +291,6 @@ function LABtoRGB(lab)
  */
 function pauseOrPlay()
 {
-	// console.log("key is: " + key);
 	if (gameStatus == "Running")
 	{
 		/**
@@ -408,11 +407,11 @@ function getCurrentTime()
 }
 
 /**
- * @description returns the current system minute and second.
+ * @description returns the current system date as an Extended date.
  *
  * @param none. 
  *
- * @return a new time.
+ * @return a new ExtendedDate.
  */
 function getCurrentDate()
 {
@@ -478,9 +477,12 @@ function endGame(endOfGameCode)
 	 * code 0 ----> Game Over.
 	 * code 1 ----> Time Out.
 	 */
-	var endOfGameText = (endOfGameCode == 0) ? GAME_OVER_TEXT : TIME_OUT_TEXT;
+	var endOfGameMessage = (endOfGameCode == 0) ? GAME_OVER_TEXT : TIME_OUT_TEXT;
 	
-	displayMessageOnCanvas(endOfGameText);
+	/**
+	 * The display the endOfGameMessage on the canvas.
+	 */
+	displayMessageOnCanvas(endOfGameMessage);
 	
 	/**
 	 * Stop the draw() loop.
@@ -499,9 +501,19 @@ function endGame(endOfGameCode)
  */
 function displayMessageOnCanvas(message)
 {
+	/**
+	 * We would like to print the message in white.
+	 */
 	fill(255);
+	
+	/**
+	 * By default the size of the texts in the message is END_OF_GAME_TEXT_SIZE;
+	 */
 	textSize(END_OF_GAME_TEXT_SIZE);
 	
+	/**
+	 * Finally the message is printed right at the center of the canvas.
+	 */
 	var x = (WIDTH_OF_CANVAS - textWidth(message)) / 2;
 	var y = HEIGHT_OF_CANVAS / 2;
 	
@@ -580,6 +592,10 @@ function startNewPlay()
 	for (var i = 0; i < NUMBER_OF_COLUMNS; i++)
 	{
 		columns.push(new Column(COLUMN_WIDTH * i, i));
+		
+		/**
+		 * This needs to happen every time a column is created. Because a columns is not reset in the constructor.
+		 */
 		columns[i].reset();
 	}
 	

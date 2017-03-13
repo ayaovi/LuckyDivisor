@@ -65,18 +65,21 @@ class EventQueue
 	 */
 	hasEvents()
 	{
+		/**
+		 * Check that the queue is not empty.
+		 */
 		return (this.queue.length > 0);
 	}
 	
 
 	/**
-	 * @description returns the element in front of the queue.
+	 * @description returns the first element in the queue.
 	 *
 	 * @param none.
 	 *
 	 * @return event.
 	 */
-	getFront()
+	peek()
 	{
 		return this.queue[0];
 	}

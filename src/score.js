@@ -21,7 +21,6 @@ class Score
 	constructor(position)
 	{
 		this.position = position;
-		// this.font = font;
 		this.score = 0;
 	}
 	
@@ -60,7 +59,14 @@ class Score
 		 */
 		push();
 		
+		/**
+		 * We want to print the score in black.
+		 */
 		fill(0);
+		
+		/**
+		 * The size of the score text has a default value set in config.js.
+		 */
 		textSize(DEFAULT_SCORE_TEXT_SIZE);
 		text(this.score, this.position.x + DEFAULT_SCORE_PADDING, this.position.y + DEFAULT_SCORE_TEXT_SIZE);
 

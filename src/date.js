@@ -1,5 +1,5 @@
 /**
- * @file : mydate.js
+ * @file : date.js
  *
  * @description : A Date object has the following fields:
  * 			year : the year at which this time is created.
@@ -17,7 +17,7 @@ class ExtendedDate extends Date
 	/**
 	 * @description a another constructor.
 	 *
-	 * @param milliseconds since January 1, 1970, 00:00:00. 
+	 * @param milliseconds since January 1, 1970, 00:00:00 (aka epoch date/time). 
 	 * 
 	 * @return none.
 	 */
@@ -28,39 +28,41 @@ class ExtendedDate extends Date
 	
 	
 	/**
-	 * @description subtraction of two times.
+	 * @description subtraction of two ExtendedDates.
+	 * It expects this date to be greater than the other date. Should this not be the case, it returns null.
 	 *
-	 * @param another Time object.
+	 * @param another ExtendedDate.
 	 *
-	 * @return a new Time object.
+	 * @return a new ExtendedDate or null.
 	 */
 	minus(otherDate)
 	{
 		/**
-		 * Get the time difference in seconds.
+		 * Get the time difference of this date and the other date in milliseconds.
 		 */
+		if (this.isLessThan(otherDate))
+		{
+			return null;
+		}
 		return new ExtendedDate(this.getTime() - otherDate.getTime());
 	}
 	
 
 	/**
-	 * @description sddition of two times.
+	 * @description addition of two ExtendedDates.
 	 *
-	 * @param another Time object.
+	 * @param another ExtendedDate.
 	 *
-	 * @return a new Time object.
+	 * @return a new ExtendedDate.
 	 */
 	plus(otherDate)
 	{
-		/**
-		 * Get the time difference in seconds.
-		 */
 		return new ExtendedDate(this.getTime() + otherDate.getTime());
 	}
 
 	
 	/**
-	 * @description check whether this time is less than the other time.
+	 * @description check whether this ExtendedDate is less than the other ExtendedDate.
 	 *
 	 * @param another time.
 	 *
@@ -68,6 +70,9 @@ class ExtendedDate extends Date
 	 */
 	isLessThan(otherDate)
 	{
+		/**
+		 * We just compare their respective amount of seconds since the epoch time.
+		 */
 		return (floor(this.getTime() / 1000) < floor(otherDate.getTime() / 1000));
 	}
 	
@@ -83,12 +88,15 @@ class ExtendedDate extends Date
 	 */
 	equals(otherDate)
 	{
+		/**
+		 * We just compare the equality of the respective amount of seconds since the epoch time.
+		 */
 		return (floor(this.getTime() / 1000) == floor(otherDate.getTime() / 1000));
 	}
 
 
 	/**
-	 * @description checks the equality of two Date.
+	 * @description checks the equality of two ExtendedDate.
 	 *
 	 * @param another Time object.
 	 *
@@ -101,11 +109,11 @@ class ExtendedDate extends Date
 
 
 	/**
-	 * @description prints this time.
+	 * @description prints the minute and second of this ExtendedDate.
 	 *
 	 * @param none.
 	 *
-	 * @return this time a string minute:second.
+	 * @return a string minute:second.
 	 */
 	toString()
 	{

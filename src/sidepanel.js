@@ -98,7 +98,7 @@ class SidePanel extends Panel
 		{
 			if (this.numberOfPnCubesYetToBeCollected[primeFactors[i]] == 0)
 			{
-				console.log("Added cube " + primeFactors[i] + " in side panel.");
+				// console.log("Added cube " + primeFactors[i] + " in side panel.");
 				/**
 				 * The cube to displayed in the side panel needs to be offset a little bit as to not be too close to the game canvas.
 				 */
