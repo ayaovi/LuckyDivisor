@@ -40,6 +40,16 @@ var WIDTH_OF_SIDE_PANEL = WIDTH_OF_GAME_FRAME * 0.2;
 var HEIGHT_OF_SIDE_PANEL = HEIGHT_OF_GAME_FRAME;
 
 /**
+ * Defines how wide the button is.
+ */
+var WIDTH_OF_BUTTON = WIDTH_OF_GAME_FRAME * 0.3;
+
+/**
+ * Defines how high the button is.
+ */
+var HEIGHT_OF_BUTTON = WIDTH_OF_BUTTON * 0.25;
+
+/**
  * Defines the number of columns on the game canvas.
  */
 var NUMBER_OF_COLUMNS = 10;
@@ -150,6 +160,11 @@ var DEFAULT_TIMER_TEXT_SIZE = HEIGHT_TOP_PANEL * 0.8;
 var DEFAULT_SCORE_TEXT_SIZE = HEIGHT_TOP_PANEL * 0.8;
 
 /**
+ * The default score text size is set to be 80% the height of the top panel.
+ */
+var DEFAULT_BUTTON_TEXT_SIZE = HEIGHT_OF_BUTTON * 0.6;
+
+/**
  * We want some space off the left-hand side of the top panel before we 
  * start printing the time.
  */
@@ -183,7 +198,7 @@ var CUBE_COLOUR_MAP = {};
  * The default play duration upon release would be 1 min 0 sec. There may 
  * be a feature in future releases that extends this play duration.
  */
-var defaultPlayDuration = [0, 20];
+var defaultPlayDuration = [0, 5];
 
 /**
  * A record of all cubes in the game.
@@ -290,3 +305,8 @@ var END_OF_GAME_TEXT_SIZE = HEIGHT_OF_GAME_FRAME / 10;
  * Keeps track of the last time that the player paused the game.
  */
 var pauseDate;
+
+/**
+ * Presents a new game option to the player at the end of the current game.
+ */
+var newGameButton;

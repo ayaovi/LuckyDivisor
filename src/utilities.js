@@ -484,6 +484,8 @@ function endGame(endOfGameCode)
 	 */
 	displayMessageOnCanvas(endOfGameMessage);
 	
+	displayNewGameButton();
+	
 	/**
 	 * Stop the draw() loop.
 	 */
@@ -520,6 +522,15 @@ function displayMessageOnCanvas(message)
 	text(message, x, y);
 }
 
+
+function displayNewGameButton()
+{
+	/**
+	 * Make the new game button visible and display it on the canvas.
+	 */
+	newGameButton.isVisible = true;
+	newGameButton.show();
+}
 
 /**
  * @description An end of play handler.
@@ -560,6 +571,11 @@ function endCurrentPlay()
  */
 function startNewPlay()
 {
+	/**
+	 * Reset the new game button to invisible.
+	 */
+	newGameButton.isVisible = false;
+	
 	/**
 	 * Reset ID to zero.
 	 */
@@ -603,4 +619,42 @@ function startNewPlay()
 	 * Reset the side panel.
 	 */
 	sidePanel.reset();
+}
+
+
+/**
+ * @description A start of play handler.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function mouseClicked()
+{
+	newGameButton.mouseClick(mouseX, mouseY);
+}
+
+/**
+ * @description starts a new game.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function restart()
+{
+	// console.log("Called  Restart");
+	player.init();
+	
+	/**
+	 * Reset the previous column starting time tracker to undefined.
+	 */
+	previousColumnStartingDate = undefined;
+	/**
+	 * Empty all columns.
+	 */
+	columns = [];
+	
+	startNewPlay();
+	loop();
 }

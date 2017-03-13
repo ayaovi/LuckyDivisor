@@ -43,6 +43,11 @@ function initialiseCubeColourMap()
 function createGameComponents()
 {
 	/**
+	 * Create the new game button. This button will always be there, but just not shown.
+	 */
+	createNewGameButton();
+	
+	/**
 	 * Create the Player object.
 	 */
 	player = new Player();
@@ -64,6 +69,22 @@ function createGameComponents()
 	 * We also need an EventQueue.
 	 */
 	eventQueue = new EventQueue();
+}
+
+
+/**
+ * @description creates a new game button.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function createNewGameButton()
+{
+	var x = (WIDTH_OF_CANVAS - WIDTH_OF_BUTTON) / 2;
+	var y = (HEIGHT_OF_CANVAS / 2) + 100;
+	
+	newGameButton = new Button("NEW GAME", createVector(x, y), WIDTH_OF_BUTTON, HEIGHT_OF_BUTTON, restart);
 }
 
 

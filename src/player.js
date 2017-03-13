@@ -30,7 +30,7 @@ class Player
 		/**
 		 * The score of the player so far.
 		 */
-		this.score = new Score(createVector(DEFAULT_SCORE_STARTING_POSITION, 0));
+		this.score;
 		
 		/**
 		 * A collection of player life stars.
@@ -69,6 +69,7 @@ class Player
 	 */
 	init()
 	{
+		this.score = new Score(createVector(DEFAULT_SCORE_STARTING_POSITION, 0));
 		this.playerLifeStars = [];
 		this.nextPlayerStarPositionX = PLAYER_STARS_STARTING_POSITION;
 		this.playerLifeStarsLocked = true;
