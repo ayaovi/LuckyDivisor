@@ -2,7 +2,7 @@
  * @file : toppanel.js
  *
  * @description : A panel is more of a container to hold the player's 
- * life stars, a timer and the player's score.
+ * life stars, a clock and the player's score.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -32,9 +32,9 @@ class TopPanel extends Panel
 		this.playerLifeStars;
 		
 		/**
-		 * The timer to appear on the panel.
+		 * The clock to appear on the panel.
 		 */
-		this.timer;
+		this.clock;
 
 		/**
 		 * Keeps track of the x-coordinate of the next player star.
@@ -55,8 +55,8 @@ class TopPanel extends Panel
 		this.width = WIDTH_OF_CANVAS;
 		this.height = HEIGHT_TOP_PANEL;
 		this.playerLifeStars = player.playerLifeStars;
-		this.timer = new Timer();
-		this.timer.init();
+		this.clock = new Clock();
+		this.clock.init();
 	}
 
 
@@ -70,7 +70,7 @@ class TopPanel extends Panel
 	 */
 	reset()
 	{
-		this.timer.reset();
+		this.clock.reset();
 	}
 
 
@@ -89,7 +89,7 @@ class TopPanel extends Panel
 		/**
 		 * Display clock. 
 		 */
-		this.timer.show();
+		this.clock.show();
 		
 		/**
 		 * Followed by player score.

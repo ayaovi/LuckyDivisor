@@ -28,7 +28,7 @@ class Clock
 		/**
 		 * The time at which this timer has started.
 		 */
-		this.time;
+		this.date;
 
 		/**
 		 * The duration of a play.
@@ -58,7 +58,8 @@ class Clock
 	{
 		this.hasStarted = false;
 		this.position = createVector(0, 0);
-		this.playDuration = new Time(defaultPlayDuration[0], defaultPlayDuration[1]);
+		this.playDuration = new ExtendedDate(defaultPlayDuration[0] * 60000 + defaultPlayDuration[1] * 1000);
+		console.log("Play Duration is: " + this.playDuration.toString());
 		this.stringTimeTillEndOfPlay = this.playDuration.toString();
 	}
 
@@ -76,8 +77,16 @@ class Clock
 		 * When the clock is called up to start, we set the hasStarted variable to true.
 		 */
 		this.hasStarted = true;
-		this.time = new Time(minute(), second());
-		this.stringTimeTillEndOfPlay = this.time.plus(this.playDuration).minus(getCurrentTime()).toString();
+		this.date = getCurrentDate();
+		console.log("Current Date is: " + this.date.toString());
+		this.timeTillEndOfPlay();
+	}
+
+
+
+	timeTillEndOfPlay()
+	{
+		this.stringTimeTillEndOfPlay = this.date.plus(this.playDuration).minus(getCurrentDate()).toString();
 	}
 
 	/**
@@ -115,7 +124,7 @@ class Clock
 		 */
 		if (this.hasStarted)
 		{
-			this.stringTimeTillEndOfPlay = this.time.plus(this.playDuration).minus(getCurrentTime()).toString();
+			this.timeTillEndOfPlay();
 		}
 		
 		fill(0);

@@ -56,7 +56,7 @@ class PnCube extends Cube
 		/**
 		 * keeps a record of when this cube started falling.
 		 */
-		this.startTime;
+		this.startDate;
 		
 		/**
 		 * Safety measure to stop this cube from initiating more than one new cube start.
@@ -115,7 +115,7 @@ class PnCube extends Cube
 		if (!this.hasStarted)
 		{
 			this.hasStarted = true;
-			this.startTime = getCurrentTime();
+			this.startDate = getCurrentDate();
 		}
 		else
 		{
@@ -128,13 +128,14 @@ class PnCube extends Cube
 				 * Create an event for a new cube to fall after this one down the same column.
 				 * First create the event time. Then create the event with the time.
 				 */
-				var timeDifference = getCurrentTime().minus(this.startTime);
-				var eventTime = new Time(minute(), floor(random(timeDifference.toSeconds())) + second());
+				var secondDifference = getCurrentDate().minus(this.startDate).getTime() / 1000;
+				console.log("Second Difference is: " + secondDifference);
+				var eventDate = new ExtendedDate(getCurrentDate().getTime() + floor(random(secondDifference) * 1000));
 				
 				/**
 				 * Create the event and add it to the event queue.
 				 */
-				eventQueue.push(new StartNewCubeEvent(eventTime, this.columnIndex));
+				eventQueue.push(new StartNewCubeEvent(eventDate, this.columnIndex));
 				
 				/**
 				 * DEBUGGING.

@@ -46,7 +46,7 @@ class Column
 		 * and 5 seconds later. And until this (system) time is reached, nothing is shown in 
 		 * this column.
 		 */
-		this.startingTime;
+		this.startingDate;
 
 		/**
 		 * the following indicates that this column is up and running (i.e. it has Cubes 
@@ -73,7 +73,7 @@ class Column
 		}
 		else
 		{
-			if (this.startingTime.isLessOrEqualTo(getCurrentTime()))
+			if (this.startingDate.isLessOrEqualTo(getCurrentDate()))
 			{
 				/**
 				 * Set this.cubesHaveStartedFalling to true so we do not come here again.
@@ -140,7 +140,7 @@ class Column
 		/**
 		 * Generate a random starting time for this columns.
 		 */
-		this.startingTime = getNewColumnStartingTime();
+		this.startingDate = getNewColumnStartingDate();
 	}
 
 	/**

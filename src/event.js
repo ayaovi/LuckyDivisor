@@ -17,9 +17,9 @@ class Event
 	 *
 	 * @return none.
 	 */
-	constructor(time)
+	constructor(date)
 	{
-		this.time = time;
+		this.date = date;
 	}
 	
 	

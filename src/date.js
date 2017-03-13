@@ -1,5 +1,5 @@
 /**
- * @file : date.js
+ * @file : mydate.js
  *
  * @description : A Date object has the following fields:
  * 			year : the year at which this time is created.
@@ -15,14 +15,15 @@
 class ExtendedDate extends Date
 {
 	/**
-	 * @description a constructor.
+	 * @description a another constructor.
 	 *
-	 * @param a year, a month, an hour, a minute and second. 
+	 * @param milliseconds since January 1, 1970, 00:00:00. 
 	 * 
 	 * @return none.
 	 */
-	constructor()
+	constructor(milliseconds)
 	{
+		super(milliseconds);
 	}
 	
 	
@@ -38,10 +39,7 @@ class ExtendedDate extends Date
 		/**
 		 * Get the time difference in seconds.
 		 */
-		var timeDifference = abs((this.hour * 3600 + this.minute * 60 + this.second) - 
-			(otherTime.hour * 3600 + otherTime.minute * 60 + otherTime.second));
-
-		return this.toMinuteAndSecond(timeDifference);
+		return new ExtendedDate(this.getTime() - otherDate.getTime());
 	}
 	
 
@@ -57,29 +55,7 @@ class ExtendedDate extends Date
 		/**
 		 * Get the time difference in seconds.
 		 */
-		var timeAddition = abs((this.minute * 60 + this.second) + (otherTime.minute * 60 + otherTime.second));
-
-		return this.toMinuteAndSecond(timeAddition);
-	}
-
-
-	/**
-	 * @description converts a number of seconds to a new time in hour, minutes and seconds.
-	 *
-	 * @param number of seconds.
-	 *
-	 * @return a new time in minutes and seconds.
-	 */
-	toFullDate(numberOfDays)
-	{
-		/**
-		 * Convert the seconds to hour, minute and seconds.
-		 */
-		var hour = floor(seconds / 3600);
-		var minute = floor(seconds / 60);
-		var second = seconds % 60;
-
-		return new Time(minute, second);
+		return new ExtendedDate(this.getTime() + otherDate.getTime());
 	}
 
 	
@@ -92,20 +68,7 @@ class ExtendedDate extends Date
 	 */
 	isLessThan(otherDate)
 	{
-		return (this.getTime() < otherDate.getTime());
-	}
-	
-	
-	/**
-	 * @description prints this time.
-	 *
-	 * @param none.
-	 *
-	 * @return this time a string minute:second.
-	 */
-	toString()
-	{
-		return (padWithZero(this.getMinutes()) + ":" + padWithZero(this.getSeconds()));
+		return (floor(this.getTime() / 1000) < floor(otherDate.getTime() / 1000));
 	}
 	
 	
@@ -120,8 +83,9 @@ class ExtendedDate extends Date
 	 */
 	equals(otherDate)
 	{
-		return (this.getTime() == otherDate.getTime());
+		return (floor(this.getTime() / 1000) == floor(otherDate.getTime() / 1000));
 	}
+
 
 	/**
 	 * @description checks the equality of two Date.
@@ -133,5 +97,18 @@ class ExtendedDate extends Date
 	isLessOrEqualTo(otherDate)
 	{
 		return (this.isLessThan(otherDate) || this.equals(otherDate));
+	}
+
+
+	/**
+	 * @description prints this time.
+	 *
+	 * @param none.
+	 *
+	 * @return this time a string minute:second.
+	 */
+	toString()
+	{
+		return (padWithZero(this.getMinutes()) + ":" + padWithZero(this.getSeconds()));
 	}
 }

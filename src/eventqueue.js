@@ -46,7 +46,7 @@ class EventQueue
 				 * then push the current event at this index further into the queue and insert 
 				 * the new event at this position.
 				 */
-				if (newEvent.time.isLessOrEqualTo(this.queue[i].time))
+				if (newEvent.date.isLessOrEqualTo(this.queue[i].date))
 				{
 					this.queue.splice(i, 0, newEvent);
 					break;

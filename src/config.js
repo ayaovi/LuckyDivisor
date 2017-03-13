@@ -246,7 +246,7 @@ var cubeDelays = [3, 5, 1, 4, 2, 0];
 /**
  * Keeps track of the starting time of the previous column during start up.
  */
-var previousColumnStartingTime;
+var previousColumnStartingDate;
 
 /**
  * Keeps track of the starting cube of the previous column during start up.

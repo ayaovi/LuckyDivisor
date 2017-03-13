@@ -214,7 +214,7 @@ function checkForTimeOut()
 	/**
 	 * The game is ended (i.e. game over) if the clock reaches "00:00".
 	 */
-	if (topPanel.timer.stringTimeTillEndOfPlay == "00:00")
+	if (topPanel.clock.stringTimeTillEndOfPlay == "00:00")
 	{
 		endGame(1);
 	}
@@ -222,20 +222,20 @@ function checkForTimeOut()
 
 
 /**
- * @description makes sure the timer is started.
+ * @description makes sure the clock is started.
  *
  * @param none.
  *
  * @return none.
  */
-function checkForRunningTimer()
+function checkForRunningClock()
 {
 	/**
 	 * Start the clock if it not started.
 	 */
-	if (!topPanel.timer.hasStarted)
+	if (!topPanel.clock.hasStarted)
 	{
-		topPanel.timer.start();
+		topPanel.clock.start();
 	}
 }
 
@@ -264,7 +264,7 @@ function checkAndProcessNextEvent()
 		/**
 		 * Should the event time be same as the system time.
 		 */
-		if (nextToBeFiredEvent.time.isLessOrEqualTo(getCurrentTime()))
+		if (nextToBeFiredEvent.date.isLessOrEqualTo(getCurrentDate()))
 		{
 			/**
 			 * Then process the event.
@@ -306,7 +306,7 @@ function draw()
 {
 	background(DEFAULT_CANVAS_BACKGROUND_COLOUR);
 
-	checkForRunningTimer();
+	checkForRunningClock();
 	showGameComponents();
 	checkForPnCubeCollection();
 	checkAndProcessNextEvent();

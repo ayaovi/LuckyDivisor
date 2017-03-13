@@ -16,18 +16,18 @@
  *
  * @return a new starting time.
  */
-function getNewColumnStartingTime()
+function getNewColumnStartingDate()
 {
-	var newColumnStartingTime = new Time(minute(), second() + random(cubeDelays));
+	var newColumnStartingDate = new ExtendedDate(getCurrentDate().getTime() + random(cubeDelays) * 1000);
 	
-	while(previousColumnStartingTime != undefined && newColumnStartingTime.equals(previousColumnStartingTime))
+	while(previousColumnStartingDate != undefined && newColumnStartingDate.equals(previousColumnStartingDate))
 	{
-		newColumnStartingTime = new Time(minute(), second() + random(cubeDelays));
+		newColumnStartingDate = new ExtendedDate(getCurrentDate() + random(cubeDelays) * 1000);
 	}
 	
-	previousColumnStartingTime = newColumnStartingTime;
+	previousColumnStartingDate = newColumnStartingDate;
 	
-	return newColumnStartingTime;
+	return newColumnStartingDate;
 }
 
 
@@ -392,7 +392,8 @@ function getCurrentTime()
  */
 function getCurrentDate()
 {
-	return new Date(year(), month(), day());
+	var currentDate = new Date();
+	return new ExtendedDate(currentDate.getTime());
 }
 
 
@@ -501,7 +502,7 @@ function endCurrentPlay()
 	/**
 	 * Reset the previous column starting time tracker to undefined.
 	 */
-	previousColumnStartingTime = undefined;
+	previousColumnStartingDate = undefined;
 	/**
 	 * Empty all columns.
 	 */
