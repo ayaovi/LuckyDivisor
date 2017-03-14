@@ -34,14 +34,6 @@ class PnCube extends Cube
 		this.visibility = true;
 		
 		/**
-		 * The following simply keeps track for which Column this Cube belongs to. The 
-		 * importance of this variable is apparent when we want to automatically start 
-		 * a new Cube once the current has fallen off the canvas. The idea is to use 
-		 * this variable to get the hosting column and initiate a new cube fall.
-		 */
-		this.hostingColumnIndex;
-		
-		/**
 		 * Keeps track which column this cube is falling in. Having the column, we can 
 		 * initiate a new cube start/fall similar to this, columns[columnIndex].startNewCube().
 		 */

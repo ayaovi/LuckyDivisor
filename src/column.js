@@ -159,6 +159,10 @@ class Column
 		{
 			this.addCube();
 		}
+		else
+		{
+			console.log("Unfortunate");
+		}
 	}
 
 	/**
