@@ -25,21 +25,11 @@ class TopPanel extends Panel
 		 * complaining. I think it might be because the panel constructor takes no 
 		 * argument. As such I took it out, and it is still working properly.
 		 */
-
-		/**
-		 * A collection of player life stars.
-		 */
-		// this.playerLifeStars;
 		
 		/**
 		 * The clock to appear on the panel.
 		 */
 		this.clock;
-
-		/**
-		 * Keeps track of the x-coordinate of the next player star.
-		 */
-		this.nextPlayerStarPositionX;
 	}
 
 	/**
@@ -54,7 +44,6 @@ class TopPanel extends Panel
 		this.position = createVector(0, 0);
 		this.width = WIDTH_OF_CANVAS;
 		this.height = HEIGHT_TOP_PANEL;
-		// this.playerLifeStars = player.playerLifeStars;
 		this.clock = new Clock();
 		this.clock.init();
 	}
