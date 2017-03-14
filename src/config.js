@@ -310,3 +310,13 @@ var pauseDate;
  * Presents a new game option to the player at the end of the current game.
  */
 var newGameButton;
+
+/**
+ * Keeps track of how many Pn Cubes have been created in a play.
+ */
+var numberOfPnCubeCreated;
+
+/**
+ * Keeps a record of the number of instances of any Pn Cube flavour that have been generated so far.
+ */
+var pnCubeCreationReccordMap = new Array();

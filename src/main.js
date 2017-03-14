@@ -32,6 +32,22 @@ function initialiseCubeColourMap()
 }
 
 
+/**
+ * @description Initialises the cube colour map.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function initialisePnCubeCreationRecord()
+{
+	pnCubeCreationReccordMap[1] = 0;
+	pnCubeCreationReccordMap[2] = 0;
+	pnCubeCreationReccordMap[3] = 0;
+	pnCubeCreationReccordMap[5] = 0;
+	pnCubeCreationReccordMap[7] = 0;
+}
+
 
 /**
  * @description creates the game components (i.e. a Player, a Top Panel, a Side Panel etc...).
@@ -115,35 +131,23 @@ function initialiseHTMLContainer()
  */
 function setup()
 {
-	/**
-	 * First initialise the HTML container.
-	 */
 	initialiseHTMLContainer();
 
-	/**
-	 * Then create the canvas.
-	 */
 	var gameCanvas = createCanvas(WIDTH_OF_GAME_FRAME, HEIGHT_OF_CANVAS);
-	gameCanvas.parent('gameCanvasContainer');
 	
 	/**
-	 * And initialise the cube colour map.
+	 * This is important for the canvas to be displayed at the right location.
 	 */
+	gameCanvas.parent('gameCanvasContainer');
+	
 	initialiseCubeColourMap();
+	
+	initialisePnCubeCreationRecord();
 
-	/**
-	 * Carry on to create the game components.
-	 */
 	createGameComponents();
 
-	/**
-	 * Set the game status to Running.
-	 */
 	gameStatus = "Running";
 
-	/**
-	 * Finally start a new play.
-	 */
 	startNewPlay();	
 }
 

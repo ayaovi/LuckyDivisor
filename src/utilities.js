@@ -32,25 +32,58 @@ function getNewColumnStartingDate()
 
 
 /**
- * @description creates a new Cube for the current column being is different 
- * from that of the previous column.
+ * @description creates a new Pn Cube.
  *
  * @param xCoordinate.
  *
  * @return a new PnCube.
  */
-function getNewColumnStartingCube(xCoordinate)
+function getNewPnCube(columnPositionX)
 {
-	var newColumnStartingCube = new PnCube(random(primeNumbers), ++ID, createVector(xCoordinate + DEFAULT_COLUMN_PADDING, 0));
+	var primeNumber = getPrimeNumberWithTheLeastOccurrence();
+	return new PnCube(primeNumber, ++ID, createVector(columnPositionX + DEFAULT_COLUMN_PADDING, 0));
+}
+
+
+/**
+ * @description returns the prime number with the least occurrence so far in the play.
+ *
+ * @param xCoordinate.
+ *
+ * @return a new PnCube.
+ */
+function getPrimeNumberWithTheLeastOccurrence()
+{
+	var primeNumberWithTheLeastOccurrence = 1;
 	
-	while(previousColumnStartingCube != undefined && newColumnStartingCube.equals(previousColumnStartingCube))
+	if (numberOfPnCubeCreated < NUMBER_OF_COLUMNS)
 	{
-		newColumnStartingCube = new PnCube(random(primeNumbers), ++ID, createVector(xCoordinate + DEFAULT_COLUMN_PADDING, 0));
+		primeNumberWithTheLeastOccurrence = random(primeNumbers);
+		++pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence];
+		++numberOfPnCubeCreated;
+	}
+	else
+	{
+		/**
+		 * Get the prime number with the minimum occurrence.
+		 */
+		for (var key in pnCubeCreationReccordMap)
+		{
+			if (pnCubeCreationReccordMap[key] < pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence])
+			{
+				/**
+				 * key in this case is a string. Strange I know, even though I add it as a number, 
+				 * it comes out as a string. So it requires the parsing back to number. 
+				 */
+				primeNumberWithTheLeastOccurrence = parseInt(key);
+			}
+		}
+		
+		++pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence];
+		++numberOfPnCubeCreated;
 	}
 	
-	previousColumnStartingCube = newColumnStartingCube;
-	
-	return newColumnStartingCube;
+	return primeNumberWithTheLeastOccurrence;
 }
 
 /** 
@@ -601,7 +634,7 @@ function startNewPlay()
 	/**
 	 * DEBUGGING.
 	 */
-	console.log(playerCube.divisors.toString());
+	// console.log(playerCube.divisors.toString());
 	
 	/**
 	 * Create all columns.
@@ -656,6 +689,10 @@ function restart()
 	 * Empty all columns.
 	 */
 	columns = [];
+	
+	initialisePnCubeCreationRecord();
+	
+	numberOfPnCubeCreated = 0;
 	
 	startNewPlay();
 

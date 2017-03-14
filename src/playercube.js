@@ -99,7 +99,7 @@
 	 * @return none.
 	 */
 	cameInContactWith(pnCube)
-	{
+	{		
 		if (this.yetToBeCollectedDivisors.includes(pnCube.number))
 		{
 			/**

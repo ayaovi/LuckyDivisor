@@ -106,13 +106,10 @@ class Column
 		for (var i = 0; i < this.cubes.length; i++)
 		{
 			/**
-			 * First make the cube fall.
+			 * We want a change in the position of the cube. If it does not a fall, there will not be a change in position.
 			 */
 			this.cubes[i].fall();
 			
-			/**
-			 * Then display it.
-			 */
 			this.cubes[i].show();
 		}
 	}
@@ -127,19 +124,10 @@ class Column
 	 */
 	reset()
 	{
-		/**
-		 * At the start, no cube is falling yet.
-		 */
 		this.cubesHaveStartedFalling = false;
 		
-		/**
-		 * A column always starts empty.
-		 */
 		this.cubes = [];
 		
-		/**
-		 * Generate a random starting time for this columns.
-		 */
 		this.startingDate = getNewColumnStartingDate();
 	}
 
@@ -165,6 +153,7 @@ class Column
 		}
 	}
 
+	
 	/**
 	 * @description adds a new Cube to the queue of this Column.
 	 *
@@ -177,7 +166,7 @@ class Column
 		/**
 		 * Create a new cube.
 		 */
-		var newCube = new PnCube(random(primeNumbers), ++ID, createVector(this.x + DEFAULT_COLUMN_PADDING, 0));
+		var newCube = getNewPnCube(this.x);
 		
 		/**
 		 * Set its column index to this one's
