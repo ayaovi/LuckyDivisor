@@ -624,7 +624,7 @@ function startNewPlay()
 
 
 /**
- * @description A start of play handler.
+ * @description a mouse click handler.
  *
  * @param none.
  *

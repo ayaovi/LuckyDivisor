@@ -1,7 +1,7 @@
 /**
  * @file : date.js
  *
- * @description : A Date object has the following fields:
+ * @description : A Date object has the following attributes:
  * 			year : the year at which this time is created.
  * 			month : the month in which this time is created.
  * 			day : the day at which this time is created.
@@ -15,7 +15,7 @@
 class ExtendedDate extends Date
 {
 	/**
-	 * @description a another constructor.
+	 * @description a constructor.
 	 *
 	 * @param milliseconds since January 1, 1970, 00:00:00 (aka epoch date/time). 
 	 * 

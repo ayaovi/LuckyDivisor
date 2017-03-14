@@ -230,7 +230,7 @@ var playerControls = [37, 39];
 /**
  * A record of all prime numbers in the game so far.
  */
-var primeNumbers = [2, 7, 3, 1, 5];
+var primeNumbers = [2, 7, 3, 5, 1, 2, 5];
 
 /**
  * A reference to the top panel.
@@ -256,7 +256,7 @@ var img;
  * A record of all possible delays. These were supposed to be randomly 
  * generated. However the result was not appealing. Hence this.
  */
-var cubeDelays = [3, 1, 2, 0];
+var cubeDelays = [3, 0, 1, 2, 1, 3, 0, 2];
 
 /**
  * Keeps track of the starting time of the previous column during start up.

@@ -29,7 +29,7 @@ class TopPanel extends Panel
 		/**
 		 * A collection of player life stars.
 		 */
-		this.playerLifeStars;
+		// this.playerLifeStars;
 		
 		/**
 		 * The clock to appear on the panel.
@@ -54,7 +54,7 @@ class TopPanel extends Panel
 		this.position = createVector(0, 0);
 		this.width = WIDTH_OF_CANVAS;
 		this.height = HEIGHT_TOP_PANEL;
-		this.playerLifeStars = player.playerLifeStars;
+		// this.playerLifeStars = player.playerLifeStars;
 		this.clock = new Clock();
 		this.clock.init();
 	}
@@ -99,9 +99,9 @@ class TopPanel extends Panel
 		/**
 		 * And finally player life stars.
 		 */
-		for (var i = 0; i < this.playerLifeStars.length; i++) 
+		for (var i = 0; i < player.playerLifeStars.length; i++) 
 		{
-			this.playerLifeStars[i].show();
+			player.playerLifeStars[i].show();
 		}
 	}
 }
