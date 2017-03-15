@@ -58,7 +58,6 @@ class Clock
 		this.hasStarted = false;
 		this.position = createVector(0, 0);
 		this.playDuration = new ExtendedDate(defaultPlayDuration[0] * 60000 + defaultPlayDuration[1] * 1000);
-		// console.log("Play Duration is: " + this.playDuration.toString());
 		this.stringTimeTillEndOfPlay = this.playDuration.toString();
 	}
 
@@ -77,7 +76,6 @@ class Clock
 		 */
 		this.hasStarted = true;
 		this.date = getCurrentDate();
-		// console.log("Current Date is: " + this.date.toString());
 		this.timeTillEndOfPlay();
 	}
 

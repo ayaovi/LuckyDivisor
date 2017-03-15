@@ -22,7 +22,7 @@ class StartNewCubeEvent extends Event
 		super(date);
 		
 		/**
-		 * The index of the column in which to start a new cube.
+		 * The index of the column in which to start the new cube.
 		 */
 		this.columnIndex = columnIndex;
 	}

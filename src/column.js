@@ -149,7 +149,7 @@ class Column
 		}
 		else
 		{
-			console.log("Unfortunate");
+			console.log("Unfortunate Column is not started but tried to add cubes.");
 		}
 	}
 

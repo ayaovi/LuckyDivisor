@@ -50,8 +50,7 @@ class TopPanel extends Panel
 
 
 	/**
-	 * @description resets anything that need be reset.
-	 * So far it seems to be just the clock.
+	 * @description resets anything that need be reset. So far it seems to be just the clock.
 	 *
 	 * @param none.
 	 *

@@ -74,9 +74,7 @@ class ExtendedDate extends Date
 	
 	
 	/**
-	 * @description checks the equality of two Date.
-	 * This highly unlikely to ever return true though. 
-	 * At least in the way it is implemented now.
+	 * @description checks the equality of two Date. This highly unlikely to ever return true though. At least in the way it is implemented now.
 	 *
 	 * @param another Time object.
 	 *

@@ -127,7 +127,7 @@ var DEFAULT_CANVAS_BACKGROUND_COLOUR = 75;
 /**
  * The background of the game canvas can either be a colour or an image.
  */
-var DEFAULT_CANVAS_BACKGROUND_IMAGE = "../assets/milky_way.jpg";
+// var DEFAULT_CANVAS_BACKGROUND_IMAGE = "../assets/milky_way.jpg";
 
 /**
  * The occurrence multiplier needs to be displayed/printed next to the cube in 
@@ -203,7 +203,7 @@ var defaultPlayDuration = [0, 20];
 /**
  * A record of all cubes in the game.
  */
-var gameCubes = [];
+// var gameCubes = [];
 
 /**
  * A record of all columns in the game.
@@ -250,7 +250,7 @@ var player;
 /**
  * A reference to the image to be set as background.
  */
-var img;
+// var img;
 
 /**
  * A record of all possible delays. These were supposed to be randomly 

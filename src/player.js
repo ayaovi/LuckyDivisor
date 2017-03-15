@@ -123,7 +123,6 @@ class Player
 	 */
 	updateScore(hit)
 	{
-		// console.log("Cube collected is: " + hit);
 		/**
 		 * Update the player score.
 		 */

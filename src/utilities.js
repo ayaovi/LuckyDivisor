@@ -556,6 +556,13 @@ function displayMessageOnCanvas(message)
 }
 
 
+/**
+ * @description displays the new game button on the game canvas.
+ *
+ * @param none.
+ *
+ * @retun none.
+ */
 function displayNewGameButton()
 {
 	/**

@@ -24,6 +24,10 @@ class PnCube extends Cube
 	{
 		super(primeNumber, id, position);
 		
+		/**
+		 * Every pn cube has a specific colour.
+		 * e.g. 1 is yellow, 2 is red, 3 is blue etc...
+		 */
 		this.colour = CUBE_COLOUR_MAP[this.number];
 		
 		/**
@@ -74,12 +78,22 @@ class PnCube extends Cube
 	{
 		if (this.visibility == true)
 		{
+			/**
+			 * Create a square.
+			 */
 			fill(this.colour);
 			rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
+			
+			/**
+			 * Then print the number of this cube on it.
+			 */
 			fill(0);
 			textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
 			var padding = (SIDE_OF_CUBE - textWidth(this.number)) / 2;
-			text(this.number, this.position.x + padding, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
+			var x = this.position.x + padding;
+			var y = this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING;
+			
+			text(this.number, x, y);
 		}
 	}
 	
@@ -122,16 +136,9 @@ class PnCube extends Cube
 			if ((this.position.y >= HEIGHT_OF_CANVAS / 3) && !this.hasAlreadyInitiatedNewCubeStart)
 			{
 				/**
-				 * Create an event for a new cube to fall after this one down the same column.
-				 * First create the event date. Then create the event and schedule it to be fired 
-				 * at the event date.
-				 */
-				
-				/**
 				 * The following refers to how much seconds it took this cube to go a 3rd of the way.
 				 */
 				var secondDifference = getCurrentDate().minus(this.startDate).getTime() / 1000;
-				// console.log("Second Difference is: " + secondDifference);
 				
 				/**
 				 * The next cube in the column of this cube will be set to fall sometimes now and the 
@@ -144,15 +151,7 @@ class PnCube extends Cube
 				 */
 				var eventDate = new ExtendedDate(getCurrentDate().getTime() + floor(random(secondDifference) * 1000));
 				
-				/**
-				 * Create the event and add it to the event queue.
-				 */
 				eventQueue.push(new StartNewCubeEvent(eventDate, this.columnIndex));
-				
-				/**
-				 * DEBUGGING.
-				 */
-				// console.log("Cube " + this.number + " has scheduled a new start for " + eventTime.toString() + " @ " + getCurrentTime().toString());
 				
 				/**
 				 * Stop this cube from initiating further new starts.
