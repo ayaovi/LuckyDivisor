@@ -20,7 +20,7 @@ function getNewColumnStartingDate()
 {
 	var newColumnStartingDate = new ExtendedDate(getCurrentDate().getTime() + random(cubeDelays) * 1000);
 	
-	while(previousColumnStartingDate != undefined && newColumnStartingDate.minus(previousColumnStartingDate).getTime() >= 500)
+	while(previousColumnStartingDate != undefined && newColumnStartingDate.minus(previousColumnStartingDate).getTime() <= 500)
 	{
 		newColumnStartingDate = new ExtendedDate(getCurrentDate() + random(cubeDelays) * 1000);
 	}
