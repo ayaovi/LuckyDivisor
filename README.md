@@ -1,6 +1,7 @@
 # LuckyDivisor
 
 > "For he who lives more lives than one more deaths than one must die."
+
 --*Oscar Wilde*, The Ballad of Reading Gaol and Other Poems
 
 ## Overview
