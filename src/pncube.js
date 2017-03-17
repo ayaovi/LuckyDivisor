@@ -64,6 +64,8 @@ class PnCube extends Cube
 		 * This is by default false;
 		 */
 		this.hasAlreadyInitiatedNewCubeStart = false;
+		
+		this.motionHandler = new PnCubeMotionHandler(this);
 	}
 	
 	
@@ -78,22 +80,8 @@ class PnCube extends Cube
 	{
 		if (this.visibility == true)
 		{
-			/**
-			 * Create a square.
-			 */
-			fill(this.colour);
-			rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
-			
-			/**
-			 * Then print the number of this cube on it.
-			 */
-			fill(0);
-			textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-			var padding = (SIDE_OF_CUBE - textWidth(this.number)) / 2;
-			var x = this.position.x + padding;
-			var y = this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING;
-			
-			text(this.number, x, y);
+			this.showSquare();
+			this.showNumberOnCube();
 		}
 	}
 	
@@ -107,57 +95,6 @@ class PnCube extends Cube
 	 */
 	fall()
 	{
-		this.position.y += this.speed;
-		
-		/**
-		 * Check whether the Cube has fallen off the canvas.
-		 */
-		if (this.position.y > HEIGHT_OF_CANVAS)
-		{
-			this.visibility = false;
-		}
-
-		/**
-		 * Should this be the first time we come here, mark this.hasStarted as true.
-		 * Otherwise check whether we are pass the halfway point. If so create a new 
-		 * StartNewCubeEvent and schedule it for sometime now until this cube falls 
-		 * off the canvas.
-		 */
-		if (!this.hasStarted)
-		{
-			this.hasStarted = true;
-			this.startDate = getCurrentDate();
-		}
-		else
-		{
-			/**
-			 * Check whether this cube is a third of the way through.
-			 */
-			if ((this.position.y >= HEIGHT_OF_CANVAS / 3) && !this.hasAlreadyInitiatedNewCubeStart)
-			{
-				/**
-				 * The following refers to how much seconds it took this cube to go a 3rd of the way.
-				 */
-				var secondDifference = getCurrentDate().minus(this.startDate).getTime() / 1000;
-				
-				/**
-				 * The next cube in the column of this cube will be set to fall sometimes now and the 
-				 * time it took this cube to fall a 3rd of the way in the future.
-				 * The following floor(random(secondDifference) * 1000) may appear confusing. You would 
-				 * pose the question, why not have milliseconds different instead and have 
-				 * floor(random(millisecondsDifference)), which is perfectly fine. But I do not want to 
-				 * make the random number generator range too wide, reason why I choose to generate a 
-				 * random second and convert it back to millisecond.
-				 */
-				var eventDate = new ExtendedDate(getCurrentDate().getTime() + floor(random(secondDifference) * 1000));
-				
-				eventQueue.push(new StartNewCubeEvent(eventDate, this.columnIndex));
-				
-				/**
-				 * Stop this cube from initiating further new starts.
-				 */
-				this.hasAlreadyInitiatedNewCubeStart = true;
-			}
-		}
+		this.motionHandler.move();
 	}
 }

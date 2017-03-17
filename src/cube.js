@@ -59,6 +59,37 @@ class Cube
 	
 	
 	/**
+	 * @description displays a square on the canvas at the specified position.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	showSquare()
+	{
+		fill(this.colour);
+		rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
+	}
+	
+	
+	/**
+	 * @description displays a text on the square that represents the cube.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	showNumberOnCube()
+	{
+		fill(0);
+		textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
+		var x = this.position.x + (SIDE_OF_CUBE - textWidth(this.number)) / 2;
+		var y = this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING;
+		text(this.number, x, y);
+	}
+	
+	
+	/**
 	 * @description Tests equality of two cubes. By checking the equality of their numbers.
 	 *
 	 * @param another cube.

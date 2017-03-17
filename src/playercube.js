@@ -15,7 +15,7 @@
  class PlayerCube extends Cube
  {
 	/**
-	 * @description 
+	 * @description constructor.
 	 *
 	 * @param 
 	 *
@@ -48,6 +48,11 @@
 		 * player's cube number but have not yet been collected.
 		 */
 		this.yetToBeCollectedDivisors = getPrimeFactors(this.number);
+		
+		/**
+		 * Handles the player cube motion.
+		 */
+		this.motionHandler = new PlayerCubeMotionHandler(this.position);
 	}
 	
 	
@@ -60,34 +65,9 @@
 	 */
 	show()
 	{
-		if (keyIsDown(playerControls[0]))
-		{
-			/**
-			 * Move player's cube one unit to the left.
-			 */
-			this.position.x -= DEFAULT_PLAYER_CUBE_SPEED;
-		}
-		if (keyIsDown(playerControls[1]))
-		{
-			/**
-			 * Move player's cube one unit to the right.
-			 */
-			this.position.x += DEFAULT_PLAYER_CUBE_SPEED;
-		}
-		
-		/**
-		 * Ensure the Player's Cube does not slide off the canvas.
-		 */
-		this.position.x = constrain(this.position.x, 1, WIDTH_OF_CANVAS - SIDE_OF_CUBE - 1);
-
-		fill(this.colour);
-		rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);	
-		
-		fill(0);
-		textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-		var x = this.position.x + (SIDE_OF_CUBE - textWidth(this.number)) / 2;
-		var y = this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING;
-		text(this.number, x, y);
+		this.motionHandler.move();
+		this.showSquare();
+		this.showNumberOnCube();
 	}
 	
 	
