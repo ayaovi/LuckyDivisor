@@ -1,7 +1,7 @@
 # LuckyDivisor
 
 > "For he who lives more lives than one more deaths than one must die."
-> --Oscar Wilde, The Ballad of Reading Gaol and Other Poems
+--*Oscar Wilde*, The Ballad of Reading Gaol and Other Poems
 
 ## Overview
 A game in JavaScript where prime numbers are falling and the player has to collect some of them depending on his need. The prime numbers are represented as cubes. A cube is is simply a rectangle with a number inscribed on it. The cubes in the game can be classified as either:
