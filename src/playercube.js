@@ -53,6 +53,11 @@
 		 * Handles the player cube motion.
 		 */
 		this.motionHandler = new PlayerCubeMotionHandler(this.position);
+		
+		/**
+		 * Handles the player cube contact with other pn cubes.
+		 */
+		this.contactHandler = new CubeCollisionHandler(this);
 	}
 	
 	
@@ -68,66 +73,6 @@
 		this.motionHandler.move();
 		this.showSquare();
 		this.showNumberOnCube();
-	}
-	
-	
-	/**
-	 * @description a collision handler.
-	 *
-	 * @param a Pn cube.
-	 *
-	 * @return none.
-	 */
-	cameInContactWith(pnCube)
-	{		
-		if (this.yetToBeCollectedDivisors.includes(pnCube.number))
-		{
-			/**
-			 * Move pnCube.number to the lot of alreadyCollectedDivisors.
-			 */
-			this.registerDivisorCollection(pnCube.number);
-			
-			/**
-			 * Change the colour of playerCube.
-			 */
-			this.changeColour();
-			
-			/**
-			 * Update side panel.
-			 */
-			sidePanel.update(pnCube.number);
-			
-			/**
-			 * Update Player score.
-			 */
-			player.updateScore(pnCube.number);
-			
-			/**
-			 * Make pnCube invisible.
-			 */
-			pnCube.visibility = false;
-		}
-		else if (this.alreadyCollectedDivisors.includes(pnCube.number))
-		{
-			// Do nothing for now to the playerCube.
-			
-			/**
-			 * Make pnCube invisible.
-			 */
-			pnCube.visibility = false;
-		}
-		else
-		{
-			/**
-			 * Burn the player for collecting a non-divisor cube
-			 */
-			player.burn();
-			
-			/**
-			 * Make pnCube invisible.
-			 */
-			pnCube.visibility = false;
-		}
 	}
 	
 	

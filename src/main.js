@@ -218,7 +218,7 @@ function checkForPnCubeCollection()
 			
 			if (pnCube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w))
 			{
-				playerCube.cameInContactWith(pnCube);
+				playerCube.contactHandler.handleCollisionWith(pnCube);
 				pnCube.visibility = false;
 			}
 		}
