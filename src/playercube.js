@@ -35,7 +35,7 @@
 		 * The player cube's colour is a combination in equal proportion of all its prime 
 		 * divisors colours.
 		 */
-		this.colour = combineColours(this.divisors);
+		this.colour = luckyDivisor.util.cube.combineColours(this.divisors);
 		
 		/**
 		 * The following is a collection of numbers of pn Cube that have been collect are 
@@ -130,7 +130,7 @@
 		}
 		else
 		{
-			this.colour = combineColours(this.yetToBeCollectedDivisors);
+			this.colour = luckyDivisor.util.cube.combineColours.combineColours(this.yetToBeCollectedDivisors);
 		}
 	}
  }

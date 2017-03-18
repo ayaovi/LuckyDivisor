@@ -11,4 +11,4 @@
 /**
  * The default score text size is set to be 80% the height of the top panel.
  */
-var DEFAULT_SCORE_TEXT_SIZE = HEIGHT_TOP_PANEL * 0.8;
+luckyDivisor.config.DEFAULT_SCORE_TEXT_SIZE = luckyDivisor.config.HEIGHT_TOP_PANEL * 0.8;

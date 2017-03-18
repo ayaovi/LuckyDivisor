@@ -69,15 +69,15 @@ class Player
 	 */
 	init()
 	{
-		this.score = new Score(createVector(DEFAULT_SCORE_STARTING_POSITION, 0));
+		this.score = new Score(createVector(luckyDivisor.config.DEFAULT_SCORE_STARTING_POSITION, 0));
 		this.playerLifeStars = [];
-		this.nextPlayerStarPositionX = PLAYER_STARS_STARTING_POSITION;
+		this.nextPlayerStarPositionX = luckyDivisor.config.PLAYER_STARS_STARTING_POSITION;
 		this.playerLifeStarsLocked = true;
 
 		/**
 		 * create the player life stars objects.
 		 */
-		for (var i = 0; i < NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
+		for (var i = 0; i < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
 		{
 			/**
 			 * Add a new life star.
@@ -95,22 +95,22 @@ class Player
 	 */
 	addNewLifeStar()
 	{
-		if (this.playerLifeStars.length < NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
+		if (this.playerLifeStars.length < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
 		{
 			/**
 			 * New references for the sake of simplicity.
 			 */
 			var starPositionX = this.nextPlayerStarPositionX;
-			var starPositionY = HEIGHT_TOP_PANEL / 2;
+			var starPositionY = luckyDivisor.config.HEIGHT_TOP_PANEL / 2;
 			var starPosition = createVector(starPositionX, starPositionY);
-			var starArmLength = HEIGHT_TOP_PANEL / 4;
+			var starArmLength = luckyDivisor.config.HEIGHT_TOP_PANEL / 4;
 
 			this.playerLifeStars.push(new Star(starPosition, starArmLength));
 
 			/**
 			 * Update next player life star coordinate.
 			 */
-			this.nextPlayerStarPositionX += SIZE_OF_A_PLAYER_STAR;
+			this.nextPlayerStarPositionX += luckyDivisor.config.SIZE_OF_A_PLAYER_STAR;
 		}
 	}
 	
@@ -136,7 +136,7 @@ class Player
 			/**
 			 * Then this mark the end of play.
 			 */
-			endCurrentPlay();
+			luckyDivisor.util.game.endCurrentPlay();
 		}
 	}
 	
@@ -214,7 +214,7 @@ class Player
 			/**
 			 * End the game with code 0 (i.e. GAME OVER).
 			 */
-			endGame(0);
+			luckyDivisor.util.game.endGame(0);
 		}
 	}
 	
@@ -243,7 +243,7 @@ class Player
 			/**
 			 * Update next player life star coordinate.
 			 */
-			this.nextPlayerStarPositionX -= SIZE_OF_A_PLAYER_STAR;
+			this.nextPlayerStarPositionX -= luckyDivisor.config.SIZE_OF_A_PLAYER_STAR;
 		}
 	}
 }

@@ -54,9 +54,9 @@ class SidePanel extends Panel
 	 */
 	init()
 	{
-		this.position = createVector(WIDTH_OF_CANVAS, 0);
-		this.width = WIDTH_OF_SIDE_PANEL;
-		this.height = HEIGHT_OF_SIDE_PANEL;
+		this.position = createVector(luckyDivisor.config.WIDTH_OF_CANVAS, 0);
+		this.width = luckyDivisor.config.WIDTH_OF_SIDE_PANEL;
+		this.height = luckyDivisor.config.HEIGHT_OF_SIDE_PANEL;
 	}
 
 
@@ -84,7 +84,7 @@ class SidePanel extends Panel
 		 * and not keep track of how many times it is supposed to be collected. An example would be, given a player 
 		 * number 9, its divisors would be {1, 3, 3}.
 		 */
-		var primeFactors = playerCube.divisors;
+		var primeFactors = luckyDivisor.config.playerCube.divisors;
 		
 		/**
 		 * This is used to keep track of how much offset is needed to be added to the cube y-coordinate.
@@ -101,14 +101,14 @@ class SidePanel extends Panel
 				/**
 				 * The cube to displayed in the side panel needs to be offset a little bit as to not be too close to the game canvas.
 				 */
-				var cubePositionX = this.position.x + DEFAULT_SIDE_PANEL_PADDING;
+				var cubePositionX = this.position.x + luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING;
 				
 				/**
 				 * The cubes are aligned vertically and spaced by the DEFAULT_SIDE_PANEL_PADDING.
 				 */
-				var cubePositionY = DEFAULT_SIDE_PANEL_PADDING + counter * (DEFAULT_SIDE_PANEL_PADDING + SIDE_OF_CUBE);
+				var cubePositionY = luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + counter * (luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + luckyDivisor.config.SIDE_OF_CUBE);
 				
-				this.pnCubesYetToBeCollected.push(new PnCube(primeFactors[i], ++ID, createVector(cubePositionX, cubePositionY)));
+				this.pnCubesYetToBeCollected.push(new PnCube(primeFactors[i], ++luckyDivisor.config.ID, createVector(cubePositionX, cubePositionY)));
 				
 				/**
 				 * Increment counter to cater for next cube to be displayed/printed.
@@ -166,7 +166,7 @@ class SidePanel extends Panel
 			if (numberOfOccurence > 0)
 			{
 				cube.show();
-				text("x" + numberOfOccurence, cube.position.x + DEFAULT_PADDING_OF_CUBE_OCCURENCE_IN_SIDE_PANEL, cube.position.y + SIDE_OF_CUBE * 0.75);
+				text("x" + numberOfOccurence, cube.position.x + luckyDivisor.config.DEFAULT_PADDING_OF_CUBE_OCCURENCE_IN_SIDE_PANEL, cube.position.y + luckyDivisor.config.SIDE_OF_CUBE * 0.75);
 			}
 		}
 	}

@@ -42,8 +42,8 @@ class TopPanel extends Panel
 	init()
 	{
 		this.position = createVector(0, 0);
-		this.width = WIDTH_OF_CANVAS;
-		this.height = HEIGHT_TOP_PANEL;
+		this.width = luckyDivisor.config.WIDTH_OF_CANVAS;
+		this.height = luckyDivisor.config.HEIGHT_TOP_PANEL;
 		this.clock = new Clock();
 		this.clock.init();
 	}
@@ -89,7 +89,7 @@ class TopPanel extends Panel
 		 */
 		for (var i = 0; i < player.playerLifeStars.length; i++) 
 		{
-			player.playerLifeStars[i].show();
+			luckyDivisor.config.player.playerLifeStars[i].show();
 		}
 	}
 }

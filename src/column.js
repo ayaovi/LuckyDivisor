@@ -128,7 +128,7 @@ class Column
 		
 		this.cubes = [];
 		
-		this.startingDate = getNewColumnStartingDate();
+		this.startingDate = luckyDivisor.util.date.getNewColumnStartingDate();
 	}
 
 	/**
@@ -166,7 +166,7 @@ class Column
 		/**
 		 * Create a new cube.
 		 */
-		var newCube = getNewPnCube(this.x);
+		var newCube = luckyDivisor.util.cube.getNewPnCube(this.x);
 		
 		/**
 		 * Set its column index to this one's

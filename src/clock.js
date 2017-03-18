@@ -57,7 +57,7 @@ class Clock
 	{
 		this.hasStarted = false;
 		this.position = createVector(0, 0);
-		this.playDuration = new ExtendedDate(defaultPlayDuration[0] * 60000 + defaultPlayDuration[1] * 1000);
+		this.playDuration = new ExtendedDate(luckyDivisor.config.defaultPlayDuration[0] * 60000 + luckyDivisor.config.defaultPlayDuration[1] * 1000);
 		this.stringTimeTillEndOfPlay = this.playDuration.toString();
 	}
 
@@ -75,7 +75,7 @@ class Clock
 		 * When the clock is called up to start, we set the hasStarted variable to true.
 		 */
 		this.hasStarted = true;
-		this.date = getCurrentDate();
+		this.date = luckyDivisor.util.date.getCurrentDate();
 		this.timeTillEndOfPlay();
 	}
 
@@ -89,7 +89,7 @@ class Clock
 	 */
 	timeTillEndOfPlay()
 	{
-		this.stringTimeTillEndOfPlay = this.date.plus(this.playDuration).minus(getCurrentDate()).toString();
+		this.stringTimeTillEndOfPlay = this.date.plus(this.playDuration).minus(luckyDivisor.util.date.getCurrentDate()).toString();
 	}
 
 	/**
@@ -132,7 +132,7 @@ class Clock
 		
 		fill(0);
 		textSize(DEFAULT_TIMER_TEXT_SIZE);
-		text(this.stringTimeTillEndOfPlay, this.position.x + DEFAULT_TIMER_PADDING, this.position.y + DEFAULT_TIMER_TEXT_SIZE);
+		text(this.stringTimeTillEndOfPlay, this.position.x + luckyDivisor.config.DEFAULT_TIMER_PADDING, this.position.y + luckyDivisor.config.DEFAULT_TIMER_TEXT_SIZE);
 
 		/**
 		 * restore back to state previous.

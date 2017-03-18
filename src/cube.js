@@ -47,7 +47,7 @@ class Cube
 		 * fall faster than the smaller one (e.g. a Cube with Pn 5 will always fall 
 		 * faster than one with Pn 2). 
 		 */
-		this.speed = DEFAULT_PN_CUBE_SPEED + (PN_CUBE_SPEED_VARIANT_MULTIPLIER * number);
+		this.speed = luckyDivisor.config.DEFAULT_PN_CUBE_SPEED + (luckyDivisor.config.PN_CUBE_SPEED_VARIANT_MULTIPLIER * number);
 		
 		/**
 		 * A colour is the colour in which the cube appears when displayed on the canvas 
@@ -68,7 +68,7 @@ class Cube
 	showSquare()
 	{
 		fill(this.colour);
-		rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
+		rect(this.position.x, this.position.y, luckyDivisor.config.SIDE_OF_CUBE, luckyDivisor.config.SIDE_OF_CUBE);
 	}
 	
 	
@@ -82,9 +82,9 @@ class Cube
 	showNumberOnCube()
 	{
 		fill(0);
-		textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-		var x = this.position.x + (SIDE_OF_CUBE - textWidth(this.number)) / 2;
-		var y = this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING;
+		textSize(luckyDivisor.config.DEFAULT_CUBE_NUMBER_TEXT_SIZE);
+		var x = this.position.x + (luckyDivisor.config.SIDE_OF_CUBE - textWidth(this.number)) / 2;
+		var y = this.position.y + luckyDivisor.config.DEFAULT_CUBE_NUMBER_TEXT_SIZE + luckyDivisor.config.CUBE_NUMBER_PADDING;
 		text(this.number, x, y);
 	}
 	

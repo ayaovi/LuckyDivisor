@@ -8,6 +8,8 @@
  * @version : v1
  */
 
+var LuckyDivisor = LuckyDivisor || {}; 
+
 /**
  * @description creates a new time for the current column being is different 
  * from that of the previous column.
@@ -20,6 +22,10 @@ function getNewColumnStartingDate()
 {
 	var newColumnStartingDate = new ExtendedDate(getCurrentDate().getTime() + random(cubeDelays) * 1000);
 	
+	/**
+	 * We want the new date generated to be at least 0.5 seconds into the future.
+	 */
+
 	while(previousColumnStartingDate != undefined && newColumnStartingDate.minus(previousColumnStartingDate).getTime() <= 500)
 	{
 		newColumnStartingDate = new ExtendedDate(getCurrentDate() + random(cubeDelays) * 1000);
@@ -45,12 +51,28 @@ function getNewPnCube(columnPositionX)
 }
 
 
+
+/**
+ * @description updates both pnCubeCreationReccordMap and numberOfPnCubeCreated 
+ * to take into account the new prime number just have been generated.
+ *
+ * @param prime number.
+ *
+ * @return none.
+ */
+function updatePnCubeCreationRecords(primeNuber)
+{
+	++pnCubeCreationReccordMap[primeNuber];
+	++numberOfPnCubeCreated;
+}
+
+
 /**
  * @description returns the prime number with the least occurrence so far in the play.
  *
- * @param xCoordinate.
+ * @param.
  *
- * @return a new PnCube.
+ * @return a prime integer.
  */
 function getPrimeNumberWithTheLeastOccurrence()
 {
@@ -59,8 +81,7 @@ function getPrimeNumberWithTheLeastOccurrence()
 	if (numberOfPnCubeCreated < NUMBER_OF_COLUMNS)
 	{
 		primeNumberWithTheLeastOccurrence = random(primeNumbers);
-		++pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence];
-		++numberOfPnCubeCreated;
+		updatePnCubeCreationRecords(primeNumberWithTheLeastOccurrence);
 	}
 	else
 	{
@@ -78,9 +99,7 @@ function getPrimeNumberWithTheLeastOccurrence()
 				primeNumberWithTheLeastOccurrence = parseInt(key);
 			}
 		}
-		
-		++pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence];
-		++numberOfPnCubeCreated;
+		updatePnCubeCreationRecords(primeNumberWithTheLeastOccurrence);
 	}
 	
 	return primeNumberWithTheLeastOccurrence;
@@ -106,24 +125,10 @@ function generatePlayerCubeNumber()
 	 * All of the prime divisors of this number.
 	 */
 	var divisors = getPrimeFactors(number);
-
-	/**
-	 * Tracks whether we have discovered a prime factor greater than 10.
-	 */
-	var primeDivisorGreaterThanTen = false;
 	
 	while (true)
 	{
-		for (var i = 0; i < divisors.length; i++)
-		{
-			if (divisors[i] > 10)
-			{
-				primeDivisorGreaterThanTen = true;
-				break;
-			}
-		}
-		
-		if (!primeDivisorGreaterThanTen)
+		if (!containsElementGreaterThan(divisors, 10))
 		{
 			break;
 		}
@@ -131,12 +136,32 @@ function generatePlayerCubeNumber()
 		{
 			number = floor(random(2, 100));
 			divisors = getPrimeFactors(number);
-			primeDivisorGreaterThanTen = false;
 		}
 	}
-
 	return number;
 }
+
+
+
+/**
+ * @description checks whether the suplied array contains and element greater that the given threshold.
+ *
+ * @param array of integers, an integer threashold.
+ *
+ * @return true or false.
+ */
+function containsElementGreaterThan(array, threshold)
+{
+	for (var i = 0; i < array.length; i++)
+	{
+		if (array[i] > threshold)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 
 
 /**
