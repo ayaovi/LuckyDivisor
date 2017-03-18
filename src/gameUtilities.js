@@ -21,13 +21,13 @@ luckyDivisor.util.game.displayMessageOnCanvas = function(message)
 	/**
 	 * By default the size of the texts in the message is END_OF_GAME_TEXT_SIZE;
 	 */
-	textSize(END_OF_GAME_TEXT_SIZE);
+	textSize(luckyDivisor.config.END_OF_GAME_TEXT_SIZE);
 	
 	/**
 	 * Finally the message is printed right at the center of the canvas.
 	 */
-	var x = (WIDTH_OF_CANVAS - textWidth(message)) / 2;
-	var y = HEIGHT_OF_CANVAS / 2;
+	var x = (luckyDivisor.config.WIDTH_OF_CANVAS - textWidth(message)) / 2;
+	var y = luckyDivisor.config.HEIGHT_OF_CANVAS / 2;
 	
 	text(message, x, y);
 }
@@ -47,8 +47,8 @@ luckyDivisor.util.game.displayNewGameButton = function()
 	/**
 	 * Make the new game button visible and display it on the canvas.
 	 */
-	newGameButton.isVisible = true;
-	newGameButton.show();
+	luckyDivisor.global.newGameButton.isVisible = true;
+	luckyDivisor.global.newGameButton.show();
 }
 
 
@@ -62,34 +62,34 @@ luckyDivisor.util.game.displayNewGameButton = function()
  */
 luckyDivisor.util.game.pauseOrPlay = function()
 {
-	if (gameStatus == "Running")
+	if (luckyDivisor.config.gameStatus == "Running")
 	{
 		/**
 		 * Set the game status to Paused.
 		 */
-		gameStatus = "Paused";
+		luckyDivisor.config.gameStatus = "Paused";
 		
 		/**
 		 * Record this pause date.
 		 */
-		pauseDate = getCurrentDate();
+		luckyDivisor.global.pauseDate = luckyDivisor.util.date.getCurrentDate();
 		
 		/**
 		 * Stop the looping of the draw() in main.js.
 		 */
 		noLoop();
 	}
-	else if (gameStatus == "Paused")
+	else if (luckyDivisor.config.gameStatus == "Paused")
 	{
 		/**
 		 * Set the game status to Running.
 		 */
-		gameStatus = "Running";
+		luckyDivisor.config.gameStatus = "Running";
 		
 		/**
 		 * Update the play duration of the clock.
 		 */
-		topPanel.clock.playDuration = topPanel.clock.playDuration.plus(new ExtendedDate(getCurrentDate().minus(pauseDate)));
+		luckyDivisor.global.topPanel.clock.playDuration = luckyDivisor.global.topPanel.clock.playDuration.plus(new ExtendedDate(luckyDivisor.util.date.getCurrentDate().minus(luckyDivisor.global.pauseDate)));
 		
 		/**
 		 * Bring back the draw() looping.
@@ -113,7 +113,7 @@ luckyDivisor.util.game.startNewPlay = function()
 	/**
 	 * Reset the new game button to invisible.
 	 */
-	luckyDivisor.config.newGameButton.isVisible = false;
+	luckyDivisor.global.newGameButton.isVisible = false;
 	
 	/**
 	 * Reset ID to zero.
@@ -123,18 +123,18 @@ luckyDivisor.util.game.startNewPlay = function()
 	/**
 	 * Reset the event queue.
 	 */
-	luckyDivisor.config.eventQueue.reset();
+	luckyDivisor.global.eventQueue.reset();
 
 	/**
 	 * Reset the clock in the top panel.
 	 */
-	luckyDivisor.config.topPanel.reset();
+	luckyDivisor.global.topPanel.reset();
 
 	/**
 	 * Create a new player cube.
 	 */
 	var playerCubeNumber = generatePlayerCubeNumber();
-	playerCube = new PlayerCube(playerCubeNumber, 0, createVector((luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE) / 2, luckyDivisor.config.HEIGHT_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1));
+	luckyDivisor.global.playerCube = new PlayerCube(playerCubeNumber, 0, createVector((luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE) / 2, luckyDivisor.config.HEIGHT_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1));
 	
 	/**
 	 * DEBUGGING.

@@ -37,7 +37,7 @@ class PnCubeMotionHandler
 		/**
 		 * Check whether the Cube has fallen off the canvas.
 		 */
-		if (this.cube.position.y > HEIGHT_OF_CANVAS)
+		if (this.cube.position.y > luckyDivisor.config.HEIGHT_OF_CANVAS)
 		{
 			this.cube.visibility = false;
 		}
@@ -51,19 +51,19 @@ class PnCubeMotionHandler
 		if (!this.cube.hasStarted)
 		{
 			this.cube.hasStarted = true;
-			this.cube.startDate = getCurrentDate();
+			this.cube.startDate = luckyDivisor.util.date.getCurrentDate();
 		}
 		else
 		{
 			/**
 			 * Check whether this cube is a third of the way through.
 			 */
-			if ((this.cube.position.y >= HEIGHT_OF_CANVAS / 3) && !this.cube.hasAlreadyInitiatedNewCubeStart)
+			if ((this.cube.position.y >= luckyDivisor.config.HEIGHT_OF_CANVAS / 3) && !this.cube.hasAlreadyInitiatedNewCubeStart)
 			{
 				/**
 				 * The following refers to how much seconds it took this cube to go a 3rd of the way.
 				 */
-				var secondDifference = getCurrentDate().minus(this.cube.startDate).getTime() / 1000;
+				var secondDifference = luckyDivisor.util.date.getCurrentDate().minus(this.cube.startDate).getTime() / 1000;
 				
 				/**
 				 * The next cube in the column of this cube will be set to fall sometimes now and the 
@@ -74,9 +74,9 @@ class PnCubeMotionHandler
 				 * make the random number generator range too wide, reason why I choose to generate a 
 				 * random second and convert it back to millisecond.
 				 */
-				var eventDate = new ExtendedDate(getCurrentDate().getTime() + floor(random(secondDifference) * 1000));
+				var eventDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate().getTime() + floor(random(secondDifference) * 1000));
 				
-				eventQueue.push(new StartNewCubeEvent(eventDate, this.cube.columnIndex));
+				luckyDivisor.global.eventQueue.push(new StartNewCubeEvent(eventDate, this.cube.columnIndex));
 				
 				/**
 				 * Stop this cube from initiating further new starts.

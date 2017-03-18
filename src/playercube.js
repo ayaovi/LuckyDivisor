@@ -126,11 +126,11 @@
 		}
 		else if (this.yetToBeCollectedDivisors.length == 1)
 		{
-			this.colour = CUBE_COLOUR_MAP[this.yetToBeCollectedDivisors[0]];
+			this.colour = luckyDivisor.config.CUBE_COLOUR_MAP[this.yetToBeCollectedDivisors[0]];
 		}
 		else
 		{
-			this.colour = luckyDivisor.util.cube.combineColours.combineColours(this.yetToBeCollectedDivisors);
+			this.colour = luckyDivisor.util.cube.combineColours(this.yetToBeCollectedDivisors);
 		}
 	}
  }

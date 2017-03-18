@@ -49,10 +49,10 @@ class Button
 			rect(this.position.x, this.position.y, this.width, this.height);
 			fill(0);
 			noStroke();
-			textSize(DEFAULT_BUTTON_TEXT_SIZE);
+			textSize(luckyDivisor.config.DEFAULT_BUTTON_TEXT_SIZE);
 			var paddingX = (this.width - textWidth(this.label)) / 2;
-			var paddingY = (this.height - DEFAULT_BUTTON_TEXT_SIZE) / 3;
-			text(this.label, this.position.x + paddingX, this.position.y + DEFAULT_BUTTON_TEXT_SIZE + paddingY);
+			var paddingY = (this.height - luckyDivisor.config.DEFAULT_BUTTON_TEXT_SIZE) / 3;
+			text(this.label, this.position.x + paddingX, this.position.y + luckyDivisor.config.DEFAULT_BUTTON_TEXT_SIZE + paddingY);
 			
 			/**
 			 * Restore previous state.

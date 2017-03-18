@@ -73,7 +73,7 @@ class Column
 		}
 		else
 		{
-			if (this.startingDate.isLessOrEqualTo(getCurrentDate()))
+			if (this.startingDate.isLessOrEqualTo(luckyDivisor.util.date.getCurrentDate()))
 			{
 				/**
 				 * Set this.cubesHaveStartedFalling to true so we do not come here again.

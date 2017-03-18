@@ -131,7 +131,7 @@ class Clock
 		}
 		
 		fill(0);
-		textSize(DEFAULT_TIMER_TEXT_SIZE);
+		textSize(luckyDivisor.config.DEFAULT_TIMER_TEXT_SIZE);
 		text(this.stringTimeTillEndOfPlay, this.position.x + luckyDivisor.config.DEFAULT_TIMER_PADDING, this.position.y + luckyDivisor.config.DEFAULT_TIMER_TEXT_SIZE);
 
 		/**

@@ -84,7 +84,7 @@ class SidePanel extends Panel
 		 * and not keep track of how many times it is supposed to be collected. An example would be, given a player 
 		 * number 9, its divisors would be {1, 3, 3}.
 		 */
-		var primeFactors = luckyDivisor.config.playerCube.divisors;
+		var primeFactors = luckyDivisor.global.playerCube.divisors;
 		
 		/**
 		 * This is used to keep track of how much offset is needed to be added to the cube y-coordinate.

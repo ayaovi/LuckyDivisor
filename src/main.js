@@ -66,25 +66,25 @@ function createGameComponents()
 	/**
 	 * Create the Player object.
 	 */
-	luckyDivisor.config.player = new Player();
-	luckyDivisor.config.player.init();
+	luckyDivisor.global.player = new Player();
+	luckyDivisor.global.player.init();
 	
 	/**
 	 * Create the top panel.
 	 */
-	luckyDivisor.config.topPanel = new TopPanel();
-	luckyDivisor.config.topPanel.init();
+	luckyDivisor.global.topPanel = new TopPanel();
+	luckyDivisor.global.topPanel.init();
 
 	/**
 	 * A SidePanl is a requirement.
 	 */
-	luckyDivisor.config.sidePanel = new SidePanel();
-	luckyDivisor.config.sidePanel.init();
+	luckyDivisor.global.sidePanel = new SidePanel();
+	luckyDivisor.global.sidePanel.init();
 
 	/**
 	 * We also need an EventQueue.
 	 */
-	luckyDivisor.config.eventQueue = new EventQueue();
+	luckyDivisor.global.eventQueue = new EventQueue();
 }
 
 
@@ -100,7 +100,7 @@ function createNewGameButton()
 	var x = (luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.WIDTH_OF_BUTTON) / 2;
 	var y = (luckyDivisor.config.HEIGHT_OF_CANVAS / 2) + 100;
 	
-	luckyDivisor.config.newGameButton = new Button("NEW GAME", createVector(x, y), luckyDivisor.config.WIDTH_OF_BUTTON, luckyDivisor.config.HEIGHT_OF_BUTTON, luckyDivisor.util.game.restart);
+	luckyDivisor.global.newGameButton = new Button("NEW GAME", createVector(x, y), luckyDivisor.config.WIDTH_OF_BUTTON, luckyDivisor.config.HEIGHT_OF_BUTTON, luckyDivisor.util.game.restart);
 }
 
 
@@ -165,14 +165,14 @@ function showGameComponents()
 	/**
 	 * Display the player cube at the bottom of the canvas.
 	 */
-	luckyDivisor.config.playerCube.show();
+	luckyDivisor.global.playerCube.show();
 	
 	/**
 	 * Then display all columns.
 	 */
-	for (var i = 0; i < columns.length; i++)
+	for (var i = 0; i < luckyDivisor.global.columns.length; i++)
 	{
-		luckyDivisor.config.columns[i].show();
+		luckyDivisor.global.columns[i].show();
 	}
 
 	/**
@@ -183,12 +183,12 @@ function showGameComponents()
 	/**
 	 * Display the top panel.
 	 */
-	luckyDivisor.config.topPanel.show();
+	luckyDivisor.global.topPanel.show();
 
 	/**
 	 * Finally display the side panel.
 	 */
-	luckyDivisor.config.sidePanel.show();
+	luckyDivisor.global.sidePanel.show();
 }
 
 
@@ -202,23 +202,23 @@ function showGameComponents()
  */
 function checkForPnCubeCollection()
 {
-	for (var i = 0; i < luckyDivisor.config.columns.length; i++)
+	for (var i = 0; i < luckyDivisor.global.columns.length; i++)
 	{
-		for (var j = 0; j < luckyDivisor.config.columns[i].cubes.length; j++)
+		for (var j = 0; j < luckyDivisor.global.columns[i].cubes.length; j++)
 		{
 			/**
 			 * Create new references for the sake of simplicity.
 			 */
-			var pnCube = luckyDivisor.config.columns[i].cubes[j];
+			var pnCube = luckyDivisor.global.columns[i].cubes[j];
 			var x1 = pnCube.position.x;
 			var y1 = pnCube.position.y;
-			var x2 = playerCube.position.x;
-			var y2 = playerCube.position.y;
-			var w = SIDE_OF_CUBE;
+			var x2 = luckyDivisor.global.playerCube.position.x;
+			var y2 = luckyDivisor.global.playerCube.position.y;
+			var w = luckyDivisor.config.SIDE_OF_CUBE;
 			
 			if (pnCube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w))
 			{
-				luckyDivisor.config.playerCube.contactHandler.handleCollisionWith(pnCube);
+				luckyDivisor.global.playerCube.contactHandler.handleCollisionWith(pnCube);
 				pnCube.visibility = false;
 			}
 		}
@@ -238,7 +238,7 @@ function checkForTimeOut()
 	/**
 	 * The game is ended (i.e. game over) if the clock reaches "00:00".
 	 */
-	if (luckyDivisor.config.topPanel.clock.stringTimeTillEndOfPlay == "00:00")
+	if (luckyDivisor.global.topPanel.clock.stringTimeTillEndOfPlay == "00:00")
 	{
 		/**
 		 * End the game with code 1 (i.e. TIME OUT).
@@ -260,9 +260,9 @@ function checkForRunningClock()
 	/**
 	 * Start the clock if it not started.
 	 */
-	if (!luckyDivisor.config.topPanel.clock.hasStarted)
+	if (!luckyDivisor.global.topPanel.clock.hasStarted)
 	{
-		luckyDivisor.config.topPanel.clock.start();
+		luckyDivisor.global.topPanel.clock.start();
 	}
 }
 
@@ -280,17 +280,17 @@ function checkAndProcessNextEvent()
 	/**
 	 * Check whether there is any current event sitting in the event queue.
 	 */
-	if (luckyDivisor.config.eventQueue.hasEvents())
+	if (luckyDivisor.global.eventQueue.hasEvents())
 	{
 		/**
 		 * The next to be fired event would be the one in front of the queue.
 		 */
-		var nextToBeFiredEvent = luckyDivisor.config.eventQueue.peek();
+		var nextToBeFiredEvent = luckyDivisor.global.eventQueue.peek();
 		
 		/**
 		 * Should the event time be same as the system time.
 		 */
-		if (nextToBeFiredEvent.date.isLessOrEqualTo(getCurrentDate()))
+		if (nextToBeFiredEvent.date.isLessOrEqualTo(luckyDivisor.util.date.getCurrentDate()))
 		{
 			/**
 			 * Then process the event.
@@ -300,7 +300,7 @@ function checkAndProcessNextEvent()
 			/**
 			 * Delete the event once it has been processed.
 			 */
-			luckyDivisor.config.eventQueue.remove(0);
+			luckyDivisor.global.eventQueue.remove(0);
 		}
 	}
 }
@@ -330,7 +330,7 @@ function checkIfGamePaused()
  */
 function draw()
 {
-	background(DEFAULT_CANVAS_BACKGROUND_COLOUR);
+	background(luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_COLOUR);
 
 	checkForRunningClock();
 	showGameComponents();

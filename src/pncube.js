@@ -28,7 +28,7 @@ class PnCube extends Cube
 		 * Every pn cube has a specific colour.
 		 * e.g. 1 is yellow, 2 is red, 3 is blue etc...
 		 */
-		this.colour = CUBE_COLOUR_MAP[this.number];
+		this.colour = luckyDivisor.config.CUBE_COLOUR_MAP[this.number];
 		
 		/**
 		 * The following is a variable that advises on the visibility of this Cube. This 

@@ -12,6 +12,63 @@ var luckyDivisor = luckyDivisor || {};
 
 luckyDivisor.util.cube = {};
 
+
+
+/**
+ * @description updates both pnCubeCreationReccordMap and numberOfPnCubeCreated 
+ * to take into account the new prime number just have been generated.
+ *
+ * @param prime number.
+ *
+ * @return none.
+ */
+luckyDivisor.util.cube.updatePnCubeCreationRecords = function(primeNuber)
+{
+	++luckyDivisor.global.pnCubeCreationReccordMap[primeNuber];
+	++luckyDivisor.global.numberOfPnCubeCreated;
+}
+
+
+/**
+ * @description returns the prime number with the least occurrence so far in the play.
+ *
+ * @param.
+ *
+ * @return a prime integer.
+ */
+luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function()
+{
+	var primeNumberWithTheLeastOccurrence = 1;
+	
+	if (luckyDivisor.global.numberOfPnCubeCreated < luckyDivisor.global.NUMBER_OF_COLUMNS)
+	{
+		primeNumberWithTheLeastOccurrence = random(primeNumbers);
+		luckyDivisor.util.cube.updatePnCubeCreationRecords(primeNumberWithTheLeastOccurrence);
+	}
+	else
+	{
+		/**
+		 * Get the prime number with the minimum occurrence.
+		 */
+		for (var key in luckyDivisor.global.pnCubeCreationReccordMap)
+		{
+			if (luckyDivisor.global.pnCubeCreationReccordMap[key] < luckyDivisor.global.pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence])
+			{
+				/**
+				 * key in this case is a string. Strange I know, even though I add it as a number, 
+				 * it comes out as a string. So it requires the parsing back to number. 
+				 */
+				primeNumberWithTheLeastOccurrence = parseInt(key);
+			}
+		}
+		luckyDivisor.util.cube.updatePnCubeCreationRecords(primeNumberWithTheLeastOccurrence);
+	}
+	
+	return primeNumberWithTheLeastOccurrence;
+}
+
+
+
 /**
  * @description creates a new Pn Cube.
  *
@@ -21,8 +78,8 @@ luckyDivisor.util.cube = {};
  */
 luckyDivisor.util.cube.getNewPnCube = function(columnPositionX)
 {
-	var primeNumber = getPrimeNumberWithTheLeastOccurrence();
-	return new PnCube(primeNumber, ++ID, createVector(columnPositionX + DEFAULT_COLUMN_PADDING, 0));
+	var primeNumber = luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence();
+	return new PnCube(primeNumber, ++luckyDivisor.global.ID, createVector(columnPositionX + luckyDivisor.config.DEFAULT_COLUMN_PADDING, 0));
 }
 
 

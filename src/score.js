@@ -67,8 +67,8 @@ class Score
 		/**
 		 * The size of the score text has a default value set in config.js.
 		 */
-		textSize(DEFAULT_SCORE_TEXT_SIZE);
-		text(this.score, this.position.x + DEFAULT_SCORE_PADDING, this.position.y + DEFAULT_SCORE_TEXT_SIZE);
+		textSize(luckyDivisor.config.DEFAULT_SCORE_TEXT_SIZE);
+		text(this.score, this.position.x + luckyDivisor.config.DEFAULT_SCORE_PADDING, this.position.y + luckyDivisor.config.DEFAULT_SCORE_TEXT_SIZE);
 
 		/**
 		 * restore back to state previous.

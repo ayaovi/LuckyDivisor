@@ -39,6 +39,6 @@ class StartNewCubeEvent extends Event
 		/**
 		 * Make a call to the column with index this.columnIndex to start a new cube.
 		 */
-		columns[this.columnIndex].startNewCube();
+		luckyDivisor.global.columns[this.columnIndex].startNewCube();
 	}
 }

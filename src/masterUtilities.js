@@ -12,58 +12,6 @@ var luckyDivisor = luckyDivisor || {};
 
 luckyDivisor.util = {};
 
-/**
- * @description updates both pnCubeCreationReccordMap and numberOfPnCubeCreated 
- * to take into account the new prime number just have been generated.
- *
- * @param prime number.
- *
- * @return none.
- */
-function updatePnCubeCreationRecords(primeNuber)
-{
-	++pnCubeCreationReccordMap[primeNuber];
-	++numberOfPnCubeCreated;
-}
-
-
-/**
- * @description returns the prime number with the least occurrence so far in the play.
- *
- * @param.
- *
- * @return a prime integer.
- */
-function getPrimeNumberWithTheLeastOccurrence()
-{
-	var primeNumberWithTheLeastOccurrence = 1;
-	
-	if (numberOfPnCubeCreated < NUMBER_OF_COLUMNS)
-	{
-		primeNumberWithTheLeastOccurrence = random(primeNumbers);
-		updatePnCubeCreationRecords(primeNumberWithTheLeastOccurrence);
-	}
-	else
-	{
-		/**
-		 * Get the prime number with the minimum occurrence.
-		 */
-		for (var key in pnCubeCreationReccordMap)
-		{
-			if (pnCubeCreationReccordMap[key] < pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence])
-			{
-				/**
-				 * key in this case is a string. Strange I know, even though I add it as a number, 
-				 * it comes out as a string. So it requires the parsing back to number. 
-				 */
-				primeNumberWithTheLeastOccurrence = parseInt(key);
-			}
-		}
-		updatePnCubeCreationRecords(primeNumberWithTheLeastOccurrence);
-	}
-	
-	return primeNumberWithTheLeastOccurrence;
-}
 
 /** 
  * @description randomly generate a player cube number.
@@ -217,18 +165,7 @@ function getCurrentTime()
 	return new Time(hour(), minute(), second());
 }
 
-/**
- * @description returns the current system date as an Extended date.
- *
- * @param none. 
- *
- * @return a new ExtendedDate.
- */
-function getCurrentDate()
-{
-	var currentDate = new Date();
-	return new ExtendedDate(currentDate.getTime());
-}
+
 
 
 /**
@@ -284,5 +221,5 @@ function getPrimeFactors(number)
  */
 function mouseClicked()
 {
-	luckyDivisor.config.newGameButton.mouseClick(mouseX, mouseY);
+	luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
 }

@@ -82,14 +82,14 @@ class TopPanel extends Panel
 		/**
 		 * Followed by player score.
 		 */
-		player.score.show();
+		luckyDivisor.global.player.score.show();
 		
 		/**
 		 * And finally player life stars.
 		 */
-		for (var i = 0; i < player.playerLifeStars.length; i++) 
+		for (var i = 0; i < luckyDivisor.global.player.playerLifeStars.length; i++) 
 		{
-			luckyDivisor.config.player.playerLifeStars[i].show();
+			luckyDivisor.global.player.playerLifeStars[i].show();
 		}
 	}
 }

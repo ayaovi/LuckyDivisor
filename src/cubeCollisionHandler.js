@@ -67,12 +67,12 @@ class CubeCollisionHandler
 			/**
 			 * Update side panel.
 			 */
-			sidePanel.update(pnCube.number);
+			luckyDivisor.global.sidePanel.update(pnCube.number);
 			
 			/**
 			 * Update Player score.
 			 */
-			player.updateScore(pnCube.number);
+			luckyDivisor.global.player.updateScore(pnCube.number);
 			
 			/**
 			 * Make pnCube invisible.
@@ -93,25 +93,12 @@ class CubeCollisionHandler
 			/**
 			 * Burn the player for collecting a non-divisor cube
 			 */
-			player.burn();
+			luckyDivisor.global.player.burn();
 			
 			/**
 			 * Make pnCube invisible.
 			 */
 			pnCube.visibility = false;
 		}
-	}
-	
-	
-	/**
-	 * @description a handler collision between two pn cube. This may result in a merger of a boost
-	 *
-	 * @param a Pn cube.
-	 *
-	 * @return none.
-	 */
-	handlePnCubeInCollisionWith(pnCube)
-	{
-		
 	}
 }

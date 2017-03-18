@@ -131,7 +131,7 @@ class Player
 		/**
 		 * Check whether player has collected all required divisors.
 		 */
-		if (player.hasCollectedAll())
+		if (luckyDivisor.global.player.hasCollectedAll())
 		{
 			/**
 			 * Then this mark the end of play.
@@ -151,7 +151,7 @@ class Player
 	 */
 	rewardLifeStar()
 	{
-		if (this.playerLifeStars.length < NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
+		if (this.playerLifeStars.length < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
 		{
 			/**
 			 * Add a life star.
@@ -170,7 +170,7 @@ class Player
 	 */
 	hasCollectedAll()
 	{
-		return playerCube.hasCollectedAll();
+		return luckyDivisor.global.playerCube.hasCollectedAll();
 	}
 	
 	
