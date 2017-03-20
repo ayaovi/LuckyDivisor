@@ -72,7 +72,7 @@ class PnCubeMotionHandler {
 				luckyDivisor.global.eventQueue.push(new StartNewCubeEvent(eventDate, this.cube.columnIndex));
 				
 				// DEBUGGING.
-				console.log(this.cube.toString() + " has scheduled new fall @ " + eventDate.toString() + " (" + luckyDivisor.util.date.getCurrentDate().toString() + ")");
+				// console.log(this.cube.toString() + " has scheduled new fall @ " + eventDate.toString() + " (" + luckyDivisor.util.date.getCurrentDate().toString() + ")");
 				// END_DEBUGGING.
 				
 				/**
