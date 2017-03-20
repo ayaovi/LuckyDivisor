@@ -9,8 +9,7 @@
  * @version : v1
  */
  
-class Score
-{
+class Score {
 	/**
 	 * @description 
 	 *
@@ -18,8 +17,7 @@ class Score
 	 *
 	 * @return 
 	 */
-	constructor(position)
-	{
+	constructor(position) {
 		this.position = position;
 		this.score = 0;
 	}
@@ -32,16 +30,12 @@ class Score
 	 *
 	 * @return none.
 	 */
-	update(hit)
-	{
+	update(hit) {
 		/**
-		 * So far this score updater only accepts positive hits.
-		 * Could we also introduce a negative hit as a penalty for collecting an already collected factor?
+		 * A positive hit increases the score while a negative one decreases it.
+		 * A negative hit is a penalty for collecting an already collected factor.
 		 */
-		if (hit > 0)
-		{
-			this.score += hit;
-		}
+		this.score += hit;
 	}
 	
 	
@@ -52,8 +46,7 @@ class Score
 	 *
 	 * @return none.
 	 */
-	show()
-	{
+	show() {
 		/**
 		 * save current state.
 		 */

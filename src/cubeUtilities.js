@@ -13,7 +13,6 @@ var luckyDivisor = luckyDivisor || {};
 luckyDivisor.util.cube = {};
 
 
-
 /**
  * @description updates both pnCubeCreationReccordMap and numberOfPnCubeCreated 
  * to take into account the new prime number just have been generated.
@@ -22,8 +21,7 @@ luckyDivisor.util.cube = {};
  *
  * @return none.
  */
-luckyDivisor.util.cube.updatePnCubeCreationRecords = function(primeNuber)
-{
+luckyDivisor.util.cube.updatePnCubeCreationRecords = function(primeNuber) {
 	++luckyDivisor.global.pnCubeCreationReccordMap[primeNuber];
 	++luckyDivisor.global.numberOfPnCubeCreated;
 }
@@ -36,24 +34,19 @@ luckyDivisor.util.cube.updatePnCubeCreationRecords = function(primeNuber)
  *
  * @return a prime integer.
  */
-luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function()
-{
+luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function() {
 	var primeNumberWithTheLeastOccurrence = 1;
 	
-	if (luckyDivisor.global.numberOfPnCubeCreated < luckyDivisor.global.NUMBER_OF_COLUMNS)
-	{
+	if (luckyDivisor.global.numberOfPnCubeCreated < luckyDivisor.global.NUMBER_OF_COLUMNS) {
 		primeNumberWithTheLeastOccurrence = random(primeNumbers);
 		luckyDivisor.util.cube.updatePnCubeCreationRecords(primeNumberWithTheLeastOccurrence);
 	}
-	else
-	{
+	else {
 		/**
 		 * Get the prime number with the minimum occurrence.
 		 */
-		for (var key in luckyDivisor.global.pnCubeCreationReccordMap)
-		{
-			if (luckyDivisor.global.pnCubeCreationReccordMap[key] < luckyDivisor.global.pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence])
-			{
+		for (var key in luckyDivisor.global.pnCubeCreationReccordMap) {
+			if (luckyDivisor.global.pnCubeCreationReccordMap[key] < luckyDivisor.global.pnCubeCreationReccordMap[primeNumberWithTheLeastOccurrence]) {
 				/**
 				 * key in this case is a string. Strange I know, even though I add it as a number, 
 				 * it comes out as a string. So it requires the parsing back to number. 
@@ -76,10 +69,9 @@ luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function()
  *
  * @return a new PnCube.
  */
-luckyDivisor.util.cube.getNewPnCube = function(columnPositionX)
-{
+luckyDivisor.util.cube.getNewPnCube = function(columnPositionX, columnIndex) {
 	var primeNumber = luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence();
-	return new PnCube(primeNumber, ++luckyDivisor.global.ID, createVector(columnPositionX + luckyDivisor.config.DEFAULT_COLUMN_PADDING, 0));
+	return new PnCube(primeNumber, ++luckyDivisor.global.ID, createVector(columnPositionX + luckyDivisor.config.DEFAULT_COLUMN_PADDING, 0), columnIndex);
 }
 
 
@@ -92,8 +84,7 @@ luckyDivisor.util.cube.getNewPnCube = function(columnPositionX)
  * @return an array containing the red, green and yellow values 
  * make up the corresponding RGB colour
  */
-luckyDivisor.util.cube.LABtoRGB = function(lab)
-{
+luckyDivisor.util.cube.LABtoRGB = function(lab) {
 	var y = (lab[0] + 16) / 116;
 	var x = lab[1] / 500 + y;
 	var z = y - lab[2] / 200;
@@ -123,8 +114,7 @@ luckyDivisor.util.cube.LABtoRGB = function(lab)
  * @return an array containing the L, A and B values make up 
  * the corresponding RGB colour.
  */
-luckyDivisor.util.cube.RGBtoLAB = function(rgb)
-{
+luckyDivisor.util.cube.RGBtoLAB = function(rgb) {
 	var r = rgb[0] / 255;
 	var g = rgb[1] / 255;
 	var b = rgb[2] / 255;
@@ -156,8 +146,7 @@ luckyDivisor.util.cube.RGBtoLAB = function(rgb)
  * @return an array containing the red, green and blue values
  * or percentages that make up the RGB colour.
  */
-luckyDivisor.util.cube.CMYKtoRGB = function(cmyk)
-{
+luckyDivisor.util.cube.CMYKtoRGB = function(cmyk) {
 	var cyan = cmyk[0];
 	var magenta = cmyk[1];
 	var yellow = cmyk[2];
@@ -180,8 +169,7 @@ luckyDivisor.util.cube.CMYKtoRGB = function(cmyk)
  * @return an array of the corresponding cyan, magenta, yellow 
  * values/percentages and the key that make up the RGB colour.
  */
-luckyDivisor.util.cube.RGBtoCMYK = function(colour)
-{
+luckyDivisor.util.cube.RGBtoCMYK = function(colour) {
 	var red = red(colour);
 	var green = green(colour);
 	var blue = blue(colour);
@@ -211,12 +199,10 @@ luckyDivisor.util.cube.RGBtoCMYK = function(colour)
  * @return an RGB colour that is equally made up of colour 
  * corresponding to the prime number.
  */
-luckyDivisor.util.cube.combineColours = function(divisors)
-{
+luckyDivisor.util.cube.combineColours = function(divisors) {
 	var resultingColour = luckyDivisor.util.math.addRGBs(luckyDivisor.config.CUBE_COLOUR_MAP[divisors[0]], luckyDivisor.config.CUBE_COLOUR_MAP[divisors[1]]);
 
-	for (var i = 2; i < divisors.length; i++) 
-	{
+	for (var i = 2; i < divisors.length; i++) {
 		resultingColour = luckyDivisor.util.math.addRGBs(resultingColour, luckyDivisor.config.CUBE_COLOUR_MAP[divisors[i]]);
 	}
 

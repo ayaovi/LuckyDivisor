@@ -1,8 +1,15 @@
+/**
+ * @file : gameUtilities.js
+ *
+ * @description : The commonly used functions that are related to the game flow.
+ * 
+ * @author : Ayaovi Espoir Djissenou
+ *
+ * @version : v1
+ */
+
 var luckyDivisor = luckyDivisor || {};
-
 luckyDivisor.util.game = {};
-
-
 
 /**
  * @description displays a message on the game canvas.
@@ -11,8 +18,7 @@ luckyDivisor.util.game = {};
  *
  * @retun none.
  */
-luckyDivisor.util.game.displayMessageOnCanvas = function(message)
-{
+luckyDivisor.util.game.displayMessageOnCanvas = function(message) {
 	/**
 	 * We would like to print the message in white.
 	 */
@@ -42,8 +48,7 @@ luckyDivisor.util.game.displayMessageOnCanvas = function(message)
  *
  * @retun none.
  */
-luckyDivisor.util.game.displayNewGameButton = function()
-{
+luckyDivisor.util.game.displayNewGameButton = function() {
 	/**
 	 * Make the new game button visible and display it on the canvas.
 	 */
@@ -60,10 +65,8 @@ luckyDivisor.util.game.displayNewGameButton = function()
  *
  * @return none.
  */
-luckyDivisor.util.game.pauseOrPlay = function()
-{
-	if (luckyDivisor.config.gameStatus == "Running")
-	{
+luckyDivisor.util.game.pauseOrPlay = function() {
+	if (luckyDivisor.config.gameStatus == "Running") {
 		/**
 		 * Set the game status to Paused.
 		 */
@@ -79,8 +82,7 @@ luckyDivisor.util.game.pauseOrPlay = function()
 		 */
 		noLoop();
 	}
-	else if (luckyDivisor.config.gameStatus == "Paused")
-	{
+	else if (luckyDivisor.config.gameStatus == "Paused") {
 		/**
 		 * Set the game status to Running.
 		 */
@@ -109,8 +111,7 @@ luckyDivisor.util.game.pauseOrPlay = function()
  *
  * @return none.
  */
-luckyDivisor.util.game.startNewPlay = function()
-{
+luckyDivisor.util.game.startNewPlay = function() {
 	/**
 	 * Pause duration to zero.
 	 */
@@ -150,8 +151,7 @@ luckyDivisor.util.game.startNewPlay = function()
 	/**
 	 * Create all columns.
 	 */
-	for (var i = 0; i < luckyDivisor.config.NUMBER_OF_COLUMNS; i++)
-	{
+	for (var i = 0; i < luckyDivisor.config.NUMBER_OF_COLUMNS; i++) {
 		luckyDivisor.global.columns.push(new Column(luckyDivisor.config.COLUMN_WIDTH * i, i));
 		
 		/**
@@ -175,8 +175,7 @@ luckyDivisor.util.game.startNewPlay = function()
  *
  * @return none.
  */
-luckyDivisor.util.game.endCurrentPlay = function()
-{
+luckyDivisor.util.game.endCurrentPlay = function() {
 	/**
 	 * Reward a life star for completing play.
 	 */
@@ -207,8 +206,7 @@ luckyDivisor.util.game.endCurrentPlay = function()
  *
  * @retun none.
  */
-luckyDivisor.util.game.endGame = function(endOfGameCode)
-{
+luckyDivisor.util.game.endGame = function(endOfGameCode) {
 	/**
 	 * Determine the text to display on screen.
 	 * code 0 ----> Game Over.
@@ -237,8 +235,7 @@ luckyDivisor.util.game.endGame = function(endOfGameCode)
  *
  * @return none.
  */
-luckyDivisor.util.game.restart = function()
-{
+luckyDivisor.util.game.restart = function() {
 	/**
 	 * Pause duration to zero.
 	 */

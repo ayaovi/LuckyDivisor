@@ -11,8 +11,7 @@
  * @version : v1
  */
 
-class PnCube extends Cube
-{
+class PnCube extends Cube {
 	/**
 	 * @description 
 	 *
@@ -20,8 +19,7 @@ class PnCube extends Cube
 	 *
 	 * @return 
 	 */
-	constructor(primeNumber, id, position)
-	{
+	constructor(primeNumber, id, position, columnIndex) {
 		super(primeNumber, id, position);
 		
 		/**
@@ -41,7 +39,7 @@ class PnCube extends Cube
 		 * Keeps track which column this cube is falling in. Having the column, we can 
 		 * initiate a new cube start/fall similar to this, columns[columnIndex].startNewCube().
 		 */
-		this.columnIndex;
+		this.columnIndex = columnIndex;
 		
 		/**
 		 * A confirmation on whether this cube is falling or not, reason why it is initially 
@@ -65,6 +63,9 @@ class PnCube extends Cube
 		 */
 		this.hasAlreadyInitiatedNewCubeStart = false;
 		
+		/**
+		 * Handles the pn cube motion.
+		 */
 		this.motionHandler = new PnCubeMotionHandler(this);
 	}
 	
@@ -76,10 +77,8 @@ class PnCube extends Cube
 	 *
 	 * @return none.
 	 */
-	show()
-	{
-		if (this.visibility == true)
-		{
+	show() {
+		if (this.visibility == true) {
 			this.showSquare();
 			this.showNumberOnCube();
 		}
@@ -93,8 +92,18 @@ class PnCube extends Cube
 	 *
 	 * @return none.
 	 */
-	fall()
-	{
-		this.motionHandler.move();
+	fall() {
+		this.motionHandler.fall();
+	}
+	
+	/**
+	 * @description Returns a representation of this cube.
+	 *
+	 * @param another cube.
+	 *
+	  @return true or false.
+	 */
+	toString() {
+		return (super.toString() + ", " + this.columnIndex);
 	}
 }

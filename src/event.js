@@ -8,8 +8,7 @@
  * @version : v1
  */
 
-class Event
-{
+class Event {
 	/**
 	 * @description constructor.
 	 *
@@ -17,8 +16,7 @@ class Event
 	 *
 	 * @return none.
 	 */
-	constructor(date)
-	{
+	constructor(date) {
 		this.date = date;
 	}
 	
@@ -30,8 +28,7 @@ class Event
 	 *
 	 * @return none.
 	 */
-	process()
-	{
-		
+	process() {
+		// Every subclass of event must implement its own process mechanism.
 	}
 }

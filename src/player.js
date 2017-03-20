@@ -10,8 +10,7 @@
  */
 
  
-class Player
-{
+class Player {
 	/**
 	 * @desciption a constructor
 	 *
@@ -19,8 +18,7 @@ class Player
 	 *
 	 * @return none.
 	 */
-	constructor()
-	{
+	constructor() {
 		/**
 		 * The name of the player. Ultimately a record of the players would be 
 		 * kept. That way a player be simply be required to login (if necessary).
@@ -67,8 +65,7 @@ class Player
 	 *
 	 * @return none.
 	 */
-	init()
-	{
+	init() {
 		this.score = new Score(createVector(luckyDivisor.config.DEFAULT_SCORE_STARTING_POSITION, 0));
 		this.playerLifeStars = [];
 		this.nextPlayerStarPositionX = luckyDivisor.config.PLAYER_STARS_STARTING_POSITION;
@@ -93,10 +90,8 @@ class Player
 	 *
 	 * @return none.
 	 */
-	addNewLifeStar()
-	{
-		if (this.playerLifeStars.length < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
-		{
+	addNewLifeStar() {
+		if (this.playerLifeStars.length < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS) {
 			/**
 			 * New references for the sake of simplicity.
 			 */
@@ -114,6 +109,7 @@ class Player
 		}
 	}
 	
+	
 	/**
 	 * @desciption A function to update the player score.
 	 *
@@ -121,8 +117,7 @@ class Player
 	 *
 	 * @return none
 	 */
-	updateScore(hit)
-	{
+	updateScore(hit) {
 		/**
 		 * Update the player score.
 		 */
@@ -149,10 +144,8 @@ class Player
 	 *
 	 * @return none.
 	 */
-	rewardLifeStar()
-	{
-		if (this.playerLifeStars.length < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS)
-		{
+	rewardLifeStar() {
+		if (this.playerLifeStars.length < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS) {
 			/**
 			 * Add a life star.
 			 */
@@ -168,8 +161,7 @@ class Player
 	 *
 	 * @return none.
 	 */
-	hasCollectedAll()
-	{
+	hasCollectedAll() {
 		return luckyDivisor.global.playerCube.hasCollectedAll();
 	}
 	
@@ -181,8 +173,7 @@ class Player
 	 *
 	 * @return none.
 	 */
-	burn()
-	{
+	burn() {
 		/**
 		 * Unlock the player life stars in the top panel. This allow for a life stars to be taken off.
 		 */
@@ -207,10 +198,8 @@ class Player
 	 *
 	 * @return none.
 	 */
-	checkIfGameOver()
-	{
-		if (this.playerLifeStars.length == 0)
-		{
+	checkIfGameOver() {
+		if (this.playerLifeStars.length == 0) {
 			/**
 			 * End the game with code 0 (i.e. GAME OVER).
 			 */
@@ -226,13 +215,11 @@ class Player
 	 *
 	 * @return none.
 	 */
-	takeOffAPlayerLifeStar()
-	{
+	takeOffAPlayerLifeStar() {
 		/**
 		 * We can only take away a player life star if it is not locked.
 		 */
-		if (!this.playerLifeStarsLocked)
-		{
+		if (!this.playerLifeStarsLocked) {
 			this.playerLifeStars.splice(this.playerLifeStars.length - 1, 1);
 
 			/**

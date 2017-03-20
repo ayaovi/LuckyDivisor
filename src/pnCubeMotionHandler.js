@@ -8,8 +8,7 @@
  * @version : v1
  */
 
-class PnCubeMotionHandler
-{
+class PnCubeMotionHandler {
 	/**
 	 * @description constructor.
 	 *
@@ -17,8 +16,7 @@ class PnCubeMotionHandler
 	 *
 	 * @return 
 	 */
-	constructor(cube)
-	{
+	constructor(cube) {
 		this.cube = cube;
 	}
 	
@@ -30,15 +28,13 @@ class PnCubeMotionHandler
 	 *
 	 * @return 
 	 */
-	move()
-	{
+	fall() {
 		this.cube.position.y += this.cube.speed;
 		
 		/**
 		 * Check whether the Cube has fallen off the canvas.
 		 */
-		if (this.cube.position.y > luckyDivisor.config.HEIGHT_OF_CANVAS)
-		{
+		if (this.cube.position.y > luckyDivisor.config.HEIGHT_OF_CANVAS) {
 			this.cube.visibility = false;
 		}
 
@@ -48,18 +44,15 @@ class PnCubeMotionHandler
 		 * StartNewCubeEvent and schedule it for sometime now until this cube falls 
 		 * off the canvas.
 		 */
-		if (!this.cube.hasStarted)
-		{
+		if (!this.cube.hasStarted) {
 			this.cube.hasStarted = true;
 			this.cube.startDate = luckyDivisor.util.date.getCurrentDate();
 		}
-		else
-		{
+		else {
 			/**
 			 * Check whether this cube is a third of the way through.
 			 */
-			if ((this.cube.position.y >= luckyDivisor.config.HEIGHT_OF_CANVAS / 3) && !this.cube.hasAlreadyInitiatedNewCubeStart)
-			{
+			if ((this.cube.position.y >= luckyDivisor.config.HEIGHT_OF_CANVAS / 3) && !this.cube.hasAlreadyInitiatedNewCubeStart) {
 				/**
 				 * The following refers to how much seconds it took this cube to go a 3rd of the way.
 				 */
@@ -77,6 +70,10 @@ class PnCubeMotionHandler
 				var eventDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate().getTime() + floor(random(secondDifference) * 1000));
 				
 				luckyDivisor.global.eventQueue.push(new StartNewCubeEvent(eventDate, this.cube.columnIndex));
+				
+				// DEBUGGING.
+				console.log(this.cube.toString() + " has scheduled new fall @ " + eventDate.toString() + " (" + luckyDivisor.util.date.getCurrentDate().toString() + ")");
+				// END_DEBUGGING.
 				
 				/**
 				 * Stop this cube from initiating further new starts.

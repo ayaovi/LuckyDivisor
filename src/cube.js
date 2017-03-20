@@ -9,8 +9,7 @@
  */
 
  
-class Cube
-{
+class Cube {
 	/**
 	 * @description Function constructor.
 	 *
@@ -19,8 +18,7 @@ class Cube
 	 *
 	 * @return none.
 	 */
-	constructor(number, id, position)
-	{
+	constructor(number, id, position) {
 		/**
 		 * The following variable the number that appears on the cube. In the case 
 		 * of a Pn cube, this number is always a non-zero prime less than 10. A 
@@ -65,8 +63,7 @@ class Cube
 	 *
 	 * @return none.
 	 */
-	showSquare()
-	{
+	showSquare() {
 		fill(this.colour);
 		rect(this.position.x, this.position.y, luckyDivisor.config.SIDE_OF_CUBE, luckyDivisor.config.SIDE_OF_CUBE);
 	}
@@ -79,8 +76,7 @@ class Cube
 	 *
 	 * @return none.
 	 */
-	showNumberOnCube()
-	{
+	showNumberOnCube() {
 		fill(0);
 		textSize(luckyDivisor.config.DEFAULT_CUBE_NUMBER_TEXT_SIZE);
 		var x = this.position.x + (luckyDivisor.config.SIDE_OF_CUBE - textWidth(this.number)) / 2;
@@ -96,8 +92,19 @@ class Cube
 	 *
 	  @return true or false.
 	 */
-	equals(otherCube)
-	{
+	equals(otherCube) {
 		return (this.number == otherCube.number);
+	}
+	
+	
+	/**
+	 * @description Returns a representation of this cube.
+	 *
+	 * @param another cube.
+	 *
+	  @return true or false.
+	 */
+	toString() {
+		return ("Cube: " + this.number);
 	}
 }

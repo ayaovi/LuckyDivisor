@@ -8,8 +8,7 @@
  * @version : v1
  */
 
-class Column
-{
+class Column {
 	/**
 	 * @description a constructor.
 	 *
@@ -17,8 +16,7 @@ class Column
 	 *
 	 * @return none.
 	 */
-	constructor(xCordinate, index)
-	{
+	constructor(xCordinate, index) {
 		/**
 		 * Because there are multiple Columns side by side on the game canvas, there is a 
 		 * need to know where one starts and end. Hopefully we already know how wide each 
@@ -62,19 +60,15 @@ class Column
 	 *
 	 * @return none.
 	 */
-	show()
-	{
-		if (this.cubesHaveStartedFalling)
-		{
+	show() {
+		if (this.cubesHaveStartedFalling) {
 			/**
 			 * Yes we are up and running, all we need to do is make the cubes still on screen fall and display them.
 			 */
 			this.routine();
 		}
-		else
-		{
-			if (this.startingDate.isLessOrEqualTo(luckyDivisor.util.date.getCurrentDate()))
-			{
+		else {
+			if (this.startingDate.isLessOrEqualTo(luckyDivisor.util.date.getCurrentDate())) {
 				/**
 				 * Set this.cubesHaveStartedFalling to true so we do not come here again.
 				 */
@@ -101,10 +95,8 @@ class Column
 	 *
 	 * @return none.
 	 */
-	routine()
-	{
-		for (var i = 0; i < this.cubes.length; i++)
-		{
+	routine() {
+		for (var i = 0; i < this.cubes.length; i++) {
 			/**
 			 * We want a change in the position of the cube. If it does not a fall, there will not be a change in position.
 			 */
@@ -122,8 +114,7 @@ class Column
 	 *
 	 * @return none.
 	 */
-	reset()
-	{
+	reset() {
 		this.cubesHaveStartedFalling = false;
 		
 		this.cubes = [];
@@ -138,17 +129,17 @@ class Column
 	 *
 	 * @return none.
 	 */
-	startNewCube()
-	{
+	startNewCube() {
 		/**
 		 * Make sure this column is up and running, then add a cube to its cube collection.
 		 */
-		if (this.cubesHaveStartedFalling)
-		{
+		if (this.cubesHaveStartedFalling) {
 			this.addCube();
 		}
-		else
-		{
+		else {
+			/**
+			 * This should never be seen.
+			 */
 			console.log("Unfortunate Column is not started but tried to add cubes.");
 		}
 	}
@@ -161,17 +152,11 @@ class Column
 	 *
 	 * @return none.
 	 */
-	addCube()
-	{
+	addCube() {
 		/**
 		 * Create a new cube.
 		 */
-		var newCube = luckyDivisor.util.cube.getNewPnCube(this.x);
-		
-		/**
-		 * Set its column index to this one's
-		 */
-		newCube.columnIndex = this.index;
+		var newCube = luckyDivisor.util.cube.getNewPnCube(this.x, this.index);
 		
 		/**
 		 * And finally add it to the cubes collection.

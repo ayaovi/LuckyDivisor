@@ -10,8 +10,7 @@
  */
 
 
-class Panel
-{
+class Panel {
 	/**
 	 * @description A function constructor.
 	 *
@@ -19,8 +18,7 @@ class Panel
 	 *
 	 * @return none.
 	 */
-	constructor()
-	{
+	constructor() {
 		/**
 		 * The position of this panel as a vector with coordinates (x, y).
 		 */
@@ -35,18 +33,5 @@ class Panel
 		 * Height of the panel.
 		 */
 		this.height;
-	}
-
-
-	/**
-	 * @description a function to display the content of this Panel.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	show()
-	{
-
 	}
 }

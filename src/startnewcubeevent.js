@@ -8,8 +8,7 @@
  * @version : v1
  */
 
-class StartNewCubeEvent extends Event
-{
+class StartNewCubeEvent extends Event {
 	/**
 	 * @description constructor.
 	 *
@@ -17,8 +16,7 @@ class StartNewCubeEvent extends Event
 	 *
 	 * @return none.
 	 */
-	constructor(date, columnIndex)
-	{
+	constructor(date, columnIndex) {
 		super(date);
 		
 		/**
@@ -34,8 +32,7 @@ class StartNewCubeEvent extends Event
 	 *
 	 * @return none.
 	 */
-	process()
-	{
+	process() {
 		/**
 		 * Make a call to the column with index this.columnIndex to start a new cube.
 		 */

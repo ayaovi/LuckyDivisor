@@ -12,8 +12,7 @@
  */
 
  
- class PlayerCube extends Cube
- {
+ class PlayerCube extends Cube {
 	/**
 	 * @description constructor.
 	 *
@@ -21,8 +20,7 @@
 	 *
 	 * @return 
 	 */
-	constructor(number, id, position)
-	{
+	constructor(number, id, position) {
 		super(number, id, position);
 		
 		/**
@@ -57,7 +55,7 @@
 		/**
 		 * Handles the player cube contact with other pn cubes.
 		 */
-		this.contactHandler = new CubeCollisionHandler(this);
+		this.collisionHandler = new CubeCollisionHandler(this);
 	}
 	
 	
@@ -68,8 +66,7 @@
 	 *
 	 * @return none.
 	 */
-	show()
-	{
+	show() {
 		this.motionHandler.move();
 		this.showSquare();
 		this.showNumberOnCube();
@@ -83,8 +80,7 @@
 	 *
 	 * @return true or false.
 	 */
-	hasCollectedAll()
-	{
+	hasCollectedAll() {
 		return (this.yetToBeCollectedDivisors.length == 0);
 	}
 	
@@ -95,8 +91,7 @@
 	 *
 	 * @return none.
 	 */
-	registerDivisorCollection(divisor)
-	{
+	registerDivisorCollection(divisor) {
 		/**
 		 * Add this divisor to the list of already collected divisors.
 		 */
@@ -118,18 +113,14 @@
 	 *
 	 * @return none.
 	 */
-	changeColour()
-	{
-		if (this.yetToBeCollectedDivisors.length == 0)
-		{
+	changeColour() {
+		if (this.yetToBeCollectedDivisors.length == 0) {
 			this.colour = color('white');
 		}
-		else if (this.yetToBeCollectedDivisors.length == 1)
-		{
+		else if (this.yetToBeCollectedDivisors.length == 1) {
 			this.colour = luckyDivisor.config.CUBE_COLOUR_MAP[this.yetToBeCollectedDivisors[0]];
 		}
-		else
-		{
+		else {
 			this.colour = luckyDivisor.util.cube.combineColours(this.yetToBeCollectedDivisors);
 		}
 	}

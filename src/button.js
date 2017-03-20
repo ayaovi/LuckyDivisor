@@ -8,8 +8,7 @@
  * @version : v1
  */
 
-class Button
-{
+class Button {
 	/**
 	 * @description constructor.
 	 *
@@ -17,8 +16,7 @@ class Button
 	 *
 	 * @return none.
 	 */
-	constructor(label, position, width, height, callback)
-	{
+	constructor(label, position, width, height, callback) {
 		this.label = label;
 		this.position = position;
 		this.width = width;
@@ -34,10 +32,8 @@ class Button
 	 *
 	 * @return none.
 	 */
-	show()
-	{
-		if (this.isVisible)
-		{
+	show() {
+		if (this.isVisible) {
 			/**
 			 * Save current state.
 			 */
@@ -69,14 +65,9 @@ class Button
 	 *
 	 * @return none.
 	 */
-	mouseClick(x, y)
-	{
-		if (this.isVisible)
-		{
-			if ((this.callback != null) && (x > this.position.x) && 
-			(x <= this.position.x + this.width) && (y > this.position.y) && 
-			(y <= this.position.y + this.height)) 
-			{
+	mouseClick(x, y) {
+		if (this.isVisible) {
+			if ((this.callback != null) && (x > this.position.x) && (x <= this.position.x + this.width) && (y > this.position.y) && (y <= this.position.y + this.height)) {
 				this.callback();
 			}
 		}

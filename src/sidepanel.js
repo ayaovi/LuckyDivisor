@@ -8,8 +8,7 @@
  * @version : v1
  */
 
-class SidePanel extends Panel
-{
+class SidePanel extends Panel {
 	/**
 	 * @description constructor.
 	 *
@@ -17,8 +16,7 @@ class SidePanel extends Panel
 	 *
 	 * @return none.
 	 */
-	constuctor()
-	{
+	constuctor() {
 		/**
 		 * A collection of player life stars.
 		 */
@@ -52,8 +50,7 @@ class SidePanel extends Panel
 	 *
 	 * @return none.
 	 */
-	init()
-	{
+	init() {
 		this.position = createVector(luckyDivisor.config.WIDTH_OF_CANVAS, 0);
 		this.width = luckyDivisor.config.WIDTH_OF_SIDE_PANEL;
 		this.height = luckyDivisor.config.HEIGHT_OF_SIDE_PANEL;
@@ -67,8 +64,7 @@ class SidePanel extends Panel
 	 *
 	 * @return none.
 	 */
-	reset()
-	{
+	reset() {
 		this.pnCubesYetToBeCollected = [];
 		
 		this.numberOfPnCubesYetToBeCollected = {};
@@ -94,10 +90,8 @@ class SidePanel extends Panel
 		/**
 		 * create the cubes to be collected objects.
 		 */
-		for (var i = 0; i < primeFactors.length; i++)
-		{
-			if (this.numberOfPnCubesYetToBeCollected[primeFactors[i]] == 0)
-			{
+		for (var i = 0; i < primeFactors.length; i++) {
+			if (this.numberOfPnCubesYetToBeCollected[primeFactors[i]] == 0) {
 				/**
 				 * The cube to displayed in the side panel needs to be offset a little bit as to not be too close to the game canvas.
 				 */
@@ -131,8 +125,7 @@ class SidePanel extends Panel
 	 *
 	 * @return none.
 	 */
-	show()
-	{
+	show() {
 		/**
 		 * Save the current state.
 		 */
@@ -150,8 +143,7 @@ class SidePanel extends Panel
 		/**
 		 * Display list of cubes yet to be collect.
 		 */
-		for (var i = 0; i < this.pnCubesYetToBeCollected.length; i++) 
-		{
+		for (var i = 0; i < this.pnCubesYetToBeCollected.length; i++) {
 			/**
 			 * A local reference to the pn cube for the sake of not having to type out 
 			 * this.pnCubesYetToBeCollected[i] every time.
@@ -163,8 +155,7 @@ class SidePanel extends Panel
 			 */
 			var numberOfOccurence = this.numberOfPnCubesYetToBeCollected[cube.number];
 			
-			if (numberOfOccurence > 0)
-			{
+			if (numberOfOccurence > 0) {
 				cube.show();
 				text("x" + numberOfOccurence, cube.position.x + luckyDivisor.config.DEFAULT_PADDING_OF_CUBE_OCCURENCE_IN_SIDE_PANEL, cube.position.y + luckyDivisor.config.SIDE_OF_CUBE * 0.75);
 			}
@@ -179,8 +170,7 @@ class SidePanel extends Panel
 	 *
 	 * @return none.
 	 */
-	update(number)
-	{
+	update(number) {
 		/**
 		 * When updating the list of cubes to be collected we can just decrement its number of occurrences.
 		 * Following this approach, the cube object still lives in pnCubesYetToBeCollected collection until 

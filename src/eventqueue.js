@@ -9,8 +9,7 @@
  * @version : v1
  */
 
-class EventQueue
-{
+class EventQueue {
 	/**
 	 * @description constructor.
 	 *
@@ -18,8 +17,7 @@ class EventQueue
 	 *
 	 * @return none.
 	 */
-	constructor()
-	{
+	constructor() {
 		this.queue = [];
 	}
 	
@@ -31,26 +29,30 @@ class EventQueue
 	 *
 	 * @return none.
 	 */
-	push(newEvent)
-	{
-		if (this.queue.length == 0)
-		{
+	push(newEvent) {
+		if (this.queue.length == 0) {
 			this.queue.push(newEvent);
 		}
-		else
-		{
-			for (var i = 0; i < this.queue.length; i++)
-			{
+		else {
+			var newEventAdded = false;
+			for (var i = 0; i < this.queue.length; i++) {
 				/**
 				 * If the new event is set to be fired sooner than the event at this index, 
 				 * then push the current event at this index further into the queue and insert 
 				 * the new event at this position.
 				 */
-				if (newEvent.date.isLessOrEqualTo(this.queue[i].date))
-				{
+				if (newEvent.date.isLessOrEqualTo(this.queue[i].date)) {
 					this.queue.splice(i, 0, newEvent);
+					newEventAdded = true;
 					break;
 				}
+			}
+			
+			/**
+			 * Should the new event have the latest time, then we add it at the end of the queue.
+			 */
+			if (!newEventAdded) {
+				this.queue.push(newEvent);
 			}
 		}
 	}
@@ -63,8 +65,7 @@ class EventQueue
 	 *
 	 * @return true or false.
 	 */
-	hasEvents()
-	{
+	hasEvents() {
 		/**
 		 * Check that the queue is not empty.
 		 */
@@ -79,8 +80,7 @@ class EventQueue
 	 *
 	 * @return event.
 	 */
-	peek()
-	{
+	peek() {
 		return this.queue[0];
 	}
 
@@ -92,8 +92,7 @@ class EventQueue
 	 *
 	 * @return none.
 	 */
-	remove(index)
-	{
+	remove(index) {
 		this.queue.splice(index, 1);
 	}
 
@@ -105,8 +104,7 @@ class EventQueue
 	 *
 	 * @return none.
 	 */
-	reset()
-	{
+	reset() {
 		this.queue = [];
 	}
 }

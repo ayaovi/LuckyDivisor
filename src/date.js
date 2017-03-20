@@ -12,8 +12,7 @@
  */
 
 
-class ExtendedDate extends Date
-{
+class ExtendedDate extends Date {
 	/**
 	 * @description a constructor.
 	 *
@@ -21,8 +20,7 @@ class ExtendedDate extends Date
 	 * 
 	 * @return none.
 	 */
-	constructor(milliseconds)
-	{
+	constructor(milliseconds) {
 		super(milliseconds);
 	}
 	
@@ -35,8 +33,7 @@ class ExtendedDate extends Date
 	 *
 	 * @return a new ExtendedDate or null.
 	 */
-	minus(otherDate)
-	{
+	minus(otherDate) {
 		/**
 		 * Get the time difference of this date and the other date in milliseconds.
 		 */
@@ -51,8 +48,7 @@ class ExtendedDate extends Date
 	 *
 	 * @return a new ExtendedDate.
 	 */
-	plus(otherDate)
-	{
+	plus(otherDate) {
 		return new ExtendedDate(this.getTime() + otherDate.getTime());
 	}
 
@@ -64,8 +60,7 @@ class ExtendedDate extends Date
 	 *
 	 * @return true or false.
 	 */
-	isLessThan(otherDate)
-	{
+	isLessThan(otherDate) {
 		/**
 		 * We just compare their respective amount of seconds since the epoch time.
 		 */
@@ -80,8 +75,7 @@ class ExtendedDate extends Date
 	 *
 	 * @return true or false.
 	 */
-	equals(otherDate)
-	{
+	equals(otherDate) {
 		/**
 		 * We just compare the equality of the respective amount of seconds since the epoch time.
 		 */
@@ -96,8 +90,7 @@ class ExtendedDate extends Date
 	 *
 	 * @return true or false.
 	 */
-	isLessOrEqualTo(otherDate)
-	{
+	isLessOrEqualTo(otherDate) {
 		return (this.isLessThan(otherDate) || this.equals(otherDate));
 	}
 
@@ -109,8 +102,7 @@ class ExtendedDate extends Date
 	 *
 	 * @return a string minute:second.
 	 */
-	toString()
-	{
+	toString() {
 		return (padWithZero(this.getMinutes()) + ":" + padWithZero(this.getSeconds()));
 	}
 }

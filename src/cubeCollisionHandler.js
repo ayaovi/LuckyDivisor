@@ -9,8 +9,7 @@
  */
 
 
-class CubeCollisionHandler
-{
+class CubeCollisionHandler {
 	/**
 	 * @description constructor.
 	 *
@@ -18,8 +17,7 @@ class CubeCollisionHandler
 	 *
 	 * @return 
 	 */
-	constructor(cube)
-	{
+	constructor(cube) {
 		this.cube = cube;
 	}
 	
@@ -30,14 +28,11 @@ class CubeCollisionHandler
 	 *
 	 * @return none.
 	 */
-	handleCollisionWith(pnCube)
-	{
-		if (this.cube.id == 0)
-		{
+	handleCollisionWith(pnCube) {
+		if (this.cube.id == 0) {
 			this.handlePlayerCubeInCollisionWith(pnCube);
 		}
-		else
-		{
+		else {
 			this.handlePnCubeInCollisionWith(pnCube);
 		}
 	}
@@ -50,10 +45,8 @@ class CubeCollisionHandler
 	 *
 	 * @return none.
 	 */
-	handlePlayerCubeInCollisionWith(pnCube)
-	{
-		if (this.cube.yetToBeCollectedDivisors.includes(pnCube.number))
-		{
+	handlePlayerCubeInCollisionWith(pnCube) {
+		if (this.cube.yetToBeCollectedDivisors.includes(pnCube.number)) {
 			/**
 			 * Move pnCube.number to the lot of alreadyCollectedDivisors.
 			 */
@@ -79,17 +72,18 @@ class CubeCollisionHandler
 			 */
 			pnCube.visibility = false;
 		}
-		else if (this.cube.alreadyCollectedDivisors.includes(pnCube.number))
-		{
-			// Do nothing for now to the playerCube.
+		else if (this.cube.alreadyCollectedDivisors.includes(pnCube.number)) {
+			/**
+			 * Apply penalty for collecting an already collected cube.
+			 */
+			luckyDivisor.global.player.updateScore(-pnCube.number);
 			
 			/**
 			 * Make pnCube invisible.
 			 */
 			pnCube.visibility = false;
 		}
-		else
-		{
+		else {
 			/**
 			 * Burn the player for collecting a non-divisor cube
 			 */

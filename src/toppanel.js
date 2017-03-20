@@ -9,8 +9,7 @@
  * @version : v1
  */
 
-class TopPanel extends Panel
-{
+class TopPanel extends Panel {
 	/**
 	 * @description constructor.
 	 *
@@ -18,8 +17,7 @@ class TopPanel extends Panel
 	 *
 	 * @return none.
 	 */
-	constuctor()
-	{
+	constuctor() {
 		/**
 		 * I thought about calling super() here. In fact I did, but the browser was 
 		 * complaining. I think it might be because the panel constructor takes no 
@@ -39,8 +37,7 @@ class TopPanel extends Panel
 	 *
 	 * @return none.
 	 */
-	init()
-	{
+	init() {
 		this.position = createVector(0, 0);
 		this.width = luckyDivisor.config.WIDTH_OF_CANVAS;
 		this.height = luckyDivisor.config.HEIGHT_TOP_PANEL;
@@ -56,8 +53,7 @@ class TopPanel extends Panel
 	 *
 	 * @return none.
 	 */
-	reset()
-	{
+	reset() {
 		this.clock.reset();
 	}
 
@@ -69,8 +65,7 @@ class TopPanel extends Panel
 	 *
 	 * @return none.
 	 */
-	show()
-	{
+	show() {
 		fill(255);
 		rect(this.position.x, this.position.y, this.width - 1, this.height);
 		

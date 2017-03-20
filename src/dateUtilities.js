@@ -1,7 +1,7 @@
 /**
  * @file : dateUtilities.js
  *
- * @description : Config is simply an assembly of all global variables and functions.
+ * @description : The commonly used functions that are related to date.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -9,9 +9,7 @@
  */
 
 var luckyDivisor = luckyDivisor || {};
-
 luckyDivisor.util.date = {};
-
 
 /**
  * @description creates a new time for the current column being is different 
@@ -21,16 +19,13 @@ luckyDivisor.util.date = {};
  *
  * @return a new starting time.
  */
-luckyDivisor.util.date.getNewColumnStartingDate = function()
-{
+luckyDivisor.util.date.getNewColumnStartingDate = function() {
 	var newColumnStartingDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate().getTime() + random(luckyDivisor.global.cubeDelays) * 1000);
 	
 	/**
 	 * We want the new date generated to be at least 0.5 seconds into the future.
 	 */
-
-	while(luckyDivisor.global.previousColumnStartingDate != undefined && newColumnStartingDate.minus(previousColumnStartingDate).getTime() <= 500)
-	{
+	while(luckyDivisor.global.previousColumnStartingDate != undefined && newColumnStartingDate.minus(previousColumnStartingDate).getTime() <= 500) {
 		newColumnStartingDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate() + random(luckyDivisor.global.cubeDelays) * 1000);
 	}
 	
@@ -47,8 +42,7 @@ luckyDivisor.util.date.getNewColumnStartingDate = function()
  *
  * @return a new ExtendedDate.
  */
-luckyDivisor.util.date.getCurrentDate = function()
-{
+luckyDivisor.util.date.getCurrentDate = function() {
 	var currentDate = new Date();
 	return new ExtendedDate(currentDate.getTime());
 }
