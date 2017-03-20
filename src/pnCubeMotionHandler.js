@@ -63,7 +63,7 @@ class PnCubeMotionHandler
 				/**
 				 * The following refers to how much seconds it took this cube to go a 3rd of the way.
 				 */
-				var secondDifference = luckyDivisor.util.date.getCurrentDate().minus(this.cube.startDate).getTime() / 1000;
+				var secondDifference = (luckyDivisor.util.date.getCurrentDate().minus(this.cube.startDate).getTime() - luckyDivisor.global.pauseDuration) / 1000;
 				
 				/**
 				 * The next cube in the column of this cube will be set to fall sometimes now and the 

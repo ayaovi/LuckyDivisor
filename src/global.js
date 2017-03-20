@@ -55,6 +55,11 @@ luckyDivisor.global.eventQueue;
 luckyDivisor.global.pauseDate;
 
 /**
+ * Keeps track of how long a play has been paused.
+ */
+luckyDivisor.global.pauseDuration;
+
+/**
  * Presents a new game option to the player at the end of the current game.
  */
 luckyDivisor.global.newGameButton;

@@ -89,7 +89,8 @@ luckyDivisor.util.game.pauseOrPlay = function()
 		/**
 		 * Update the play duration of the clock.
 		 */
-		luckyDivisor.global.topPanel.clock.playDuration = luckyDivisor.global.topPanel.clock.playDuration.plus(new ExtendedDate(luckyDivisor.util.date.getCurrentDate().minus(luckyDivisor.global.pauseDate)));
+		luckyDivisor.global.pauseDuration = luckyDivisor.util.date.getCurrentDate().minus(luckyDivisor.global.pauseDate).getTime();
+		luckyDivisor.global.topPanel.clock.playDuration = luckyDivisor.global.topPanel.clock.playDuration.plus(new ExtendedDate(luckyDivisor.global.pauseDuration));
 		
 		/**
 		 * Bring back the draw() looping.
@@ -110,6 +111,11 @@ luckyDivisor.util.game.pauseOrPlay = function()
  */
 luckyDivisor.util.game.startNewPlay = function()
 {
+	/**
+	 * Pause duration to zero.
+	 */
+	luckyDivisor.global.pauseDuration = 0;
+
 	/**
 	 * Reset the new game button to invisible.
 	 */
@@ -233,6 +239,11 @@ luckyDivisor.util.game.endGame = function(endOfGameCode)
  */
 luckyDivisor.util.game.restart = function()
 {
+	/**
+	 * Pause duration to zero.
+	 */
+	luckyDivisor.global.pauseDuration = 0;
+	
 	// console.log("Called  Restart");
 	luckyDivisor.global.player.init();
 	
