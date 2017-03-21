@@ -20,8 +20,8 @@ class EventQueue {
 	constructor() {
 		this.queue = [];
 	}
-	
-	
+
+
 	/**
 	 * @description adds an event to this event queue add the appropriate position.
 	 *
@@ -30,11 +30,10 @@ class EventQueue {
 	 * @return none.
 	 */
 	push(newEvent) {
-		if (this.queue.length == 0) {
+		if (this.queue.length == 0 || this.queue[this.queue.length - 1].date.isLessOrEqualTo(newEvent.date)) {
 			this.queue.push(newEvent);
 		}
 		else {
-			var newEventAdded = false;
 			for (var i = 0; i < this.queue.length; i++) {
 				/**
 				 * If the new event is set to be fired sooner than the event at this index, 
@@ -43,21 +42,13 @@ class EventQueue {
 				 */
 				if (newEvent.date.isLessOrEqualTo(this.queue[i].date)) {
 					this.queue.splice(i, 0, newEvent);
-					newEventAdded = true;
 					break;
 				}
 			}
-			
-			/**
-			 * Should the new event have the latest time, then we add it at the end of the queue.
-			 */
-			if (!newEventAdded) {
-				this.queue.push(newEvent);
-			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * @description check whether this queue has events.
 	 *
@@ -71,17 +62,18 @@ class EventQueue {
 		 */
 		return (this.queue.length > 0);
 	}
-	
+
 
 	/**
-	 * @description returns the first element in the queue.
+	 * @description returns the first element in the queue. 
+	 * Should the queue be queue be empty it returns null.
 	 *
 	 * @param none.
 	 *
 	 * @return event.
 	 */
 	peek() {
-		return this.queue[0];
+		return (this.hasEvents()) ? this.queue[0] : null;
 	}
 
 
@@ -96,7 +88,7 @@ class EventQueue {
 		this.queue.splice(index, 1);
 	}
 
-	
+
 	/**
 	 * @description resets the internal queue to an empty string.
 	 *

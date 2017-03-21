@@ -16,7 +16,9 @@ class SidePanel extends Panel {
 	 *
 	 * @return none.
 	 */
-	constuctor() {
+	constructor() {
+		super(createVector(luckyDivisor.config.WIDTH_OF_CANVAS, 0), luckyDivisor.config.WIDTH_OF_SIDE_PANEL, luckyDivisor.config.HEIGHT_OF_SIDE_PANEL);
+
 		/**
 		 * A collection of player life stars.
 		 */
@@ -51,9 +53,8 @@ class SidePanel extends Panel {
 	 * @return none.
 	 */
 	init() {
-		this.position = createVector(luckyDivisor.config.WIDTH_OF_CANVAS, 0);
-		this.width = luckyDivisor.config.WIDTH_OF_SIDE_PANEL;
-		this.height = luckyDivisor.config.HEIGHT_OF_SIDE_PANEL;
+		this.pnCubesYetToBeCollected = [];
+		this.numberOfPnCubesYetToBeCollected = {};
 	}
 
 
@@ -65,9 +66,9 @@ class SidePanel extends Panel {
 	 * @return none.
 	 */
 	reset() {
-		this.pnCubesYetToBeCollected = [];
 		
-		this.numberOfPnCubesYetToBeCollected = {};
+		this.init();
+
 		this.numberOfPnCubesYetToBeCollected[1] = 0;
 		this.numberOfPnCubesYetToBeCollected[2] = 0;
 		this.numberOfPnCubesYetToBeCollected[3] = 0;

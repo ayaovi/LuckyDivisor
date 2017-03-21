@@ -38,7 +38,6 @@ class Cube {
 		 */
 		this.position = position;
 
-
 		/**
 		 * The speed tells us how has this Cube is falling. One assumption made at the 
 		 * design stage is that bigger Pn cubes are made of denser material and thus 

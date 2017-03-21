@@ -18,20 +18,20 @@ class Panel {
 	 *
 	 * @return none.
 	 */
-	constructor() {
+	constructor(position, width, height) {
 		/**
 		 * The position of this panel as a vector with coordinates (x, y).
 		 */
-		this.position;
+		this.position = position;
 		
 		/**
 		 * The panel is is represented as a rectangle with width and height.
 		 */
-		this.width;
+		this.width = width;
 		
 		/**
 		 * Height of the panel.
 		 */
-		this.height;
+		this.height = height;
 	}
 }

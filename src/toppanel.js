@@ -17,12 +17,8 @@ class TopPanel extends Panel {
 	 *
 	 * @return none.
 	 */
-	constuctor() {
-		/**
-		 * I thought about calling super() here. In fact I did, but the browser was 
-		 * complaining. I think it might be because the panel constructor takes no 
-		 * argument. As such I took it out, and it is still working properly.
-		 */
+	constructor() {
+		super(createVector(0, 0), luckyDivisor.config.WIDTH_OF_CANVAS, luckyDivisor.config.HEIGHT_TOP_PANEL);
 		
 		/**
 		 * The clock to appear on the panel.
@@ -38,9 +34,6 @@ class TopPanel extends Panel {
 	 * @return none.
 	 */
 	init() {
-		this.position = createVector(0, 0);
-		this.width = luckyDivisor.config.WIDTH_OF_CANVAS;
-		this.height = luckyDivisor.config.HEIGHT_TOP_PANEL;
 		this.clock = new Clock();
 		this.clock.init();
 	}
@@ -82,8 +75,7 @@ class TopPanel extends Panel {
 		/**
 		 * And finally player life stars.
 		 */
-		for (var i = 0; i < luckyDivisor.global.player.playerLifeStars.length; i++) 
-		{
+		for (var i = 0; i < luckyDivisor.global.player.playerLifeStars.length; i++) {
 			luckyDivisor.global.player.playerLifeStars[i].show();
 		}
 	}
