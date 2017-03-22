@@ -68,3 +68,7 @@ var min = function (number1, number2) {
 var max = function (number1, number2) {
 	return Math.max(number1, number2);
 }
+
+var constrain = function(number, lowerBound, upperBound) {
+	return (number < lowerBound) ? lowerBound : (number > upperBound) ? upperBound : number;
+}

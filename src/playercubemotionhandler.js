@@ -38,10 +38,6 @@ class PlayerCubeMotionHandler {
 		if (keyIsDown(luckyDivisor.config.playerControls[1])) {
 			this.moveRight();
 		}
-		/**
-		 * Make sure to constrain the cube's position to the canvas.
-		 */
-		this.constrainPosition();
 	}
 	
 	
@@ -57,6 +53,11 @@ class PlayerCubeMotionHandler {
 		 * Move player's cube one unit to the left.
 		 */
 		this.cube.position.x -= this.cube.speed;
+		
+		/**
+		 * Make sure to constrain the cube's position to the canvas.
+		 */
+		this.constrainPosition();
 	}
 	
 	
@@ -72,6 +73,11 @@ class PlayerCubeMotionHandler {
 		 * Move player's cube one unit to the right.
 		 */
 		this.cube.position.x += this.cube.speed;
+		
+		/**
+		 * Make sure to constrain the cube's position to the canvas.
+		 */
+		this.constrainPosition();
 	}
 	
 	
