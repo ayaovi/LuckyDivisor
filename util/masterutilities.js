@@ -9,46 +9,7 @@
  */
 
 var luckyDivisor = luckyDivisor || {};
-
 luckyDivisor.util = {};
-
-
-/** 
- * @description randomly generate a player cube number.
- * The number must be in the range 1-99 inclusive.
- * None of the number's prime factors must be bigger than 10.
- *
- * @param none.
- *
- * @return a non-zero positive integer between 2-99.
- */
-function generatePlayerCubeNumber()
-{
-	/**
-	 * Remember the player number is a number between 2-99.
-	 */
-	var number = floor(random(2, 100));
-
-	/**
-	 * All of the prime divisors of this number.
-	 */
-	var divisors = getPrimeFactors(number);
-	
-	while (true)
-	{
-		if (!containsElementGreaterThan(divisors, 10))
-		{
-			break;
-		}
-		else
-		{
-			number = floor(random(2, 100));
-			divisors = getPrimeFactors(number);
-		}
-	}
-	return number;
-}
-
 
 
 /**
@@ -58,54 +19,14 @@ function generatePlayerCubeNumber()
  *
  * @return true or false.
  */
-function containsElementGreaterThan(array, threshold)
-{
-	for (var i = 0; i < array.length; i++)
-	{
-		if (array[i] > threshold)
-		{
+luckyDivisor.util.containsElementGreaterThan = function(array, threshold) {
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] > threshold) {
 			return true;
 		}
 	}
 	return false;
 }
-
-
-
-/**
- * @description A function to check whether a number is prime.
- *
- * @param an integer.
- *
- * @return true or false.
- */
-function isPrime(number)
-{
-	if (number <= 0)
-	{
-		return false;
-	}
-	else if (number == 1 || number == 2)
-	{
-		return true;
-	}
-	else
-	{
-		var endOfRange = floor(sqrt(number));
-		var i = 2;
-		
-		while (i <= endOfRange)
-		{
-			if (number % i == 0)
-			{
-				return false;
-			}
-			i++;
-		}
-		return true;
-	}
-}
-
 
 
 /**
@@ -117,20 +38,17 @@ function isPrime(number)
  *
  * @return none.
  */
-function keyPressed()
-{
+function keyPressed() {
 	/**
 	 * Check whether the key pressed is SPACE_BAR
 	 */
-	if (keyCode == luckyDivisor.config.gameControls[0])
-	{
+	if (keyCode == luckyDivisor.config.gameControls[0]) {
 		/**
 		 * If so, pause or play the game.
 		 */
 		luckyDivisor.util.game.pauseOrPlay();
 	}
-} 
-
+}
 
 
 /**
@@ -140,32 +58,14 @@ function keyPressed()
  *
  * @return none.
  */
-function removeFromArray(array, target)
-{
-	for (var i = array.length - 1; i >= 0; i--) 
-	{
-		if (array[i] == target)
-		{
+luckyDivisor.util.removeFromArray = function(array, target) {
+	for (var i = array.length - 1; i >= 0; i--) {
+		if (array[i] == target) {
 			array.splice(i, 1);
 			break;
 		}
 	}
 }
-
-
-/**
- * @description returns the current system minute and second.
- *
- * @param none. 
- *
- * @return a new time.
- */
-function getCurrentTime()
-{
-	return new Time(hour(), minute(), second());
-}
-
-
 
 
 /**
@@ -176,40 +76,9 @@ function getCurrentTime()
  * @return the number preceded with 0, should it be less than 10 or 
  * just the number itself otherwise.
  */
-function padWithZero(number)
-{
+luckyDivisor.util.padWithZero = function(number) {
 	return ((number < 10) ? "0" + number : number);
 }
-
-/**
- * @description A function that calculate all the prime factors of a number.
- *
- * @param a positive non-zero integer.
- *
- * @return an array of prime factors of the supplied number.
- */
-function getPrimeFactors(number)
-{
-	var factors = [];
-	factors.push(1);
-	
-	for (var i = 2; i <= number / i; i++)
-	{
-		while (number % i == 0)
-		{
-			factors.push(i);
-			number /= i;
-		}
-	}
-	
-	if (number > 1)
-	{
-		factors.push(number);
-	}
-
-	return factors;
-}
-
 
 
 /**
@@ -219,7 +88,6 @@ function getPrimeFactors(number)
  *
  * @return none.
  */
-function mouseClicked()
-{
+function mouseClicked() {
 	luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
 }
