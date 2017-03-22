@@ -44,7 +44,7 @@ class Cube {
 		 * fall faster than the smaller one (e.g. a Cube with Pn 5 will always fall 
 		 * faster than one with Pn 2). 
 		 */
-		this.speed = luckyDivisor.config.DEFAULT_PN_CUBE_SPEED + (luckyDivisor.config.PN_CUBE_SPEED_VARIANT_MULTIPLIER * number);
+		this.speed;
 		
 		/**
 		 * A colour is the colour in which the cube appears when displayed on the canvas 

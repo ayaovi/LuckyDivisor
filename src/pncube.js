@@ -28,6 +28,8 @@ class PnCube extends Cube {
 		 */
 		this.colour = luckyDivisor.config.CUBE_COLOUR_MAP[this.number];
 		
+		this.speed = luckyDivisor.config.DEFAULT_PN_CUBE_SPEED + (luckyDivisor.config.PN_CUBE_SPEED_VARIANT_MULTIPLIER * this.number);
+		
 		/**
 		 * The following is a variable that advises on the visibility of this Cube. This 
 		 * is mostly useful when displaying the Cube on the canvas. As such a non 

@@ -27,13 +27,15 @@
 		 * The following is only needed for player cubes. It is a collection all the 
 		 * prime divisors of player cube's number.
 		 */
-		this.divisors = getPrimeFactors(this.number);
+		this.divisors = luckyDivisor.util.math.getPrimeFactors(this.number);
 		
 		/**
 		 * The player cube's colour is a combination in equal proportion of all its prime 
 		 * divisors colours.
 		 */
 		this.colour = luckyDivisor.util.cube.combineColours(this.divisors);
+		
+		this.speed = luckyDivisor.config.DEFAULT_PLAYER_CUBE_SPEED;
 		
 		/**
 		 * The following is a collection of numbers of pn Cube that have been collect are 
@@ -45,12 +47,12 @@
 		 * The following is a collection of numbers of pn Cube that are divisors of the 
 		 * player's cube number but have not yet been collected.
 		 */
-		this.yetToBeCollectedDivisors = getPrimeFactors(this.number);
+		this.yetToBeCollectedDivisors = luckyDivisor.util.math.getPrimeFactors(this.number);
 		
 		/**
 		 * Handles the player cube motion.
 		 */
-		this.motionHandler = new PlayerCubeMotionHandler(this.position);
+		this.motionHandler = new PlayerCubeMotionHandler(this);
 		
 		/**
 		 * Handles the player cube contact with other pn cubes.
@@ -100,7 +102,7 @@
 		/**
 		 * Then remove this divisor from the list of divisor yet to be collected.
 		 */
-		removeFromArray(this.yetToBeCollectedDivisors, divisor);
+		luckyDivisor.util.removeFromArray(this.yetToBeCollectedDivisors, divisor);
 	}
 	
 	

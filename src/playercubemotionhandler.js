@@ -16,11 +16,11 @@ class PlayerCubeMotionHandler {
 	 *
 	 * @return 
 	 */
-	constructor(position) {
+	constructor(playerCube) {
 		/**
 		 * This position is a reference to the object under motion.
 		 */
-		this.position = position;
+		this.cube = playerCube;
 	}
 	
 	
@@ -38,7 +38,9 @@ class PlayerCubeMotionHandler {
 		if (keyIsDown(luckyDivisor.config.playerControls[1])) {
 			this.moveRight();
 		}
-		
+		/**
+		 * Make sure to constrain the cube's position to the canvas.
+		 */
 		this.constrainPosition();
 	}
 	
@@ -54,7 +56,7 @@ class PlayerCubeMotionHandler {
 		/**
 		 * Move player's cube one unit to the left.
 		 */
-		this.position.x -= luckyDivisor.config.DEFAULT_PLAYER_CUBE_SPEED;
+		this.cube.position.x -= this.cube.speed;
 	}
 	
 	
@@ -69,7 +71,7 @@ class PlayerCubeMotionHandler {
 		/**
 		 * Move player's cube one unit to the right.
 		 */
-		this.position.x += luckyDivisor.config.DEFAULT_PLAYER_CUBE_SPEED;
+		this.cube.position.x += this.cube.speed;
 	}
 	
 	
@@ -84,6 +86,6 @@ class PlayerCubeMotionHandler {
 		/**
 		 * Ensure the Player's Cube does not slide off the canvas.
 		 */
-		this.position.x = constrain(this.position.x, 1, luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1);
+		this.cube.position.x = constrain(this.cube.position.x, 1, luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1);
 	}
 }

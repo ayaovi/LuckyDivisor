@@ -53,7 +53,7 @@ luckyDivisor.util.math.generatePlayerCubeNumber = function() {
 	var divisors = luckyDivisor.util.math.getPrimeFactors(number);
 	
 	while (true) {
-		if (!containsElementGreaterThan(divisors, 10)) {
+		if (!luckyDivisor.util.containsElementGreaterThan(divisors, 10)) {
 			break;
 		}
 		else {

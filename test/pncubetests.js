@@ -18,10 +18,10 @@ QUnit.test("pn cube basics", function( assert ) {
 
 	/**
 	 * Let's create a PnCube with:
-	 * pnCube.number be 5.
-	 * pnCube.id be 3.
-	 * pnCube.position be (0, 0).
-	 * pnCube.columnIndex be 2.
+	 * pnCube.number = 5;
+	 * pnCube.id = 3;
+	 * pnCube.position = (0, 0);
+	 * pnCube.columnIndex = 2;
 	 */
 	var pnCube = new PnCube(5, 3, createVector(0, 0), 2);
 	

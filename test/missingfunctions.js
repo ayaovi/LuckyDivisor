@@ -26,7 +26,7 @@ var createVector = function(xValue, yValue) {
 }
 
 var color = function(r, g, b) {
-	return rgb(r, g, b);
+	return [r, g, b];
 }
 
 var random = function(upper) {
@@ -43,4 +43,28 @@ var pop = function() {
 	/**
 	 * Empty for now. Do not think I would really need it for testing purposes.
 	 */
+}
+
+var red = function(rgb) {
+	return 0;
+}
+
+var green = function(rgb) {
+	return 0;
+}
+
+var blue = function(rgb) {
+	return 0;
+}
+
+var pow = function(number) {
+	return Math.pow(number);
+}
+
+var min = function (number1, number2) {
+	return Math.min(number1, number2);
+}
+
+var max = function (number1, number2) {
+	return Math.max(number1, number2);
 }

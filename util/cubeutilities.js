@@ -9,7 +9,6 @@
  */
 
 var luckyDivisor = luckyDivisor || {};
-
 luckyDivisor.util.cube = {};
 
 

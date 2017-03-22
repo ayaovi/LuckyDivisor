@@ -140,7 +140,7 @@ luckyDivisor.util.game.startNewPlay = function() {
 	/**
 	 * Create a new player cube.
 	 */
-	var playerCubeNumber = generatePlayerCubeNumber();
+	var playerCubeNumber = luckyDivisor.util.math.generatePlayerCubeNumber();
 	luckyDivisor.global.playerCube = new PlayerCube(playerCubeNumber, 0, createVector((luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE) / 2, luckyDivisor.config.HEIGHT_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1));
 	
 	/**
