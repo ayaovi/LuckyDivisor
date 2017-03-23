@@ -126,4 +126,4 @@
 			this.colour = luckyDivisor.util.cube.combineColours(this.yetToBeCollectedDivisors);
 		}
 	}
- }
+}
