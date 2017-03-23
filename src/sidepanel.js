@@ -66,7 +66,6 @@ class SidePanel extends Panel {
 	 * @return none.
 	 */
 	reset() {
-		
 		this.init();
 
 		this.numberOfPnCubesYetToBeCollected[1] = 0;

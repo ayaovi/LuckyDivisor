@@ -1,7 +1,7 @@
 /**
  * @file : playercubetests.js
  *
- * @description : some tests on the Event object.
+ * @description : some tests on the PlayerCube object.
  *
  * @author : Ayaovi Espoir Djissenou
  *

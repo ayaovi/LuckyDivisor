@@ -74,14 +74,14 @@ class Player {
 		/**
 		 * create the player life stars objects.
 		 */
-		for (var i = 0; i < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++)
-		{
+		for (var i = 0; i < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS; i++) {
 			/**
 			 * Add a new life star.
 			 */
 			this.addNewLifeStar();
 		}
 	}
+	
 	
 	/**
 	 * @desciption adds a new life stars to the life stars collection.
@@ -126,8 +126,7 @@ class Player {
 		/**
 		 * Check whether player has collected all required divisors.
 		 */
-		if (luckyDivisor.global.player.hasCollectedAll())
-		{
+		if (luckyDivisor.global.player.hasCollectedAll()) {
 			/**
 			 * Then this mark the end of play.
 			 */
@@ -206,6 +205,7 @@ class Player {
 			luckyDivisor.util.game.endGame(0);
 		}
 	}
+	
 	
 	/**
 	 * @description a function that takes off a player life star 
