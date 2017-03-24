@@ -16,7 +16,7 @@
 
 	<!-- Styling files -->
 	<link rel="stylesheet" href="../lib/qunit-2.2.1.css">
-	
+
 	<!-- Libraries -->
 	<script src="../lib/qunit-2.2.1.js"></script>
 	<!-- <script src="../lib/p5.js"></script> -->
@@ -30,6 +30,7 @@
 	<script src="../config/columnconfig.js"></script>
 	<script src="../config/cubeconfig.js"></script>
 	<script src="../config/toppanelconfig.js"></script>
+	<script src="../config/starconfig.js"></script>
 
 	<!-- Utility files -->
 	<script src="../util/masterutilities.js"></script>
@@ -41,20 +42,23 @@
 	<script src="../src/score.js"></script>
 	<script src="scoretests.js"></script>
 
+	<!-- Date Tests -->
 	<script src="../src/date.js"></script>
 	<script src="datetests.js"></script>
 
+	<!-- Clock Tests -->
 	<script src="../src/clock.js"></script>
 	<script src="clocktests.js"></script>
 
+	<!-- Panel Tests -->
 	<script src="../src/panel.js"></script>
 	<script src="paneltests.js"></script>
 
-	<!-- 
+	<!--
 		QUnit is having issues with my definition of the TopPanel class
 		I think it may be the inheritance from Panel. As such I commented this
 		test out. Will look into it later.
-		I have looked into it. And the issue has nothing to do with my inheritance 
+		I have looked into it. And the issue has nothing to do with my inheritance
 		of Panel, but instead my misspelling constructor (I wrote constuctor instead).
 	-->
 	<script src="../src/toppanel.js"></script>
@@ -76,11 +80,11 @@
 	<!-- Star Tests -->
 	<script src="../src/star.js"></script>
 	<script src="startests.js"></script>
-	
+
 	<!-- Player Tests -->
 	<script src="../src/player.js"></script>
 	<script src="playertests.js"></script>
-	
+
 	<!-- Player Cube Tests -->
 	<script src="../src/playercube.js"></script>
 	<script src="../src/playercubemotionhandler.js"></script>
@@ -97,7 +101,11 @@
 
 	<!-- Start new event Tests -->
 	<script src="../src/startnewcubeevent.js"></script>
-	<script src="startnewcubeeventtests.js"></script>	
+	<script src="startnewcubeeventtests.js"></script>
+
+	<!-- Column Tests -->
+	<script src="../src/column.js"></script>
+	<script src="columntests.js"></script>
 </head>
 <body>
 

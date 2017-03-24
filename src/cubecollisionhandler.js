@@ -13,14 +13,14 @@ class CubeCollisionHandler {
 	/**
 	 * @description constructor.
 	 *
-	 * @param 
+	 * @param
 	 *
-	 * @return 
+	 * @return
 	 */
 	constructor(cube) {
 		this.cube = cube;
 	}
-	
+
 	/**
 	 * @description a handler collision between two cubes..
 	 *
@@ -36,8 +36,8 @@ class CubeCollisionHandler {
 			this.handlePnCubeInCollisionWith(pnCube);
 		}
 	}
-	
-	
+
+
 	/**
 	 * @description a handler collision between a player cube and a pn cube.
 	 *
@@ -51,22 +51,22 @@ class CubeCollisionHandler {
 			 * Move pnCube.number to the lot of alreadyCollectedDivisors.
 			 */
 			this.cube.registerDivisorCollection(pnCube.number);
-			
+
 			/**
 			 * Change the colour of playerCube.
 			 */
 			this.cube.changeColour();
-			
+
 			/**
 			 * Update side panel.
 			 */
-			luckyDivisor.global.sidePanel.update(pnCube.number);
-			
+			luckyDivisor.util.updateSidePanel(pnCube.number);
+
 			/**
 			 * Update Player score.
 			 */
-			luckyDivisor.global.player.updateScore(pnCube.number);
-			
+			luckyDivisor.util.updatePlayerScore(pnCube.number);
+
 			/**
 			 * Make pnCube invisible.
 			 */
@@ -76,8 +76,8 @@ class CubeCollisionHandler {
 			/**
 			 * Apply penalty for collecting an already collected cube.
 			 */
-			luckyDivisor.global.player.updateScore(-pnCube.number);
-			
+			luckyDivisor.util.updatePlayerScore(-pnCube.number);
+
 			/**
 			 * Make pnCube invisible.
 			 */
@@ -87,8 +87,8 @@ class CubeCollisionHandler {
 			/**
 			 * Burn the player for collecting a non-divisor cube
 			 */
-			luckyDivisor.global.player.burn();
-			
+			luckyDivisor.util.burnPlayer();
+
 			/**
 			 * Make pnCube invisible.
 			 */

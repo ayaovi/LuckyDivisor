@@ -1,7 +1,7 @@
 /**
  * @file : toppanel.js
  *
- * @description : A panel is more of a container to hold the player's 
+ * @description : A panel is more of a container to hold the player's
  * life stars, a clock and the player's score.
  *
  * @author : Ayaovi Espoir Djissenou
@@ -19,7 +19,7 @@ class TopPanel extends Panel {
 	 */
 	constructor() {
 		super(createVector(0, 0), luckyDivisor.config.WIDTH_OF_CANVAS, luckyDivisor.config.HEIGHT_TOP_PANEL);
-		
+
 		/**
 		 * The clock to appear on the panel.
 		 */
@@ -61,22 +61,20 @@ class TopPanel extends Panel {
 	show() {
 		fill(255);
 		rect(this.position.x, this.position.y, this.width - 1, this.height);
-		
+
 		/**
-		 * Display clock. 
+		 * Display clock.
 		 */
 		this.clock.show();
-		
+
 		/**
 		 * Followed by player score.
 		 */
-		luckyDivisor.global.player.score.show();
-		
+		luckyDivisor.util.showPlayerScore();
+
 		/**
 		 * And finally player life stars.
 		 */
-		for (var i = 0; i < luckyDivisor.global.player.playerLifeStars.length; i++) {
-			luckyDivisor.global.player.playerLifeStars[i].show();
-		}
+		luckyDivisor.util.showPlayerLifeStars();
 	}
 }

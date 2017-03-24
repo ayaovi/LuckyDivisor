@@ -9,7 +9,7 @@
  * @version : v1
  */
 
- 
+
 class Player {
 	/**
 	 * @desciption a constructor
@@ -20,44 +20,44 @@ class Player {
 	 */
 	constructor() {
 		/**
-		 * The name of the player. Ultimately a record of the players would be 
+		 * The name of the player. Ultimately a record of the players would be
 		 * kept. That way a player be simply be required to login (if necessary).
 		 */
 		this.name = "PLAYER";
-		
+
 		/**
 		 * The score of the player so far.
 		 */
 		this.score;
-		
+
 		/**
 		 * A collection of player life stars.
 		 */
 		this.playerLifeStars;
-		
+
 		/**
 		 * Keeps track of the x-coordinate of the next player star.
 		 */
 		this.nextPlayerStarPositionX;
-		
+
 		/**
-		 * A lock on the access of player life stars. This lock prevents the 
+		 * A lock on the access of player life stars. This lock prevents the
 		 * removal of more than one life stars when a player is burnt.
 		 */
 		this.playerLifeStarsLocked;
-		
+
 		/**
 		 * The player's best score so far.
 		 */
 		this.bestScore = 0;
-		
+
 		/**
 		 * The player's credit point so far.
 		 */
 		this.creditPoints = 0;
 	}
-	
-	
+
+
 	/**
 	 * @description an initialiser of the player.
 	 *
@@ -81,8 +81,8 @@ class Player {
 			this.addNewLifeStar();
 		}
 	}
-	
-	
+
+
 	/**
 	 * @desciption adds a new life stars to the life stars collection.
 	 *
@@ -108,8 +108,8 @@ class Player {
 			this.nextPlayerStarPositionX += luckyDivisor.config.SIZE_OF_A_PLAYER_STAR;
 		}
 	}
-	
-	
+
+
 	/**
 	 * @desciption A function to update the player score.
 	 *
@@ -122,19 +122,19 @@ class Player {
 		 * Update the player score.
 		 */
 		this.score.update(hit);
-		
+
 		/**
 		 * Check whether player has collected all required divisors.
 		 */
-		if (luckyDivisor.global.player.hasCollectedAll()) {
+		if (this.hasCollectedAll()) {
 			/**
 			 * Then this mark the end of play.
 			 */
 			luckyDivisor.util.game.endCurrentPlay();
 		}
 	}
-	
-	
+
+
 	/**
 	 * @description gives a one life stars reward to the player if he does not
 	 * already possess the maximum amount.
@@ -151,8 +151,8 @@ class Player {
 			this.addNewLifeStar();
 		}
 	}
-	
-	
+
+
 	/**
 	 * @description A function that checks whether the player has collected all necessary cubes.
 	 *
@@ -161,10 +161,10 @@ class Player {
 	 * @return none.
 	 */
 	hasCollectedAll() {
-		return luckyDivisor.global.playerCube.hasCollectedAll();
+		return (luckyDivisor.global.playerCube != undefined) ? luckyDivisor.global.playerCube.hasCollectedAll() : false;
 	}
-	
-	
+
+
 	/**
 	 * @description A function that takes action when the player collects a cube that he is.
 	 *
@@ -177,19 +177,19 @@ class Player {
 		 * Unlock the player life stars in the top panel. This allow for a life stars to be taken off.
 		 */
 		this.playerLifeStarsLocked = false;
-		
+
 		/**
 		 * Only thereafter can we take off a player life star.
 		 */
 		this.takeOffAPlayerLifeStar();
-		
+
 		/**
 		 * Check if player has no more life stars.
 		 */
 		this.checkIfGameOver();
 	}
-	
-	
+
+
 	/**
 	 * @desciption check whether the player is Game Over by running out of life stars.
 	 *
@@ -205,10 +205,10 @@ class Player {
 			luckyDivisor.util.game.endGame(0);
 		}
 	}
-	
-	
+
+
 	/**
-	 * @description a function that takes off a player life star 
+	 * @description a function that takes off a player life star
 	 * in response to him or her collecting a Pn cube they are not supposed to.
 	 *
 	 * @param none.

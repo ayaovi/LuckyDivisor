@@ -17,36 +17,36 @@ QUnit.test("player cube basics", function( assert ) {
 	 * playerCube.position = (20, 770);
 	 */
 	var playerCube = new PlayerCube(10, 0, createVector(20, 770));
-	
+
 	assert.equal(playerCube.number, 10, "playerCube.number equals 10 succeeds");
 	assert.equal(playerCube.position.x, 20, "playerCube.position.x equals 20 succeeds");
 	assert.equal(playerCube.position.y, 770, "pnCube.position.y equals 770 succeeds");
-	
+
 	/**
 	 * Now let's try moving left.
 	 */
 	playerCube.motionHandler.moveLeft();
-	
+
 	/**
 	 * After moving left, the x-coordinate of the cube's position should have decreased by luckyDivisor.config.DEFAULT_PLAYER_CUBE_SPEED.
 	 */
 	assert.equal(playerCube.position.x, 20 - playerCube.speed, "playerCube.position.x equals 20 succeeds");
-	
+
 	/**
 	 * And the y-coordinate should not change as we are only moving side ways.
 	 */
 	assert.equal(playerCube.position.y, 770, "pnCube.position.y equals 770 succeeds");
-	
+
 	/**
 	 * Now let's try moving the cube 5x to the left.
 	 * Mathematically playerCube.position.x = 15 - (5 * 5) = -10.
-	 * But this would put us off the canvas. As such playerCube.position.x should be automatically 
+	 * But this would put us off the canvas. As such playerCube.position.x should be automatically
 	 * constrained back to 1.
 	 */
 	for (var i = 0; i < 5; i++) {
 		playerCube.motionHandler.moveLeft();
 	}
-	
+
 	/**
 	 * Let's confirm that playerCube.position.x is indeed 1.
 	 */
@@ -66,7 +66,7 @@ QUnit.test("player cube basics", function( assert ) {
 	/**
 	 * Now let's try moving the cube 100x to the right.
 	 * Mathematically playerCube.position.x = 6 + (5 * 100) = 600.
-	 * But this would put us off the canvas. As such playerCube.position.x should be automatically 
+	 * But this would put us off the canvas. As such playerCube.position.x should be automatically
 	 * constrained back to (luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1).
 	 */
 	for (var i = 0; i < 100; i++) {
@@ -106,7 +106,7 @@ QUnit.test("player cube basics", function( assert ) {
 	playerCube.collisionHandler.handleCollisionWith(pnCube2);
 
 	/**
-	 * Should pnCube2 collection be successful, we expect playerCube.alreadyCollectedDivisors 
+	 * Should pnCube2 collection be successful, we expect playerCube.alreadyCollectedDivisors
 	 * to increase in length and playerCube.yetToBeCollectedDivisors to decrease in length.
 	 */
 
@@ -123,6 +123,45 @@ QUnit.test("player cube basics", function( assert ) {
 	/**
 	 * TODO: Go test sidePanel and Player first. Then come back here.
 	 */
-	// var pnCube5 = new PnCube(5, 5, createVector(325, 770), 8);
-	// var pnCube1 = new PnCube(1, 13, createVector(5, 770), 0);
+	var pnCube5 = new PnCube(5, 5, createVector(325, 770), 8);
+
+	playerCube.collisionHandler.handleCollisionWith(pnCube5);
+
+	/**
+	 * Test that playerCube.alreadyCollectedDivisors is now of length 2.
+	 */
+	assert.equal(playerCube.alreadyCollectedDivisors.length, 2, "once pnCube5 collected playerCube.alreadyCollectedDivisors.length equal 2 succeeds");
+
+	/**
+	 * Test that playerCube.yetToBeCollectedDivisors is now of length 1.
+	 */
+	assert.equal(playerCube.yetToBeCollectedDivisors.length, 1, "Given that pnCube5 has been collected playerCube.yetToBeCollectedDivisors.length equal 1 succeeds");
+
+	var pnCube1 = new PnCube(1, 13, createVector(5, 770), 0);
+
+	playerCube.collisionHandler.handleCollisionWith(pnCube1);
+
+	/**
+	 * Test that playerCube.alreadyCollectedDivisors is now of length 3.
+	 */
+	assert.equal(playerCube.alreadyCollectedDivisors.length, 3, "once pnCube5 collected playerCube.alreadyCollectedDivisors.length equal 3 succeeds");
+
+	/**
+	 * Test that playerCube.yetToBeCollectedDivisors is now of length 0.
+	 */
+	assert.equal(playerCube.yetToBeCollectedDivisors.length, 0, "Given that pnCube1 has been collected playerCube.yetToBeCollectedDivisors.length equal 0 succeeds");
+
+	var anotherPnCube1 = new PnCube(1, 25, createVector(20, 770), 4);
+
+	playerCube.collisionHandler.handleCollisionWith(anotherPnCube1);
+
+	/**
+	 * Test that playerCube.alreadyCollectedDivisors is still of length 3.
+	 */
+	assert.equal(playerCube.alreadyCollectedDivisors.length, 3, "once pnCube5 collected playerCube.alreadyCollectedDivisors.length equal 3 succeeds");
+
+	/**
+	 * Test that playerCube.yetToBeCollectedDivisors is still of length 0.
+	 */
+	assert.equal(playerCube.yetToBeCollectedDivisors.length, 0, "Given that pnCube1 has been collected playerCube.yetToBeCollectedDivisors.length equal 0 succeeds");
 });
