@@ -25,6 +25,8 @@ A pn cube is a cube with special properties and features. The number on a pn cub
 ### Player Cube
 A player cube is a cube with special properties and features. The number on a player cube is not restricted to be just a prime. In fact it could be anything between 2-99 provided it has prime factors that are less than 10. A Player Cube is always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
 
+[Go Back Top](#table-of-contents)
+
 ## Rules of the Game
 The game has but one rule. Collect as many pn cubes as possible until you either run out of life stars or get caught by the time.
 
