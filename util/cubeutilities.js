@@ -70,7 +70,7 @@ luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function() {
  */
 luckyDivisor.util.cube.getNewPnCube = function(columnPositionX, columnIndex) {
 	var primeNumber = luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence();
-	return new PnCube(primeNumber, ++luckyDivisor.global.ID, createVector(columnPositionX + luckyDivisor.config.DEFAULT_COLUMN_PADDING, 0), columnIndex);
+	return new PnCube(primeNumber, luckyDivisor.util.newID(), createVector(columnPositionX + luckyDivisor.config.DEFAULT_COLUMN_PADDING, 0), columnIndex);
 }
 
 

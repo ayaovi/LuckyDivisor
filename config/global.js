@@ -14,6 +14,11 @@ var luckyDivisor = luckyDivisor || {};
 luckyDivisor.global = {};
 
 /**
+ * A JSON object that contains the player data.
+ */
+luckyDivisor.global.playerData;
+
+/**
  * A reference to the top panel.
  */
 luckyDivisor.global.topPanel;
@@ -90,3 +95,13 @@ luckyDivisor.global.playerCube;
  * takes on its current value.
  */
 luckyDivisor.global.ID;
+
+/**
+ * A p5.image to be loaded as background.
+ */
+luckyDivisor.global.img;
+
+/**
+ * A confirmation that the image is available for loading as background.
+ */
+luckyDivisor.global.imageAvailable = false;

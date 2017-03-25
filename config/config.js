@@ -10,9 +10,7 @@
 
 
 var luckyDivisor = luckyDivisor || {};
-
 luckyDivisor.config = {};
-
 
 /**
  * Defines how wide the game window/frame is.
@@ -68,7 +66,7 @@ luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_COLOUR = 75;
 /**
  * The background of the game canvas can either be a colour or an image.
  */
-// luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE = "../assets/milky_way.jpg";
+luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE = "../assets/milky_way_grayscale.jpg";
 
 /**
  * The default score text size is set to be 80% the height of the top panel.

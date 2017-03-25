@@ -102,7 +102,7 @@ class SidePanel extends Panel {
 				 */
 				var cubePositionY = luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + counter * (luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + luckyDivisor.config.SIDE_OF_CUBE);
 
-				this.pnCubesYetToBeCollected.push(new PnCube(primeFactors[i], ++luckyDivisor.config.ID, createVector(cubePositionX, cubePositionY)));
+				this.pnCubesYetToBeCollected.push(new PnCube(primeFactors[i], luckyDivisor.util.newID(), createVector(cubePositionX, cubePositionY)));
 
 				/**
 				 * Increment counter to cater for next cube to be displayed/printed.

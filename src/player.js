@@ -23,7 +23,7 @@ class Player {
 		 * The name of the player. Ultimately a record of the players would be
 		 * kept. That way a player be simply be required to login (if necessary).
 		 */
-		this.name = "PLAYER";
+		this.name = luckyDivisor.util.playerName();
 
 		/**
 		 * The score of the player so far.
@@ -49,12 +49,12 @@ class Player {
 		/**
 		 * The player's best score so far.
 		 */
-		this.bestScore = 0;
+		this.bestScore = luckyDivisor.util.playerBestScore();
 
 		/**
 		 * The player's credit point so far.
 		 */
-		this.creditPoints = 0;
+		this.creditPoints = luckyDivisor.util.playerCreditPoints();
 	}
 
 

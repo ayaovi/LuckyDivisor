@@ -75,11 +75,140 @@ luckyDivisor.util.removeFromArray = function(array, target) {
  *
  * @return none.
  */
-luckyDivisor.util.updateSidePanel = function(number) {
+luckyDivisor.util.updateSidePanel = function (number) {
 	if (luckyDivisor.global.sidePanel) {
 		luckyDivisor.global.sidePanel.update(number);
 	}
 }
+
+
+
+/**
+ * @description Checks whether there is existing date on the player.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.initPlayerData = function () {
+	if (window.localStorage.getItem('luckyDivisorPlayerData')) {
+		luckyDivisor.global.playerData = JSON.parse(window.localStorage.getItem('luckyDivisorPlayerData'));
+	}
+	else {
+		luckyDivisor.util.createNewPlayerData();
+	}
+}
+
+
+
+/**
+ * @description returns the player name.
+ *
+ * @param none.
+ *
+ * @return player name.
+ */
+luckyDivisor.util.playerName = function () {
+	return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['name'] : 'PLAYER';
+}
+
+
+
+/**
+ * @description returns the player best score.
+ *
+ * @param none.
+ *
+ * @return player best score.
+ */
+luckyDivisor.util.playerBestScore = function () {
+	return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['bestScore'] : 0;
+}
+
+
+
+/**
+ * @description returns the player credit point.
+ *
+ * @param none.
+ *
+ * @return player best score.
+ */
+luckyDivisor.util.playerCreditPoints = function () {
+	return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['creditPoints'] : 0;
+}
+
+
+
+/**
+ * @description promts the player for his/her name.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.createNewPlayerData = function () {
+	/**
+	 * Create an empty JSON.
+	 */
+	luckyDivisor.global.playerData = {};
+
+	/**
+	 * prompt the player for a name.
+	 */
+	var playerName = prompt('Please tell me your name', 'PLAYER');
+	
+	/**
+	 * Should the player name be valid, then add it to the JSON.
+	 */
+	if (playerName) {
+		luckyDivisor.global.playerData['name'] = playerName;
+	}
+
+	/**
+	 * The player best score is 0 by default.
+	 */
+	luckyDivisor.global.playerData['bestScore'] = 0;
+	
+	/**
+	 * The player credit point is 0 by default.
+	 */
+	luckyDivisor.global.playerData['creditPoints'] = 0;
+}
+
+
+
+/**
+ * @description saves the player data to local storage.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.savePlayerData = function () {
+	/**
+	 * First check that the player data does exist. And if so store it.
+	 * There is a limit to how much data one can store via localStorage - approximately 5mb. 
+	 * If you are dealing with a lot of data you could soon reach that limit.
+	 */
+	if (luckyDivisor.global.playerData) {
+		window.localStorage.setItem('luckyDivisorPlayerData', JSON.stringify(luckyDivisor.global.playerData));
+	}
+}
+
+
+
+/**
+ * @description returns a new cube id.
+ *
+ * @param number.
+ *
+ * @return none.
+ */
+luckyDivisor.util.newID = function () {
+	return (luckyDivisor.config.ID) ? ++luckyDivisor.config.ID : 0;
+}
+
 
 
 /**
@@ -89,7 +218,7 @@ luckyDivisor.util.updateSidePanel = function(number) {
  *
  * @return none.
  */
-luckyDivisor.util.burnPlayer = function() {
+luckyDivisor.util.burnPlayer = function () {
 	if (luckyDivisor.global.player) {
 		luckyDivisor.global.player.burn();
 	}
@@ -103,7 +232,7 @@ luckyDivisor.util.burnPlayer = function() {
  *
  * @return none.
  */
-luckyDivisor.util.updatePlayerScore = function(number) {
+luckyDivisor.util.updatePlayerScore = function (number) {
 	if (luckyDivisor.global.player) {
 		luckyDivisor.global.player.updateScore(number);
 	}
@@ -117,7 +246,7 @@ luckyDivisor.util.updatePlayerScore = function(number) {
  *
  * @return none.
  */
-luckyDivisor.util.pushNewEventToQueue = function(newEvent) {
+luckyDivisor.util.pushNewEventToQueue = function (newEvent) {
 	if (luckyDivisor.global.eventQueue) {
 		luckyDivisor.global.eventQueue.push(newEvent);
 	}
@@ -131,7 +260,7 @@ luckyDivisor.util.pushNewEventToQueue = function(newEvent) {
  *
  * @return none.
  */
-luckyDivisor.util.playerCubeDivsors = function() {
+luckyDivisor.util.playerCubeDivsors = function () {
 	if (luckyDivisor.global.playerCube) {
 		return luckyDivisor.global.playerCube.divisors;
 	}
@@ -148,7 +277,7 @@ luckyDivisor.util.playerCubeDivsors = function() {
  *
  * @return none.
  */
-luckyDivisor.util.cubeActiveMilliSeconds = function(cubeStartDate) {
+luckyDivisor.util.cubeActiveMilliSeconds = function (cubeStartDate) {
 	if (luckyDivisor.global.pauseDuration) {
 		return (luckyDivisor.util.date.getCurrentDate().minus(cubeStartDate).getTime() - luckyDivisor.global.pauseDuration);
 	}
@@ -166,7 +295,7 @@ luckyDivisor.util.cubeActiveMilliSeconds = function(cubeStartDate) {
  *
  * @return none.
  */
-luckyDivisor.util.showPlayerScore = function() {
+luckyDivisor.util.showPlayerScore = function () {
 	if (luckyDivisor.global.player.score) {
 		luckyDivisor.global.player.score.show();
 	}
@@ -180,7 +309,7 @@ luckyDivisor.util.showPlayerScore = function() {
  *
  * @return none.
  */
-luckyDivisor.util.showPlayerLifeStars = function() {
+luckyDivisor.util.showPlayerLifeStars = function () {
 	if (luckyDivisor.global.player.playerLifeStars) {
 		for (var i = 0; i < luckyDivisor.global.player.playerLifeStars.length; i++) {
 			luckyDivisor.global.player.playerLifeStars[i].show();
@@ -198,7 +327,7 @@ luckyDivisor.util.showPlayerLifeStars = function() {
  * @return the number preceded with 0, should it be less than 10 or
  * just the number itself otherwise.
  */
-luckyDivisor.util.padWithZero = function(number) {
+luckyDivisor.util.padWithZero = function (number) {
 	return ((number < 10) ? "0" + number : number);
 }
 
@@ -210,6 +339,8 @@ luckyDivisor.util.padWithZero = function(number) {
  *
  * @return none.
  */
-function mouseClicked() {
-	luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
+function mouseClicked () {
+	if (luckyDivisor.global.newGameButton) {
+		luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
+	}
 }
