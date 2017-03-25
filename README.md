@@ -4,7 +4,7 @@
 
 --*Oscar Wilde*, The Ballad of Reading Gaol and Other Poems
 
-## Table of Contents
+### Table of Contents
 * [Overview](#overview)
 	* [Pn Cube](#pn-cube)
 	* [Player Cube](#player-cube)
@@ -35,6 +35,8 @@ In order to progress in the game, you have to collect pn cubes with numbers that
 ### The Race against Time
 Every play of the game is time and the clock in the top left corner of the game canvas would run down as the play orgresses. Should you get caught by the clock (i.e. still have pn cube(s) to collect while the clock reaches "00:00"), the game is automatically over independent of the number of life stars you posses.
 
+[Go Back Top](#table-of-contents)
+
 ## Extra Features
 The following are the cool features that can be added to the game in future version.
 - Implement some sort of achievement reward.
@@ -46,9 +48,13 @@ The following are the cool features that can be added to the game in future vers
 - Currently When the game is paused, a text message "PAUSED" is display on the canvas, we change that to an icon.
 - In time we could create player journeys. More on player journey in our context can be found [*here*](http://amyjokim.com/blog/2014/04/08/the-players-journey/). I think a complement of player journey implementation would the actor journey implementation.
 
+[Go Back Top](#table-of-contents)
+
 ## Dependencies
 The game can be played on in the following browsers:
 - Google Chrome (versions 42.0, 49.0)
 - Firefox (version 45)
 - Microsof Edge (version 13 and above)
 - Safari (version 9.0 and above)
+
+[Go Back Top](#table-of-contents)
