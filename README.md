@@ -5,14 +5,14 @@
 --*Oscar Wilde*, The Ballad of Reading Gaol and Other Poems
 
 ## Table of Contents
-[Overview](#overview)
-	1 - [Pn Cube](#pn-cube)
-	2 - [Player Cube](#player-cube)
-[Rules of the Game](#rules-of-the-game)
-	1 - [Collecting Pn Cube](#collecting-pn-cube)
-	2 - [The Race against Time](#the-race-against-time)
-[Extra Features](#extra-features)
-[Dependencies](#dependencies)
+* [Overview](#overview)
+	* [Pn Cube](#pn-cube)
+	* [Player Cube](#player-cube)
+* [Rules of the Game](#rules-of-the-game)
+	* [Collecting Pn Cube](#collecting-pn-cube)
+	* [The Race against Time](#the-race-against-time)
+* [Extra Features](#extra-features)
+* [Dependencies](#dependencies)
 
 ## Overview
 A game in JavaScript where prime numbers are falling and the player has to collect some of them depending on his need. The prime numbers are represented as cubes. A cube is is simply a rectangle with a number inscribed on it. The cubes in the game can be classified as either:
