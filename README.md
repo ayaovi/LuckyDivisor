@@ -8,6 +8,7 @@
 * [Overview](#overview)
 	* [Pn Cube](#pn-cube)
 	* [Player Cube](#player-cube)
+* [Requirements for Local Execution](#requirements-for-local-execution)
 * [Rules of the Game](#rules-of-the-game)
 	* [Collecting Pn Cube](#collecting-pn-cube)
 	* [The Race against Time](#the-race-against-time)
@@ -24,6 +25,12 @@ A pn cube is a cube with special properties and features. The number on a pn cub
 
 ### Player Cube
 A player cube is a cube with special properties and features. The number on a player cube is not restricted to be just a prime. In fact it could be anything between 2-99 provided it has prime factors that are less than 10. A Player Cube is always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
+
+[Go Back Top](#table-of-contents)
+
+## Requirements for Local Execution
+
+The following is not a requirement per say but a suggestion instead. In the event that you wish to download the source files and execute the game locally, it is recommened you do so through a local web server. The way to set up a local server on your machine is discussed in depth [*here*](https://github.com/processing/p5.js/wiki/Local-server). Doing it this way, you would get a better experience. However, should you decide otherwise, some features of the game may not be available to you due to the possibility if Cross Origin Request restriction.
 
 [Go Back Top](#table-of-contents)
 
@@ -58,5 +65,31 @@ The game can be played on in the following browsers:
 - Firefox (version 45)
 - Microsof Edge (version 13 and above)
 - Safari (version 9.0 and above)
+
+[Go Back Top](#table-of-contents)
+
+## Documentation
+
+In time, an API documentation of the difference source files can be generated with the *.java* source generator inside the *doc/* directory.
+
+However, this feature is not available as of yet.
+
+[Go Back Top](#table-of-contents)
+
+## Collaboration
+
+Should you have gone through the tedious reading of what LuckyDivisor is, and wish to collaborate in any way possible (and we really mean any way, even if it is just rewording some sections of this readme), please either get in touch with the project owner or request access.
+
+Once you have been granted access to collaborate, the next thing we would kindly ask of you is to follow the [*Gitflow*](https://www.atlassian.com/git/tutorials/comparing-workflows) workflow approach. In other words has the following branches.
+
+- *master*, where the live code resides. It always contain working code.
+- *develop*, which is simply an integration of features.
+- *feature*, which you would have to create unless you are working on an existing feature.
+- *release*, for the releasing new versions of the game.
+- *hotfix*, for fixing issues or bugs that pop up during live.
+
+As such everything is done through [*pull request*](https://help.github.com/articles/creating-a-pull-request/).
+
+Again, we are more than happy to have you collaborate with us. As such, you have our gratitude in advance.
 
 [Go Back Top](#table-of-contents)
