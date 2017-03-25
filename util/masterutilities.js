@@ -76,7 +76,7 @@ luckyDivisor.util.removeFromArray = function(array, target) {
  * @return none.
  */
 luckyDivisor.util.updateSidePanel = function(number) {
-	if (luckyDivisor.global.sidePanel != undefined) {
+	if (luckyDivisor.global.sidePanel) {
 		luckyDivisor.global.sidePanel.update(number);
 	}
 }
@@ -90,7 +90,7 @@ luckyDivisor.util.updateSidePanel = function(number) {
  * @return none.
  */
 luckyDivisor.util.burnPlayer = function() {
-	if (luckyDivisor.global.player != undefined) {
+	if (luckyDivisor.global.player) {
 		luckyDivisor.global.player.burn();
 	}
 }
@@ -104,7 +104,7 @@ luckyDivisor.util.burnPlayer = function() {
  * @return none.
  */
 luckyDivisor.util.updatePlayerScore = function(number) {
-	if (luckyDivisor.global.player != undefined) {
+	if (luckyDivisor.global.player) {
 		luckyDivisor.global.player.updateScore(number);
 	}
 }
@@ -118,7 +118,7 @@ luckyDivisor.util.updatePlayerScore = function(number) {
  * @return none.
  */
 luckyDivisor.util.pushNewEventToQueue = function(newEvent) {
-	if (luckyDivisor.global.eventQueue != undefined) {
+	if (luckyDivisor.global.eventQueue) {
 		luckyDivisor.global.eventQueue.push(newEvent);
 	}
 }
@@ -132,7 +132,7 @@ luckyDivisor.util.pushNewEventToQueue = function(newEvent) {
  * @return none.
  */
 luckyDivisor.util.playerCubeDivsors = function() {
-	if (luckyDivisor.global.playerCube != undefined) {
+	if (luckyDivisor.global.playerCube) {
 		return luckyDivisor.global.playerCube.divisors;
 	}
 	else {
@@ -149,7 +149,7 @@ luckyDivisor.util.playerCubeDivsors = function() {
  * @return none.
  */
 luckyDivisor.util.cubeActiveMilliSeconds = function(cubeStartDate) {
-	if (luckyDivisor.global.pauseDuration != undefined) {
+	if (luckyDivisor.global.pauseDuration) {
 		return (luckyDivisor.util.date.getCurrentDate().minus(cubeStartDate).getTime() - luckyDivisor.global.pauseDuration);
 	}
 	else {
@@ -167,7 +167,7 @@ luckyDivisor.util.cubeActiveMilliSeconds = function(cubeStartDate) {
  * @return none.
  */
 luckyDivisor.util.showPlayerScore = function() {
-	if (luckyDivisor.global.player.score != undefined) {
+	if (luckyDivisor.global.player.score) {
 		luckyDivisor.global.player.score.show();
 	}
 }
@@ -181,7 +181,7 @@ luckyDivisor.util.showPlayerScore = function() {
  * @return none.
  */
 luckyDivisor.util.showPlayerLifeStars = function() {
-	if (luckyDivisor.global.player.playerLifeStars != undefined) {
+	if (luckyDivisor.global.player.playerLifeStars) {
 		for (var i = 0; i < luckyDivisor.global.player.playerLifeStars.length; i++) {
 			luckyDivisor.global.player.playerLifeStars[i].show();
 		}
