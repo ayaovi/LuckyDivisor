@@ -31,6 +31,10 @@ class EventQueue {
 	 * @return none.
 	 */
 	push(newEvent) {
+		/**
+		 * Down the line it may be best to create event priorities (i.e. event.priority).
+		 * As such event comparision would start from priority and cascade down to date. 
+		 */
 		if (newEvent.type === "END_PLAY_EVENT") {
 			this.queue.splice(0, 0, newEvent);
 		}
