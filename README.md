@@ -10,6 +10,11 @@
 	* [Pn Cube](#pn-cube)
 	* [Player Cube](#player-cube)
 * [Requirements for Local Execution](#requirements-for-local-execution)
+	* [Project Hierarchy](#project-hierarchy)
+		* [src/](#src/)
+		* [test/](#test/)
+		* [config/](#config/)
+		* [util/](#util/)
 * [Rules of the Game](#rules-of-the-game)
 	* [Collecting Pn Cube](#collecting-pn-cube)
 	* [The Race against Time](#the-race-against-time)
@@ -19,7 +24,7 @@
 
 ## Overview
 
-LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
+LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). It is designed to be played in a web browser. In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
 
 - Pn (prime number) Cube, or
 - Player Cube.
@@ -37,6 +42,32 @@ A player cube is a cube with special properties and features. The number on a pl
 ## Requirements for Local Execution
 
 The following is not a requirement per say but a suggestion instead. In the event that you wish to download the source files and execute the game locally, it is recommened you do so through a local web server. The way to set up a local server on your machine is discussed in depth [*here*](https://github.com/processing/p5.js/wiki/Local-server). Doing it this way, you would get a better experience. However, should you decide otherwise, some features of the game may not be available to you due to the possibility of Cross Origin Request restriction.
+
+### Project Hierarchy
+
+The project files are organised as follow in the current version of the game.
+
+#### src/
+
+It contains the javascript source files as well as the .html file that loads the game in the browser. Most of these source files represent a game component (e.g. Cube, Column etc...) while other represent action to be performed on game elements (e.g. CubeCollisionHandler, PnCubeMotionHandler etc...). It should also be noted that some of them are events as well.
+
+#### test/
+
+The majority of the code has been tested using a tool call [*QUnit*](https://qunitjs.com/), a javascript unit testing framework developed by jQuery foundation.
+
+The test files are organised as per source file. As such, a file named *cubetests.js* would be testing the functionalities of a *Cube* object and so on.
+
+Testing results can be inspected by opening up the file *index.html* in a browser. It gives you informationabout the passing and falling tests.
+
+#### config/
+
+It contains the configuration as well as global variable definition files.
+
+#### util/
+
+It contains the utilities files. In the attempt to avoid a very long single utility files, the utility functions have been seperated with respect to the objects that require them the most. As such we have a cube utilities file, a game utilities file etc...
+
+This arrangement of the project files can easily change in future versions.
 
 [Go Back Top](#table-of-contents)
 
@@ -99,7 +130,7 @@ Once you have been granted access to collaborate, the next thing we would kindly
 - *release*, for the releasing new versions of the game.
 - *hotfix*, for fixing issues or bugs that pop up during live.
 
-Moreover, because we always aim for writing easily testable code, we would ask of you to use the [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach in your function and class definitions.
+Moreover, because we always aim for writing easily testable code, we would ask of you to use the [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach in your function and class definitions. We would like to use the [*TDD*](http://agiledata.org/essays/tdd.html) approach for development as much as possible. It make be difficult at the start but once you get the hang of it, it is comparable to a runaway train (i.e. easy to stop).
 
 As such everything is done through [*pull requests*](https://help.github.com/articles/creating-a-pull-request/).
 
