@@ -105,3 +105,8 @@ luckyDivisor.global.img;
  * A confirmation that the image is available for loading as background.
  */
 luckyDivisor.global.imageAvailable = false;
+
+/**
+ * Confimrs whether the current play is running.
+ */
+luckyDivisor.global.playIsEnded = false;

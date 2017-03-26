@@ -112,11 +112,13 @@ luckyDivisor.util.game.pauseOrPlay = function() {
  * @return none.
  */
 luckyDivisor.util.game.startNewPlay = function() {
-	console.log("Starting new play.")
 	/**
-	 * Pause duration to zero.
+	 * A new play is starting. And because pause durations are 
+	 * considered per play, we need to reset it back to 0.
 	 */
 	luckyDivisor.global.pauseDuration = 0;
+
+	luckyDivisor.global.playIsEnded = false;
 
 	/**
 	 * Reset the new game button to invisible.
@@ -148,7 +150,6 @@ luckyDivisor.util.game.startNewPlay = function() {
 	}
 	
 	luckyDivisor.global.sidePanel.reset();
-	console.log("Finshed starting new play.");
 }
 
 
@@ -166,15 +167,9 @@ luckyDivisor.util.game.endCurrentPlay = function() {
 	 */
 	luckyDivisor.global.player.rewardLifeStar();
 
-	/**
-	 * Reset the previous column starting time tracker to undefined.
-	 */
-	luckyDivisor.global.previousColumnStartingDate = undefined;
-	
-	/**
-	 * Empty all columns.
-	 */
-	luckyDivisor.global.columns = [];
+	luckyDivisor.util.game.beforePlayInit();
+
+	luckyDivisor.util.checkForNewPlayerData();
 
 	/**
 	 * Then start a new play.
@@ -182,6 +177,25 @@ luckyDivisor.util.game.endCurrentPlay = function() {
 	luckyDivisor.util.game.startNewPlay();
 }
 
+
+/**
+ * @description An end of play handler.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.game.beforePlayInit = function() {
+	/**
+	 * Reset the previous column starting time tracker to undefined.
+	 */
+	luckyDivisor.global.previousColumnStartingDate = undefined;
+	
+	/**
+	 * Drop all columns.
+	 */
+	luckyDivisor.global.columns = [];
+}
 
 
 /**
@@ -210,6 +224,8 @@ luckyDivisor.util.game.endGame = function(endOfGameCode) {
 	 * Stop the draw() loop.
 	 */
 	noLoop();
+
+	luckyDivisor.util.checkForNewPlayerData();
 }
 
 
@@ -221,23 +237,9 @@ luckyDivisor.util.game.endGame = function(endOfGameCode) {
  * @return none.
  */
 luckyDivisor.util.game.restart = function() {
-	/**
-	 * Pause duration to zero.
-	 */
-	luckyDivisor.global.pauseDuration = 0;
-	
-	// console.log("Called  Restart");
 	luckyDivisor.global.player.init();
 	
-	/**
-	 * Reset the previous column starting time tracker to undefined.
-	 */
-	luckyDivisor.global.previousColumnStartingDate = undefined;
-	
-	/**
-	 * Empty all columns.
-	 */
-	luckyDivisor.global.columns = [];
+	luckyDivisor.util.game.beforePlayInit();
 	
 	initialisePnCubeCreationRecord();
 	

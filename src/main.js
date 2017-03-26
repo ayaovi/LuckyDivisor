@@ -65,6 +65,7 @@ function createGameComponents() {
 	 */
 	luckyDivisor.global.player = new Player();
 	luckyDivisor.global.player.init();
+	console.log("Player Best Score is " + luckyDivisor.global.player.bestScore);
 	
 	/**
 	 * Create the top panel.
@@ -250,8 +251,7 @@ function checkForPnCubeCollection() {
 			var y2 = luckyDivisor.global.playerCube.position.y;
 			var w = luckyDivisor.config.SIDE_OF_CUBE;
 			
-			if (cube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w)) {
-				console.log("Seems player collected a pn cube.");
+			if (!luckyDivisor.global.playIsEnded && cube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w)) {
 				luckyDivisor.global.playerCube.collisionHandler.handleCollisionWith(cube);
 				cube.visibility = false;
 			}

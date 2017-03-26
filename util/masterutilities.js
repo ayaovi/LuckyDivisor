@@ -149,7 +149,6 @@ luckyDivisor.util.playerCreditPoints = function () {
  */
 luckyDivisor.util.makeEmotionalFace = function (type) {
 	if (luckyDivisor.global.sidePanel.emoticon) {
-		console.log("Making emotional face " + type);
 		luckyDivisor.global.sidePanel.emoticon.type = type;
 	}
 }
@@ -191,6 +190,46 @@ luckyDivisor.util.createNewPlayerData = function () {
 	 */
 	luckyDivisor.global.playerData['creditPoints'] = 0;
 }
+
+
+
+
+/**
+ * @description checks whether there is new player data.
+ *
+ * @param none.
+ *
+ * @return true or false.
+ */
+luckyDivisor.util.newPlayerData = function () {
+	return (luckyDivisor.global.playerData['bestScore'] < luckyDivisor.global.player.bestScore || luckyDivisor.global.playerData['creditPoints'] != luckyDivisor.global.player.creditPoints);
+}
+
+
+/**
+ * @description checks whether there is a change in player data.
+ * If so, saves it.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.checkForNewPlayerData = function () {
+	if (luckyDivisor.util.newPlayerData) {
+		/**
+		 * Player best score only gets updated if a higher best score has been recorded.
+		 */
+		luckyDivisor.global.playerData['bestScore'] = (luckyDivisor.global.playerData['bestScore'] < luckyDivisor.global.player.bestScore) ? luckyDivisor.global.player.bestScore : luckyDivisor.global.playerData['bestScore'];
+		/**
+		 * Player credit point gets updated when ever there is a new credit point. The idea here is that 
+		 * credit point can be carried over from one session to another.
+		 */
+		luckyDivisor.global.playerData['creditPoints'] = luckyDivisor.global.player.creditPoints;
+
+		luckyDivisor.util.savePlayerData();
+	}
+}
+
 
 
 
@@ -277,12 +316,7 @@ luckyDivisor.util.pushNewEventToQueue = function (newEvent) {
  * @return none.
  */
 luckyDivisor.util.playerCubeDivsors = function () {
-	if (luckyDivisor.global.playerCube) {
-		return luckyDivisor.global.playerCube.divisors;
-	}
-	else {
-		return [];
-	}
+	return (luckyDivisor.global.playerCube) ? luckyDivisor.global.playerCube.divisors : [];
 }
 
 
@@ -294,12 +328,8 @@ luckyDivisor.util.playerCubeDivsors = function () {
  * @return none.
  */
 luckyDivisor.util.cubeActiveMilliSeconds = function (cubeStartDate) {
-	if (luckyDivisor.global.pauseDuration) {
-		return (luckyDivisor.util.date.getCurrentDate().minus(cubeStartDate).getTime() - luckyDivisor.global.pauseDuration);
-	}
-	else {
-		return luckyDivisor.util.date.getCurrentDate().minus(cubeStartDate).getTime();
-	}
+	var totalMilliseconds = luckyDivisor.util.date.getCurrentDate().minus(cubeStartDate).getTime();
+	return (luckyDivisor.global.pauseDuration) ? (totalMilliseconds - luckyDivisor.global.pauseDuration) :totalMilliseconds;
 }
 
 
