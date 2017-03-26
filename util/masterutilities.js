@@ -141,6 +141,22 @@ luckyDivisor.util.playerCreditPoints = function () {
 
 
 /**
+ * @description makes smiley or angry face.
+ *
+ * @param face type.
+ *
+ * @return none.
+ */
+luckyDivisor.util.makeEmotionalFace = function (type) {
+	if (luckyDivisor.global.sidePanel.emoticon) {
+		console.log("Making emotional face " + type);
+		luckyDivisor.global.sidePanel.emoticon.type = type;
+	}
+}
+
+
+
+/**
  * @description promts the player for his/her name.
  *
  * @param none.

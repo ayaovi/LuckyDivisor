@@ -76,7 +76,7 @@ function createGameComponents() {
 	 * A SidePanl is a requirement.
 	 */
 	luckyDivisor.global.sidePanel = new SidePanel();
-	luckyDivisor.global.sidePanel.init();
+	// luckyDivisor.global.sidePanel.init();
 
 	/**
 	 * We also need an EventQueue.
@@ -206,9 +206,9 @@ function showGameComponents() {
 	/**
 	 * Then display all columns.
 	 */
-	for (var i = 0; i < luckyDivisor.global.columns.length; i++) {
-		luckyDivisor.global.columns[i].show();
-	}
+	luckyDivisor.global.columns.forEach(function (column) {
+		column.show();
+	});
 
 	/**
 	 * Then check whether the player has collected any pn cube.
@@ -236,24 +236,27 @@ function showGameComponents() {
  * @return none.
  */
 function checkForPnCubeCollection() {
-	for (var i = 0; i < luckyDivisor.global.columns.length; i++) {
-		for (var j = 0; j < luckyDivisor.global.columns[i].cubes.length; j++) {
+	/**
+	 * The simplest way to go about this is going through very column and checking whether every cube in that column is colliding with the player cube.
+	 */
+	luckyDivisor.global.columns.forEach(function (column) {
+		column.cubes.forEach(function (cube) {
 			/**
 			 * Create new references for the sake of simplicity.
 			 */
-			var pnCube = luckyDivisor.global.columns[i].cubes[j];
-			var x1 = pnCube.position.x;
-			var y1 = pnCube.position.y;
+			var x1 = cube.position.x;
+			var y1 = cube.position.y;
 			var x2 = luckyDivisor.global.playerCube.position.x;
 			var y2 = luckyDivisor.global.playerCube.position.y;
 			var w = luckyDivisor.config.SIDE_OF_CUBE;
 			
-			if (pnCube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w)) {
-				luckyDivisor.global.playerCube.collisionHandler.handleCollisionWith(pnCube);
-				pnCube.visibility = false;
+			if (cube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w)) {
+				console.log("Seems player collected a pn cube.");
+				luckyDivisor.global.playerCube.collisionHandler.handleCollisionWith(cube);
+				cube.visibility = false;
 			}
-		}
-	}
+		});
+	});
 }
 
 

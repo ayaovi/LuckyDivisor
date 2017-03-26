@@ -71,6 +71,11 @@ class CubeCollisionHandler {
 			 * Make pnCube invisible.
 			 */
 			pnCube.visibility = false;
+
+			/**
+			 * Make emotional face.
+			 */
+			luckyDivisor.util.makeEmotionalFace(1);
 		}
 		else if (this.cube.alreadyCollectedDivisors.includes(pnCube.number)) {
 			/**
@@ -82,6 +87,11 @@ class CubeCollisionHandler {
 			 * Make pnCube invisible.
 			 */
 			pnCube.visibility = false;
+
+			/**
+			 * Make emotional face.
+			 */
+			luckyDivisor.util.makeEmotionalFace(0);
 		}
 		else {
 			/**
@@ -93,6 +103,11 @@ class CubeCollisionHandler {
 			 * Make pnCube invisible.
 			 */
 			pnCube.visibility = false;
+
+			/**
+			 * Make emotional face.
+			 */
+			luckyDivisor.util.makeEmotionalFace(-1);
 		}
 	}
 }

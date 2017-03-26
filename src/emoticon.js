@@ -29,7 +29,9 @@ class Emoticon {
 		this.size = size;
 		
 		/**
-		 * 0 for smiley face and 1 for angry face.
+		 * -1 for angry face;
+		 *  0 for normal face;
+		 *  1 for smiley face;
 		 */
 		this.type = type;
 	}
@@ -59,11 +61,23 @@ class Emoticon {
 		/**
 		 * Print the smile or anger.
 		 */
-		if (this.type == 0) {
-			arc(this.position.x, this.position.y, this.size * 0.6, this.size * 0.5, (PI / 6), PI - (PI / 6));
+		if (this.type == -1) {
+			/**
+			 * anger.
+			 */
+			arc(this.position.x, this.position.y + this.size * 0.3, this.size * 0.6, this.size * 0.5, PI + (PI / 6), TWO_PI - (PI / 6));
+		}
+		else if (this.type == 0) {
+			/**
+			 * normal.
+			 */
+			line(this.position.x - this.size * 0.25, this.position.y + this.size * 0.2, this.position.x + this.size * 0.25, this.position.y + this.size * 0.2);
 		}
 		else if (this.type == 1) {
-			arc(this.position.x, this.position.y + this.size * 0.3, this.size * 0.6, this.size * 0.5, PI + (PI / 6), TWO_PI - (PI / 6));
+			/**
+			 * smile.
+			 */
+			arc(this.position.x, this.position.y, this.size * 0.6, this.size * 0.5, (PI / 6), PI - (PI / 6));
 		}
 		
 		fill(color('black'));

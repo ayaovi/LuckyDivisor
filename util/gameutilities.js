@@ -112,6 +112,7 @@ luckyDivisor.util.game.pauseOrPlay = function() {
  * @return none.
  */
 luckyDivisor.util.game.startNewPlay = function() {
+	console.log("Starting new play.")
 	/**
 	 * Pause duration to zero.
 	 */
@@ -122,19 +123,10 @@ luckyDivisor.util.game.startNewPlay = function() {
 	 */
 	luckyDivisor.global.newGameButton.isVisible = false;
 	
-	/**
-	 * Reset ID to zero.
-	 */
 	ID = 0;
 	
-	/**
-	 * Reset the event queue.
-	 */
 	luckyDivisor.global.eventQueue.reset();
 
-	/**
-	 * Reset the clock in the top panel.
-	 */
 	luckyDivisor.global.topPanel.reset();
 
 	/**
@@ -142,11 +134,6 @@ luckyDivisor.util.game.startNewPlay = function() {
 	 */
 	var playerCubeNumber = luckyDivisor.util.math.generatePlayerCubeNumber();
 	luckyDivisor.global.playerCube = new PlayerCube(playerCubeNumber, 0, createVector((luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE) / 2, luckyDivisor.config.HEIGHT_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1));
-	
-	/**
-	 * DEBUGGING.
-	 */
-	// console.log(playerCube.divisors.toString());
 	
 	/**
 	 * Create all columns.
@@ -160,10 +147,8 @@ luckyDivisor.util.game.startNewPlay = function() {
 		luckyDivisor.global.columns[i].reset();
 	}
 	
-	/**
-	 * Reset the side panel.
-	 */
 	luckyDivisor.global.sidePanel.reset();
+	console.log("Finshed starting new play.");
 }
 
 
