@@ -19,7 +19,8 @@
 
 ## Overview
 
-LuckyDivisor is a JavaScript game where prime numbers are falling and the player has to collect some of them depending on his need. The prime numbers are represented as cubes. A cube is is simply a rectangle with a number inscribed on it. The cubes in the game can be classified as either:
+LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
+
 - Pn (prime number) Cube, or
 - Player Cube.
 
@@ -98,7 +99,9 @@ Once you have been granted access to collaborate, the next thing we would kindly
 - *release*, for the releasing new versions of the game.
 - *hotfix*, for fixing issues or bugs that pop up during live.
 
-As such everything is done through [*pull request*](https://help.github.com/articles/creating-a-pull-request/).
+Moreover, because we always aim for writing easily testable code, we would ask of you to use the [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach in your function and class definitions.
+
+As such everything is done through [*pull requests*](https://help.github.com/articles/creating-a-pull-request/).
 
 Again, we are more than happy to have you collaborate with us. As such, you have our gratitude in advance.
 
