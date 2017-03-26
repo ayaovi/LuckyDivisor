@@ -16,8 +16,9 @@ class Event {
 	 *
 	 * @return none.
 	 */
-	constructor(date) {
+	constructor(date, type) {
 		this.date = date;
+		this.type = type;
 	}
 	
 	

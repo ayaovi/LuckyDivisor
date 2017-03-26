@@ -39,7 +39,7 @@ class CubeCollisionHandler {
 
 
 	/**
-	 * @description a handler collision between a player cube and a pn cube.
+	 * @description a collision handler between a player and a pn cubes.
 	 *
 	 * @param a Pn cube.
 	 *
@@ -68,9 +68,9 @@ class CubeCollisionHandler {
 			luckyDivisor.util.updatePlayerScore(pnCube.number);
 
 			/**
-			 * Make pnCube invisible.
+			 * Make emotional face.
 			 */
-			pnCube.visibility = false;
+			luckyDivisor.util.makeEmotionalFace(1);
 		}
 		else if (this.cube.alreadyCollectedDivisors.includes(pnCube.number)) {
 			/**
@@ -79,9 +79,9 @@ class CubeCollisionHandler {
 			luckyDivisor.util.updatePlayerScore(-pnCube.number);
 
 			/**
-			 * Make pnCube invisible.
+			 * Make emotional face.
 			 */
-			pnCube.visibility = false;
+			luckyDivisor.util.makeEmotionalFace(0);
 		}
 		else {
 			/**
@@ -90,9 +90,22 @@ class CubeCollisionHandler {
 			luckyDivisor.util.burnPlayer();
 
 			/**
-			 * Make pnCube invisible.
+			 * Make emotional face.
 			 */
-			pnCube.visibility = false;
+			luckyDivisor.util.makeEmotionalFace(-1);
 		}
+	}
+
+
+
+	/**
+	 * @description a collision handler between a two pn cubes.
+	 *
+	 * @param a Pn cube.
+	 *
+	 * @return none.
+	 */
+	handlePnCubeInCollisionWith(pnCube) {
+		// TODO.
 	}
 }

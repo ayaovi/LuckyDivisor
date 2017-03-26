@@ -17,7 +17,7 @@ class StartNewCubeEvent extends Event {
 	 * @return none.
 	 */
 	constructor(date, columnIndex) {
-		super(date);
+		super(date, "START_NEW_CUBE_EVENT");
 		
 		/**
 		 * The index of the column in which to start the new cube.

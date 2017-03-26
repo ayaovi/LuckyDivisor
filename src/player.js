@@ -25,9 +25,6 @@ class Player {
 		 */
 		this.name = luckyDivisor.util.playerName();
 
-		/**
-		 * The score of the player so far.
-		 */
 		this.score;
 
 		/**
@@ -118,11 +115,36 @@ class Player {
 	 * @return none
 	 */
 	updateScore(hit) {
-		/**
-		 * Update the player score.
-		 */
 		this.score.update(hit);
+		this.checkForNewBestScore();
+		this.checkForEndOfPlay();
+	}
 
+
+
+	/**
+	 * @desciption checks whether a new best score has been set.
+	 *
+	 * @param none.
+	 *
+	 * @return none
+	 */
+	checkForNewBestScore() {
+		if (this.score.score > this.bestScore) {
+			this.bestScore = this.score.score;
+		}
+	}
+
+
+
+	/**
+	 * @desciption checks whether the current play is at an end.
+	 *
+	 * @param none.
+	 *
+	 * @return none
+	 */
+	checkForEndOfPlay() {
 		/**
 		 * Check whether player has collected all required divisors.
 		 */
@@ -130,9 +152,15 @@ class Player {
 			/**
 			 * Then this mark the end of play.
 			 */
-			luckyDivisor.util.game.endCurrentPlay();
+			luckyDivisor.global.playIsEnded = true;
+
+			/**
+			 * Consequently we schedule an end of play event.
+			 */
+			luckyDivisor.util.pushNewEventToQueue(new EndPlayEvent(luckyDivisor.util.date.getCurrentDate(), luckyDivisor.util.game.endCurrentPlay));
 		}
 	}
+
 
 
 	/**
@@ -145,9 +173,6 @@ class Player {
 	 */
 	rewardLifeStar() {
 		if (this.playerLifeStars.length < luckyDivisor.config.NUMBER_OF_PLAYER_STARTING_LIFE_STARS) {
-			/**
-			 * Add a life star.
-			 */
 			this.addNewLifeStar();
 		}
 	}
@@ -161,7 +186,7 @@ class Player {
 	 * @return none.
 	 */
 	hasCollectedAll() {
-		return (luckyDivisor.global.playerCube != undefined) ? luckyDivisor.global.playerCube.hasCollectedAll() : false;
+		return (luckyDivisor.global.playerCube) ? luckyDivisor.global.playerCube.hasCollectedAll() : false;
 	}
 
 
@@ -178,14 +203,8 @@ class Player {
 		 */
 		this.playerLifeStarsLocked = false;
 
-		/**
-		 * Only thereafter can we take off a player life star.
-		 */
 		this.takeOffAPlayerLifeStar();
 
-		/**
-		 * Check if player has no more life stars.
-		 */
 		this.checkIfGameOver();
 	}
 

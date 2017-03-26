@@ -27,7 +27,7 @@ class SidePanel extends Panel {
 		/**
 		 * The list of pn cubes that the player needs to collect.
 		 */
-		this.pnCubesYetToBeCollected;
+		this.pnCubesYetToBeCollected = [];
 
 		/**
 		 * A map of pn cube number and the number of instances to be collected. Theoretically it
@@ -42,38 +42,42 @@ class SidePanel extends Panel {
 		 *	7 --> 0
 		 * }
 		 */
-		this.numberOfPnCubesYetToBeCollected;
-	}
-
-	/**
-	 * @description an initialiser of the panel.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	init() {
-		this.pnCubesYetToBeCollected = [];
 		this.numberOfPnCubesYetToBeCollected = {};
+
+		this.emoticon = new Emoticon(createVector(this.position.x + luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + 25, this.position.y + luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + 25), 50, 0);
+
+		this.createCubesStartingPositionY = 2 * luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + this.emoticon.size;
 	}
 
 
+
 	/**
-	 * @description resets all the necessary stuff.
+	 * @description resets the number of Pn Cube yet to be collected record.
 	 *
 	 * @param none.
 	 *
 	 * @return none.
 	 */
-	reset() {
-		this.init();
+	resetNumberOfPnCubesYetToBeCollected() {
+		if (this.numberOfPnCubesYetToBeCollected) {
+			this.numberOfPnCubesYetToBeCollected[1] = 0;
+			this.numberOfPnCubesYetToBeCollected[2] = 0;
+			this.numberOfPnCubesYetToBeCollected[3] = 0;
+			this.numberOfPnCubesYetToBeCollected[5] = 0;
+			this.numberOfPnCubesYetToBeCollected[7] = 0;
+		}
+	}
 
-		this.numberOfPnCubesYetToBeCollected[1] = 0;
-		this.numberOfPnCubesYetToBeCollected[2] = 0;
-		this.numberOfPnCubesYetToBeCollected[3] = 0;
-		this.numberOfPnCubesYetToBeCollected[5] = 0;
-		this.numberOfPnCubesYetToBeCollected[7] = 0;
 
+
+	/**
+	 * @description create the cubes yet to be collected representation.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	createCubesYetToBeCollected() {
 		/**
 		 * List of prime factor divisors of the player cube's number. Bear in mind it may well contain duplicate.
 		 * And this is done on purpose; to allow us to simple delete a divisor once its pn cube has been collected
@@ -87,10 +91,11 @@ class SidePanel extends Panel {
 		 */
 		var counter = 0;
 
-		/**
-		 * create the cubes to be collected objects.
-		 */
 		for (var i = 0; i < primeFactors.length; i++) {
+			/**
+			 * Even though a factor may occur multiple time, we only need one cube object to represent it and simply keep a multiplier.
+			 * As such, we only need to add a representation for the first occurence.
+			 */
 			if (this.numberOfPnCubesYetToBeCollected[primeFactors[i]] == 0) {
 				/**
 				 * The cube to displayed in the side panel needs to be offset a little bit as to not be too close to the game canvas.
@@ -100,12 +105,12 @@ class SidePanel extends Panel {
 				/**
 				 * The cubes are aligned vertically and spaced by the DEFAULT_SIDE_PANEL_PADDING.
 				 */
-				var cubePositionY = luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + counter * (luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + luckyDivisor.config.SIDE_OF_CUBE);
+				var cubePositionY = this.createCubesStartingPositionY + counter * (luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + luckyDivisor.config.SIDE_OF_CUBE);
 
 				this.pnCubesYetToBeCollected.push(new PnCube(primeFactors[i], luckyDivisor.util.newID(), createVector(cubePositionX, cubePositionY)));
 
 				/**
-				 * Increment counter to cater for next cube to be displayed/printed.
+				 * Increment counter to cater for next cube to be displayed bellow the current.
 				 */
 				++counter;
 			}
@@ -115,6 +120,22 @@ class SidePanel extends Panel {
 			 */
 			++this.numberOfPnCubesYetToBeCollected[primeFactors[i]];
 		}
+	}
+
+
+
+	/**
+	 * @description resets all the necessary stuff.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	reset() {
+		this.resetNumberOfPnCubesYetToBeCollected();
+		this.pnCubesYetToBeCollected = [];
+		this.createCubesYetToBeCollected();
+		luckyDivisor.util.makeEmotionalFace(0);
 	}
 
 
@@ -139,6 +160,8 @@ class SidePanel extends Panel {
 		 * Restore the previous state.
 		 */
 		pop();
+
+		this.emoticon.show();
 
 		/**
 		 * Display list of cubes yet to be collect.

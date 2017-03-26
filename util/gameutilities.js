@@ -113,28 +113,22 @@ luckyDivisor.util.game.pauseOrPlay = function() {
  */
 luckyDivisor.util.game.startNewPlay = function() {
 	/**
-	 * Pause duration to zero.
+	 * A new play is starting. And because pause durations are 
+	 * considered per play, we need to reset it back to 0.
 	 */
 	luckyDivisor.global.pauseDuration = 0;
+
+	luckyDivisor.global.playIsEnded = false;
 
 	/**
 	 * Reset the new game button to invisible.
 	 */
 	luckyDivisor.global.newGameButton.isVisible = false;
 	
-	/**
-	 * Reset ID to zero.
-	 */
 	ID = 0;
 	
-	/**
-	 * Reset the event queue.
-	 */
 	luckyDivisor.global.eventQueue.reset();
 
-	/**
-	 * Reset the clock in the top panel.
-	 */
 	luckyDivisor.global.topPanel.reset();
 
 	/**
@@ -142,11 +136,6 @@ luckyDivisor.util.game.startNewPlay = function() {
 	 */
 	var playerCubeNumber = luckyDivisor.util.math.generatePlayerCubeNumber();
 	luckyDivisor.global.playerCube = new PlayerCube(playerCubeNumber, 0, createVector((luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE) / 2, luckyDivisor.config.HEIGHT_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1));
-	
-	/**
-	 * DEBUGGING.
-	 */
-	// console.log(playerCube.divisors.toString());
 	
 	/**
 	 * Create all columns.
@@ -160,9 +149,6 @@ luckyDivisor.util.game.startNewPlay = function() {
 		luckyDivisor.global.columns[i].reset();
 	}
 	
-	/**
-	 * Reset the side panel.
-	 */
 	luckyDivisor.global.sidePanel.reset();
 }
 
@@ -181,15 +167,9 @@ luckyDivisor.util.game.endCurrentPlay = function() {
 	 */
 	luckyDivisor.global.player.rewardLifeStar();
 
-	/**
-	 * Reset the previous column starting time tracker to undefined.
-	 */
-	luckyDivisor.global.previousColumnStartingDate = undefined;
-	
-	/**
-	 * Empty all columns.
-	 */
-	luckyDivisor.global.columns = [];
+	luckyDivisor.util.game.beforePlayInit();
+
+	luckyDivisor.util.checkForNewPlayerData();
 
 	/**
 	 * Then start a new play.
@@ -197,6 +177,25 @@ luckyDivisor.util.game.endCurrentPlay = function() {
 	luckyDivisor.util.game.startNewPlay();
 }
 
+
+/**
+ * @description An end of play handler.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.game.beforePlayInit = function() {
+	/**
+	 * Reset the previous column starting time tracker to undefined.
+	 */
+	luckyDivisor.global.previousColumnStartingDate = undefined;
+	
+	/**
+	 * Drop all columns.
+	 */
+	luckyDivisor.global.columns = [];
+}
 
 
 /**
@@ -225,6 +224,8 @@ luckyDivisor.util.game.endGame = function(endOfGameCode) {
 	 * Stop the draw() loop.
 	 */
 	noLoop();
+
+	luckyDivisor.util.checkForNewPlayerData();
 }
 
 
@@ -236,23 +237,9 @@ luckyDivisor.util.game.endGame = function(endOfGameCode) {
  * @return none.
  */
 luckyDivisor.util.game.restart = function() {
-	/**
-	 * Pause duration to zero.
-	 */
-	luckyDivisor.global.pauseDuration = 0;
-	
-	// console.log("Called  Restart");
 	luckyDivisor.global.player.init();
 	
-	/**
-	 * Reset the previous column starting time tracker to undefined.
-	 */
-	luckyDivisor.global.previousColumnStartingDate = undefined;
-	
-	/**
-	 * Empty all columns.
-	 */
-	luckyDivisor.global.columns = [];
+	luckyDivisor.util.game.beforePlayInit();
 	
 	initialisePnCubeCreationRecord();
 	

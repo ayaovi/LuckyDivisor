@@ -96,14 +96,13 @@ class Column {
 	 * @return none.
 	 */
 	routine() {
-		for (var i = 0; i < this.cubes.length; i++) {
+		this.cubes.forEach(function (cube) {
 			/**
 			 * We want a change in the position of the cube. If it does not a fall, there will not be a change in position.
 			 */
-			this.cubes[i].fall();
-			
-			this.cubes[i].show();
-		}
+			cube.fall();
+			cube.show();
+		});
 	}
 
 

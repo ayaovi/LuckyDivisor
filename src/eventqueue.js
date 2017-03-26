@@ -9,6 +9,7 @@
  * @version : v1
  */
 
+
 class EventQueue {
 	/**
 	 * @description constructor.
@@ -30,19 +31,28 @@ class EventQueue {
 	 * @return none.
 	 */
 	push(newEvent) {
-		if (this.queue.length == 0 || this.queue[this.queue.length - 1].date.isLessOrEqualTo(newEvent.date)) {
-			this.queue.push(newEvent);
+		/**
+		 * Down the line it may be best to create event priorities (i.e. event.priority).
+		 * As such event comparision would start from priority and cascade down to date. 
+		 */
+		if (newEvent.type === "END_PLAY_EVENT") {
+			this.queue.splice(0, 0, newEvent);
 		}
 		else {
-			for (var i = 0; i < this.queue.length; i++) {
-				/**
-				 * If the new event is set to be fired sooner than the event at this index, 
-				 * then push the current event at this index further into the queue and insert 
-				 * the new event at this position.
-				 */
-				if (newEvent.date.isLessOrEqualTo(this.queue[i].date)) {
-					this.queue.splice(i, 0, newEvent);
-					break;
+			if (this.queue.length == 0 || this.queue[this.queue.length - 1].date.isLessOrEqualTo(newEvent.date)) {
+				this.queue.push(newEvent);
+			}
+			else {
+				for (var i = 0; i < this.queue.length; i++) {
+					/**
+					 * If the new event is set to be fired sooner than the event at this index, 
+					 * then push the current event at this index further into the queue and insert 
+					 * the new event at this position.
+					 */
+					if (newEvent.date.isLessOrEqualTo(this.queue[i].date)) {
+						this.queue.splice(i, 0, newEvent);
+						break;
+					}
 				}
 			}
 		}
