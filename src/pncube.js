@@ -69,6 +69,11 @@ class PnCube extends Cube {
 		 * Handles the pn cube motion.
 		 */
 		this.motionHandler = new PnCubeMotionHandler(this);
+
+		/**
+		 * Handles collision with other pn.
+		 */
+		this.collisionHandler = new CubeCollisionHandler(this);
 	}
 	
 	

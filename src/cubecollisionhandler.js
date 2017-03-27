@@ -139,5 +139,12 @@ class CubeCollisionHandler {
 		 * v2 = --------------------
 		 *			m1 + m2
 		 */
+		var m1 = this.cube.number;
+		var m2 = pnCube.number;
+		var u1 = this.cube.speed;
+		var u2 = pnCube.speed;
+
+		this.cube.speed = (u1 * (m1 - m2) + 2 * m2 * u2) / (m1 + m2);
+		pnCube.speed = (u2 * (m2 - m1) + 2 * m1 * u1) / (m1 + m2);
 	}
 }

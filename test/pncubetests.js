@@ -61,4 +61,17 @@ QUnit.test("pn cube basics", function( assert ) {
 	 * It is important to reset the cube back to invisibility.
 	 */
 	assert.notOk(pnCube.visibility, "once pnCube has fallen off the canvas pnCube.visibility should be false");
+
+	/**
+	 * Let create another Pn Cube with number 3.
+	 */
+	var anotherPnCube = new PnCube(3, 10, createVector(0, 0), 2);
+
+	pnCube.collisionHandler.handleCollisionWith(anotherPnCube);
+
+	/**
+	 * Now let's check the respective speeds.
+	 */
+	assert.equal(pnCube.speed, 1.23, "after collision, pnCube.speed equal xxx succeeds");
+	assert.equal(anotherPnCube.speed, 1.23, "after collision, anotherPnCube.speed equal xxx succeeds");
 });
