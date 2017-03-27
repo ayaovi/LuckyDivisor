@@ -106,6 +106,38 @@ class CubeCollisionHandler {
 	 * @return none.
 	 */
 	handlePnCubeInCollisionWith(pnCube) {
-		// TODO.
+		/**
+		 * By definition, a collision is an event where momentum or kinetic energy is transferred 
+		 * from one object (which in this case is a cube) to another.
+		 * Momentum (p) is the product of mass and velocity (p = mv). 
+		 * While Kinetic energy is the energy of motion; it is defined as K = (1/2) m v^2. 
+		 * 
+		 * Because the collision between two cubes is an elastic one (i.e. the two 
+		 * cubes bounce apart, in the same direction, when they collide), both momentum and of kinetic energy are conserved.
+		 * As such we would have:
+		 *
+		 * m1*u1 + m2u2 = m1v1 + m2v2 (conservation of momentum), where:
+		 *
+		 * m1 is the mass of Cube1, 
+		 * m2 is the mass of Cube2, 
+		 * u1 is the incoming speed of Cube1, 
+		 * u2 is the incoming speed of Cube2, 
+		 * v1 is the speed of Cube1 after the collision, 
+		 * v2 is the speed of Cube1 after the collision.
+		 *
+		 * Similarly, we would have:
+		 *
+		 * (1/2)m1*u1^2 + (1/2)m2*u2^2 = (1/2)m1*v1^2 + (1/2)m2*u2^2 (conservation of kinatic energy).
+		 *
+		 * Solving both equations results in:
+		 *
+		 *		u1*(m1-m2) + 2*m2*u2
+		 * v1 = --------------------
+		 *			m1 + m2
+		 *
+		 *		u2*(m2-m1) + 2*m1*u1
+		 * v2 = --------------------
+		 *			m1 + m2
+		 */
 	}
 }
