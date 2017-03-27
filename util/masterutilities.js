@@ -29,6 +29,26 @@ luckyDivisor.util.containsElementGreaterThan = function(array, threshold) {
 }
 
 
+
+/**
+ * @description checks whether the suplied cubes collide.
+ *
+ * @param two cubes.
+ *
+ * @return true or false.
+ */
+luckyDivisor.util.checkForCollision = function (cube1, cube2) {
+	var x1 = cube1.position.x;
+	var y1 = cube1.position.y;
+	var x2 = cube2.position.x;
+	var y2 = cube2.position.y;
+	var w = luckyDivisor.config.SIDE_OF_CUBE;
+
+	return collideRectRect(x1, y1, w, w, x2, y2, w, w);
+}
+
+
+
 /**
  * @description this function is called once every time a key is pressed.
  * The keyCode for the key that was pressed is stored in the keyCode variable.
@@ -264,7 +284,7 @@ luckyDivisor.util.savePlayerData = function () {
  * @return none.
  */
 luckyDivisor.util.newID = function () {
-	return (luckyDivisor.config.ID) ? ++luckyDivisor.config.ID : 0;
+	return ++luckyDivisor.global.ID;
 }
 
 

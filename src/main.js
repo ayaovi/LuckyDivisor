@@ -242,16 +242,7 @@ function checkForPnCubeCollection() {
 	 */
 	luckyDivisor.global.columns.forEach(function (column) {
 		column.cubes.forEach(function (cube) {
-			/**
-			 * Create new references for the sake of simplicity.
-			 */
-			var x1 = cube.position.x;
-			var y1 = cube.position.y;
-			var x2 = luckyDivisor.global.playerCube.position.x;
-			var y2 = luckyDivisor.global.playerCube.position.y;
-			var w = luckyDivisor.config.SIDE_OF_CUBE;
-			
-			if (!luckyDivisor.global.playIsEnded && cube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w)) {
+			if (!luckyDivisor.global.playIsEnded && cube.visibility && luckyDivisor.util.checkForCollision(cube, luckyDivisor.global.playerCube)) {
 				luckyDivisor.global.playerCube.collisionHandler.handleCollisionWith(cube);
 				cube.visibility = false;
 			}
