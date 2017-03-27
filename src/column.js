@@ -139,7 +139,7 @@ class Column {
 			/**
 			 * This should never be seen.
 			 */
-			console.log("Unfortunate Column is not started but tried to add cubes.");
+			throw new GameException("Column " + this.index + " is not started but tried to add cubes.");
 		}
 	}
 

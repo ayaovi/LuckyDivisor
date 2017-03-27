@@ -31,6 +31,11 @@ class PnCube extends Cube {
 		this.setSpeed();
 
 		/**
+		 * Specifies the height at wich this cube should schedule a start ne cube event.
+		 */
+		this.demarcationHeight = floor(random(luckyDivisor.config.HEIGHT_OF_CANVAS * 0.2, luckyDivisor.config.HEIGHT_OF_CANVAS * 0.45));
+
+		/**
 		 * The following is a variable that advises on the visibility of this Cube. This
 		 * is mostly useful when displaying the Cube on the canvas. As such a non
 		 * visible (i.e. this.visibility == false) will never be displayed on the canvas.
