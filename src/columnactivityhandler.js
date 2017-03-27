@@ -30,8 +30,18 @@ class ColumnActivityHandler {
 	 * @return none.
 	 */
     checkForCollision() {
+        /**
+         * Collects all visible cubes on column
+         */
         var visibleCubes = this.column.visibleCubes();
+
+        /**
+         * Collision have only take place between @ least two visible cubes in the column.
+         */
         if (visibleCubes.length > 1) {
+            /**
+             * Iterate through the visible cubes (a pair at a time) and check for collision.
+             */
             for (var i = 0; i < visibleCubes.length; i++) {
                 var cube1 = visibleCubes[i];
                 for (var j = i + 1; j < visibleCubes.length; j++) {
