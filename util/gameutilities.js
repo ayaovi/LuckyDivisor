@@ -125,7 +125,7 @@ luckyDivisor.util.game.startNewPlay = function() {
 	 */
 	luckyDivisor.global.newGameButton.isVisible = false;
 	
-	ID = 0;
+	luckyDivisor.global.ID = 0;
 	
 	luckyDivisor.global.eventQueue.reset();
 

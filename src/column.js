@@ -51,7 +51,32 @@ class Column {
 		 * falling down it).
 		 */
 		this.cubesHaveStartedFalling;
+
+		/**
+		 * Handles activities that go on in this column. Mostly checking for cube collision.
+		 */
+		this.activityHandler = new ColumnActivityHandler(this);
 	}
+
+
+
+	/**
+	 * @description returns the number of of visible cubes in this column.
+	 *
+	 * @param none.
+	 *
+	 * @return an integer.
+	 */
+	visibleCubes() {
+		var theVisibleCubes = [];
+		this.cubes.forEach(function(cube) {
+			if (cube.visibility) {
+				theVisibleCubes.push(cube);
+			}
+		});
+		return theVisibleCubes;
+	}
+
 
 	/**
 	 * @description displays the content of this column.
@@ -85,6 +110,7 @@ class Column {
 				this.routine();
 			}
 		}
+		this.activityHandler.checkForCollision();
 	}
 
 
@@ -139,7 +165,7 @@ class Column {
 			/**
 			 * This should never be seen.
 			 */
-			console.log("Unfortunate Column is not started but tried to add cubes.");
+			throw new GameException("Column " + this.index + " is not started but tried to add cubes.");
 		}
 	}
 
