@@ -11,10 +11,10 @@
 	* [Player Cube](#player-cube)
 * [Requirements for Local Execution](#requirements-for-local-execution)
 	* [Project Hierarchy](#project-hierarchy)
-		* [src/](#src/)
-		* [test/](#test/)
-		* [config/](#config/)
-		* [util/](#util/)
+		* [src/](#src)
+		* [test/](#test)
+		* [config/](#config)
+		* [util/](#util)
 * [Rules of the Game](#rules-of-the-game)
 	* [Collecting Pn Cube](#collecting-pn-cube)
 	* [The Race against Time](#the-race-against-time)
@@ -47,11 +47,11 @@ The following is not a requirement per say but a suggestion instead. In the even
 
 The project files are organised as follow in the current version of the game.
 
-#### src/
+#### src
 
 It contains the javascript source files as well as the .html file that loads the game in the browser. Most of these source files represent a game component (e.g. Cube, Column etc...) while other represent action to be performed on game elements (e.g. CubeCollisionHandler, PnCubeMotionHandler etc...). It should also be noted that some of them are events as well.
 
-#### test/
+#### test
 
 The majority of the code has been tested using a tool call [*QUnit*](https://qunitjs.com/), a javascript unit testing framework developed by jQuery foundation.
 
@@ -59,11 +59,11 @@ The test files are organised as per source file. As such, a file named *cubetest
 
 Testing results can be inspected by opening up the file *index.html* in a browser. It gives you informationabout the passing and falling tests.
 
-#### config/
+#### config
 
 It contains the configuration as well as global variable definition files.
 
-#### util/
+#### util
 
 It contains the utilities files. In the attempt to avoid a very long single utility files, the utility functions have been seperated with respect to the objects that require them the most. As such we have a cube utilities file, a game utilities file etc...
 
