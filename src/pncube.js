@@ -28,7 +28,7 @@ class PnCube extends Cube {
 		 */
 		this.colour = luckyDivisor.config.CUBE_COLOUR_MAP[this.number];
 
-		this.speed = luckyDivisor.config.DEFAULT_PN_CUBE_SPEED + (luckyDivisor.config.PN_CUBE_SPEED_VARIANT_MULTIPLIER * this.number);
+		this.setSpeed();
 
 		/**
 		 * The following is a variable that advises on the visibility of this Cube. This
@@ -90,6 +90,35 @@ class PnCube extends Cube {
 			this.showNumberOnCube();
 		}
 	}
+
+
+	/**
+	 * @description changes the number on this cube to new greater one.
+	 *
+	 * @param new number.
+	 *
+	 * @return none.
+	 */
+	changeNumber(newNumber) {
+		if (newNumber > this.number) {
+			this.number = newNumber;
+			this.setSpeed();
+		}
+	}
+
+
+
+	/**
+	 * @description sets the speed of this cube.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	setSpeed() {
+		this.speed = luckyDivisor.config.DEFAULT_PN_CUBE_SPEED + (luckyDivisor.config.PN_CUBE_SPEED_VARIANT_MULTIPLIER * this.number);
+	}
+
 
 
 	/**

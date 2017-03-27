@@ -73,8 +73,11 @@ var constrain = function (number, lowerBound, upperBound) {
 	return (number < lowerBound) ? lowerBound : (number > upperBound) ? upperBound : number;
 }
 
-
 var toDecimalPlace = function (number, decimalPlaces) {
 	var multiplier = Math.pow(10, decimalPlaces);
 	return parseFloat(Math.round(number * multiplier) / multiplier).toFixed(decimalPlaces);
+}
+
+var sqrt = function (number) {
+	return Math.sqrt(number);
 }

@@ -99,6 +99,28 @@ class CubeCollisionHandler {
 
 
 	/**
+	 * @description merges two pn cubes.
+	 *
+	 * @param two pn cubes, lower and upper one, exactely in that order.
+	 *
+	 * @return none.
+	 */
+	combineTwoPnCubes(lowerCube, upperCube) {
+		/**
+		 * One way to achieving the merge is by setting the number of the lowest cube to sum and its speed accordingly as to match the new number. This can be done by calling a function change number on that lowest cube.
+		 */
+		var sum = lowerCube.number + upperCube.number;
+		lowerCube.changeNumber(sum);
+
+		/**
+		 * We need to make the upper cube invisible thereafter.
+		 */
+		upperCube.visibility = false;
+	}
+
+
+
+	/**
 	 * @description a collision handler between a two pn cubes.
 	 *
 	 * @param a Pn cube.
@@ -106,45 +128,60 @@ class CubeCollisionHandler {
 	 * @return none.
 	 */
 	handlePnCubeInCollisionWith(pnCube) {
+		var sum = this.cube.number + pnCube.number;
+		
 		/**
-		 * By definition, a collision is an event where momentum or kinetic energy is transferred 
-		 * from one object (which in this case is a cube) to another.
-		 * Momentum (p) is the product of mass and velocity (p = mv). 
-		 * While Kinetic energy is the energy of motion; it is defined as K = (1/2) m v^2. 
-		 * 
-		 * Because the collision between two cubes is an elastic one (i.e. the two 
-		 * cubes bounce apart, in the same direction, when they collide), both momentum and of kinetic energy are conserved.
-		 * As such we would have:
-		 *
-		 * m1*u1 + m2u2 = m1v1 + m2v2 (conservation of momentum), where:
-		 *
-		 * m1 is the mass of Cube1, 
-		 * m2 is the mass of Cube2, 
-		 * u1 is the incoming speed of Cube1, 
-		 * u2 is the incoming speed of Cube2, 
-		 * v1 is the speed of Cube1 after the collision, 
-		 * v2 is the speed of Cube1 after the collision.
-		 *
-		 * Similarly, we would have:
-		 *
-		 * (1/2)m1*u1^2 + (1/2)m2*u2^2 = (1/2)m1*v1^2 + (1/2)m2*u2^2 (conservation of kinatic energy).
-		 *
-		 * Solving both equations results in:
-		 *
-		 *		u1*(m1-m2) + 2*m2*u2
-		 * v1 = --------------------
-		 *			m1 + m2
-		 *
-		 *		u2*(m2-m1) + 2*m1*u1
-		 * v2 = --------------------
-		 *			m1 + m2
+		 * There are two ways this can swing. The first is when sum is prime and the other is when sum is not.
+		 * When sum is prime, then the two cubes combine to for a new one with its number being sum.
+		 * In the other case, the two cubes collide and still carry on their marry way.
 		 */
-		var m1 = this.cube.number;
-		var m2 = pnCube.number;
-		var u1 = this.cube.speed;
-		var u2 = pnCube.speed;
+		if (luckyDivisor.util.math.isPrime(sum)) {
+			var lowerCube = (this.cube.position.y > pnCube.position.y) ? this.cube : pnCube;
+			var upperCube = (this.cube.position.y < pnCube.position.y) ? this.cube : pnCube;
 
-		this.cube.speed = (u1 * (m1 - m2) + 2 * m2 * u2) / (m1 + m2);
-		pnCube.speed = (u2 * (m2 - m1) + 2 * m1 * u1) / (m1 + m2);
+			this.combineTwoPnCubes(lowerCube, upperCube);
+		}
+		else {
+			/**
+			 * By definition, a collision is an event where momentum or kinetic energy is transferred 
+			 * from one object (which in this case is a cube) to another.
+			 * Momentum (p) is the product of mass and velocity (p = mv). 
+			 * While Kinetic energy is the energy of motion; it is defined as K = (1/2) m v^2. 
+			 * 
+			 * Because the collision between two cubes is an elastic one (i.e. the two 
+			 * cubes bounce apart, in the same direction, when they collide), both momentum and of kinetic energy are conserved.
+			 * As such we would have:
+			 *
+			 * m1*u1 + m2u2 = m1v1 + m2v2 (conservation of momentum), where:
+			 *
+			 * m1 is the mass of Cube1, 
+			 * m2 is the mass of Cube2, 
+			 * u1 is the incoming speed of Cube1, 
+			 * u2 is the incoming speed of Cube2, 
+			 * v1 is the speed of Cube1 after the collision, 
+			 * v2 is the speed of Cube1 after the collision.
+			 *
+			 * Similarly, we would have:
+			 *
+			 * (1/2)*m1*u1^2 + (1/2)*m2*u2^2 = (1/2)*m1*v1^2 + (1/2)*m2*u2^2 (conservation of kinatic energy).
+			 *
+			 * Solving both equations results in:
+			 *
+			 *		u1*(m1-m2) + 2*m2*u2
+			 * v1 = --------------------
+			 *			m1 + m2
+			 *
+			 *		u2*(m2-m1) + 2*m1*u1
+			 * v2 = --------------------
+			 *			m1 + m2
+			 */
+			var m1 = this.cube.number;
+			var m2 = pnCube.number;
+			var u1 = this.cube.speed;
+			var u2 = pnCube.speed;
+
+			this.cube.speed = (u1 * (m1 - m2) + 2 * m2 * u2) / (m1 + m2);
+			pnCube.speed = (u2 * (m2 - m1) + 2 * m1 * u1) / (m1 + m2);
+		}
 	}
 }
