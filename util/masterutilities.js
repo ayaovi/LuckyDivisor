@@ -148,7 +148,10 @@ luckyDivisor.util.playerCreditPoints = function () {
  * @return none.
  */
 luckyDivisor.util.makeEmotionalFace = function (type) {
-	if (luckyDivisor.global.sidePanel.emoticon) {
+	/**
+	 * The point here is if the sidePanel exist then the emoticon must as well.
+	 */
+	if (luckyDivisor.global.sidePanel) {
 		luckyDivisor.global.sidePanel.emoticon.type = type;
 	}
 }
@@ -172,7 +175,7 @@ luckyDivisor.util.createNewPlayerData = function () {
 	 * prompt the player for a name.
 	 */
 	var playerName = prompt('Please tell me your name', 'PLAYER');
-	
+
 	/**
 	 * Should the player name be valid, then add it to the JSON.
 	 */
@@ -184,7 +187,7 @@ luckyDivisor.util.createNewPlayerData = function () {
 	 * The player best score is 0 by default.
 	 */
 	luckyDivisor.global.playerData['bestScore'] = 0;
-	
+
 	/**
 	 * The player credit point is 0 by default.
 	 */
@@ -221,7 +224,7 @@ luckyDivisor.util.checkForNewPlayerData = function () {
 		 */
 		luckyDivisor.global.playerData['bestScore'] = (luckyDivisor.global.playerData['bestScore'] < luckyDivisor.global.player.bestScore) ? luckyDivisor.global.player.bestScore : luckyDivisor.global.playerData['bestScore'];
 		/**
-		 * Player credit point gets updated when ever there is a new credit point. The idea here is that 
+		 * Player credit point gets updated when ever there is a new credit point. The idea here is that
 		 * credit point can be carried over from one session to another.
 		 */
 		luckyDivisor.global.playerData['creditPoints'] = luckyDivisor.global.player.creditPoints;
@@ -243,7 +246,7 @@ luckyDivisor.util.checkForNewPlayerData = function () {
 luckyDivisor.util.savePlayerData = function () {
 	/**
 	 * First check that the player data does exist. And if so store it.
-	 * There is a limit to how much data one can store via localStorage - approximately 5mb. 
+	 * There is a limit to how much data one can store via localStorage - approximately 5mb.
 	 * If you are dealing with a lot of data you could soon reach that limit.
 	 */
 	if (luckyDivisor.global.playerData) {

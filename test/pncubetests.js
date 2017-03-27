@@ -24,7 +24,7 @@ QUnit.test("pn cube basics", function( assert ) {
 	 * pnCube.columnIndex = 2;
 	 */
 	var pnCube = new PnCube(5, 3, createVector(0, 0), 2);
-	
+
 	assert.ok(pnCube.visibility, "upon creation pnCube.visibility should be true");
 	assert.notOk(pnCube.hasStarted, "upon creation pnCube.hasStarted should be false");
 	assert.notOk(pnCube.hasAlreadyInitiatedNewCubeStart, "upon creation pnCube.hasAlreadyInitiatedNewCubeStart should be false");
@@ -38,7 +38,7 @@ QUnit.test("pn cube basics", function( assert ) {
 
 	/**
 	 * Because the cube has fallen (at least once), then it should have started.
-	 * And its start date should be equal to the current date. Moreover the cube's 
+	 * And its start date should be equal to the current date. Moreover the cube's
 	 * position.y should have increased by the cube's speed.
 	 */
 	assert.ok(pnCube.hasStarted, "upon fall pnCube.hasStarted should be true");
@@ -70,8 +70,8 @@ QUnit.test("pn cube basics", function( assert ) {
 	pnCube.collisionHandler.handleCollisionWith(anotherPnCube);
 
 	/**
-	 * Now let's check the respective speeds.
+	 * Now let's check the respective speeds. 
 	 */
-	assert.equal(pnCube.speed, 1.23, "after collision, pnCube.speed equal xxx succeeds");
-	assert.equal(anotherPnCube.speed, 1.23, "after collision, anotherPnCube.speed equal xxx succeeds");
+	assert.equal(toDecimalPlace(pnCube.speed, 2), 1.65, "after collision, pnCube.speed equal xxx succeeds");
+	assert.equal(anotherPnCube.speed, 1.85, "after collision, anotherPnCube.speed equal xxx succeeds");
 });
