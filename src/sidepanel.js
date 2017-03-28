@@ -46,7 +46,7 @@ class SidePanel extends Panel {
 
 		this.emoticon = new Emoticon(createVector(this.position.x + luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + 25, this.position.y + luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + 25), 50, 0);
 
-		this.createCubesStartingPositionY = 2 * luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + this.emoticon.size;
+		this.cubesStartingPositionY = 2 * luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + this.emoticon.size;
 	}
 
 
@@ -105,7 +105,7 @@ class SidePanel extends Panel {
 				/**
 				 * The cubes are aligned vertically and spaced by the DEFAULT_SIDE_PANEL_PADDING.
 				 */
-				var cubePositionY = this.createCubesStartingPositionY + counter * (luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + luckyDivisor.config.SIDE_OF_CUBE);
+				var cubePositionY = this.cubesStartingPositionY + counter * (luckyDivisor.config.DEFAULT_SIDE_PANEL_PADDING + luckyDivisor.config.SIDE_OF_CUBE);
 
 				this.pnCubesYetToBeCollected.push(new PnCube(primeFactors[i], luckyDivisor.util.newID(), createVector(cubePositionX, cubePositionY)));
 
