@@ -199,8 +199,36 @@ class SidePanel extends Panel {
 		for (var i = 0; i < this.pnCubesYetToBeCollected.length; i++) {
 			if (this.pnCubesYetToBeCollected[i].number == number) {
 				this.pnCubesYetToBeCollected[i].notifyOfCollection();
+
+				/**
+				 * Should this cube be all collected, then we want to rearrange every cube in the side panel.
+				 */
+				if (!this.pnCubesYetToBeCollected[i].isVisible) {
+					this.pnCubesYetToBeCollected[i].previousPosition = this.pnCubesYetToBeCollected[i].position;
+					this.rearrangeCubes(i + 1);
+				}
 				break;
 			}
 		}
+	}
+
+
+
+	/**
+	 * @description rearranges the cubes in the side panel after cone of them has been all colected.
+	 *
+	 * @param index at which to start rearranging.
+	 *
+	 * @return none.
+	 */
+	rearrangeCubes(index) {
+		for (var i = index; i < this.pnCubesYetToBeCollected.length; i++) {
+			this.pnCubesYetToBeCollected[i].setNewPosition(this.pnCubesYetToBeCollected[i - 1].previousPosition);
+		}
+
+		/**
+		 * Remove the invisible cube from collection.
+		 */
+		this.pnCubesYetToBeCollected.splice(index - 1, 1);
 	}
 }

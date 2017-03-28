@@ -20,7 +20,15 @@ class SidePanelCube extends Cube {
 	constructor(number, id, position, multiplier) {
 		super(number, id, position);
 
+		/**
+		 * Refers to the number of times this cube is to be collected.
+		 */
 		this.multiplier = multiplier;
+
+		/**
+		 * Tracks the previous position of this cube. Becomes useful when rearranging cubes in the side panel as a result of one of them being all collected.
+		 */
+		this.previousPosition = this.position;
 
 		/**
 		 * The following is a variable that advises on the visibility of this Cube. This
@@ -37,6 +45,19 @@ class SidePanelCube extends Cube {
 	}
 
 
+	/**
+	 * @description sets a new position for this cube.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	setNewPosition(newPosition) {
+		this.previousPosition = this.position;
+		this.position = newPosition;
+	}
+
+
 
 	/**
 	 * @description notifies the cube of its collection.
@@ -49,10 +70,6 @@ class SidePanelCube extends Cube {
 	notifyOfCollection() {
 		if (this.multiplier > 0) {
 			--this.multiplier;
-
-			/**
-			 * Then update the cube's visibility.
-			 */
 			this.updateVisibility();
 		}
 	}
