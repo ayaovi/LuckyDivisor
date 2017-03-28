@@ -1,7 +1,7 @@
 /**
- * @file : sidepanel.js
+ * @file : sidepanelcube.js
  *
- * @description : A side panel is a panel that contains the list of yet to be collected Pn cubes by the player.
+ * @description : A side panel cube is a cube just like any other except it does not move. In addition is also has a multiplier attached to it. Should this mutiplier ever be 0, it becomes invisible if one uses the proper method for updating the mutliplier in it.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -21,6 +21,19 @@ class SidePanelCube extends Cube {
 		super(number, id, position);
 
 		this.multiplier = multiplier;
+
+		/**
+		 * The following is a variable that advises on the visibility of this Cube. This
+		 * is mostly useful when displaying the Cube on the canvas. As such a non
+		 * visible (i.e. this.visibility == false) will never be displayed on the canvas.
+		 */
+		this.isVisible = true;
+
+		/**
+		 * Every pn cube has a specific colour.
+		 * e.g. 1 is yellow, 2 is red, 3 is blue etc...
+		 */
+		this.colour = luckyDivisor.config.CUBE_COLOUR_MAP[this.number];
 	}
 
 
@@ -36,10 +49,13 @@ class SidePanelCube extends Cube {
 	notifyOfCollection() {
 		if (this.multiplier > 0) {
 			--this.multiplier;
+
+			/**
+			 * Then update the cube's visibility.
+			 */
+			this.updateVisibility();
 		}
 	}
-
-
 
 
 	/**
@@ -66,7 +82,7 @@ class SidePanelCube extends Cube {
 	 */
 	updateVisibility() {
 		if (this.multiplier == 0) {
-			this.visibility = false;
+			this.isVisible = false;
 		}
 	}
 
@@ -80,7 +96,7 @@ class SidePanelCube extends Cube {
 	 * @return none.
 	 */
 	show() {
-		if (this.visibility == true) {
+		if (this.isVisible) {
 			/**
 			 * Display the cube.
 			 */
