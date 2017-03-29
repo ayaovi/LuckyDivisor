@@ -15,16 +15,20 @@
 		* [test/](#test)
 		* [config/](#config)
 		* [util/](#util)
+		* [doc/](#doc)
 * [Rules of the Game](#rules-of-the-game)
 	* [Collecting Pn Cube](#collecting-pn-cube)
 	* [The Race against Time](#the-race-against-time)
 * [Extra Features](#extra-features)
 * [Dependencies](#dependencies)
 * [Collaboration](#collaboration)
+	* [S.O.L.I.D](#s.o.l.i.d)
+	* [TDD](#tdd)
+	* [Pure Functions](#pure-functions)
 
 ## Overview
 
-LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). It is designed to be played in a web browser. In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
+LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). The game is designed to be played in a web browser. In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
 
 - Pn (prime number) Cube, or
 - Player Cube.
@@ -66,6 +70,10 @@ It contains the configuration as well as global variable definition files.
 #### util
 
 It contains the utilities files. In the attempt to avoid a very long single utility files, the utility functions have been seperated with respect to the objects that require them the most. As such we have a cube utilities file, a game utilities file etc...
+
+#### doc
+
+It contains a form of api documentation of the source files. The api documentation is meant to make working on the project easier. The point here being, the documentation might not look pretty but it would get you the information that you require to know about the project.
 
 This arrangement of the project files can easily change in future versions.
 
@@ -130,7 +138,19 @@ Once you have been granted access to collaborate, the next thing we would kindly
 - *release*, for the releasing new versions of the game.
 - *hotfix*, for fixing issues or bugs that pop up during live.
 
-Moreover, because we always aim for writing easily testable code, we would ask of you to use the [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach in your function and class definitions. We would like to use the [*TDD*](http://agiledata.org/essays/tdd.html) approach for development as much as possible. It make be difficult at the start but once you get the hang of it, it is comparable to a runaway train (i.e. easy to stop).
+Moreover, because we always aim for writing easily testable code, we would ask of you to use of follow the following approaches.
+
+### S.O.L.I.D
+
+The [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach helps you write testable code. 
+
+### TDD
+
+We would also like to use the [*TDD*](http://agiledata.org/essays/tdd.html) approach for development as much as possible. It might be difficult at the start but once you get the hang of it, it is comparable to a runaway train (i.e. easy to stop).
+
+### Pure Functions
+
+By definition a [*Pure Function*](https://www.sitepoint.com/functional-programming-pure-functions/), is a function that does not induce side effect into the programme flow. In other words, given the same input it would also return the same output. Because of this wonderfull garantee we would like to write pure functions when and wherever we could.
 
 As such everything is done through [*pull requests*](https://help.github.com/articles/creating-a-pull-request/).
 
