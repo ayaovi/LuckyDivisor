@@ -29,7 +29,6 @@ luckyDivisor.util.containsElementGreaterThan = function(array, threshold) {
 }
 
 
-
 /**
  * @description checks whether the suplied cubes collide.
  *
@@ -46,7 +45,6 @@ luckyDivisor.util.checkForCollision = function (cube1, cube2) {
 
 	return collideRectRect(x1, y1, w, w, x2, y2, w, w);
 }
-
 
 
 /**
@@ -102,7 +100,6 @@ luckyDivisor.util.updateSidePanel = function (number) {
 }
 
 
-
 /**
  * @description Checks whether there is existing date on the player.
  *
@@ -120,7 +117,6 @@ luckyDivisor.util.initPlayerData = function () {
 }
 
 
-
 /**
  * @description returns the player name.
  *
@@ -131,7 +127,6 @@ luckyDivisor.util.initPlayerData = function () {
 luckyDivisor.util.playerName = function () {
 	return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['name'] : 'PLAYER';
 }
-
 
 
 /**
@@ -146,7 +141,6 @@ luckyDivisor.util.playerBestScore = function () {
 }
 
 
-
 /**
  * @description returns the player credit point.
  *
@@ -157,7 +151,6 @@ luckyDivisor.util.playerBestScore = function () {
 luckyDivisor.util.playerCreditPoints = function () {
 	return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['creditPoints'] : 0;
 }
-
 
 
 /**
@@ -175,7 +168,6 @@ luckyDivisor.util.makeEmotionalFace = function (type) {
 		luckyDivisor.global.sidePanel.emoticon.type = type;
 	}
 }
-
 
 
 /**
@@ -215,8 +207,6 @@ luckyDivisor.util.createNewPlayerData = function () {
 }
 
 
-
-
 /**
  * @description checks whether there is new player data.
  *
@@ -254,8 +244,6 @@ luckyDivisor.util.checkForNewPlayerData = function () {
 }
 
 
-
-
 /**
  * @description saves the player data to local storage.
  *
@@ -275,7 +263,6 @@ luckyDivisor.util.savePlayerData = function () {
 }
 
 
-
 /**
  * @description returns a new cube id.
  *
@@ -286,7 +273,6 @@ luckyDivisor.util.savePlayerData = function () {
 luckyDivisor.util.newID = function () {
 	return ++luckyDivisor.global.ID;
 }
-
 
 
 /**

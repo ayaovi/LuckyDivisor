@@ -1,4 +1,15 @@
+/**
+ * @file Function.java
+ * 
+ * @description A Function has a name and a header.
+ * 
+ * @author Ayaovi Espoir Djissenou
+ * 
+ * @version v1
+ */
 
+
+package luckyDivisor.doc;
 
 public class Function implements Comparable<Function>
 {
@@ -17,9 +28,30 @@ public class Function implements Comparable<Function>
 	 */
 	public Function(String header, String name)
 	{
-		FUNCTION_NAME = name;
+		FUNCTION_NAME = _extractFunctionSignature(name);
 		FUNCTION_HEADER = header;
 	}
+
+
+
+	private String _extractFunctionSignature(String name) {
+		String functionSignature = name;
+
+		if (name.startsWith("function ")) {
+			functionSignature = name.substring(9).trim();
+		}
+		else if (name.indexOf("= function") != -1) {
+			int index = name.indexOf("= function");
+			functionSignature = name.substring(0, index).trim() + name.substring(index + 10).trim();
+		}
+
+		if (functionSignature.indexOf("{") != -1) {
+			int index = functionSignature.indexOf("{");
+			functionSignature = functionSignature.trim().substring(0, index).trim() + "\n";
+		}
+		return functionSignature;
+	}
+
 
 
 	/**
