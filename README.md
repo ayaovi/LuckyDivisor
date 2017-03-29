@@ -22,7 +22,7 @@
 * [Extra Features](#extra-features)
 * [Dependencies](#dependencies)
 * [Collaboration](#collaboration)
-	* [S.O.L.I.D](#s.o.l.i.d)
+	* [SOLID](#solid)
 	* [TDD](#tdd)
 	* [Pure Functions](#pure-functions)
 
@@ -39,7 +39,7 @@ A pn cube is a cube with special properties and features. The number on a pn cub
 
 ### Player Cube
 
-A player cube is a cube with special properties and features. The number on a player cube is not restricted to be just a prime. In fact it could be anything between 2-99 provided it has prime factors that are less than 10. A Player Cube is always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
+A player cube is a cube with special properties and features. The number on a player cube is not restricted to be just a prime. In fact it could be anything between 2-99 provided its prime factors that are less than 10. A Player Cube is always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
 
 [Go Back Top](#table-of-contents)
 
@@ -140,7 +140,7 @@ Once you have been granted access to collaborate, the next thing we would kindly
 
 Moreover, because we always aim for writing easily testable code, we would ask of you to use of follow the following approaches.
 
-### S.O.L.I.D
+### SOLID
 
 The [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach helps you write testable code. 
 
