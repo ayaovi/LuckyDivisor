@@ -13,14 +13,13 @@ luckyDivisor.util.cube = {};
 
 
 /**
- * @description updates both pnCubeCreationReccordMap and numberOfPnCubeCreated 
- * to take into account the new prime number just have been generated.
+ * @description updates both pnCubeCreationReccordMap and numberOfPnCubeCreated to take into account the new prime number just have been generated.
  *
  * @param prime number.
  *
  * @return none.
  */
-luckyDivisor.util.cube.updatePnCubeCreationRecords = function(primeNuber) {
+luckyDivisor.util.cube.updatePnCubeCreationRecords = function (primeNuber) {
 	++luckyDivisor.global.pnCubeCreationReccordMap[primeNuber];
 	++luckyDivisor.global.numberOfPnCubeCreated;
 }
@@ -29,11 +28,11 @@ luckyDivisor.util.cube.updatePnCubeCreationRecords = function(primeNuber) {
 /**
  * @description returns the prime number with the least occurrence so far in the play.
  *
- * @param.
+ * @param none.
  *
  * @return a prime integer.
  */
-luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function() {
+luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function () {
 	var primeNumberWithTheLeastOccurrence = 1;
 	
 	if (luckyDivisor.global.numberOfPnCubeCreated < luckyDivisor.global.NUMBER_OF_COLUMNS) {
@@ -77,13 +76,11 @@ luckyDivisor.util.cube.getNewPnCube = function(columnPositionX, columnIndex) {
 /**
  * @description A function to convert LAB to RGB.
  *
- * @param an array of containing the L, A and B values make up 
- * an RGB colour.
+ * @param an array of containing the L, A and B values make up an RGB colour.
  *
- * @return an array containing the red, green and yellow values 
- * make up the corresponding RGB colour
+ * @return an array containing the red, green and yellow values make up the corresponding RGB colour
  */
-luckyDivisor.util.cube.LABtoRGB = function(lab) {
+luckyDivisor.util.cube.LABtoRGB = function (lab) {
 	var y = (lab[0] + 16) / 116;
 	var x = lab[1] / 500 + y;
 	var z = y - lab[2] / 200;
@@ -165,10 +162,9 @@ luckyDivisor.util.cube.CMYKtoRGB = function(cmyk) {
  *
  * @param an RGB colour.
  *
- * @return an array of the corresponding cyan, magenta, yellow 
- * values/percentages and the key that make up the RGB colour.
+ * @return an array of the corresponding cyan, magenta, yellow values/percentages and the key that make up the RGB colour.
  */
-luckyDivisor.util.cube.RGBtoCMYK = function(colour) {
+luckyDivisor.util.cube.RGBtoCMYK = function (colour) {
 	var red = red(colour);
 	var green = green(colour);
 	var blue = blue(colour);
@@ -190,15 +186,13 @@ luckyDivisor.util.cube.RGBtoCMYK = function(colour) {
 
 
 /**
- * @description A function that given a list divisors, returns a 
- * combination of all their colours put together.
+ * @description A function that given a list divisors, returns a combination of all their colours put together.
  *
  * @param an array of prime numbers less than 10 and excluding 0.
  *
- * @return an RGB colour that is equally made up of colour 
- * corresponding to the prime number.
+ * @return an RGB colour that is equally made up of colour corresponding to the prime number.
  */
-luckyDivisor.util.cube.combineColours = function(divisors) {
+luckyDivisor.util.cube.combineColours = function (divisors) {
 	var resultingColour = luckyDivisor.util.math.addRGBs(luckyDivisor.config.CUBE_COLOUR_MAP[divisors[0]], luckyDivisor.config.CUBE_COLOUR_MAP[divisors[1]]);
 
 	for (var i = 2; i < divisors.length; i++) {

@@ -103,14 +103,15 @@ public class APIGenerator {
 	 *
 	 * @return none.
 	 */
-	private static void _process(List<String> content) {
+	private static List<String> _process(List<String> content) {
+		List<String> functionInFile = new ArrayList<String>();
 		for (int i = 0; i < content.size() - 1; i++) {
 			String currentLine = content.get(i);
 			String nextLine = content.get(i + 1);
 			
 			if (currentLine.trim().startsWith("/**")) {
 				if (nextLine.trim().startsWith("* @description")) {
-					_functionsInClass.add(_extractFunction(content, i));
+					functionInFile.add(_extractFunction(content, i));
 				}
 			}
 		}
