@@ -16,7 +16,7 @@ luckyDivisor.util.game = {};
  *
  * @param none.
  *
- * @retun none.
+ * @return none.
  */
 luckyDivisor.util.game.displayMessageOnCanvas = function(message) {
 	/**
@@ -46,7 +46,7 @@ luckyDivisor.util.game.displayMessageOnCanvas = function(message) {
  *
  * @param none.
  *
- * @retun none.
+ * @return none.
  */
 luckyDivisor.util.game.displayNewGameButton = function() {
 	/**
@@ -203,7 +203,7 @@ luckyDivisor.util.game.beforePlayInit = function() {
  *
  * @param none.
  *
- * @retun none.
+ * @return none.
  */
 luckyDivisor.util.game.endGame = function(endOfGameCode) {
 	/**

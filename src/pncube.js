@@ -13,11 +13,11 @@
 
 class PnCube extends Cube {
 	/**
-	 * @description
+	 * @description a constructor
 	 *
-	 * @param
+	 * @param 
 	 *
-	 * @return
+	 * @return none.
 	 */
 	constructor(primeNumber, id, position, columnIndex) {
 		super(primeNumber, id, position);
@@ -100,7 +100,7 @@ class PnCube extends Cube {
 	/**
 	 * @description changes the number on this cube to new greater one.
 	 *
-	 * @param new number.
+	 * @param integer newNumber.
 	 *
 	 * @return none.
 	 */
@@ -142,7 +142,7 @@ class PnCube extends Cube {
 	 *
 	 * @param another cube.
 	 *
-	  @return true or false.
+	  @return string.
 	 */
 	toString() {
 		return (super.toString() + ", " + this.columnIndex);

@@ -13,9 +13,9 @@ class CubeCollisionHandler {
 	/**
 	 * @description constructor.
 	 *
-	 * @param
+	 * @param none.
 	 *
-	 * @return
+	 * @return none.
 	 */
 	constructor(cube) {
 		this.cube = cube;

@@ -11,11 +11,11 @@
  
 class Score {
 	/**
-	 * @description 
+	 * @description constructor
 	 *
-	 * @param
+	 * @param position
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	constructor(position) {
 		this.position = position;
@@ -26,7 +26,7 @@ class Score {
 	/**
 	 * @description updates the player score.
 	 *
-	 * @param the value by which to update the score.
+	 * @param integer hit.
 	 *
 	 * @return none.
 	 */

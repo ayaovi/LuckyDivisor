@@ -16,9 +16,9 @@
 	/**
 	 * @description constructor.
 	 *
-	 * @param 
+	 * @param none.
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	constructor(number, id, position) {
 		super(number, id, position);
@@ -80,7 +80,7 @@
 	 *
 	 * @param none.
 	 *
-	 * @return true or false.
+	 * @return boolean.
 	 */
 	hasCollectedAll() {
 		return (this.yetToBeCollectedDivisors.length == 0);
@@ -89,7 +89,7 @@
 	/**
 	 * @description a function.
 	 *
-	 * @param a non-zero prime number less than 10.
+	 * @param integer.
 	 *
 	 * @return none.
 	 */
@@ -107,9 +107,7 @@
 	
 	
 	/**
-	 * @description a function that changes the colour of of this Pn cube 
-	 * according to prime numbers in the yetToBeCollectedDivisors array. This 
-	 * is in response to the player collecting a prime divisor Pn cube.
+	 * @description changes the colour of this Pn cube according to prime numbers in the yetToBeCollectedDivisors array. This is in response to the player collecting a prime divisor Pn cube.
 	 *
 	 * @param none.
 	 *

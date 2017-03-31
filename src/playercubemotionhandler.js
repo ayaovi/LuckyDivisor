@@ -12,9 +12,9 @@ class PlayerCubeMotionHandler {
 	/**
 	 * @description constructor.
 	 *
-	 * @param 
+	 * @param none.
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	constructor(playerCube) {
 		/**
@@ -27,9 +27,9 @@ class PlayerCubeMotionHandler {
 	/**
 	 * @description moves the object.
 	 *
-	 * @param 
+	 * @param none.
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	move() {
 		if (keyIsDown(luckyDivisor.config.playerControls[0])) {
@@ -44,9 +44,9 @@ class PlayerCubeMotionHandler {
 	/**
 	 * @description moves the object to the left with regards to its position.
 	 *
-	 * @param 
+	 * @param none.
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	moveLeft() {
 		/**
@@ -64,9 +64,9 @@ class PlayerCubeMotionHandler {
 	/**
 	 * @description moves the object to the right with regards to its position.
 	 *
-	 * @param 
+	 * @param none.
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	moveRight() {
 		/**
@@ -84,9 +84,9 @@ class PlayerCubeMotionHandler {
 	/**
 	 * @description moves the object to the right with regards to its position.
 	 *
-	 * @param 
+	 * @param none.
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	constrainPosition() {
 		/**

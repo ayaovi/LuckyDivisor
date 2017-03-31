@@ -63,7 +63,7 @@ class Emoticon {
 		 */
 		if (this.type == -1) {
 			/**
-			 * anger.
+			 * not happy.
 			 */
 			arc(this.position.x, this.position.y + this.size * 0.3, this.size * 0.6, this.size * 0.5, PI + (PI / 6), TWO_PI - (PI / 6));
 		}
@@ -75,7 +75,7 @@ class Emoticon {
 		}
 		else if (this.type == 1) {
 			/**
-			 * smile.
+			 * happy.
 			 */
 			arc(this.position.x, this.position.y, this.size * 0.6, this.size * 0.5, (PI / 6), PI - (PI / 6));
 		}

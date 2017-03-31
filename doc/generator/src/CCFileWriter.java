@@ -44,4 +44,17 @@ public class CCFileWriter
 			System.err.format("IOException: %s%n", x);
 		}
 	}
+
+	public static void writeToFile(String content, String fileName) {
+		FileWriter fw  = null;
+
+		try {
+			fw = new FileWriter(fileName);
+			fw.write(content);
+			fw.close();
+		}
+		catch (IOException x) {
+			System.err.format("IOException: %s%n", x);
+		}
+	}
 }

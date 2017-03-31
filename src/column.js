@@ -1,7 +1,7 @@
 /**
  * @file : column.js
  *
- * @description : a Column is a tube or a line that Cubes are falling off.
+ * @description : A Column is a tube or a line that Cubes are falling off.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -65,7 +65,7 @@ class Column {
 	 *
 	 * @param none.
 	 *
-	 * @return an integer.
+	 * @return PnCubes.
 	 */
 	visibleCubes() {
 		var theVisibleCubes = [];

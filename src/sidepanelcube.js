@@ -48,7 +48,7 @@ class SidePanelCube extends Cube {
 	/**
 	 * @description sets a new position for this cube.
 	 *
-	 * @param none.
+	 * @param Vector newPosition.
 	 *
 	 * @return none.
 	 */
@@ -60,8 +60,7 @@ class SidePanelCube extends Cube {
 
 
 	/**
-	 * @description notifies the cube of its collection.
-	 * In response, it decrements the its multiplier.
+	 * @description notifies the cube of its collection. In response, it decrements the its multiplier.
 	 *
 	 * @param none.
 	 *
@@ -76,8 +75,7 @@ class SidePanelCube extends Cube {
 
 
 	/**
-	 * @description notifies the cube of an occurence.
-	 * In response, it increments its multiplier.
+	 * @description notifies the cube of an occurence. In response, it increments its multiplier.
 	 *
 	 * @param none.
 	 *
@@ -90,8 +88,7 @@ class SidePanelCube extends Cube {
 
 
 	/**
-	 * @description updates the visibility of this cube.
-	 * The cube becomes invisible when its multiplier euals 0.
+	 * @description updates the visibility of this cube. The cube becomes invisible when its multiplier euals 0.
 	 *
 	 * @param none.
 	 *

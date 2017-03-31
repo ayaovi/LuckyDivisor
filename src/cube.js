@@ -13,8 +13,7 @@ class Cube {
 	/**
 	 * @description Function constructor.
 	 *
-	 * @param a prime number to be displayed on the cube, an id that is unique to the cube 
-	 * and a position that relates to where the cube is at any point in time.
+	 * @param a prime number to be displayed on the cube, an id that is unique to the cube and a position that relates to where the cube is at any point in time.
 	 *
 	 * @return none.
 	 */
@@ -87,9 +86,9 @@ class Cube {
 	/**
 	 * @description Tests equality of two cubes. By checking the equality of their numbers.
 	 *
-	 * @param another cube.
+	 * @param cube.
 	 *
-	  @return true or false.
+	  @return boolean.
 	 */
 	equals(otherCube) {
 		return (this.number == otherCube.number);
@@ -99,9 +98,9 @@ class Cube {
 	/**
 	 * @description Returns a representation of this cube.
 	 *
-	 * @param another cube.
+	 * @param cube.
 	 *
-	  @return true or false.
+	  @return boolean.
 	 */
 	toString() {
 		return ("Cube: " + this.number);

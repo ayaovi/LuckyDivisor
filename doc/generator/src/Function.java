@@ -16,8 +16,10 @@ public class Function implements Comparable<Function>
 	/**
 	 * Instance variables.
 	 */
-	private final String FUNCTION_NAME;
+	private final String FUNCTION_SIGNATURE;
 	private final String FUNCTION_HEADER;
+	private String _namespace;
+
 
 	/**
 	 * @description a function requires a name and description.
@@ -28,7 +30,7 @@ public class Function implements Comparable<Function>
 	 */
 	public Function(String header, String name)
 	{
-		FUNCTION_NAME = _extractFunctionSignature(name);
+		FUNCTION_SIGNATURE = _extractFunctionSignature(name);
 		FUNCTION_HEADER = header;
 	}
 
@@ -61,9 +63,8 @@ public class Function implements Comparable<Function>
 	 *
 	 * @return function name as a string.
 	 */
-	public String getName()
-	{
-		return FUNCTION_NAME;
+	public String getSignature() {
+		return FUNCTION_SIGNATURE;
 	}
 
 
@@ -74,18 +75,102 @@ public class Function implements Comparable<Function>
 	 *
 	 * @return function description as a string.
 	 */
-	public String getHeader()
-	{
+	public String getHeader() {
 		return FUNCTION_HEADER;
 	}
 
-	public int compareTo(Function otherFunction)
-	{
-		return this.getName().compareTo(otherFunction.getName());
+
+
+
+	/**
+	 * @description returns the namespace of this function.
+	 *
+	 * @param none.
+	 *
+	 * @return String namespace.
+	 */
+	public String getNamespace() {
+		return _namespace;
 	}
 
+
+
+	/**
+	 * @description sets the namespace of this function.
+	 *
+	 * @param String namespace.
+	 *
+	 * @return none.
+	 */
+	public void setNamespace(String namespace) {
+		if (namespace != null) {
+			_namespace = namespace;	
+		}
+	}
+
+
+
+	/**
+	 * @description returns the return type of this function.
+	 *
+	 * @param none.
+	 *
+	 * @return String.
+	 */
+	public String getReturnType() {
+		String lines[] = this.getHeader().split("\\*");
+
+		for (String line : lines) {
+			if (line.trim().startsWith("@return")) {
+				String words[] = line.trim().split(" ");
+				return (words.length > 1) ? words[1].trim() : null;
+			}
+		}
+		return null;
+	}
+
+
+
+	/**
+     * @description returns the description of the class.
+     *
+     * @param none.
+     *
+     * @return String description.
+     */
+    public String getDescription() {
+        String header = this.getHeader();
+        int index1 = header.indexOf("@description");
+        int index2 = header.indexOf("@param");
+        return (index2 > index1) ? header.substring(index1 + 12, index2) : "";
+    }
+
+
+
+
+	/**
+	 * @description required by the comparable interface.
+	 *
+	 * @param Function function.
+	 *
+	 * @return none.
+	 */
+	public int compareTo(Function otherFunction)
+	{
+		return this.getSignature().compareTo(otherFunction.getSignature());
+	}
+
+
+
+	/**
+	 * @description returns a String representation of this function.
+	 *
+	 * @param String representation.
+	 *
+	 * @return none.
+	 */
 	public String toString()
 	{
-		return (this.getHeader() + "\n" + this.getName());
+		return (this.getHeader() + "\n" + this.getSignature());
 	}
 }

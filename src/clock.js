@@ -1,7 +1,7 @@
 /**
  * @file : clock.js
  *
- * @description : 
+ * @description : A Clock is displayed as minute:second. It runs down until it reaches 00:00.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -49,7 +49,7 @@ class Clock {
 	 *
 	 * @param none.
 	 *
-	 * @return return.
+	 * @return none.
 	 */
 	init() {
 		this.hasStarted = false;

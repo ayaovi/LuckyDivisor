@@ -91,7 +91,7 @@ class SidePanel extends Panel {
 	/**
 	 * @description adds a new yet to be collected cube to the collection. This cube would be shown in the side panel.
 	 *
-	 * @param none.
+	 * @param integer number, counter.
 	 *
 	 * @return none.
 	 */
@@ -113,7 +113,7 @@ class SidePanel extends Panel {
 	/**
 	 * @description notify the cube with the given number of additional occurence.
 	 *
-	 * @param none.
+	 * @param integer cubeNumber.
 	 *
 	 * @return none.
 	 */
@@ -191,7 +191,7 @@ class SidePanel extends Panel {
 	/**
 	 * @description updates the list of yet to be collected pn cubes.
 	 *
-	 * @param a prime number of a pn cube that has just been collected.
+	 * @param a integer number.
 	 *
 	 * @return none.
 	 */
@@ -217,7 +217,7 @@ class SidePanel extends Panel {
 	/**
 	 * @description rearranges the cubes in the side panel after cone of them has been all colected.
 	 *
-	 * @param index at which to start rearranging.
+	 * @param integer index.
 	 *
 	 * @return none.
 	 */

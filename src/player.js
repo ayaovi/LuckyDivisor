@@ -1,8 +1,7 @@
 /**
  * @file : player.js
  *
- * @description : A Player object contains information about the game player.
- * This information ranges from the player name, score to player best score.
+ * @description : A Player object contains information about the game player. This information ranges from the player name, score to player best score.
  *
  * @author : Ayaovi Espoir Djissenou
  *
@@ -81,7 +80,7 @@ class Player {
 
 
 	/**
-	 * @desciption adds a new life stars to the life stars collection.
+	 * @description adds a new life stars to the life stars collection.
 	 *
 	 * @param none.
 	 *
@@ -108,7 +107,7 @@ class Player {
 
 
 	/**
-	 * @desciption A function to update the player score.
+	 * @description A function to update the player score.
 	 *
 	 * @param a positive non-zero integer.
 	 *
@@ -123,7 +122,7 @@ class Player {
 
 
 	/**
-	 * @desciption checks whether a new best score has been set.
+	 * @description checks whether a new best score has been set.
 	 *
 	 * @param none.
 	 *
@@ -138,7 +137,7 @@ class Player {
 
 
 	/**
-	 * @desciption checks whether the current play is at an end.
+	 * @description checks whether the current play is at an end.
 	 *
 	 * @param none.
 	 *
@@ -164,8 +163,7 @@ class Player {
 
 
 	/**
-	 * @description gives a one life stars reward to the player if he does not
-	 * already possess the maximum amount.
+	 * @description gives a one life stars reward to the player if he does not already possess the maximum amount.
 	 *
 	 * @param none.
 	 *
@@ -210,7 +208,7 @@ class Player {
 
 
 	/**
-	 * @desciption check whether the player is Game Over by running out of life stars.
+	 * @description check whether the player is Game Over by running out of life stars.
 	 *
 	 * @param none.
 	 *
@@ -227,8 +225,7 @@ class Player {
 
 
 	/**
-	 * @description a function that takes off a player life star
-	 * in response to him or her collecting a Pn cube they are not supposed to.
+	 * @description a function that takes off a player life star in response to him or her collecting a Pn cube they are not supposed to.
 	 *
 	 * @param none.
 	 *
