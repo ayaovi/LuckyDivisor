@@ -16,7 +16,7 @@ public class Function implements Comparable<Function>
 	/**
 	 * Instance variables.
 	 */
-	private final String FUNCTION_NAME;
+	private final String FUNCTION_SIGNATURE;
 	private final String FUNCTION_HEADER;
 
 	/**
@@ -28,7 +28,7 @@ public class Function implements Comparable<Function>
 	 */
 	public Function(String header, String name)
 	{
-		FUNCTION_NAME = _extractFunctionSignature(name);
+		FUNCTION_SIGNATURE = _extractFunctionSignature(name);
 		FUNCTION_HEADER = header;
 	}
 
@@ -61,9 +61,9 @@ public class Function implements Comparable<Function>
 	 *
 	 * @return function name as a string.
 	 */
-	public String getName()
+	public String getSignature()
 	{
-		return FUNCTION_NAME;
+		return FUNCTION_SIGNATURE;
 	}
 
 
@@ -81,11 +81,11 @@ public class Function implements Comparable<Function>
 
 	public int compareTo(Function otherFunction)
 	{
-		return this.getName().compareTo(otherFunction.getName());
+		return this.getSignature().compareTo(otherFunction.getSignature());
 	}
 
 	public String toString()
 	{
-		return (this.getHeader() + "\n" + this.getName());
+		return (this.getHeader() + "\n" + this.getSignature());
 	}
 }
