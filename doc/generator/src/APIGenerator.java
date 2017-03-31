@@ -23,22 +23,7 @@ public class APIGenerator {
 	private static final String DIRECTORIES[] = new String[]{"../../../src/", "../../../util/", "../../../config/"};
 
 	private static List<Function> _functionsInClass;
-
 	private static List<Class> _classes;
-
-	/**
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<title>
-				
-			</title>
-		</head>
-		<body>
-
-		</body>
-		</html>
-	 */
 
 	private static final String INDEX_PAGE_TITLE = "Overview (LuckyDivisor)";
 
@@ -56,30 +41,15 @@ public class APIGenerator {
 
 		List<String> listOfFiles = _collectListOfFiles(DIRECTORIES);
 
-		// System.out.println("There are " + listOfFiles.size() + " files.");
-		// for (String file : listOfFiles) {
-		// 	System.out.println(file);
-		// }
-
 		for (String file : listOfFiles) {
 			List<String> sourceFileContent = CCFileReader.readSourceFile(file);
-			// System.out.println("Number of lines in source file is: " + sourceFileContent.size());
 			_process(sourceFileContent);
 		}
 
-		// List<String> sourceFileContent = CCFileReader.readSourceFile(PATH_TO_SRC + "main.js");
-		// System.out.println("Number of lines in source file is: " + sourceFileContent.size());
-		// _process(sourceFileContent);
 		Collections.sort(_functionsInClass);
 		Collections.sort(_classes);
 
-		// System.out.println("Number of function in source file is: " + _functionsInClass.size());
-		// CCFileWriter.writeToFile(_functionsInClass, "../../apidoc/functions.doc");
-
-		// for (Class aClass : _classes) {
-		// 	System.out.println(aClass);
-		// }
-
+		_generateAllClassesHTML();
 		_generateIndexHTML();
 	}
 
@@ -92,30 +62,112 @@ public class APIGenerator {
 	 * @return none.
 	 */
 	private static void _generateIndexHTML() {
-		String part1 = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>\n\t\tLuckyDivisor API Documentation\n\t</title>";
-		String startOfScriptTag = "<script language=\"javascript\" type=\"text/javascript\">\n";
+		String startHeaderTag = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>\n\t\tLuckyDivisor API Documentation\n\t</title>";
+		// String startOfScriptTag = "<script language=\"javascript\" type=\"text/javascript\">\n";
+		// String endOfScriptTag = "\n<script/>";
+		String startBodyTag = "\n</head>\n<body>\n";
 		String allClassTable = _generateAllClassesTable();
-		String endOfScriptTag = "\n<script/>";
-		String part2 = "\n</head>\n<body>\n</body>\n</html>";
+		String endBodyTag = "</body>\n";
+		String endHeaderTag = "</html>";
 
-		String content = part1 + startOfScriptTag + allClassTable + part2;
+		String content = startHeaderTag + startBodyTag + allClassTable + endBodyTag + endHeaderTag;
+
 		CCFileWriter.writeToFile(content, "../../apidoc/index.html");
 	}
 
 
-	private static String _generateAllClassesTable() {
-		String myTable = "<table>\n\t<tr>\n\t\t<td style='width: 200px; color: green;'>Classes</td>";
-		myTable += "<td style='width: 100px; color: red; text-align: right;'>Description</td></tr>";
 
-		myTable+="<tr><td style='width: 100px;                   '>---------------</td>";
-		myTable+="<td     style='width: 100px; text-align: right;'>---------------</td></tr>";
-
+	/**
+	 * @description generates the HTML of all classes in the game.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	private static void _generateAllClassesHTML() {
 		for (Class aClass : _classes) {
-			myTable+="<tr><td style='width: 100px;'>" + aClass.getName() + "</td>";
-			myTable+="<td style='width: 100px; text-align: right;'>" + "BLALALALLA" + "</td></tr>";
+			_generateClassHTML(aClass);
+		}
+	}
+
+
+
+	/**
+	 * @description generates the HTML of a particular class.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	private static void _generateClassHTML(Class aClass) {
+		String startHeaderTag = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>\n\t\tLuckyDivisor API Documentation\n\t</title>";
+		String startBodyTag = "\n</head>\n<body>\n";
+		String allClassTable = _generateAllMethodsTable(aClass);
+		String endBodyTag = "</body>\n";
+		String endHeaderTag = "</html>";
+		String content = startHeaderTag + startBodyTag + allClassTable + endBodyTag + endHeaderTag;
+
+		CCFileWriter.writeToFile(content, "../../apidoc/" + aClass.getName().toLowerCase() + ".html");
+	}
+
+
+
+	/**
+	 * @description generates a table of all method in a class to be written to an HTML file.
+	 *
+	 * @param none.
+	 *
+	 * @return string.
+	 */
+	private static String _generateAllMethodsTable(Class aClass) {
+		String myTable = "<table>\n\t<tr>\n\t\t<td style='width: 200px; color: green; font-weight:bold'>Modifier and Types</td>\n";
+		myTable += "\t\t<td style='color: green; text-align: left; font-weight:bold'>Method and Description</td>\n\t</tr>\n";
+
+		myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+		myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
+
+		List<Function> functions = aClass.getFunctions();
+
+		for (Function function : functions) {
+			myTable += "\t<tr>\n\t\t<td style='width: 200px;'>" + function.getReturnType() + "</td>\n";
+			myTable += "\t\t<td style='text-align: left; font-weight:bold'>" + function.getSignature() + "</td>\n\t</tr>\n";
+			myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+			myTable += "\t\t<td style='text-align: left;'>" + function.getDescription() + "</td>\n\t</tr>\n";
+
+			myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+			myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
 		}
 
-		myTable+="</table>";
+		myTable += "</table>\n";
+
+		return myTable;
+	}
+
+
+
+	/**
+	 * @description generates a table to be written to an HTML file.
+	 *
+	 * @param none.
+	 *
+	 * @return string.
+	 */
+	private static String _generateAllClassesTable() {
+		String myTable = "<table>\n\t<tr>\n\t\t<td style='width: 200px; color: green; font-weight:bold'>Classe</td>\n";
+		myTable += "\t\t<td style='color: green; text-align: left; font-weight:bold'>Description</td>\n\t</tr>\n";
+
+		myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+		myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
+
+		for (Class aClass : _classes) {
+			myTable += "\t<tr>\n\t\t<td style='width: 200px;'>" + "\n\t\t\t<a href=\"" + aClass.getName().toLowerCase() + ".html\">" + aClass.getName() + "</a>\n\t\t</td>\n";
+			myTable += "\t\t<td style='text-align: left;'>" + aClass.getDescription() + "</td>\n\t</tr>\n";
+			
+			myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+			myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
+		}
+
+		myTable += "</table>\n";
 
 		return myTable;
 	}
@@ -143,8 +195,7 @@ public class APIGenerator {
 
 
 	/**
-	 * @description goes through the content of a source file and extracts the function/method headers.
-	 * It expects the function/method header to be in a spacial format.
+	 * @description goes through the content of a source file and extracts the function/method headers. It expects the function/method header to be in a spacial format.
 	 *
 	 * @param List<String> content.
 	 *
@@ -152,16 +203,19 @@ public class APIGenerator {
 	 */
 	private static void _process(List<String> content) {
 		boolean isClass = false;
+
 		for (int i = 0; i < content.size() - 1; i++) {
 			String currentLine = content.get(i);
 			String nextLine = content.get(i + 1);
+
 			if (currentLine.trim().startsWith("class")) {
 				/**
 				 * The extract this class as a file.
 				 */
 				isClass = true;
+				String classHeader = _extractFileHeader(content);
 				String words[] = currentLine.trim().split(" ");
-				_classes.add(new Class(words[1]));
+				_classes.add(new Class(words[1], classHeader));
 			}
 			else if (currentLine.trim().startsWith("/**")) {
 				if (nextLine.trim().startsWith("* @description")) {
@@ -174,6 +228,44 @@ public class APIGenerator {
 				}
 			}
 		}
+	}
+
+
+
+
+	/**
+	 * @description extracts the header of the files.
+	 *
+	 * @param String> content, int index.
+	 *
+	 * @return String header.
+	 */
+	private static String _extractFileHeader(List<String> content) {
+		String header = "";
+		boolean locatedHeaderBeginning = false;
+
+		for (int i = 0; i < content.size() - 1; i++) {
+			String currentLine = content.get(i);
+			String nextLine = content.get(i + 1);
+
+			if (currentLine.trim().startsWith("/**")) {
+				if (nextLine.trim().startsWith("* @file")) {
+					header += " " + currentLine.trim() + "\n";
+					locatedHeaderBeginning = true;
+				}
+			}
+			else if (locatedHeaderBeginning) {
+				if (!currentLine.trim().startsWith("*/")) {
+					header += " " + currentLine.trim() + "\n";
+				}
+				else {
+					header += " " + currentLine.trim() + "\n";
+					break;
+				}
+			}
+		}
+
+		return header;
 	}
 
 

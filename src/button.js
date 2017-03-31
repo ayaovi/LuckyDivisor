@@ -1,7 +1,7 @@
 /**
  * @file : button.js
  *
- * @description : 
+ * @description : A Button is an indicator of an end of game. It allows the player to starts a new game.
  *
  * @author : Ayaovi Espoir Djissenou
  *

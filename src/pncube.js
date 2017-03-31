@@ -100,7 +100,7 @@ class PnCube extends Cube {
 	/**
 	 * @description changes the number on this cube to new greater one.
 	 *
-	 * @param new number.
+	 * @param integer newNumber.
 	 *
 	 * @return none.
 	 */

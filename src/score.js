@@ -26,7 +26,7 @@ class Score {
 	/**
 	 * @description updates the player score.
 	 *
-	 * @param the value by which to update the score.
+	 * @param integer hit.
 	 *
 	 * @return none.
 	 */

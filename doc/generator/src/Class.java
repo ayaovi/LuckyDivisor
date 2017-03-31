@@ -19,11 +19,13 @@ public class Class implements Comparable<Class> {
     /**
      * Instance variables.
      */
+    private final String _header;
     private final String _name;
     private List<Function> _functions;
 
-    public Class(String name) {
+    public Class(String name, String header) {
         _name = name;
+        _header = header;
         _functions = new ArrayList<Function>();
     }
 
@@ -52,6 +54,19 @@ public class Class implements Comparable<Class> {
 
 
     /**
+     * @description returns the function in the class.
+     *
+     * @param none.
+     *
+     * @return List<String> functions.
+     */
+    public List<Function> getFunctions() {
+        return _functions;
+    }
+
+
+
+    /**
 	 * @description returns the name of the class.
 	 *
 	 * @param none.
@@ -61,6 +76,37 @@ public class Class implements Comparable<Class> {
     public String getName() {
         return _name;
     }
+
+
+
+
+    /**
+     * @description returns the header of the class.
+     *
+     * @param none.
+     *
+     * @return String header.
+     */
+    public String getHeader() {
+        return _header;
+    }
+
+
+
+    /**
+     * @description returns the description of the class.
+     *
+     * @param none.
+     *
+     * @return String description.
+     */
+    public String getDescription() {
+        String header = this.getHeader();
+        int index1 = header.indexOf("@description");
+        int index2 = header.indexOf("@author");
+        return (index2 > index1) ? header.substring(index1 + 12, index2) : "";
+    }
+
 
 
     /**
@@ -90,9 +136,9 @@ public class Class implements Comparable<Class> {
 
 
     /**
-	 * @description adds a function to the list of functions in this class.
+	 * @description returns a String representation of this class.
 	 *
-	 * @param Function function.
+	 * @param String representation.
 	 *
 	 * @return none.
 	 */

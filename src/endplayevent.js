@@ -1,7 +1,7 @@
 /**
  * @file : endplayevent.js
  *
- * @description : an EndPlayEvent is used to end a current play gracefully.
+ * @description : An EndPlayEvent is used to end a current play gracefully.
  * Because everything was being processed sequentially, it got to a point 
  * where the current play is ended but further processing still took place 
  * on behalf of that play. Thus the need for an event that would end 

@@ -1,8 +1,7 @@
 /**
  * @file : player.js
  *
- * @description : A Player object contains information about the game player.
- * This information ranges from the player name, score to player best score.
+ * @description : A Player object contains information about the game player. This information ranges from the player name, score to player best score.
  *
  * @author : Ayaovi Espoir Djissenou
  *

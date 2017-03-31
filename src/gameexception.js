@@ -1,7 +1,7 @@
 /**
  * @file : gameexception.js
  *
- * @description : a game execption is thrown when something shady happens in the code.
+ * @description : A game execption is thrown when something shady happens in the code.
  *
  * @author : Ayaovi Espoir Djissenou
  *

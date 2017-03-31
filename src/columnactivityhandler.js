@@ -1,7 +1,7 @@
 /**
  * @file : column.js
  *
- * @description : a Column is a tube or a line that Cubes are falling off.
+ * @description : A ColumnActivityHandler is responsible for checking cube collision in the given column.
  *
  * @author : Ayaovi Espoir Djissenou
  *
