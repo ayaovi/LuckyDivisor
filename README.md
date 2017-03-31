@@ -19,6 +19,7 @@
 * [Rules of the Game](#rules-of-the-game)
 	* [Collecting Pn Cube](#collecting-pn-cube)
 	* [The Race against Time](#the-race-against-time)
+* [Game Controls](#game-controls)
 * [Extra Features](#extra-features)
 * [Dependencies](#dependencies)
 * [Collaboration](#collaboration)
@@ -73,7 +74,7 @@ It contains the utilities files. In the attempt to avoid a very long single util
 
 #### doc
 
-It contains a form of api documentation of the source files. The api documentation is meant to make working on the project easier. The point here being, the documentation might not look pretty but it would get you the information that you require to know about the project.
+It contains a form of api documentation of the source files. The api documentation is meant to make working on the project easier. The point here being, the documentation might not look pretty but it would get you the information that you require to know about functions or classes.
 
 This arrangement of the project files can easily change in future versions.
 
@@ -86,11 +87,22 @@ The game has but one rule. Collect as many pn cubes as possible until you either
 ### Collecting Pn Cube
 
 In order to progress in the game, you have to collect pn cubes with numbers that correspond to the prime factors of the number inscribed on your cube (let's call it N). The following will result in penalties:
-- Colectig a pn cube that is not a prime factor of N. This will result in you loosing a life stars. And should you have no life stars and commit this offence, the the game is over.
+- Collecting a pn cube that is not a prime factor of N. This will result in you loosing a life stars. And should you have no life stars and commit this offence, the the game is over.
+- Collecting pn that you have already collected, would result in that pn cube's number being subtracted from your total score.
 
 ### The Race against Time
 
-Every play of the game is time and the clock in the top left corner of the game canvas would run down as the play progresses. Should you get caught by the clock (i.e. still have pn cube(s) to collect while the clock reaches "00:00"), the game is automatically over independent of the number of life stars you posses.
+Every play of the game is timed and the clock (in the top left corner of the game canvas) runs down as the play progresses. Should you get caught up by the clock (i.e. still have pn cube(s) to collect while the clock reaches "00:00"), the game is automatically over irrespective of the number of life stars you posses.
+
+[Go Back Top](#table-of-contents)
+
+
+## Game Controls
+
+The game controls in this current version are as follow:
+- LEFT ARROW to move the player cube left.
+- RIGHT ARROW to move the player cube right.
+- SPACE BAR to pause and resume the game.
 
 [Go Back Top](#table-of-contents)
 
@@ -152,7 +164,7 @@ We would also like to use the [*TDD*](http://agiledata.org/essays/tdd.html) appr
 
 By definition a [*Pure Function*](https://www.sitepoint.com/functional-programming-pure-functions/), is a function that does not induce side effect into the programme flow. In other words, given the same input it would also return the same output. Because of this wonderfull garantee we would like to write pure functions when and wherever we could.
 
-As such everything is done through [*pull requests*](https://help.github.com/articles/creating-a-pull-request/).
+As a consequence of all of the above, everything is done through [*pull requests*](https://help.github.com/articles/creating-a-pull-request/).
 
 Again, we are more than happy to have you collaborate with us. As such, you have our gratitude in advance.
 
