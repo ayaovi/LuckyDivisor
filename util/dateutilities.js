@@ -17,7 +17,7 @@ luckyDivisor.util.date = {};
  *
  * @param none.
  *
- * @return a new starting time.
+ * @return ExtendedDate.
  */
 luckyDivisor.util.date.getNewColumnStartingDate = function() {
 	var newColumnStartingDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate().getTime() + random(luckyDivisor.global.cubeDelays) * 1000);
@@ -40,7 +40,7 @@ luckyDivisor.util.date.getNewColumnStartingDate = function() {
  *
  * @param none. 
  *
- * @return a new ExtendedDate.
+ * @return ExtendedDate.
  */
 luckyDivisor.util.date.getCurrentDate = function() {
 	var currentDate = new Date();

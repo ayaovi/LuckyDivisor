@@ -29,9 +29,9 @@ class ExtendedDate extends Date {
 	 * @description subtraction of two ExtendedDates.
 	 * It expects this date to be greater than the other date. Should this not be the case, it returns null.
 	 *
-	 * @param another ExtendedDate.
+	 * @param ExtendedDate.
 	 *
-	 * @return a new ExtendedDate or null.
+	 * @return ExtendedDate.
 	 */
 	minus(otherDate) {
 		/**
@@ -44,9 +44,9 @@ class ExtendedDate extends Date {
 	/**
 	 * @description addition of two ExtendedDates.
 	 *
-	 * @param another ExtendedDate.
+	 * @param ExtendedDate.
 	 *
-	 * @return a new ExtendedDate.
+	 * @return ExtendedDate.
 	 */
 	plus(otherDate) {
 		return new ExtendedDate(this.getTime() + otherDate.getTime());
@@ -56,9 +56,9 @@ class ExtendedDate extends Date {
 	/**
 	 * @description check whether this ExtendedDate is less than the other ExtendedDate.
 	 *
-	 * @param another time.
+	 * @param ExtendedDate.
 	 *
-	 * @return true or false.
+	 * @return boolean.
 	 */
 	isLessThan(otherDate) {
 		/**
@@ -71,9 +71,9 @@ class ExtendedDate extends Date {
 	/**
 	 * @description checks the equality of two Date. This highly unlikely to ever return true though. At least in the way it is implemented now.
 	 *
-	 * @param another Time object.
+	 * @param ExtendedDate.
 	 *
-	 * @return true or false.
+	 * @return boolean.
 	 */
 	equals(otherDate) {
 		/**
@@ -86,9 +86,9 @@ class ExtendedDate extends Date {
 	/**
 	 * @description checks the equality of two ExtendedDate.
 	 *
-	 * @param another Time object.
+	 * @param ExtendedDate.
 	 *
-	 * @return true or false.
+	 * @return boolean.
 	 */
 	isLessOrEqualTo(otherDate) {
 		return (this.isLessThan(otherDate) || this.equals(otherDate));
@@ -100,7 +100,7 @@ class ExtendedDate extends Date {
 	 *
 	 * @param none.
 	 *
-	 * @return a string minute:second.
+	 * @return string.
 	 */
 	toString() {
 		return (luckyDivisor.util.padWithZero(this.getMinutes()) + ":" + luckyDivisor.util.padWithZero(this.getSeconds()));

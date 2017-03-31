@@ -18,7 +18,7 @@ luckyDivisor.util.math = {};
  *
  * @param rgb1 and rgb2 which are two RGB colours.
  *
- * @retun an RGB colour that is a combination of rgb1 and rgb2.
+ * @return color.
  */
 luckyDivisor.util.math.addRGBs = function(rgb1, rgb2) {
 	var lab1 = luckyDivisor.util.cube.RGBtoLAB([red(rgb1), green(rgb1), blue(rgb1)]);
@@ -33,13 +33,11 @@ luckyDivisor.util.math.addRGBs = function(rgb1, rgb2) {
 
 
 /** 
- * @description randomly generate a player cube number.
- * The number must be in the range 1-99 inclusive.
- * None of the number's prime factors must be bigger than 10.
+ * @description randomly generate a player cube number. The number must be in the range 1-99 inclusive. None of the number's prime factors must be bigger than 10.
  *
  * @param none.
  *
- * @return a non-zero positive integer between 2-99.
+ * @return number.
  */
 luckyDivisor.util.math.generatePlayerCubeNumber = function() {
 	/**
@@ -71,7 +69,7 @@ luckyDivisor.util.math.generatePlayerCubeNumber = function() {
  *
  * @param an integer.
  *
- * @return true or false.
+ * @return boolean.
  */
 luckyDivisor.util.math.isPrime = function(number) {
 	if (number <= 0) {
@@ -101,7 +99,7 @@ luckyDivisor.util.math.isPrime = function(number) {
  *
  * @param a positive non-zero integer.
  *
- * @return an array of prime factors of the supplied number.
+ * @return numbers.
  */
 luckyDivisor.util.math.getPrimeFactors = function(number) {
 	var factors = [];

@@ -24,6 +24,7 @@ public class APIGenerator {
 
 	private static List<Function> _functionsInClass;
 	private static List<Class> _classes;
+	private static List<String> _namespaces;
 
 	private static final String INDEX_PAGE_TITLE = "Overview (LuckyDivisor)";
 
@@ -37,6 +38,7 @@ public class APIGenerator {
 	 */
 	public static void main(String args[]) {
 		_functionsInClass = new ArrayList<Function>();
+		_namespaces = new ArrayList<String>();
 		_classes = new ArrayList<Class>();
 
 		List<String> listOfFiles = _collectListOfFiles(DIRECTORIES);
@@ -49,9 +51,35 @@ public class APIGenerator {
 		Collections.sort(_functionsInClass);
 		Collections.sort(_classes);
 
+		_identifyNamespaces();
+
 		_generateAllClassesHTML();
+		_generateAllNamespaceHTML();
 		_generateIndexHTML();
 	}
+
+
+
+	/**
+	 * @description identifies all namespaces in the game.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	private static void _identifyNamespaces() {
+		for (Function function : _functionsInClass) {
+			int index = function.getSignature().lastIndexOf(".");
+			String functionNamespace = (index != -1) ? function.getSignature().substring(0, index) : "global";
+
+			if (!_namespaces.contains(functionNamespace)) {
+				_namespaces.add(functionNamespace);
+			}
+
+			function.setNamespace(functionNamespace);
+		}
+	}
+
 
 
 	/**
@@ -63,18 +91,90 @@ public class APIGenerator {
 	 */
 	private static void _generateIndexHTML() {
 		String startHeaderTag = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>\n\t\tLuckyDivisor API Documentation\n\t</title>";
-		// String startOfScriptTag = "<script language=\"javascript\" type=\"text/javascript\">\n";
-		// String endOfScriptTag = "\n<script/>";
-		String startBodyTag = "\n</head>\n<body>\n";
+		String startBodyTag = "\n</head>\n<body>\n<h3> Classes </h3>\n";
 		String allClassTable = _generateAllClassesTable();
+		String nameSpaces = "\n<h3> Namespaces </h3>\n";
+		String nameSpaceTable = _generateAllNamespaceTable();
 		String endBodyTag = "</body>\n";
 		String endHeaderTag = "</html>";
 
-		String content = startHeaderTag + startBodyTag + allClassTable + endBodyTag + endHeaderTag;
+		String content = startHeaderTag + startBodyTag + allClassTable + nameSpaces + nameSpaceTable + endBodyTag + endHeaderTag;
 
 		CCFileWriter.writeToFile(content, "../../apidoc/index.html");
 	}
 
+
+
+
+	/**
+	 * @description generates a table of all namespaces to be written to an HTML file.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	private static String _generateAllNamespaceTable() {
+		String myTable = "<table>\n\t<tr>\n\t\t<td style='width: 200px; color: green; font-weight:bold'>Namespace</td>\n";
+		myTable += "\t\t<td style='color: green; text-align: left; font-weight:bold'>Description</td>\n\t</tr>\n";
+
+		myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+		myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
+
+		for (String namespace : _namespaces) {
+			myTable += "\t<tr>\n\t\t<td style='width: 200px;'>" + "\n\t\t\t<a href=\"" + namespace.toLowerCase() + ".html\">" + namespace + "</a>\n\t\t</td>\n";
+			myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
+			
+			myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+			myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
+		}
+
+		myTable += "</table>\n";
+
+		return myTable;
+	}
+
+
+
+
+	private static void _generateAllNamespaceHTML() {
+		for (String namespace : _namespaces) {
+			_generateNamespaceHTML(namespace);
+		}
+	}
+
+
+
+	private static void _generateNamespaceHTML(String namespace) {
+		String startHeaderTag = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>\n\t\tLuckyDivisor API Documentation\n\t</title>";
+		String startBodyTag = "\n</head>\n<body>\n<h3>" + namespace + " namespace </h3>\n";
+
+		String myTable = "<table>\n\t<tr>\n\t\t<td style='width: 200px; color: green; font-weight:bold'>Return Type</td>\n";
+		myTable += "\t\t<td style='color: green; text-align: left; font-weight:bold'>Function and Description</td>\n\t</tr>\n";
+
+		myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+		myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
+
+		for (Function function : _functionsInClass) {
+			if (function.getNamespace().equals(namespace)) {
+				myTable += "\t<tr>\n\t\t<td style='width: 200px;'>" + function.getReturnType() + "</td>\n";
+				myTable += "\t\t<td style='text-align: left; font-weight:bold'>" + function.getSignature() + "</td>\n\t</tr>\n";
+				myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+				myTable += "\t\t<td style='text-align: left;'>" + function.getDescription() + "</td>\n\t</tr>\n";
+
+				myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
+				myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";
+			}
+		}
+
+		myTable += "</table>\n";
+
+		String endBodyTag = "</body>\n";
+		String endHeaderTag = "</html>";
+
+		String content = startHeaderTag + startBodyTag + myTable + endBodyTag + endHeaderTag;
+
+		CCFileWriter.writeToFile(content, "../../apidoc/" + namespace.toLowerCase() +".html");
+	}
 
 
 	/**
@@ -120,8 +220,8 @@ public class APIGenerator {
 	 * @return string.
 	 */
 	private static String _generateAllMethodsTable(Class aClass) {
-		String myTable = "<table>\n\t<tr>\n\t\t<td style='width: 200px; color: green; font-weight:bold'>Modifier and Types</td>\n";
-		myTable += "\t\t<td style='color: green; text-align: left; font-weight:bold'>Method and Description</td>\n\t</tr>\n";
+		String myTable = "<table>\n\t<tr>\n\t\t<td style='width: 200px; color: green; font-weight:bold'>Return Type</td>\n";
+		myTable += "\t\t<td style='color: green; text-align: left; font-weight:bold'>Function and Description</td>\n\t</tr>\n";
 
 		myTable += "\t<tr>\n\t\t<td style='width: 200px;'></td>\n";
 		myTable += "\t\t<td style='text-align: left;'></td>\n\t</tr>\n";

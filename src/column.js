@@ -65,7 +65,7 @@ class Column {
 	 *
 	 * @param none.
 	 *
-	 * @return an integer.
+	 * @return PnCubes.
 	 */
 	visibleCubes() {
 		var theVisibleCubes = [];

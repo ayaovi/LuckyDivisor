@@ -10,7 +10,7 @@
 
 class PnCubeMotionHandler {
 	/**
-	 * @description constructor.
+	 * @description a constructor.
 	 *
 	 * @param none.
 	 *

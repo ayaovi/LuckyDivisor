@@ -6,6 +6,7 @@
 	</title>
 </head>
 <body>
+<h3>luckyDivisor.util.game namespace </h3>
 <table>
 	<tr>
 		<td style='width: 200px; color: green; font-weight:bold'>Return Type</td>
@@ -17,12 +18,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>constructor()
+		<td style='text-align: left; font-weight:bold'>luckyDivisor.util.game.beforePlayInit()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> constructor.
+		<td style='text-align: left;'> An end of play handler.
  *
  * </td>
 	</tr>
@@ -32,12 +33,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>createCubesYetToBeCollected()
+		<td style='text-align: left; font-weight:bold'>luckyDivisor.util.game.displayMessageOnCanvas(message)
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> create the cubes yet to be collected representation.
+		<td style='text-align: left;'> displays a message on the game canvas.
  *
  * </td>
 	</tr>
@@ -47,12 +48,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>addNewCubeYetToBeCollected(number, counter)
+		<td style='text-align: left; font-weight:bold'>luckyDivisor.util.game.displayNewGameButton()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> adds a new yet to be collected cube to the collection. This cube would be shown in the side panel.
+		<td style='text-align: left;'> displays the new game button on the game canvas.
  *
  * </td>
 	</tr>
@@ -62,12 +63,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>notifyCubeNewOccurrence(cubeNumber)
+		<td style='text-align: left; font-weight:bold'>luckyDivisor.util.game.endCurrentPlay()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> notify the cube with the given number of additional occurence.
+		<td style='text-align: left;'> An end of play handler.
  *
  * </td>
 	</tr>
@@ -77,12 +78,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>reset()
+		<td style='text-align: left; font-weight:bold'>luckyDivisor.util.game.endGame(endOfGameCode)
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> resets all the necessary stuff.
+		<td style='text-align: left;'> A game over even handler.
  *
  * </td>
 	</tr>
@@ -92,12 +93,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>show()
+		<td style='text-align: left; font-weight:bold'>luckyDivisor.util.game.pauseOrPlay()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> a function to display the content of this Panel.
+		<td style='text-align: left;'> A pause event handler.
  *
  * </td>
 	</tr>
@@ -107,12 +108,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>showContainer()
+		<td style='text-align: left; font-weight:bold'>luckyDivisor.util.game.restart()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> displays the white rectagle container that is the side panel.
+		<td style='text-align: left;'> starts a new game.
  *
  * </td>
 	</tr>
@@ -122,27 +123,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>update(number)
+		<td style='text-align: left; font-weight:bold'>luckyDivisor.util.game.startNewPlay()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> updates the list of yet to be collected pn cubes.
- *
- * </td>
-	</tr>
-	<tr>
-		<td style='width: 200px;'></td>
-		<td style='text-align: left;'></td>
-	</tr>
-	<tr>
-		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>rearrangeCubes(index)
-</td>
-	</tr>
-	<tr>
-		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> rearranges the cubes in the side panel after cone of them has been all colected.
+		<td style='text-align: left;'> A start of play handler.
  *
  * </td>
 	</tr>

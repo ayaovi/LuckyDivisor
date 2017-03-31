@@ -11,11 +11,11 @@
  
 class Score {
 	/**
-	 * @description 
+	 * @description constructor
 	 *
-	 * @param
+	 * @param position
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	constructor(position) {
 		this.position = position;

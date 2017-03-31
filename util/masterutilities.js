@@ -17,7 +17,7 @@ luckyDivisor.util = {};
  *
  * @param array of integers, an integer threashold.
  *
- * @return true or false.
+ * @return boolean.
  */
 luckyDivisor.util.containsElementGreaterThan = function(array, threshold) {
     for (var i = 0; i < array.length; i++) {
@@ -34,7 +34,7 @@ luckyDivisor.util.containsElementGreaterThan = function(array, threshold) {
  *
  * @param two cubes.
  *
- * @return true or false.
+ * @return boolean.
  */
 luckyDivisor.util.checkForCollision = function(cube1, cube2) {
     var x1 = cube1.position.x;
@@ -100,7 +100,7 @@ luckyDivisor.util.initPlayerData = function() {
  *
  * @param none.
  *
- * @return player name.
+ * @return string.
  */
 luckyDivisor.util.playerName = function() {
     return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['name'] : 'PLAYER';
@@ -112,7 +112,7 @@ luckyDivisor.util.playerName = function() {
  *
  * @param none.
  *
- * @return player best score.
+ * @return number.
  */
 luckyDivisor.util.playerBestScore = function() {
     return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['bestScore'] : 0;
@@ -124,7 +124,7 @@ luckyDivisor.util.playerBestScore = function() {
  *
  * @param none.
  *
- * @return player best score.
+ * @return number.
  */
 luckyDivisor.util.playerCreditPoints = function() {
     return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['creditPoints'] : 0;
@@ -190,7 +190,7 @@ luckyDivisor.util.createNewPlayerData = function() {
  *
  * @param none.
  *
- * @return true or false.
+ * @return boolean.
  */
 luckyDivisor.util.newPlayerData = function() {
     return (luckyDivisor.global.playerData['bestScore'] < luckyDivisor.global.player.bestScore || luckyDivisor.global.playerData['creditPoints'] != luckyDivisor.global.player.creditPoints);
@@ -355,10 +355,9 @@ luckyDivisor.util.showPlayerLifeStars = function() {
 /**
  * @description A function that pad number with zeros if necessary.
  *
- * @param a positive number.
+ * @param integer number.
  *
- * @return the number preceded with 0, should it be less than 10 or
- * just the number itself otherwise.
+ * @return string.
  */
 luckyDivisor.util.padWithZero = function(number) {
     return ((number < 10) ? "0" + number : number);

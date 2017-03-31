@@ -6,6 +6,7 @@
 	</title>
 </head>
 <body>
+<h3>global namespace </h3>
 <table>
 	<tr>
 		<td style='width: 200px; color: green; font-weight:bold'>Return Type</td>
@@ -17,12 +18,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>constructor(number, id, position, multiplier)
+		<td style='text-align: left; font-weight:bold'>draw()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> constructor.
+		<td style='text-align: left;'> required by p5.js to operate properly.
  *
  * </td>
 	</tr>
@@ -32,12 +33,14 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>setNewPosition(newPosition)
+		<td style='text-align: left; font-weight:bold'>keyPressed()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> sets a new position for this cube.
+		<td style='text-align: left;'> this function is called once every time a key is pressed.
+ * The keyCode for the key that was pressed is stored in the keyCode variable.
+ * (this description is taken from https://p5js.org/reference/#/p5/keyPressed).
  *
  * </td>
 	</tr>
@@ -47,12 +50,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>notifyOfCollection()
+		<td style='text-align: left; font-weight:bold'>mouseClicked()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> notifies the cube of its collection. In response, it decrements the its multiplier.
+		<td style='text-align: left;'> a mouse click handler.
  *
  * </td>
 	</tr>
@@ -62,12 +65,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>notifyOfOccurence()
+		<td style='text-align: left; font-weight:bold'>preload()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> notifies the cube of an occurence. In response, it increments its multiplier.
+		<td style='text-align: left;'> required by p5.js to operate properly.
  *
  * </td>
 	</tr>
@@ -77,27 +80,12 @@
 	</tr>
 	<tr>
 		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>updateVisibility()
+		<td style='text-align: left; font-weight:bold'>setup()
 </td>
 	</tr>
 	<tr>
 		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> updates the visibility of this cube. The cube becomes invisible when its multiplier euals 0.
- *
- * </td>
-	</tr>
-	<tr>
-		<td style='width: 200px;'></td>
-		<td style='text-align: left;'></td>
-	</tr>
-	<tr>
-		<td style='width: 200px;'>none.</td>
-		<td style='text-align: left; font-weight:bold'>show()
-</td>
-	</tr>
-	<tr>
-		<td style='width: 200px;'></td>
-		<td style='text-align: left;'> displays the cube in the side panel.
+		<td style='text-align: left;'> required by p5.js to operate properly.
  *
  * </td>
 	</tr>

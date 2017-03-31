@@ -16,9 +16,9 @@
 	/**
 	 * @description constructor.
 	 *
-	 * @param 
+	 * @param none.
 	 *
-	 * @return 
+	 * @return none.
 	 */
 	constructor(number, id, position) {
 		super(number, id, position);
@@ -80,7 +80,7 @@
 	 *
 	 * @param none.
 	 *
-	 * @return true or false.
+	 * @return boolean.
 	 */
 	hasCollectedAll() {
 		return (this.yetToBeCollectedDivisors.length == 0);
@@ -89,7 +89,7 @@
 	/**
 	 * @description a function.
 	 *
-	 * @param integer divisor.
+	 * @param integer.
 	 *
 	 * @return none.
 	 */

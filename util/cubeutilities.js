@@ -30,7 +30,7 @@ luckyDivisor.util.cube.updatePnCubeCreationRecords = function(primeNuber) {
  *
  * @param none.
  *
- * @return a prime integer.
+ * @return number.
  */
 luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function() {
     /**
@@ -72,7 +72,7 @@ luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence = function() {
  *
  * @param xCoordinate.
  *
- * @return a new PnCube.
+ * @return PnCube.
  */
 luckyDivisor.util.cube.getNewPnCube = function(columnPositionX, columnIndex) {
     var primeNumber = luckyDivisor.util.cube.getPrimeNumberWithTheLeastOccurrence();
@@ -85,7 +85,7 @@ luckyDivisor.util.cube.getNewPnCube = function(columnPositionX, columnIndex) {
  *
  * @param an array of containing the L, A and B values make up an RGB colour.
  *
- * @return an array containing the red, green and yellow values make up the corresponding RGB colour
+ * @return numbers
  */
 luckyDivisor.util.cube.LABtoRGB = function(lab) {
     var y = (lab[0] + 16) / 116;
@@ -114,8 +114,7 @@ luckyDivisor.util.cube.LABtoRGB = function(lab) {
  *
  * @param an rgb colour.
  *
- * @return an array containing the L, A and B values make up 
- * the corresponding RGB colour.
+ * @return numbers.
  */
 luckyDivisor.util.cube.RGBtoLAB = function(rgb) {
     var r = rgb[0] / 255;
@@ -143,11 +142,9 @@ luckyDivisor.util.cube.RGBtoLAB = function(rgb) {
 /**
  * @description A function to convert CMYK to RGB.
  *
- * @param an array that contains the cyan, magenta, yellow 
- * and key values corresponding to an RGB colour.
+ * @param an array that contains the cyan, magenta, yellow and key values corresponding to an RGB colour.
  *
- * @return an array containing the red, green and blue values
- * or percentages that make up the RGB colour.
+ * @return color.
  */
 luckyDivisor.util.cube.CMYKtoRGB = function(cmyk) {
     var cyan = cmyk[0];
@@ -169,7 +166,7 @@ luckyDivisor.util.cube.CMYKtoRGB = function(cmyk) {
  *
  * @param an RGB colour.
  *
- * @return an array of the corresponding cyan, magenta, yellow values/percentages and the key that make up the RGB colour.
+ * @return numbers.
  */
 luckyDivisor.util.cube.RGBtoCMYK = function(colour) {
     var red = red(colour);
@@ -197,7 +194,7 @@ luckyDivisor.util.cube.RGBtoCMYK = function(colour) {
  *
  * @param an array of prime numbers less than 10 and excluding 0.
  *
- * @return an RGB colour that is equally made up of colour corresponding to the prime number.
+ * @return color.
  */
 luckyDivisor.util.cube.combineColours = function(divisors) {
     var resultingColour = luckyDivisor.util.math.addRGBs(luckyDivisor.config.CUBE_COLOUR_MAP[divisors[0]], luckyDivisor.config.CUBE_COLOUR_MAP[divisors[1]]);

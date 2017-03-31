@@ -18,6 +18,8 @@ public class Function implements Comparable<Function>
 	 */
 	private final String FUNCTION_SIGNATURE;
 	private final String FUNCTION_HEADER;
+	private String _namespace;
+
 
 	/**
 	 * @description a function requires a name and description.
@@ -77,6 +79,34 @@ public class Function implements Comparable<Function>
 		return FUNCTION_HEADER;
 	}
 
+
+
+
+	/**
+	 * @description returns the namespace of this function.
+	 *
+	 * @param none.
+	 *
+	 * @return String namespace.
+	 */
+	public String getNamespace() {
+		return _namespace;
+	}
+
+
+
+	/**
+	 * @description sets the namespace of this function.
+	 *
+	 * @param String namespace.
+	 *
+	 * @return none.
+	 */
+	public void setNamespace(String namespace) {
+		if (namespace != null) {
+			_namespace = namespace;	
+		}
+	}
 
 
 
