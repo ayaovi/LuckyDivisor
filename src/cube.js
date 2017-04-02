@@ -2,140 +2,107 @@
  * @file : cube.js
  *
  * @description : A Cube is simply a rectangle with a number inscribed on it.
- * and this number has to be prime and less than 10 except in the case of the player's cube.
- * As such a Cube is classified as either a PlayerCube or a PnCube (where Pn stands for prime number).
- * A PnCube starts its journey at the top of the canvas and falls downward whereas the PlayerCube is 
- * always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
- *
+ * 
  * @author : Ayaovi Espoir Djissenou
  *
- * @version : 
+ * @version : v1
  */
 
+ 
+class Cube {
+	/**
+	 * @description Function constructor.
+	 *
+	 * @param a prime number to be displayed on the cube, an id that is unique to the cube and a position that relates to where the cube is at any point in time.
+	 *
+	 * @return none.
+	 */
+	constructor(number, id, position) {
+		/**
+		 * The following variable the number that appears on the cube. In the case 
+		 * of a Pn cube, this number is always a non-zero prime less than 10. A 
+		 * player cube on the other hand may have any number between 2 and 99.
+		 */
+		this.number = number;
 
-// Function constructor.
-function Cube(primeNumber, id, position)
-{
-	this.number = primeNumber;
-	this.id = id;
-	this.position = position;
-	this.visibility = true;
-	this.column;
-	this.speed = DEFAULT_PN_CUBE_SPEED + (PN_CUBE_SPEED_VARIANT_MULTIPLIER * primeNumber);
-	this.owner = (id == 0) ? "Player" : undefined;
-	this.divisors = (id == 0) ? getPrimeFactors(this.number) : [];
-	// this.colour = (id == 0) ? color(255) : CUBE_COLOUR_MAP[primeNumber];
-	this.colour = (id == 0) ? combineColours(this.divisors) : CUBE_COLOUR_MAP[primeNumber];
-	this.alreadyCollectedDivisors = [];
-	this.yetToBeCollectedDivisors = (id == 0) ? getPrimeFactors(this.number) : [];
-	
-	// A function that displays this Cube.
-	this.show = function()
-	{
-		// stroke();
-		if (this.owner == "Player")
-		{
-			if (keyIsDown(playerControls[0]))
-			{
-				// Move player's cube one unit to the left.
-				this.position.x -= DEFAULT_PLAYER_CUBE_SPEED;
-			}
-			if (keyIsDown(playerControls[1]))
-			{
-				// Move player's cube one unit to the right.
-				this.position.x += DEFAULT_PLAYER_CUBE_SPEED;
-			}
-			
-			// Ensure the Player's Cube does not slide off the canvas.
-			this.position.x = constrain(this.position.x, 1, WIDTH_OF_CANVAS - SIDE_OF_CUBE - 1);
+		/**
+		 * The id is a unique parameter to this cube. The id's start from 0. Where 
+		 * an id 0 is always reserved to the player's cube.
+		 */
+		this.id = id;
 
-			fill(this.colour);
-			rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);	
-			fill(0);
-			//strokeWeight(2);
-			textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-			var padding = (SIDE_OF_CUBE - textWidth(this.number)) / 2;
-			text(this.number, this.position.x + padding, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
-		}
-		else
-		{
-			if (this.visibility == true)
-			{
-				fill(this.colour);
-				rect(this.position.x, this.position.y, SIDE_OF_CUBE, SIDE_OF_CUBE);
-				fill(0);
-				//strokeWeight(2);
-				textSize(DEFAULT_CUBE_NUMBER_TEXT_SIZE);
-				var padding = (SIDE_OF_CUBE - textWidth(this.number)) / 2;
-				text(this.number, this.position.x + padding, this.position.y + DEFAULT_CUBE_NUMBER_TEXT_SIZE + CUBE_NUMBER_PADDING);
-			}
-		}
+		/**
+		 * A cube requires a position for display on the canvas. The position tells 
+		 * the coordinates of the cube at all time. It is implemented as a p5.js vector.
+		 */
+		this.position = position;
+
+		/**
+		 * The speed tells us how has this Cube is falling. One assumption made at the 
+		 * design stage is that bigger Pn cubes are made of denser material and thus 
+		 * fall faster than the smaller one (e.g. a Cube with Pn 5 will always fall 
+		 * faster than one with Pn 2). 
+		 */
+		this.speed;
+		
+		/**
+		 * A colour is the colour in which the cube appears when displayed on the canvas 
+		 * Every Pn Cube has a dedicated colour whereas a player cube's colour is a 
+		 * combination of the colour of all its divisors.
+		 */
+		this.colour;
 	}
 	
-	// A function that makes this cube fall.
-	this.fall = function()
-	{
-		this.position.y += this.speed;
-		
-		// Check whether the Cube has fallen off the canvas.
-		if (this.position.y > HEIGHT_OF_CANVAS)
-		{
-			this.visibility = false;
-		}
+	
+	/**
+	 * @description displays a square on the canvas at the specified position.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	showSquare() {
+		fill(this.colour);
+		rect(this.position.x, this.position.y, luckyDivisor.config.SIDE_OF_CUBE, luckyDivisor.config.SIDE_OF_CUBE);
 	}
 	
-	// A collision handler.
-	this.cameInContactWith = function(otherCube)
-	{
-		var pnCube;
-		
-		// This method is only supposed to be called on a playerCube, however we still need to make sure.
-		if (this === playerCube)
-		{
-			pnCube = otherCube;
-		}
-		else if (otherCube === playerCube)
-		{
-			pnCube = this;
-		}
-		else 
-		{
-			// Neither Cubes is a player Cube.
-			this.mergeWith(otherCube);
-			return;
-		}
-		
-		if (this.yetToBeCollectedDivisors.includes(pnCube.number))
-		{
-			// Move pnCube.number to the lot of alreadyCollectedDivisors.
-			this.registerDivisorCollection(pnCube.number);
-			// Change the colour of playerCube
-			// this.colour = combineColours(yetToBeCollectedDivisors)
-			// Update Player score.
-			player.updateScore(pnCube.number);
-			// Make pnCube invisible
-			pnCube.visibility = false;
-		}
-		else if (this.alreadyCollectedDivisors.includes(pnCube.number))
-		{
-			// Do nothing for now to the playerCube
-			// Make pnCube invisible
-			pnCube.visibility = false;
-		}
-		else
-		{
-			// Burn the player for collecting a non-divisor cube
-			player.burn();
-			// Make pnCube invisible
-			pnCube.visibility = false;
-		}
+	
+	/**
+	 * @description displays a text on the square that represents the cube.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	showNumberOnCube() {
+		fill(0);
+		textSize(luckyDivisor.config.DEFAULT_CUBE_NUMBER_TEXT_SIZE);
+		var x = this.position.x + (luckyDivisor.config.SIDE_OF_CUBE - textWidth(this.number)) / 2;
+		var y = this.position.y + luckyDivisor.config.DEFAULT_CUBE_NUMBER_TEXT_SIZE + luckyDivisor.config.CUBE_NUMBER_PADDING;
+		text(this.number, x, y);
 	}
 	
-	this.registerDivisorCollection = function(divisor)
-	{
-		// Add this divisor to the list of already collected divisors
-		this.alreadyCollectedDivisors.push(divisor);
-		// Then remove this divisor from the list of divisor yet to be collected
-		removeFromArray(this.yetToBeCollectedDivisors, divisor);
+	
+	/**
+	 * @description Tests equality of two cubes. By checking the equality of their numbers.
+	 *
+	 * @param cube.
+	 *
+	  @return boolean.
+	 */
+	equals(otherCube) {
+		return (this.number == otherCube.number);
+	}
+	
+	
+	/**
+	 * @description Returns a representation of this cube.
+	 *
+	 * @param cube.
+	 *
+	  @return boolean.
+	 */
+	toString() {
+		return ("Cube: " + this.number);
 	}
 }

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		LuckyDivisor API Documentation
+	</title>
+</head>
+<body>
+<h3> Classes </h3>
+<table>
+	<tr>
+		<td style='width: 200px; color: green; font-weight:bold'>Classe</td>
+		<td style='color: green; text-align: left; font-weight:bold'>Description</td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="button.html">Button</a>
+		</td>
+		<td style='text-align: left;'> : A Button is an indicator of an end of game. It allows the player to starts a new game.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="clock.html">Clock</a>
+		</td>
+		<td style='text-align: left;'> : A Clock is displayed as minute:second. It runs down until it reaches 00:00.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="column.html">Column</a>
+		</td>
+		<td style='text-align: left;'> : A Column is a tube or a line that Cubes are falling off.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="columnactivityhandler.html">ColumnActivityHandler</a>
+		</td>
+		<td style='text-align: left;'> : A ColumnActivityHandler is responsible for checking cube collision in the given column.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="cube.html">Cube</a>
+		</td>
+		<td style='text-align: left;'> : A Cube is simply a rectangle with a number inscribed on it.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="cubecollisionhandler.html">CubeCollisionHandler</a>
+		</td>
+		<td style='text-align: left;'> : Handles collision between two cubes. May they be player cube and pn cube or two pn cubes.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="emoticon.html">Emoticon</a>
+		</td>
+		<td style='text-align: left;'> : Can create a smiley or a sad face.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="endplayevent.html">EndPlayEvent</a>
+		</td>
+		<td style='text-align: left;'> : An EndPlayEvent is used to end a current play gracefully.
+ * Because everything was being processed sequentially, it got to a point
+ * where the current play is ended but further processing still took place
+ * on behalf of that play. Thus the need for an event that would end
+ * everything nice and tidy.
+ * This event should have priority over all others.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="event.html">Event</a>
+		</td>
+		<td style='text-align: left;'> : An event is scheduled to run at a particular time.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="eventqueue.html">EventQueue</a>
+		</td>
+		<td style='text-align: left;'> : An EventQueue is an array with order property.
+ * It is sorted in increasing order of scheduled time.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="extendeddate.html">ExtendedDate</a>
+		</td>
+		<td style='text-align: left;'> : A Date object has the following attributes:
+ * 			year : the year at which this time is created.
+ * 			month : the month in which this time is created.
+ * 			day : the day at which this time is created.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="gameexception.html">GameException</a>
+		</td>
+		<td style='text-align: left;'> : A game execption is thrown when something shady happens in the code.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="panel.html">Panel</a>
+		</td>
+		<td style='text-align: left;'> : A panel is more of a container to hold the player's
+ * life stars, a timer and the player's score.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="player.html">Player</a>
+		</td>
+		<td style='text-align: left;'> : A Player object contains information about the game player. This information ranges from the player name, score to player best score.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="playercube.html">PlayerCube</a>
+		</td>
+		<td style='text-align: left;'> : A player cube is a cube with special properties and features.
+ * The number on a player cube is not restricted to be just a prime. In fact it could be anything
+ * between 2-99 provided it has prime factors that are less than 10. A Player Cube is
+ * always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="playercubemotionhandler.html">PlayerCubeMotionHandler</a>
+		</td>
+		<td style='text-align: left;'> : A Motion object handles all movement of an object.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="pncube.html">PnCube</a>
+		</td>
+		<td style='text-align: left;'> : A pn cube is a cube with special properties and features.
+ * The number on a pn cube number has to be prime and less than 10.
+ * A PnCube starts its journey at the top of the canvas and falls downward until
+ * it falls off the game canvas where it become invisible.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="pncubemotionhandler.html">PnCubeMotionHandler</a>
+		</td>
+		<td style='text-align: left;'> : A Motion object handles all movement of an object.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="score.html">Score</a>
+		</td>
+		<td style='text-align: left;'> : A score is more of a container to hold the player's
+ * life stars, a timer and the player's score.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="sidepanel.html">SidePanel</a>
+		</td>
+		<td style='text-align: left;'> : A side panel is a panel that contains the list of yet to be collected Pn cubes by the player.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="sidepanelcube.html">SidePanelCube</a>
+		</td>
+		<td style='text-align: left;'> : A side panel cube is a cube just like any other except it does not move. In addition is also has a multiplier attached to it. Should this mutiplier ever be 0, it becomes invisible if one uses the proper method for updating the mutliplier in it.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="star.html">Star</a>
+		</td>
+		<td style='text-align: left;'> : A Star represent the ability of the player to continue
+ * playing the game. In other words, The player has a number of life stars
+ * to start with and once they run out, the game is over for the player.
+ * It is also possible for the player to win some life stars back .
+ * However, there is a maximum number of life stars that a player can
+ * have; and beyond that, even game plays that qualify for the winning of
+ * a life star will not result in the acquisition of a life star.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="startnewcubeevent.html">StartNewCubeEvent</a>
+		</td>
+		<td style='text-align: left;'> : An event is scheduled to run at a particular time.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="toppanel.html">TopPanel</a>
+		</td>
+		<td style='text-align: left;'> : A panel is more of a container to hold the player's
+ * life stars, a clock and the player's score.
+ *
+ * </td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+</table>
+
+<h3> Namespaces </h3>
+<table>
+	<tr>
+		<td style='width: 200px; color: green; font-weight:bold'>Namespace</td>
+		<td style='color: green; text-align: left; font-weight:bold'>Description</td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="global.html">global</a>
+		</td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="luckydivisor.util.html">luckyDivisor.util</a>
+		</td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="luckydivisor.util.cube.html">luckyDivisor.util.cube</a>
+		</td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="luckydivisor.util.date.html">luckyDivisor.util.date</a>
+		</td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="luckydivisor.util.game.html">luckyDivisor.util.game</a>
+		</td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'>
+			<a href="luckydivisor.util.math.html">luckyDivisor.util.math</a>
+		</td>
+		<td style='text-align: left;'></td>
+	</tr>
+	<tr>
+		<td style='width: 200px;'></td>
+		<td style='text-align: left;'></td>
+	</tr>
+</table>
+</body>
+</html>

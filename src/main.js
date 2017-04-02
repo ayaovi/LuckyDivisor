@@ -1,114 +1,133 @@
 /**
  * @file : main.js
  *
- * @description : 
+ * @description : This is the main file where the magic happens :).
  *
  * @author : Ayaovi Espoir Djissenou
  *
- * @version : 
+ * @version : v1
  */
 
- 
-// function preload() 
-// {
-	// img = loadImage(DEFAULT_CANVAS_BACKGROUND_IMAGE);
-// }
 
 
-function setup()
-{
-	var gameCanvasContainer = document.getElementById('gameCanvasContainer');
-	// displayWindow is a p5.js variable.
-	gameCanvasContainer.style.left = (displayWidth - WIDTH_OF_GAME_FRAME) / 2 + 'px';
-	// windowHeight is a p5.js variable.
-	gameCanvasContainer.style.top = (windowHeight - HEIGHT_OF_GAME_FRAME) / 2 + 'px';
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function preload() {
+    try {
+        /**
+         * First check that the image file is accessible.
+         * I have had so much issue with Cross Origin Request Policy in Google chrome.
+         * I have looked around time and again and this seems to the simplest solution 
+         * without requiring the user to manually allow cross origin sharing on the browser.
+         * The good news is, should the applicaion be executed through a simple web server 
+         * all of this is not needed.
+         * The way it is now, when running locally without a webserver, the game canvas 
+         * background would be set to a dark gray colour. But with a web server, the 
+         * background is set to a grayscal image of the Milky Way.
+         */
+        var http = new XMLHttpRequest();
 
-	// Initialise the map of colours.
-	// CUBE_COLOUR_MAP[1] = color('#F8CECC');
-	CUBE_COLOUR_MAP[1] = color('#FFED00');
-	// CUBE_COLOUR_MAP[2] = color('#D5E8D4');
-	CUBE_COLOUR_MAP[2] = color('#FF0000');
-	// CUBE_COLOUR_MAP[3] = color('#E1D5E7');
-	CUBE_COLOUR_MAP[3] = color('#0047AB');
-	// CUBE_COLOUR_MAP[5] = color('#DAE8FC');
-	CUBE_COLOUR_MAP[5] = color('#00B500');
-	// CUBE_COLOUR_MAP[7] = color('#FFFF88');
-	CUBE_COLOUR_MAP[7] = color('#805B00');
+        http.open('HEAD', luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE, false);
+        http.send();
 
-	var gameCanvas = createCanvas(WIDTH_OF_CANVAS, HEIGHT_OF_CANVAS);
-	gameCanvas.parent('gameCanvasContainer');
-	
-	// image(img, 0, 0);
-	
-	var playerCubeNumber = generatePlayerCubeNumber();
-	console.log(playerCubeNumber);
-	
-	playerCube = new Cube(playerCubeNumber, 0, createVector((WIDTH_OF_CANVAS - SIDE_OF_CUBE) / 2, HEIGHT_OF_CANVAS - SIDE_OF_CUBE - 1));
-	// gameCubes.push(playerCube);
-	
-	for (var i = 0; i < NUMBER_OF_COLUMNS; i++)
-	{
-		// gameCubes.push(new Cube(3, i + 1, createVector(COLUMN_WIDTH * i, 0)));
-		columns.push(new Column(COLUMN_WIDTH * i));
-	}
-	
-	// var factors = getPrimeFactors(5);
-	var factors = playerCube.divisors;
-	for (var i = 0; i < factors.length; i++)
-	{
-		console.log(factors[i]);
-	}
-	
-	player = new Player();
-	panel = new Panel();
+        if (http.status != 404) {
+            luckyDivisor.global.img = loadImage(luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE);
+
+            /**
+             * We will use this variable later to decided whether to load an image for the background or a plain dark gray colour.
+             */
+            luckyDivisor.global.imageAvailable = true;
+        }
+    } catch (err) {
+        luckyDivisor.global.imageAvailable = false;
+    }
 }
 
-function draw()
-{
-	background(DEFAULT_CANVAS_BACKGROUND_COLOUR);
-	
-	playerCube.show();
-	
-	for (var i = 0; i < columns.length; i++)
-	{
-		// if (i > 0)
-		// {
-			// gameCubes[i].fall();
-		// }
-		columns[i].show();
-	}
-	
-	for (var i = 0; i < columns.length; i++)
-	{
-		for (var j = 0; j < columns[i].cubes.length; j++)
-		{
-			var pnCube = columns[i].cubes[j];
-			var x1 = pnCube.position.x;
-			var y1 = pnCube.position.y;
-			var x2 = playerCube.position.x;
-			var y2 = playerCube.position.y;
-			var w = SIDE_OF_CUBE;
-			
-			if (pnCube.visibility && collideRectRect(x1, y1, w, w, x2, y2, w, w))
-			{
-				console.log("HIT");
-				playerCube.cameInContactWith(pnCube);
-				pnCube.visibility = false;
-			}
-		}
-	}
-	
-	if (!panel.timer.isStarted)
-	{
-		panel.timer.start();
-	}
-	
-	panel.show();
 
-	if (panel.timer.stringTimeTillEndOfPlay == "00:00")
-	{
-		noLoop();
-	}
-	
-	console.log("Player score is " + player.score);
+
+/**
+ * @description a mouse click handler.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function mouseClicked() {
+    if (luckyDivisor.global.newGameButton) {
+        luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
+    }
+}
+
+
+
+/**
+ * @description this function is called once every time a key is pressed.
+ * The keyCode for the key that was pressed is stored in the keyCode variable.
+ * (this description is taken from https://p5js.org/reference/#/p5/keyPressed).
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function keyPressed() {
+    /**
+     * Check whether the key pressed is SPACE_BAR
+     */
+    if (keyCode == luckyDivisor.config.gameControls[0]) {
+        /**
+         * If so, pause or play the game.
+         */
+        luckyDivisor.util.game.pauseOrPlay();
+    }
+}
+
+
+
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function setup() {
+    luckyDivisor.util.initialiseHTMLContainer();
+
+    var gameCanvas = createCanvas(luckyDivisor.config.WIDTH_OF_GAME_FRAME, luckyDivisor.config.HEIGHT_OF_CANVAS);
+
+    /**
+     * This is important for the canvas to be displayed at the right location.
+     */
+    gameCanvas.parent('gameCanvasContainer');
+
+    luckyDivisor.util.initialiseCubeColourMap();
+    luckyDivisor.util.initialisePnCubeCreationRecord();
+    luckyDivisor.util.initPlayerData();
+    luckyDivisor.util.createGameComponents();
+    luckyDivisor.config.gameStatus = "Running";
+    luckyDivisor.util.game.startNewPlay();
+}
+
+
+
+/**
+ * @description required by p5.js to operate properly.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+function draw() {
+    luckyDivisor.util.drawCanvasBackground();
+    luckyDivisor.util.checkForRunningClock();
+    luckyDivisor.util.showGameComponents();
+    luckyDivisor.util.checkForPnCubeCollection();
+    luckyDivisor.util.checkAndProcessNextEvent();
+    luckyDivisor.util.checkForTimeOut();
+    luckyDivisor.util.checkIfGamePaused();
 }

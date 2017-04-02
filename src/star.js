@@ -11,38 +11,83 @@
  *
  * @author : Ayaovi Espoir Djissenou
  *
- * @version : 
+ * @version : v1
  */
- 
-function Star(position, lengthOfArm)
+
+
+class Star
 {
-	this.position = position;
-	this.lengthOfArm = lengthOfArm;
-	
-	this.show = function()
+	/**
+	 * @description a constructor.
+	 *
+	 * @param the position of the star and the length of the arm.
+	 *
+	 * @return none.
+	 */
+	constructor(position, lengthOfArm)
 	{
-		// save current state.
+		/**
+		 * The position of this star.
+		 */
+		this.position = position;
+		
+		/**
+		 * The star is displayed as a star. And this variable makes allusion to 
+		 * the length of the arm or the star.
+		 */
+		this.lengthOfArm = lengthOfArm;
+	}
+
+	/**
+	 * @description displays the this player star.
+	 *
+	 * @param none.
+	 *
+	 * @return none.
+	 */
+	show()
+	{
+		/**
+		 * save current state.
+		 */
 		push();
 		
 		stroke(0);
 		strokeWeight(4);
 		
+		/**
+		 * first arm.
+		 */
 		translate(this.position.x, this.position.y);
 		line(0, 0, 0, -this.lengthOfArm);
 		
+		/**
+		 * second arm.
+		 */
 		rotate(TWO_PI / 5);
 		line(0, 0, 0, -this.lengthOfArm);
 		
+		/**
+		 * third arm.
+		 */
 		rotate(TWO_PI / 5);
 		line(0, 0, 0, -this.lengthOfArm);
 
+		/**
+		 * fourth arm.
+		 */
 		rotate(TWO_PI / 5);
 		line(0, 0, 0, -this.lengthOfArm);
 
+		/**
+		 * fifth arm.
+		 */
 		rotate(TWO_PI / 5);
 		line(0, 0, 0, -this.lengthOfArm);
 
-		// restore back to state previous.
+		/**
+		 * restore back to state previous.
+		 */
 		pop();
 	}
 }
