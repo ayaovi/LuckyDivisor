@@ -76,10 +76,6 @@ It contains the utilities files. In the attempt to avoid a very long single util
 
 It contains a form of api documentation of the source files. The api documentation is meant to make working on the project easier. The point here being, the documentation might not look pretty but it would get you the information that you require to know about functions or classes.
 
-This directory further contains a generator/ and apidoc/ directories. The apidoc/ will always contain up to date documentation of the game; whereas generator/ contains the java source that generates the documentation residing in apidocs/.
-
-To view the game source code documentation, navigate to apidoc/ inside docs/ and load the index.html file. Again should you be running a local server as suggested earlier, the documentation page would automatically load once you navigate to apidoc/ inside doc/.
-
 This arrangement of the project files can easily change in future versions.
 
 [Go Back Top](#table-of-contents)
@@ -136,9 +132,9 @@ The game can be played on in the following browsers:
 
 ## Documentation
 
-In time, an API documentation of the difference source files can be generated with the *.java* source generator inside the *doc/* directory.
+The API documentation of the game can be found in *./doc/apidoc/*. This documentation is generted by a Java source code residing in *./doc/generator/*.
 
-However, this feature is not available as of yet.
+To view the game source code documentation, navigate to apidoc/ inside docs/ and load the index.html file. Again should you be running a local server as suggested earlier, the documentation page would automatically load once you navigate to apidoc/ inside doc/.
 
 [Go Back Top](#table-of-contents)
 
