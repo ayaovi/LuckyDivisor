@@ -11,20 +11,25 @@
 	* [Player Cube](#player-cube)
 * [Requirements for Local Execution](#requirements-for-local-execution)
 	* [Project Hierarchy](#project-hierarchy)
-		* [src/](#src/)
-		* [test/](#test/)
-		* [config/](#config/)
-		* [util/](#util/)
+		* [src/](#src)
+		* [test/](#test)
+		* [config/](#config)
+		* [util/](#util)
+		* [doc/](#doc)
 * [Rules of the Game](#rules-of-the-game)
 	* [Collecting Pn Cube](#collecting-pn-cube)
 	* [The Race against Time](#the-race-against-time)
+* [Game Controls](#game-controls)
 * [Extra Features](#extra-features)
 * [Dependencies](#dependencies)
 * [Collaboration](#collaboration)
+	* [SOLID](#solid)
+	* [TDD](#tdd)
+	* [Pure Functions](#pure-functions)
 
 ## Overview
 
-LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). It is designed to be played in a web browser. In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
+LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). The game is designed to be played in a web browser with the aid of a physical keyboard. In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
 
 - Pn (prime number) Cube, or
 - Player Cube.
@@ -35,7 +40,7 @@ A pn cube is a cube with special properties and features. The number on a pn cub
 
 ### Player Cube
 
-A player cube is a cube with special properties and features. The number on a player cube is not restricted to be just a prime. In fact it could be anything between 2-99 provided it has prime factors that are less than 10. A Player Cube is always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
+A player cube is a cube with special properties and features. The number on a player cube is not restricted to be just a prime. In fact it could be anything between 2-99 provided its prime factors that are less than 10. A Player Cube is always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
 
 [Go Back Top](#table-of-contents)
 
@@ -47,11 +52,11 @@ The following is not a requirement per say but a suggestion instead. In the even
 
 The project files are organised as follow in the current version of the game.
 
-#### src/
+#### src
 
-It contains the javascript source files as well as the .html file that loads the game in the browser. Most of these source files represent a game component (e.g. Cube, Column etc...) while other represent action to be performed on game elements (e.g. CubeCollisionHandler, PnCubeMotionHandler etc...). It should also be noted that some of them are events as well.
+It contains the javascript source files as well as the .html file that loads the game in the browser. Most of these source files represent a game component (e.g. Cube, Column etc...) while other represent action to be performed on game elements (e.g. CubeCollisionHandler, PnCubeMotionHandler etc...). It should also be noted that some of them are events as well. This directory also contains the index.html file that can be loaded up to play the game. With a local server running, this file is loaded automatically once you try openning navigating to the directory from the browser.
 
-#### test/
+#### test
 
 The majority of the code has been tested using a tool call [*QUnit*](https://qunitjs.com/), a javascript unit testing framework developed by jQuery foundation.
 
@@ -59,13 +64,17 @@ The test files are organised as per source file. As such, a file named *cubetest
 
 Testing results can be inspected by opening up the file *index.html* in a browser. It gives you informationabout the passing and falling tests.
 
-#### config/
+#### config
 
 It contains the configuration as well as global variable definition files.
 
-#### util/
+#### util
 
 It contains the utilities files. In the attempt to avoid a very long single utility files, the utility functions have been seperated with respect to the objects that require them the most. As such we have a cube utilities file, a game utilities file etc...
+
+#### doc
+
+It contains a form of api documentation of the source files. The api documentation is meant to make working on the project easier. The point here being, the documentation might not look pretty but it would get you the information that you require to know about functions or classes.
 
 This arrangement of the project files can easily change in future versions.
 
@@ -78,11 +87,22 @@ The game has but one rule. Collect as many pn cubes as possible until you either
 ### Collecting Pn Cube
 
 In order to progress in the game, you have to collect pn cubes with numbers that correspond to the prime factors of the number inscribed on your cube (let's call it N). The following will result in penalties:
-- Colectig a pn cube that is not a prime factor of N. This will result in you loosing a life stars. And should you have no life stars and commit this offence, the the game is over.
+- Collecting a pn cube that is not a prime factor of N. This will result in you loosing a life stars. And should you have no life stars and commit this offence, the the game is over.
+- Collecting pn that you have already collected, would result in that pn cube's number being subtracted from your total score.
 
 ### The Race against Time
 
-Every play of the game is time and the clock in the top left corner of the game canvas would run down as the play progresses. Should you get caught by the clock (i.e. still have pn cube(s) to collect while the clock reaches "00:00"), the game is automatically over independent of the number of life stars you posses.
+Every play of the game is timed and the clock (in the top left corner of the game canvas) runs down as the play progresses. Should you get caught up by the clock (i.e. still have pn cube(s) to collect while the clock reaches "00:00"), the game is automatically over irrespective of the number of life stars you posses.
+
+[Go Back Top](#table-of-contents)
+
+
+## Game Controls
+
+The game controls in this current version are as follow:
+- LEFT ARROW to move the player cube left.
+- RIGHT ARROW to move the player cube right.
+- SPACE BAR to pause and resume the game.
 
 [Go Back Top](#table-of-contents)
 
@@ -112,9 +132,9 @@ The game can be played on in the following browsers:
 
 ## Documentation
 
-In time, an API documentation of the difference source files can be generated with the *.java* source generator inside the *doc/* directory.
+The API documentation of the game can be found in *./doc/apidoc/*. This documentation is generted by a Java source code residing in *./doc/generator/*.
 
-However, this feature is not available as of yet.
+To view the game source code documentation, navigate to apidoc/ inside docs/ and load the index.html file. Again should you be running a local server as suggested earlier, the documentation page would automatically load once you navigate to apidoc/ inside doc/.
 
 [Go Back Top](#table-of-contents)
 
@@ -130,9 +150,21 @@ Once you have been granted access to collaborate, the next thing we would kindly
 - *release*, for the releasing new versions of the game.
 - *hotfix*, for fixing issues or bugs that pop up during live.
 
-Moreover, because we always aim for writing easily testable code, we would ask of you to use the [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach in your function and class definitions. We would like to use the [*TDD*](http://agiledata.org/essays/tdd.html) approach for development as much as possible. It make be difficult at the start but once you get the hang of it, it is comparable to a runaway train (i.e. easy to stop).
+Moreover, because we always aim for writing easily testable code, we would ask of you to use of follow the following approaches.
 
-As such everything is done through [*pull requests*](https://help.github.com/articles/creating-a-pull-request/).
+### SOLID
+
+The [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach helps you write easy to expand on and testable code. 
+
+### TDD
+
+We would also like to use the [*TDD*](http://agiledata.org/essays/tdd.html) approach for development as much as possible. It might be difficult at the start but once you get the hang of it, it is comparable to a runaway train (i.e. easy to stop).
+
+### Pure Functions
+
+By definition a [*Pure Function*](https://www.sitepoint.com/functional-programming-pure-functions/), is a function that does not induce side effect into the programme flow. In other words, given the same input it would also return the same output. Because of this wonderfull garantee we would like to write pure functions when and wherever we could.
+
+As a consequence of all of the above, everything is done through [*pull requests*](https://help.github.com/articles/creating-a-pull-request/).
 
 Again, we are more than happy to have you collaborate with us. As such, you have our gratitude in advance.
 
