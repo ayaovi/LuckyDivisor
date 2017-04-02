@@ -29,7 +29,7 @@
 
 ## Overview
 
-LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). The game is designed to be played in a web browser. In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
+LuckyDivisor is a JavaScript game that was inspired by a series of tutorials from [*The Coding Train*](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw). The game is designed to be played in a web browser with the aid of a physical keyboard. In the game, prime numbers (in the form of cubes) fall down a canvas and the player has to collect the ones that s(he) needs. Because the prime numbers and the player number are represented as cubes, the cubes in the game can be classified as either:
 
 - Pn (prime number) Cube, or
 - Player Cube.
@@ -154,7 +154,7 @@ Moreover, because we always aim for writing easily testable code, we would ask o
 
 ### SOLID
 
-The [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach helps you write testable code. 
+The [*S.O.L.I.D*](https://github.com/bradvin/SOLID) approach helps you write easy to expand on and testable code. 
 
 ### TDD
 
