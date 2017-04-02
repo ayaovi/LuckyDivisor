@@ -54,7 +54,7 @@ The project files are organised as follow in the current version of the game.
 
 #### src
 
-It contains the javascript source files as well as the .html file that loads the game in the browser. Most of these source files represent a game component (e.g. Cube, Column etc...) while other represent action to be performed on game elements (e.g. CubeCollisionHandler, PnCubeMotionHandler etc...). It should also be noted that some of them are events as well.
+It contains the javascript source files as well as the .html file that loads the game in the browser. Most of these source files represent a game component (e.g. Cube, Column etc...) while other represent action to be performed on game elements (e.g. CubeCollisionHandler, PnCubeMotionHandler etc...). It should also be noted that some of them are events as well. This directory also contains the index.html file that can be loaded up to play the game. With a local server running, this file is loaded automatically once you try openning navigating to the directory from the browser.
 
 #### test
 
@@ -75,6 +75,10 @@ It contains the utilities files. In the attempt to avoid a very long single util
 #### doc
 
 It contains a form of api documentation of the source files. The api documentation is meant to make working on the project easier. The point here being, the documentation might not look pretty but it would get you the information that you require to know about functions or classes.
+
+This directory further contains a generator/ and apidoc/ directories. The apidoc/ will always contain up to date documentation of the game; whereas generator/ contains the java source that generates the documentation residing in apidocs/.
+
+To view the game source code documentation, navigate to apidoc/ inside docs/ and load the index.html file. Again should you be running a local server as suggested earlier, the documentation page would automatically load once you navigate to apidoc/ inside doc/.
 
 This arrangement of the project files can easily change in future versions.
 
