@@ -108,7 +108,7 @@ The game controls in this current version are as follow:
 
 ## Game UI
 
-The following diagram depicts the game user interface.
+The following diagram depicts the game user interface. Upon first load, should the game UI image not load, please just refresh the page again and it should work out.
 
 ![alt tag](/assets/game_ui.png)
 
