@@ -20,6 +20,7 @@
 	* [Collecting Pn Cube](#collecting-pn-cube)
 	* [The Race against Time](#the-race-against-time)
 * [Game Controls](#game-controls)
+* [Game UI](#game-ui)
 * [Extra Features](#extra-features)
 * [Dependencies](#dependencies)
 * [Collaboration](#collaboration)
@@ -96,13 +97,20 @@ Every play of the game is timed and the clock (in the top left corner of the gam
 
 [Go Back Top](#table-of-contents)
 
-
 ## Game Controls
 
 The game controls in this current version are as follow:
 - LEFT ARROW to move the player cube left.
 - RIGHT ARROW to move the player cube right.
 - SPACE BAR to pause and resume the game.
+
+[Go Back Top](#table-of-contents)
+
+## Game UI
+
+The following diagram depicts the game user interface.
+
+![alt tag](assets/game_ui.png)
 
 [Go Back Top](#table-of-contents)
 
