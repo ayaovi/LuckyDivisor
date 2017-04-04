@@ -110,7 +110,7 @@ The game controls in this current version are as follow:
 
 The following diagram depicts the game user interface.
 
-![alt tag](assets/game_ui.png)
+![alt tag](/assets/game_ui.png)
 
 [Go Back Top](#table-of-contents)
 
