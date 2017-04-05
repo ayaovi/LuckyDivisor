@@ -20,11 +20,6 @@ class SidePanel extends Panel {
 		super(createVector(luckyDivisor.config.WIDTH_OF_CANVAS, 0), luckyDivisor.config.WIDTH_OF_SIDE_PANEL, luckyDivisor.config.HEIGHT_OF_SIDE_PANEL);
 
 		/**
-		 * A collection of player life stars.
-		 */
-		// this.playerLifeStars;
-
-		/**
 		 * The list of pn cubes that the player still needs to collect.
 		 */
 		this.pnCubesYetToBeCollected = [];
