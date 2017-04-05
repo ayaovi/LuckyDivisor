@@ -244,12 +244,12 @@ QUnit.test("player cube negative score penalty", function( assert ) {
 	playerCube.collisionHandler.handleCollisionWith(new PnCube(3, 45, createVector(20, 770), 4));
 
 	/**
-	 * After the above, we excpect the length of playerCube.alreadyCollectedDivisors to be 2.
+	 * We now excpect the length of playerCube.alreadyCollectedDivisors to be 2.
 	 */
 	assert.equal(playerCube.alreadyCollectedDivisors.length, 2, "because another pn cube, with number 3 which we were not supposed to collect, has been collected playerCube.alreadyCollectedDivisors.length equal 2 succeeds");
 
 	/**
-	 * We also excpect to get penalised for collection the new pn cube with number 3. Thus the player score to be 3.
+	 * We also excpect to get penalised for collecting a new pn cube with number 3. Thus the player score to be 3.
 	 */
 	assert.equal(player.score.score, 3, "because another pn cube, with number 3 which we were not supposed to collect, has been collected player.score.score equal 3 succeeds");
 
