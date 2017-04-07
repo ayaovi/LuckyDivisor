@@ -41,7 +41,7 @@ A pn cube is a cube with special properties and features. The number on a pn cub
 
 ### Player Cube
 
-A player cube is a cube with special properties and features. The number on a player cube is not restricted to be just a prime. In fact it could be anything between 2-99 provided its prime factors that are less than 10. A Player Cube is always a the bottom of the canvas and move sideways (i.e. LEFT and RIGHT).
+A player cube is a cube with special properties and features. The number on a player cube is not restricted to be just a prime. In fact it could be anything between 2-99, provided its prime factors are less than 10. For example, say the player number came out as 60, then its prime factors or divisors would be 1, 2, 2, 3 and 5. In this case the player would need to collect pn cubes with number 1, 2(x2), 3 and 5. A Player Cube is always a the bottom of the canvas and can only move sideways (i.e. LEFT and RIGHT).
 
 [Go Back Top](#table-of-contents)
 
@@ -88,8 +88,8 @@ The game has but one rule. Collect as many pn cubes as possible until you either
 ### Collecting Pn Cube
 
 In order to progress in the game, you have to collect pn cubes with numbers that correspond to the prime factors of the number inscribed on your cube (let's call it N). The following will result in penalties:
-- Collecting a pn cube that is not a prime factor of N. This will result in you loosing a life stars. And should you have no life stars and commit this offence, the the game is over.
-- Collecting pn that you have already collected, would result in that pn cube's number being subtracted from your total score.
+- Collecting a pn cube that is not a prime factor of N (e.g. collecting a pn cube with number 7 while your player cube number is 30). This will result in you loosing a life stars. And should you have no life stars and commit this offence, the the game is over.
+- Collecting pn that you have already collected, would result in that pn cube's number being subtracted from your total score. For example say, your player cube number is 30 at the start of a play. That means you would need to collect pn cubes with number 1, 2(x2), 3 and 5; and theses cubes are displayed in the side panel at the right of the game canvas. Once you have collected collected pn cube with number 3, it disappears from the list of cubes yet to be collected. Now collecting a pn cube with number 3 again would result in a negative hit penalty. In other word, if your score was, say, 30 before the cube collection, it would become 27 after collection.
 
 ### The Race against Time
 
