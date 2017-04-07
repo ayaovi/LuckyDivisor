@@ -241,7 +241,7 @@ luckyDivisor.util.game.restart = function() {
 	
 	luckyDivisor.util.game.beforePlayInit();
 	
-	initialisePnCubeCreationRecord();
+	luckyDivisor.util.initialisePnCubeCreationRecord();
 	
 	luckyDivisor.global.numberOfPnCubeCreated = 0;
 	
