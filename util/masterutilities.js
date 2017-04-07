@@ -344,9 +344,9 @@ luckyDivisor.util.showPlayerScore = function() {
  */
 luckyDivisor.util.showPlayerLifeStars = function() {
     if (luckyDivisor.global.player.playerLifeStars) {
-        for (var i = 0; i < luckyDivisor.global.player.playerLifeStars.length; i++) {
-            luckyDivisor.global.player.playerLifeStars[i].show();
-        }
+        luckyDivisor.global.player.playerLifeStars.forEach(function(lifeStar) {
+            lifeStar.show();
+        });
     }
 }
 

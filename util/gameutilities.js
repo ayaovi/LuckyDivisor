@@ -207,6 +207,11 @@ luckyDivisor.util.game.beforePlayInit = function() {
  */
 luckyDivisor.util.game.endGame = function(endOfGameCode) {
 	/**
+	 * We only come here as a result of end of game.
+	 */
+	luckyDivisor.config.gameStatus = "Ended";
+
+	/**
 	 * Determine the text to display on screen.
 	 * code 0 ----> Game Over.
 	 * code 1 ----> Time Out.
@@ -237,14 +242,11 @@ luckyDivisor.util.game.endGame = function(endOfGameCode) {
  * @return none.
  */
 luckyDivisor.util.game.restart = function() {
+	luckyDivisor.config.gameStatus = "Running";
 	luckyDivisor.global.player.init();
-	
 	luckyDivisor.util.game.beforePlayInit();
-	
 	luckyDivisor.util.initialisePnCubeCreationRecord();
-	
 	luckyDivisor.global.numberOfPnCubeCreated = 0;
-	
 	luckyDivisor.util.game.startNewPlay();
 
 	/**
