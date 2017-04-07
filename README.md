@@ -21,7 +21,7 @@
 	* [The Race against Time](#the-race-against-time)
 * [Game Controls](#game-controls)
 * [Game UI](#game-ui)
-* [Incoming Features](#extra-features)
+* [Incoming Features](#incoming-features)
 * [Dependencies](#dependencies)
 * [Collaboration](#collaboration)
 	* [SOLID](#solid)
