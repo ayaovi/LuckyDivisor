@@ -21,7 +21,7 @@
 	* [The Race against Time](#the-race-against-time)
 * [Game Controls](#game-controls)
 * [Game UI](#game-ui)
-* [Extra Features](#extra-features)
+* [Incoming Features](#extra-features)
 * [Dependencies](#dependencies)
 * [Collaboration](#collaboration)
 	* [SOLID](#solid)
@@ -114,10 +114,16 @@ The following diagram depicts the game user interface. Upon first load, should t
 
 [Go Back Top](#table-of-contents)
 
-## Extra Features
+## Incoming Features
 
 The following are the cool features that can be added to the game in future version.
-- Implement some sort of achievement reward.
+- Make some blocks compulsary to avoid, otherwise player looses more than just one life star.
+- Introduce pn cube that can shoot you.
+- Increase/decrease the speed of falling cubes randomly.
+- As level go up, different shape fall.
+- Screen shake and reshuffle the dropping cubes (this could be an ultimate skill).
+- Two numbers alternating in one cube.
+- Implement some sort of achievement reward (I thinking in the form of credit points).
 - Have an supervising agent (SA) that controls the diversity in the pn cubes that are falling. This does not imply that the game will be rigged, but instead it will be aimed at improving player satisfaction.
 - If possible have some sort of change in level as the game progresses from play to play. And eventually at some point the SA may start taking the player by suprise. For exmaple say the player sees a 2 falling and is crucially expecting a 2, the SA may initiate a new 5 to fall and merge with the already falling 2 to form a 7. Thus presenting a challenge to the player. At least I think this way the game is more fun compared to just moving around and collecting cubes that you know are coming your way. The uncertainty factor is priceless I think :).
 - Add more player controls. This goes hand in hand with the previous feature. We can add a control (say "s") that speed up the falling cube (the player probably needs to achieve some level before accessing this feature). The scenario where this mau help is the following. Say you are targetting a specific cube (yet again, let's make it 2), and this cube just appear on the canvas. Because there is a possibility that it might get stolen from you, should you have the "s" control operational, you might consider using it.
