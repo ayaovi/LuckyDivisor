@@ -120,7 +120,6 @@ The following are the cool features that can be added to the game in future vers
 - Possibility to roll back the the game state with a Ctrl + z.
 - Make some blocks compulsary to avoid, otherwise player looses more than just one life star.
 - Introduce pn cube that can shoot you.
-- Increase/decrease the speed of falling cubes randomly.
 - As level go up, different shape fall.
 - Screen shake and reshuffle the dropping cubes (this could be an ultimate skill).
 - Two numbers alternating in one cube.
