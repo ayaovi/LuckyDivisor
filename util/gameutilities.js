@@ -113,22 +113,19 @@ luckyDivisor.util.game.pauseOrPlay = function() {
  */
 luckyDivisor.util.game.startNewPlay = function() {
 	/**
-	 * A new play is starting. And because pause durations are 
-	 * considered per play, we need to reset it back to 0.
+	 * A new play is starting. And because pause durations are considered per play, we need to reset it back to 0.
 	 */
 	luckyDivisor.global.pauseDuration = 0;
+	++luckyDivisor.global.numberOfPlay;
 
-	luckyDivisor.global.playIsEnded = false;
+	luckyDivisor.global.playHasEnded = false;
 
 	/**
 	 * Reset the new game button to invisible.
 	 */
 	luckyDivisor.global.newGameButton.isVisible = false;
-	
 	luckyDivisor.global.ID = 0;
-	
 	luckyDivisor.global.eventQueue.reset();
-
 	luckyDivisor.global.topPanel.reset();
 
 	/**
@@ -243,6 +240,7 @@ luckyDivisor.util.game.endGame = function(endOfGameCode) {
  */
 luckyDivisor.util.game.restart = function() {
 	luckyDivisor.config.gameStatus = "Running";
+	luckyDivisor.global.numberOfPlay = 0;
 	luckyDivisor.global.player.init();
 	luckyDivisor.util.game.beforePlayInit();
 	luckyDivisor.util.initialisePnCubeCreationRecord();

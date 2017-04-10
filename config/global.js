@@ -109,4 +109,9 @@ luckyDivisor.global.imageAvailable = false;
 /**
  * Confimrs whether the current play is running.
  */
-luckyDivisor.global.playIsEnded = false;
+luckyDivisor.global.playHasEnded = false;
+
+/**
+ * Keeps track of the number of the current play. It is used to increase the pn cube falling speed by 10% their initial speed every 5 plays.
+ */
+luckyDivisor.global.numberOfPlay;

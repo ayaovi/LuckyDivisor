@@ -151,7 +151,7 @@ class Player {
 			/**
 			 * Then this mark the end of play.
 			 */
-			luckyDivisor.global.playIsEnded = true;
+			luckyDivisor.global.playHasEnded = true;
 
 			/**
 			 * Consequently we schedule an end of play event.
