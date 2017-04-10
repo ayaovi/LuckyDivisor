@@ -335,6 +335,36 @@ luckyDivisor.util.showPlayerScore = function() {
 }
 
 
+
+/**
+ * @description returns the default speed of a pn cube at creation time.
+ *
+ * @param number.
+ *
+ * @return number.
+ */
+luckyDivisor.util.getDefaultSpeed = function(number) {
+    return luckyDivisor.config.DEFAULT_PN_CUBE_SPEED + (luckyDivisor.config.PN_CUBE_SPEED_VARIANT_MULTIPLIER * number);
+}
+
+
+
+/**
+ * @description returns the incremental speed of a pn cube at creation time.
+ *
+ * @param number.
+ *
+ * @return number.
+ */
+luckyDivisor.util.getIncrementalSpeed = function(number) {
+    if (luckyDivisor.global.numberOfPlay) {
+        return luckyDivisor.util.getDefaultSpeed(number) * floor(luckyDivisor.global.numberOfPlay / 3) * 0.1;
+    }
+    return 0;
+}
+
+
+
 /**
  * @description shows the player life stars in the tope panel.
  *

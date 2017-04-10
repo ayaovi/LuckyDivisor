@@ -121,7 +121,7 @@ class PnCube extends Cube {
 	 * @return none.
 	 */
 	setSpeed() {
-		this.speed = luckyDivisor.config.DEFAULT_PN_CUBE_SPEED + (luckyDivisor.config.PN_CUBE_SPEED_VARIANT_MULTIPLIER * this.number);
+		this.speed = luckyDivisor.util.getDefaultSpeed(this.number) + luckyDivisor.util.getIncrementalSpeed(this.number);
 	}
 
 

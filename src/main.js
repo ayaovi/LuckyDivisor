@@ -109,6 +109,7 @@ function setup() {
     luckyDivisor.util.initPlayerData();
     luckyDivisor.util.createGameComponents();
     luckyDivisor.config.gameStatus = "Running";
+    luckyDivisor.global.numberOfPlay = 0;
     luckyDivisor.util.game.startNewPlay();
 }
 
