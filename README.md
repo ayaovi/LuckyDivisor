@@ -21,7 +21,7 @@
 	* [The Race against Time](#the-race-against-time)
 * [Game Controls](#game-controls)
 * [Game UI](#game-ui)
-* [Incoming Features](#extra-features)
+* [Incoming Features](#incoming-features)
 * [Dependencies](#dependencies)
 * [Collaboration](#collaboration)
 	* [SOLID](#solid)
@@ -117,6 +117,7 @@ The following diagram depicts the game user interface. Upon first load, should t
 ## Incoming Features
 
 The following are the cool features that can be added to the game in future version.
+- Possibility to roll back the the game state with a Ctrl + z.
 - Make some blocks compulsary to avoid, otherwise player looses more than just one life star.
 - Introduce pn cube that can shoot you.
 - Increase/decrease the speed of falling cubes randomly.
