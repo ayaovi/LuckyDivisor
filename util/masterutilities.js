@@ -475,7 +475,7 @@ luckyDivisor.util.checkForPnCubeCollection = function() {
      */
     luckyDivisor.global.columns.forEach(function(column) {
         column.cubes.forEach(function(cube) {
-            if (!luckyDivisor.global.playIsEnded && cube.visibility && luckyDivisor.util.checkForCollision(cube, luckyDivisor.global.playerCube)) {
+            if (!luckyDivisor.global.playHasEnded && cube.visibility && luckyDivisor.util.checkForCollision(cube, luckyDivisor.global.playerCube)) {
                 luckyDivisor.global.playerCube.collisionHandler.handleCollisionWith(cube);
                 cube.visibility = false;
             }
