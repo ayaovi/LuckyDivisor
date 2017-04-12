@@ -124,4 +124,29 @@
 			this.colour = luckyDivisor.util.cube.combineColours(this.yetToBeCollectedDivisors);
 		}
 	}
+
+
+
+	/**
+	 * @description Makes a copy of this player cube.
+	 *
+	 * @param none.
+	 *
+	 * @return PlayerCube.
+	 */
+	clone() {
+		return new PlayerCube(this.number, this.id, this.position);
+	}
+
+
+	/**
+	 * @description Tests equality of two player cubes.
+	 *
+	 * @param PlayerCube.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherPlayerCube) {
+		return (super.equals(otherPlayerCube) && this.speed == otherPlayerCube.speed);
+	}
 }

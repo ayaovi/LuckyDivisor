@@ -141,9 +141,7 @@ class Column {
 	 */
 	reset() {
 		this.cubesHaveStartedFalling = false;
-		
 		this.cubes = [];
-		
 		this.startingDate = luckyDivisor.util.date.getNewColumnStartingDate();
 	}
 
@@ -187,5 +185,58 @@ class Column {
 		 * And finally add it to the cubes collection.
 		 */
 		this.cubes.push(newCube);
+	}
+
+
+
+	/**
+	 * @description Makes a copy of this columns.
+	 *
+	 * @param none.
+	 *
+	 * @return Column.
+	 */
+	clone() {
+		var clone = new Column(this.xCordinate, this.index);
+		clone.startingDate = this.startingDate;
+		clone.cubesHaveStartedFalling = this.cubesHaveStartedFalling;
+		clone.cubes = [];
+
+		this.cubes.forEach( function(cube) {
+			clone.cubes.push(cube.clone());
+		}, this);
+
+		if (clone.cubes.length == this.cubes.length) {
+			console.log("Column cloning successful...");
+		}
+		else {
+			console.log("Column cloning unsuccessful...");
+		}
+
+		return clone;
+	}
+
+
+	/**
+	 * @description Tests equality of two columns.
+	 *
+	 * @param Column.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherColumn) {
+		var areEqual = (this.xCordinate == otherColumn.xCordinate) && (this.index == otherColumn.index) && (this.cubes.length == otherColumn.cubes.lenght);
+
+		console.log("Result from comparing dimension is " + areEqual);
+
+		if (areEqual) {
+			console.log("Both columns have the same dimension.");
+			for (var i = 0; i < this.cubes.length; i++) {
+				if (!this.cubes[i].equals(otherColumn.cubes[i])) {
+					return false;
+				}
+			}
+		}
+		return areEqual;
 	}
 }

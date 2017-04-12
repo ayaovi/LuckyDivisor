@@ -137,6 +137,37 @@ class PnCube extends Cube {
 		this.motionHandler.fall();
 	}
 
+
+
+
+	/**
+	 * @description Makes a copy of this pn cube.
+	 *
+	 * @param none.
+	 *
+	 * @return PnCube.
+	 */
+	clone() {
+		var clone = new PnCube(this.primeNumber, this.id, this.position, this.columnIndex);
+		clone.hasAlreadyInitiatedNewCubeStart = this.hasAlreadyInitiatedNewCubeStart;
+		return clone;
+	}
+
+
+	/**
+	 * @description Tests equality of two pn cubes.
+	 *
+	 * @param PnCube.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherPnCube) {
+		return (this.primeNumber == otherPnCube.primeNumber && this.id == otherPnCube.id && this.columnIndex == otherPnCube.columnIndex);
+		// return (super.equals(otherPnCube));
+	}
+
+
+
 	/**
 	 * @description Returns a representation of this cube.
 	 *

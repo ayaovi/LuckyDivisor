@@ -84,14 +84,26 @@ class Cube {
 	
 	
 	/**
-	 * @description Tests equality of two cubes. By checking the equality of their numbers.
+	 * @description Tests equality of two cubes. By checking the equality of their numbers and ids.
 	 *
 	 * @param cube.
 	 *
-	  @return boolean.
+	 * @return boolean.
 	 */
 	equals(otherCube) {
-		return (this.number == otherCube.number);
+		return (this.number == otherCube.number && this.id == otherCube.id);
+	}
+
+
+	/**
+	 * @description Makes a copy of this cube.
+	 *
+	 * @param none.
+	 *
+	 * @return Cube.
+	 */
+	clone() {
+		return new Cube(this.number, this.id, this.position);
 	}
 	
 	
@@ -100,7 +112,7 @@ class Cube {
 	 *
 	 * @param cube.
 	 *
-	  @return boolean.
+	 * @return boolean.
 	 */
 	toString() {
 		return ("Cube: " + this.number);

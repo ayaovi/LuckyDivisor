@@ -96,3 +96,20 @@ QUnit.test("pn cube basics", function( assert ) {
 	assert.equal(lowerCube.number, 7, "anotherPnCube.number after the merge equals 7 succeeds.");
 	assert.equal(lowerCube.speed, (1.3 + 0.1 * 7), "anotherPnCube.speed after the merge equals 2 succeeds.");
 });
+
+
+
+QUnit.test("pn cube cloning tests", function( assert ) {
+	/**
+	 * Let's create a PnCube with:
+	 * pnCube.number = 5;
+	 * pnCube.id = 3;
+	 * pnCube.position = (0, 0);
+	 * pnCube.columnIndex = 2;
+	 */
+	var original = new PnCube(5, 3, createVector(0, 0), 2);
+	var clone = original.clone();
+
+	assert.ok(clone.equals(original), "clone equals original should succeed");
+	assert.equal(clone.position, original.position, "clone and original should have the same position");
+});

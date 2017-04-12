@@ -106,6 +106,23 @@ QUnit.test("player cube moving right.", function( assert ) {
 });
 
 
+
+QUnit.test("player cube cloning tests", function( assert ) {
+	/**
+	 * Let's create a player cube with:
+	 * playerCube.number = 10;
+	 * playerCube.id = 0;
+	 * playerCube.position = (20, 770);
+	 */
+	var original = new PlayerCube(10, 0, createVector(20, 770));
+	var clone = original.clone();
+
+	assert.ok(clone.equals(original), "clone equals original should succeed");
+	assert.equal(clone.position, original.position, "clone and original should have the same position");
+});
+
+
+
 QUnit.test("player cube collection", function( assert ) {
 	/**
 	 * Let's create a player cube with:
