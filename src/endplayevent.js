@@ -45,4 +45,28 @@ class EndPlayEvent extends Event {
 		 */
 		this.callBack();
 	}
+
+
+	/**
+	 * @description makes a copy of this event.
+	 *
+	 * @param none.
+	 *
+	 * @return EndPlayEvent.
+	 */
+	clone() {
+		return new EndPlayEvent(this.date, this.callBack);
+	}
+
+
+	/**
+	 * @description Tests equality of two EndPlayEvent.
+	 *
+	 * @param EndPlayEvent.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherEndPlayEvent) {
+		return super.equals(otherEndPlayEvent);
+	}
 }

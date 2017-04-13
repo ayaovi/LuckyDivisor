@@ -1,5 +1,5 @@
 /**
- * @file : eventtests.js
+ * @file : endplayeventtests.js
  *
  * @description : some tests on the Event object.
  *
@@ -9,9 +9,8 @@
  */
 
 
-QUnit.test("event basics", function( assert ) {
-	var eventDate = luckyDivisor.util.date.getCurrentDate();
-	var event = new Event(eventDate);
+QUnit.test("end play event basics", function( assert ) {
+	var event = new EndPlayEvent(luckyDivisor.util.date.getCurrentDate());
 	
 	assert.ok(event.date.equals(eventDate), "upon creation event.date equal eventDate succeeds");
 });
@@ -19,8 +18,8 @@ QUnit.test("event basics", function( assert ) {
 
 
 
-QUnit.test("event cloning tests", function( assert ) {
-	var original = new Event(luckyDivisor.util.date.getCurrentDate());
+QUnit.test("end play event cloning tests", function( assert ) {
+	var original = new EndPlayEvent(luckyDivisor.util.date.getCurrentDate());
 	var clone = original.clone();
 
 	assert.ok(clone.equals(original), "clone and original must be equal");

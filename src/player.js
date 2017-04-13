@@ -11,7 +11,7 @@
 
 class Player {
 	/**
-	 * @desciption a constructor
+	 * @description a constructor
 	 *
 	 * @param none.
 	 *

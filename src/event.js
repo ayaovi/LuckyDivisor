@@ -32,4 +32,31 @@ class Event {
 	process() {
 		// Every subclass of event must implement its own process mechanism.
 	}
+
+
+
+
+	/**
+	 * @description makes a copy of this event.
+	 *
+	 * @param none.
+	 *
+	 * @return Event.
+	 */
+	clone() {
+		return new Event(this.date, this.type);
+	}
+
+
+
+	/**
+	 * @description Tests equality of two events.
+	 *
+	 * @param Event.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherEvent) {
+		return (this.date.equals(otherEvent.date) && this.type == otherEvent.type);
+	}
 }

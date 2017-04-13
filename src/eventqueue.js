@@ -83,7 +83,7 @@ class EventQueue {
 	 * @return event.
 	 */
 	peek() {
-		return (this.hasEvents()) ? this.queue[0] : null;
+		return this.hasEvents() ? this.queue[0] : null;
 	}
 
 
@@ -108,5 +108,43 @@ class EventQueue {
 	 */
 	reset() {
 		this.queue = [];
+	}
+
+
+	/**
+	 * @description makes a copy of this event queue.
+	 *
+	 * @param none.
+	 *
+	 * @return EventQueue.
+	 */
+	clone() {
+		var clone = new EventQueue();
+
+		this.queue.forEach( function(event) {
+			clone.queue.push(event.clone());
+		}, this);
+
+		return clone;
+	}
+
+
+	/**
+	 * @description Tests equality of two event queues.
+	 *
+	 * @param EventQueue.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherEventQueue) {
+		if (this.queue.length == otherEventQueue.queue.length) {
+			for (var i = 0; i < this.queue.length; i++) {
+				if (!this.queue[i].equals(otherEventQueue.queue[i])) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
 	}
 }
