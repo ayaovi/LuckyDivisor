@@ -118,6 +118,7 @@ The following diagram depicts the game user interface. Upon first load, should t
 
 The following are the cool features that can be added to the game in future version.
 - Possibility to roll back the the game state with a Ctrl + z.
+- Create a star cube (i.e. a cube with a star) that can also be collected just like any other pn cube. With this, we need to rethink awarding the player a life star at the end of every play.
 - Make some blocks compulsary to avoid, otherwise player looses more than just one life star.
 - Introduce pn cube that can shoot you.
 - As level go up, different shape fall.
