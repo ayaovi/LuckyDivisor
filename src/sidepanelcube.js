@@ -123,4 +123,29 @@ class SidePanelCube extends Cube {
 			text("x" + this.multiplier, this.position.x + luckyDivisor.config.DEFAULT_PADDING_OF_CUBE_OCCURENCE_IN_SIDE_PANEL, this.position.y + luckyDivisor.config.SIDE_OF_CUBE * 0.75);
 		}
 	}
+
+
+
+	/**
+	 * @description Makes a copy of this side panel cube.
+	 *
+	 * @param none.
+	 *
+	 * @return SidePanelCube.
+	 */
+	clone() {
+		return new SidePanelCube(this.number, this.id, this.position, this.multiplier);
+	}
+	
+	
+	/**
+	 * @description Tests equality of two side panel cubes.
+	 *
+	 * @param SidePanelCube.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherSidePanelCube) {
+		return (super.equals(otherSidePanelCube) && this.multiplier == otherSidePanelCube.multiplier);
+	}
 }

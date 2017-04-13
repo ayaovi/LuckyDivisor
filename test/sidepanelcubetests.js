@@ -27,6 +27,23 @@ QUnit.test("side panel cube basics", function( assert ) {
 });
 
 
+
+QUnit.test("side panel cube cloning tests", function( assert ) {
+    /**
+     * Let's create a side panel cube with the following:
+     * - position to be (400, 50)
+     * - number to be 3
+     * - id to be 30
+     * - multiplier to be 1
+     */
+    var original = new SidePanelCube(3, 30, createVector(400, 50), 1);
+    var clone = original.clone();
+
+    assert.ok(clone.equals(original), "clone equals original should succeed");
+});
+
+
+
 QUnit.test("side panel cube occurence notification", function( assert ) {
     /**
      * Let's create a side panel cube with the following:
