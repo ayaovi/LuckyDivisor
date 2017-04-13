@@ -207,3 +207,23 @@ QUnit.test("side panel cubes rearrangement", function( assert ) {
 
 	assert.equal(sidePanel.pnCubesYetToBeCollected.length, 0, "after collecting the cube with number 2 again, sidePanel.pnCubesYetToBeCollected.length equal 0 succeeds");
 });
+
+
+
+
+QUnit.test("side panel cubes cloning tests", function( assert ) {
+	/**
+	 * Let's create side panel.
+	 */
+	var original = new SidePanel();
+
+	/**
+	 * We need to reset the side panel and for that to happen we need a player cube created.
+	 */
+	luckyDivisor.global.playerCube = new PlayerCube(60, 0, createVector(20, 770));
+	original.reset();
+
+	var clone = original.clone();
+
+	assert.ok(clone.equals(original), "clone equals original should succeed");
+});

@@ -229,4 +229,43 @@ class SidePanel extends Panel {
 		 */
 		this.pnCubesYetToBeCollected.splice(index - 1, 1);
 	}
+
+
+
+	/**
+	 * @description Tests equality of two side pabels.
+	 *
+	 * @param SidePanel.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherSidePanel) {
+		if (this.pnCubesYetToBeCollected.length == otherSidePanel.pnCubesYetToBeCollected.length) {
+			for (var i = 0; i < this.pnCubesYetToBeCollected.length; i++) {
+				if (!this.pnCubesYetToBeCollected[i].equals(otherSidePanel.pnCubesYetToBeCollected[i])) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
+	 * @description Makes a copy of this cube.
+	 *
+	 * @param none.
+	 *
+	 * @return Cube.
+	 */
+	clone() {
+		var clone = new SidePanel();
+		
+		this.pnCubesYetToBeCollected.forEach( function(cube) {
+			clone.pnCubesYetToBeCollected.push(cube.clone());
+		}, this);
+
+		return clone;
+	}
 }
