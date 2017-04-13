@@ -83,7 +83,7 @@ luckyDivisor.util.cube.getNewPnCube = function(columnPositionX, columnIndex) {
 /**
  * @description A function to convert LAB to RGB.
  *
- * @param an array of containing the L, A and B values make up an RGB colour.
+ * @param numbers.
  *
  * @return numbers
  */

@@ -16,7 +16,7 @@ class Column {
 	 *
 	 * @return none.
 	 */
-	constructor(xCordinate, index) {
+	constructor(xCoordinate, index) {
 		/**
 		 * Because there are multiple Columns side by side on the game canvas, there is a 
 		 * need to know where one starts and end. Hopefully we already know how wide each 
@@ -25,7 +25,7 @@ class Column {
 		 * end at (x + COLUMN_WIDTH - 1) or just (x + COLUMN_WIDTH) depending one how you 
 		 * look at it.
 		 */
-		this.x = xCordinate;
+		this.x = xCoordinate;
 		
 		/**
 		 * A column has an index that can be used to reference it.
@@ -197,7 +197,7 @@ class Column {
 	 * @return Column.
 	 */
 	clone() {
-		var clone = new Column(this.xCordinate, this.index);
+		var clone = new Column(this.x, this.index);
 		clone.startingDate = this.startingDate;
 		clone.cubesHaveStartedFalling = this.cubesHaveStartedFalling;
 		clone.cubes = [];
@@ -205,13 +205,6 @@ class Column {
 		this.cubes.forEach( function(cube) {
 			clone.cubes.push(cube.clone());
 		}, this);
-
-		if (clone.cubes.length == this.cubes.length) {
-			console.log("Column cloning successful...");
-		}
-		else {
-			console.log("Column cloning unsuccessful...");
-		}
 
 		return clone;
 	}
@@ -225,12 +218,8 @@ class Column {
 	 * @return boolean.
 	 */
 	equals(otherColumn) {
-		var areEqual = (this.xCordinate == otherColumn.xCordinate) && (this.index == otherColumn.index) && (this.cubes.length == otherColumn.cubes.lenght);
-
-		console.log("Result from comparing dimension is " + areEqual);
-
+		var areEqual = (this.x == otherColumn.x) && (this.index == otherColumn.index) && (this.cubes.length == otherColumn.cubes.length);
 		if (areEqual) {
-			console.log("Both columns have the same dimension.");
 			for (var i = 0; i < this.cubes.length; i++) {
 				if (!this.cubes[i].equals(otherColumn.cubes[i])) {
 					return false;

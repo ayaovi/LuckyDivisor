@@ -148,7 +148,11 @@ class PnCube extends Cube {
 	 * @return PnCube.
 	 */
 	clone() {
-		var clone = new PnCube(this.primeNumber, this.id, this.position, this.columnIndex);
+		var clone = new PnCube(this.number, this.id, this.position, this.columnIndex);
+		clone.visibility = this.visibility;
+		clone.demarcationHeight = this.demarcationHeight;
+		clone.hasStarted = this.hasStarted;
+		clone.startDate = this.startDate;
 		clone.hasAlreadyInitiatedNewCubeStart = this.hasAlreadyInitiatedNewCubeStart;
 		return clone;
 	}
@@ -162,8 +166,7 @@ class PnCube extends Cube {
 	 * @return boolean.
 	 */
 	equals(otherPnCube) {
-		return (this.primeNumber == otherPnCube.primeNumber && this.id == otherPnCube.id && this.columnIndex == otherPnCube.columnIndex);
-		// return (super.equals(otherPnCube));
+		return (super.equals(otherPnCube) && this.columnIndex == otherPnCube.columnIndex);
 	}
 
 

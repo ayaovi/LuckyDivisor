@@ -232,7 +232,7 @@ luckyDivisor.util.checkForNewPlayerData = function() {
 luckyDivisor.util.savePlayerData = function() {
     /**
      * First check that the player data does exist. And if so store it.
-     * There is a limit to how much data one can store via localStorage - approximately 5mb.
+     * There is a limit to how much data one can store via localStorage - approximately 5MB.
      * If you are dealing with a lot of data you could soon reach that limit.
      */
     if (luckyDivisor.global.playerData) {
@@ -249,7 +249,7 @@ luckyDivisor.util.savePlayerData = function() {
  * @return none.
  */
 luckyDivisor.util.newID = function() {
-    return ++luckyDivisor.global.ID;
+    return (luckyDivisor.global.ID != undefined) ? ++luckyDivisor.global.ID : 0;
 }
 
 
@@ -261,7 +261,7 @@ luckyDivisor.util.newID = function() {
  * @return none.
  */
 luckyDivisor.util.burnPlayer = function() {
-    if (luckyDivisor.global.player) {
+    if (luckyDivisor.global.player != undefined) {
         luckyDivisor.global.player.burn();
     }
 }
