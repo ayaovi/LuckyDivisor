@@ -17,3 +17,9 @@ QUnit.test("toppanel basics", function( assert ) {
 	assert.equal(topPanel.width, luckyDivisor.config.WIDTH_OF_CANVAS, "upon creation topPanel.width equal WIDTH_OF_CANVAS succeeds");
 	assert.equal(topPanel.height, luckyDivisor.config.HEIGHT_TOP_PANEL, "upon creation topPanel.height equal HEIGHT_TOP_PANEL succeeds");
 });
+
+
+
+QUnit.test("toppanel basics", function( assert ) {
+	var topPanel = new TopPanel();
+});

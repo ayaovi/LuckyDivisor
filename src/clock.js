@@ -130,4 +130,33 @@ class Clock {
 		 */
 		pop();
 	}
+
+
+	/**
+	 * @description Tests equality of two clocks.
+	 *
+	 * @param Clock.
+	 *
+	 * @return boolean.
+	 */
+	equals(otherCube) {
+		return (this.number == otherCube.number && this.id == otherCube.id);
+	}
+
+
+	/**
+	 * @description Makes a copy of this cube.
+	 *
+	 * @param none.
+	 *
+	 * @return Clock.
+	 */
+	clone() {
+		var clone = new Clock();
+		clone.position = this.position;
+		clone.date = this.date.clone();
+		clone.playDuration = this.playDuration;
+		clone.position = this.position;
+		clone.position = this.position;
+	}
 }

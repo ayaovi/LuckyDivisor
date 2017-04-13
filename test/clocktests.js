@@ -14,12 +14,21 @@ QUnit.test("clock basics", function( assert ) {
 	clock.init();
 
 	assert.notOk(clock.hasStarted, "upon clock init hasStarted does not succeed");
-	
 	assert.equal(clock.playDuration.toString(), "00:20", "upon clock init playDuration equal 00:20 succeeds");
-
 	assert.equal(clock.stringTimeTillEndOfPlay, "00:20", "upon clock init stringTimeTillEndOfPlay equal 00:20 succeeds");
 
 	clock.start();
 
 	assert.ok(clock.hasStarted, "once clock started hasStarted succeeds");
+});
+
+
+
+
+QUnit.test("clock cloning tests", function( assert ) {
+	var original = new Clock();
+	original.init();
+	var clone = original.clone();
+
+	assert.ok(clone.equals(original), "clone equals original should succeed");
 });

@@ -86,7 +86,7 @@ class Cube {
 	/**
 	 * @description Tests equality of two cubes. By checking the equality of their numbers and ids.
 	 *
-	 * @param cube.
+	 * @param Cube.
 	 *
 	 * @return boolean.
 	 */
