@@ -20,6 +20,10 @@ QUnit.test("toppanel basics", function(assert) {
 
 
 
-// QUnit.test("toppanel cloning tests", function(assert) {
-//     var topPanel = new TopPanel();
-// });
+QUnit.test("toppanel cloning tests", function(assert) {
+    var original = new TopPanel();
+    original.init();
+    original.clock.start();
+    var clone = original.clone();
+    assert.ok(clone.equals(original), "clone equals original should succeed");
+});
