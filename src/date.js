@@ -85,11 +85,11 @@ class ExtendedDate extends Date {
 
 
     /**
-     * @description Makes a copy of this cube.
+     * @description Makes a copy of this date.
      *
      * @param none.
      *
-     * @return Clock.
+     * @return ExtendedDate.
      */
     clone() {
         return new ExtendedDate(this.getTime());
