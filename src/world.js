@@ -11,13 +11,13 @@
 
 class World {
     /**
-	 * @description a constructor
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	constructor() {
+     * @description a constructor
+     *
+     * @param none.
+     *
+     * @return none.
+     */
+    constructor() {
         /**
          * Its value is used for the ID of every cube in the game. It is to be restarted at the beginning of every play and incremented once a cube takes on its current value.
          */
@@ -27,7 +27,7 @@ class World {
          * A reference to the player.
          */
         this.player;
-        
+
         /**
          * A reference to the player cube.
          */
@@ -42,7 +42,7 @@ class World {
          * A collection of events waiting to be triggered.
          */
         this.eventQueue;
-        
+
         /**
          * A reference to the side panel.
          */
@@ -62,25 +62,33 @@ class World {
          * Keeps a record of the number of instances of any Pn Cube flavour that have been generated so far.
          */
         this.pnCubeCreationReccordMap;
+
+        /**
+         * Keeps track of the starting cube of the previous column during start up.
+         */
+        // this.previousColumnStartingCube;
+
+        /**
+         * Keeps track of the starting time of the previous column during start up.
+         */
+        this.previousColumnStartingDate;
     }
 
 
     /**
-	 * @description makes a copy of this world.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
+     * @description makes a copy of this world.
+     *
+     * @param none.
+     *
+     * @return none.
+     */
     init() {
         this.cubeIDs = 0;
-        
-        this.player = new Player();     /** Not sure about this. */
-        this.player.init();
-
-        this.previousColumnStartingDate = undefined;    /** Not sure about this. */
+        this.previousColumnStartingDate = undefined; /** Not sure about this. */
         this.columns = [];
-        this.numberOfPnCubeCreated = 
+        this.numberOfPnCubeCreated = 0;
+        this.pnCubeCreationReccordMap = new Array();
+        this.initialisePnCubeCreationRecord();
         this.sidePanel = new SidePanel();
         this.eventQueue = new EventQueue();
     }
@@ -88,34 +96,102 @@ class World {
 
 
     /**
-	 * @description makes a copy of this world.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	clone() {
+     * @description Initialises the cube colour map.
+     *
+     * @param none.
+     *
+     * @return none.
+     */
+    initialisePnCubeCreationRecord() {
+        this.pnCubeCreationReccordMap[1] = 0;
+        this.pnCubeCreationReccordMap[2] = 0;
+        this.pnCubeCreationReccordMap[3] = 0;
+        this.pnCubeCreationReccordMap[5] = 0;
+        this.pnCubeCreationReccordMap[7] = 0;
+    }
+
+
+
+    /**
+     * @description makes mock components. To be used for testing purposes
+     *
+     * @param none.
+     *
+     * @return none.
+     */
+    makeMockComponents() {
+        this.player = new Player();
+        this.player.init();
+
+        this.playerCube = new PlayerCube(20, 0, createVector(200, 200));
+
+        this.topPanel = new TopPanel();
+        this.topPanel.init();
+        this.topPanel.clock.start();
+
+        for (var i = 0; i < luckyDivisor.config.NUMBER_OF_COLUMNS; i++) {
+            this.columns.push(new Column(luckyDivisor.config.COLUMN_WIDTH * i, i));
+            this.columns[i].reset();
+        }
+    }
+
+
+
+    /**
+     * @description makes a copy of this world.
+     *
+     * @param none.
+     *
+     * @return World.
+     */
+    clone() {
         var clone = new World();
+
         clone.cubeIDs = this.cubeIDs;
         clone.player = this.player.clone();
         clone.playerCube = this.playerCube.clone();
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
-        clone.cubeIDs = this.cubeIDs;
+
+        clone.pnCubeCreationReccordMap = new Array();
+        clone.pnCubeCreationReccordMap[1] = this.pnCubeCreationReccordMap[1];
+        clone.pnCubeCreationReccordMap[2] = this.pnCubeCreationReccordMap[2];
+        clone.pnCubeCreationReccordMap[3] = this.pnCubeCreationReccordMap[3];
+        clone.pnCubeCreationReccordMap[5] = this.pnCubeCreationReccordMap[5];
+        clone.pnCubeCreationReccordMap[7] = this.pnCubeCreationReccordMap[7];
+
+        clone.columns = [];
+        this.columns.forEach(function(column) {
+            clone.columns.push(column.clone());
+        }, this);
+
+        clone.eventQueue = this.eventQueue.clone();
+        clone.sidePanel = this.sidePanel.clone();
+        clone.topPanel = this.topPanel.clone();
+
+        if (this.previousColumnStartingDate != undefined) {
+            clone.previousColumnStartingDate = this.previousColumnStartingDate.clone();
+        }
+
+        return clone;
+    }
+
+
+
+    /**
+     * @description Tests the equality of two worlds.
+     *
+     * @param World.
+     *
+     * @return boolean.
+     */
+    equals(otherWorld) {
+        return (this.cubeIDs == otherWorld.cubeIDs &&
+            this.player.equals(otherWorld.player) &&
+            this.playerCube.equals(otherWorld.playerCube) &&
+            this.pnCubeCreationReccordMap.length == otherWorld.pnCubeCreationReccordMap.length &&
+            this.columns.length == otherWorld.columns.length &&
+            this.eventQueue.equals(otherWorld.eventQueue) &&
+            this.sidePanel.equals(otherWorld.sidePanel) &&
+            this.topPanel.equals(otherWorld.topPanel)
+        );
     }
 }

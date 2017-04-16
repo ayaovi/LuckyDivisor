@@ -44,8 +44,7 @@ luckyDivisor.global.previousColumnStartingDate;
 luckyDivisor.global.previousColumnStartingCube;
 
 /**
- * A canvas alternative for the side panel. This became an issue du to the 
- * fact that p5.js requires only one canvas be drawn.
+ * A canvas alternative for the side panel. This became an issue due to the fact that p5.js requires only one canvas be drawn.
  */
 luckyDivisor.global.sidePanelBuffer;
 
@@ -90,9 +89,7 @@ luckyDivisor.global.columns = [];
 luckyDivisor.global.playerCube;
 
 /**
- * Its value is used for the ID of every cube in the game. It is to be 
- * restarted at the beginning of every play and incremented once a cube 
- * takes on its current value.
+ * Its value is used for the ID of every cube in the game. It is to be restarted at the beginning of every play and incremented once a cube takes on its current value.
  */
 luckyDivisor.global.ID;
 
@@ -112,6 +109,6 @@ luckyDivisor.global.imageAvailable = false;
 luckyDivisor.global.playHasEnded = false;
 
 /**
- * Keeps track of the number of the current play. It is used to increase the pn cube falling speed by 10% their initial speed every 5 plays.
+ * Keeps track of the number of the current play. It is used to increase the pn cube falling speed by 10% their initial speed every 3 plays.
  */
 luckyDivisor.global.numberOfPlay;

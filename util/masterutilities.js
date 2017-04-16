@@ -591,6 +591,7 @@ luckyDivisor.util.createGameComponents = function() {
 
     luckyDivisor.global.player = new Player();
     luckyDivisor.global.player.init();
+
     console.log("Player Best Score is " + luckyDivisor.global.player.bestScore);
 
     luckyDivisor.global.topPanel = new TopPanel();

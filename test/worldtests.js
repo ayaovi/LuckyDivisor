@@ -9,6 +9,10 @@
  */
 
 
-QUnit.test("column basics", function( assert ) {
-    assert.ok(true, "More to come here");
+QUnit.test("world cloning tests", function(assert) {
+    var original = new World();
+    original.init();
+    original.makeMockComponents();
+    var clone = original.clone();
+    assert.ok(clone.equals(original), "clone equals original should succeed");
 });
