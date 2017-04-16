@@ -20,8 +20,8 @@ luckyDivisor.util.cube = {};
  * @return none.
  */
 luckyDivisor.util.cube.updatePnCubeCreationRecords = function(primeNuber) {
-    ++luckyDivisor.global.pnCubeCreationReccordMap[primeNuber];
-    ++luckyDivisor.global.numberOfPnCubeCreated;
+    ++luckyDivisor.global.currentWorld.pnCubeCreationReccordMap[primeNuber];
+    ++luckyDivisor.global.currentWorld.numberOfPnCubeCreated;
 }
 
 

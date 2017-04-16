@@ -11,73 +11,76 @@
  */
 
 var abs = function(number) {
-	return Math.abs(number);
+    return Math.abs(number);
 }
 
 var floor = function(number) {
-	return Math.floor(number);
+    return Math.floor(number);
 }
 
 var createVector = function(xValue, yValue) {
-	return {
-		x : xValue,
-		y : yValue
-	}
+    return {
+        x: xValue,
+        y: yValue
+    }
 }
 
 var color = function(r, g, b) {
-	return [r, g, b];
+    return [r, g, b];
 }
 
-var random = function(upper) {
-	Math.random(upper);
+var random = function(lower, upper) {
+    if (upper != undefined) {
+        return Math.random(lower, upper);
+    }
+    return Math.random(upper);
 }
 
 var push = function() {
-	/**
-	 * Empty for now. Do not think I would really need it for testing purposes.
-	 */
+    /**
+     * Empty for now. Do not think I would really need it for testing purposes.
+     */
 }
 
 var pop = function() {
-	/**
-	 * Empty for now. Do not think I would really need it for testing purposes.
-	 */
+    /**
+     * Empty for now. Do not think I would really need it for testing purposes.
+     */
 }
 
 var red = function(rgb) {
-	return 0;
+    return 0;
 }
 
 var green = function(rgb) {
-	return 0;
+    return 0;
 }
 
 var blue = function(rgb) {
-	return 0;
+    return 0;
 }
 
 var pow = function(number) {
-	return Math.pow(number);
+    return Math.pow(number);
 }
 
-var min = function (number1, number2) {
-	return Math.min(number1, number2);
+var min = function(number1, number2) {
+    return Math.min(number1, number2);
 }
 
-var max = function (number1, number2) {
-	return Math.max(number1, number2);
+var max = function(number1, number2) {
+    return Math.max(number1, number2);
 }
 
-var constrain = function (number, lowerBound, upperBound) {
-	return (number < lowerBound) ? lowerBound : (number > upperBound) ? upperBound : number;
+var constrain = function(number, lowerBound, upperBound) {
+    return (number < lowerBound) ? lowerBound : (number > upperBound) ? upperBound : number;
 }
 
-var toDecimalPlace = function (number, decimalPlaces) {
-	var multiplier = Math.pow(10, decimalPlaces);
-	return parseFloat(Math.round(number * multiplier) / multiplier).toFixed(decimalPlaces);
+var toDecimalPlace = function(number, decimalPlaces) {
+    var multiplier = Math.pow(10, decimalPlaces);
+    return parseFloat(Math.round(number * multiplier) / multiplier).toFixed(decimalPlaces);
 }
 
-var sqrt = function (number) {
-	return Math.sqrt(number);
+var sqrt = function(number) {
+    return Math.sqrt(number);
 }

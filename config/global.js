@@ -21,22 +21,22 @@ luckyDivisor.global.playerData;
 /**
  * A reference to the top panel.
  */
-luckyDivisor.global.topPanel;
+// luckyDivisor.global.topPanel;
 
 /**
  * A reference to the side panel.
  */
-luckyDivisor.global.sidePanel;
+// luckyDivisor.global.sidePanel;
 
 /**
  * A reference to the player.
  */
-luckyDivisor.global.player;
+// luckyDivisor.global.player;
 
 /**
  * Keeps track of the starting time of the previous column during start up.
  */
-luckyDivisor.global.previousColumnStartingDate;
+// luckyDivisor.global.previousColumnStartingDate;
 
 /**
  * Keeps track of the starting cube of the previous column during start up.
@@ -46,12 +46,12 @@ luckyDivisor.global.previousColumnStartingCube;
 /**
  * A canvas alternative for the side panel. This became an issue due to the fact that p5.js requires only one canvas be drawn.
  */
-luckyDivisor.global.sidePanelBuffer;
+// luckyDivisor.global.sidePanelBuffer;
 
 /**
  * At this point in time is being used to store StartNewCubeEvent's.
  */
-luckyDivisor.global.eventQueue;
+// luckyDivisor.global.eventQueue;
 
 /**
  * Keeps track of the last time that the player paused the game.
@@ -71,27 +71,27 @@ luckyDivisor.global.newGameButton;
 /**
  * Keeps track of how many Pn Cubes have been created in a play.
  */
-luckyDivisor.global.numberOfPnCubeCreated;
+// luckyDivisor.global.numberOfPnCubeCreated;
 
 /**
  * Keeps a record of the number of instances of any Pn Cube flavour that have been generated so far.
  */
-luckyDivisor.global.pnCubeCreationReccordMap = new Array();
+// luckyDivisor.global.pnCubeCreationReccordMap = new Array();
 
 /**
  * A record of all columns in the game.
  */
-luckyDivisor.global.columns = [];
+// luckyDivisor.global.columns = [];
 
 /**
  * A reference to the player cube.
  */
-luckyDivisor.global.playerCube;
+// luckyDivisor.global.playerCube;
 
 /**
  * Its value is used for the ID of every cube in the game. It is to be restarted at the beginning of every play and incremented once a cube takes on its current value.
  */
-luckyDivisor.global.ID;
+// luckyDivisor.global.ID;
 
 /**
  * A p5.image to be loaded as background.
@@ -112,3 +112,13 @@ luckyDivisor.global.playHasEnded = false;
  * Keeps track of the number of the current play. It is used to increase the pn cube falling speed by 10% their initial speed every 3 plays.
  */
 luckyDivisor.global.numberOfPlay;
+
+/**
+ * A collection of worlds throughout the game.
+ */
+luckyDivisor.global.worlds = [];
+
+/**
+ * A pointer to the current world.
+ */
+luckyDivisor.global.currentWorld;

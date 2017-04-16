@@ -516,7 +516,7 @@ luckyDivisor.util.checkForRunningClock = function() {
      * Start the clock if it not started.
      */
     if (!luckyDivisor.global.topPanel.clock.hasStarted) {
-        luckyDivisor.global.topPanel.clock.start();
+        luckyDivisor.global.currentWorld.topPanel.clock.start();
     }
 }
 
@@ -570,13 +570,13 @@ luckyDivisor.util.initialiseCubeColourMap = function() {
  *
  * @return none.
  */
-luckyDivisor.util.initialisePnCubeCreationRecord = function() {
-    luckyDivisor.global.pnCubeCreationReccordMap[1] = 0;
-    luckyDivisor.global.pnCubeCreationReccordMap[2] = 0;
-    luckyDivisor.global.pnCubeCreationReccordMap[3] = 0;
-    luckyDivisor.global.pnCubeCreationReccordMap[5] = 0;
-    luckyDivisor.global.pnCubeCreationReccordMap[7] = 0;
-}
+// luckyDivisor.util.initialisePnCubeCreationRecord = function() {
+//     luckyDivisor.global.pnCubeCreationReccordMap[1] = 0;
+//     luckyDivisor.global.pnCubeCreationReccordMap[2] = 0;
+//     luckyDivisor.global.pnCubeCreationReccordMap[3] = 0;
+//     luckyDivisor.global.pnCubeCreationReccordMap[5] = 0;
+//     luckyDivisor.global.pnCubeCreationReccordMap[7] = 0;
+// }
 
 
 /**
@@ -588,17 +588,9 @@ luckyDivisor.util.initialisePnCubeCreationRecord = function() {
  */
 luckyDivisor.util.createGameComponents = function() {
     luckyDivisor.util.createNewGameButton();
-
-    luckyDivisor.global.player = new Player();
-    luckyDivisor.global.player.init();
-
-    console.log("Player Best Score is " + luckyDivisor.global.player.bestScore);
-
-    luckyDivisor.global.topPanel = new TopPanel();
-    luckyDivisor.global.topPanel.init();
-
-    luckyDivisor.global.sidePanel = new SidePanel();
-    luckyDivisor.global.eventQueue = new EventQueue();
+    luckyDivisor.global.currentWorld = new World();
+    luckyDivisor.global.currentWorld.init();
+    luckyDivisor.global.worlds.push(luckyDivisor.global.currentWorld);
 }
 
 

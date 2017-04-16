@@ -12,7 +12,7 @@
 QUnit.test("world cloning tests", function(assert) {
     var original = new World();
     original.init();
-    original.makeMockComponents();
+    original.reset();
     var clone = original.clone();
     assert.ok(clone.equals(original), "clone equals original should succeed");
 });

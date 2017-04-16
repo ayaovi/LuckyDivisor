@@ -9,8 +9,8 @@
  */
 
 
-QUnit.test("Start New Play in Game Utilties", function( assert ) {
-	/**
+QUnit.test("Start New Play in Game Utilties", function(assert) {
+    /**
      * First create game componenets
      */
     luckyDivisor.util.createGameComponents();
@@ -35,9 +35,9 @@ QUnit.test("Start New Play in Game Utilties", function( assert ) {
     assert.equal(luckyDivisor.global.numberOfPlay, 1, "at the start of the very first play, number of play equal 1 succeeds");
     assert.notOk(luckyDivisor.global.playHasEnded, "at the start of new play, playHasEnded equla false succeeds");
     assert.notOk(luckyDivisor.global.newGameButton.isVisible, "at the start of new play, new game button should not be visible");
-    assert.notOk(luckyDivisor.global.eventQueue.hasEvents(), "at the start of new play, event queue should empty");
-    assert.equal(luckyDivisor.global.topPanel.clock.playDuration.toString(), "00:20", "at the start of new play, the clock in the top panel should reset back to 00:20");
-    assert.equal(luckyDivisor.global.sidePanel.emoticon.type, 0, "at the start of new play, the emoticon in the side panel should be normal.");
+    assert.notOk(luckyDivisor.global.currentWorld.eventQueue.hasEvents(), "at the start of new play, event queue should empty");
+    assert.equal(luckyDivisor.global.currentWorld.topPanel.clock.playDuration.toString(), "00:20", "at the start of new play, the clock in the top panel should reset back to 00:20");
+    assert.equal(luckyDivisor.global.currentWorld.sidePanel.emoticon.type, 0, "at the start of new play, the emoticon in the side panel should be normal.");
 
     /**
      * Now are going to call luckyDivisor.util.game.startNewPlay() a couple of times, say 10, and the create a new pn cube (with number 7). 

@@ -76,21 +76,61 @@ class World {
 
 
     /**
-     * @description makes a copy of this world.
+     * @description initialises this world.
      *
      * @param none.
      *
      * @return none.
      */
     init() {
+        this.player = new Player();
+        this.player.init();
+        this.topPanel = new TopPanel();
+        this.topPanel.init();
+        this.sidePanel = new SidePanel();
+        this.eventQueue = new EventQueue();
+    }
+
+
+
+
+    /**
+     * @description resets this world.
+     *
+     * @param none.
+     *
+     * @return none.
+     */
+    reset() {
         this.cubeIDs = 0;
         this.previousColumnStartingDate = undefined; /** Not sure about this. */
         this.columns = [];
         this.numberOfPnCubeCreated = 0;
         this.pnCubeCreationReccordMap = new Array();
         this.initialisePnCubeCreationRecord();
-        this.sidePanel = new SidePanel();
-        this.eventQueue = new EventQueue();
+        this.eventQueue.reset();
+        this.topPanel.reset();
+
+        /**
+         * Create a new player cube.
+         */
+        var playerCubeNumber = luckyDivisor.util.math.generatePlayerCubeNumber();
+        this.playerCube = new PlayerCube(playerCubeNumber, 0, createVector((luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE) / 2, luckyDivisor.config.HEIGHT_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1));
+
+        /**
+         * Create all columns.
+         */
+        for (var i = 0; i < luckyDivisor.config.NUMBER_OF_COLUMNS; i++) {
+            this.columns.push(new Column(luckyDivisor.config.COLUMN_WIDTH * i, i));
+
+            /**
+             * This needs to happen every time a column is created. Because a columns is not reset in the constructor.
+             */
+            this.columns[i].reset();
+        }
+
+        this.sidePanel.reset();
+        this.topPanel.clock.start();
     }
 
 
@@ -109,32 +149,6 @@ class World {
         this.pnCubeCreationReccordMap[5] = 0;
         this.pnCubeCreationReccordMap[7] = 0;
     }
-
-
-
-    /**
-     * @description makes mock components. To be used for testing purposes
-     *
-     * @param none.
-     *
-     * @return none.
-     */
-    makeMockComponents() {
-        this.player = new Player();
-        this.player.init();
-
-        this.playerCube = new PlayerCube(20, 0, createVector(200, 200));
-
-        this.topPanel = new TopPanel();
-        this.topPanel.init();
-        this.topPanel.clock.start();
-
-        for (var i = 0; i < luckyDivisor.config.NUMBER_OF_COLUMNS; i++) {
-            this.columns.push(new Column(luckyDivisor.config.COLUMN_WIDTH * i, i));
-            this.columns[i].reset();
-        }
-    }
-
 
 
     /**
@@ -184,6 +198,16 @@ class World {
      * @return boolean.
      */
     equals(otherWorld) {
+        console.log("this.cubeIDs == otherWorld.cubeIDs is: " + (this.cubeIDs == otherWorld.cubeIDs));
+        console.log("this.player.equals(otherWorld.player) is: " + this.player.equals(otherWorld.player));
+        console.log("this.playerCube.equals(otherWorld.playerCube) is: " + this.playerCube.equals(otherWorld.playerCube));
+        console.log("this.playerCube: " + this.playerCube + " otherWorld.playerCube: " + otherWorld.playerCube);
+        console.log("this.pnCubeCreationReccordMap.length == otherWorld.pnCubeCreationReccordMap.length is: " + (this.pnCubeCreationReccordMap.length == otherWorld.pnCubeCreationReccordMap.length));
+        console.log("this.columns.length == otherWorld.columns.length is: " + (this.columns.length == otherWorld.columns.length));
+        console.log("this.eventQueue.equals(otherWorld.eventQueue) is: " + this.eventQueue.equals(otherWorld.eventQueue));
+        console.log("this.sidePanel.equals(otherWorld.sidePanel) is: " + this.sidePanel.equals(otherWorld.sidePanel));
+        console.log("this.topPanel.equals(otherWorld.topPanel) is: " + this.topPanel.equals(otherWorld.topPanel));
+
         return (this.cubeIDs == otherWorld.cubeIDs &&
             this.player.equals(otherWorld.player) &&
             this.playerCube.equals(otherWorld.playerCube) &&
