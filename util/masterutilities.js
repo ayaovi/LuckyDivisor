@@ -142,8 +142,8 @@ luckyDivisor.util.makeEmotionalFace = function(type) {
     /**
      * The point here is if the sidePanel exist then the emoticon must as well.
      */
-    if (luckyDivisor.global.sidePanel) {
-        luckyDivisor.global.sidePanel.emoticon.type = type;
+    if (luckyDivisor.global.currentWorld.sidePanel != undefined) {
+        luckyDivisor.global.currentWorld.sidePanel.emoticon.type = type;
     }
 }
 
@@ -195,7 +195,7 @@ luckyDivisor.util.createNewPlayerData = function() {
  * @return boolean.
  */
 luckyDivisor.util.newPlayerData = function() {
-    return (luckyDivisor.global.playerData['bestScore'] < luckyDivisor.global.player.bestScore || luckyDivisor.global.playerData['creditPoints'] != luckyDivisor.global.player.creditPoints);
+    return (luckyDivisor.global.playerData.bestScore < luckyDivisor.global.player.bestScore || luckyDivisor.global.playerData.creditPoints != luckyDivisor.global.player.creditPoints);
 }
 
 
@@ -208,16 +208,17 @@ luckyDivisor.util.newPlayerData = function() {
  * @return none.
  */
 luckyDivisor.util.checkForNewPlayerData = function() {
-    if (luckyDivisor.util.newPlayerData) {
+    if (luckyDivisor.util.newPlayerData()) {
         /**
          * Player best score only gets updated if a higher best score has been recorded.
          */
-        luckyDivisor.global.playerData['bestScore'] = (luckyDivisor.global.playerData['bestScore'] < luckyDivisor.global.player.bestScore) ? luckyDivisor.global.player.bestScore : luckyDivisor.global.playerData['bestScore'];
+        luckyDivisor.global.playerData.bestScore = (luckyDivisor.global.playerData.bestScore < luckyDivisor.global.player.bestScore) ? luckyDivisor.global.player.bestScore : luckyDivisor.global.playerData.bestScore;
+
         /**
          * Player credit point gets updated when ever there is a new credit point. The idea here is that
          * credit point can be carried over from one session to another.
          */
-        luckyDivisor.global.playerData['creditPoints'] = luckyDivisor.global.player.creditPoints;
+        luckyDivisor.global.playerData.creditPoints = luckyDivisor.global.player.creditPoints;
 
         luckyDivisor.util.savePlayerData();
     }
@@ -237,7 +238,7 @@ luckyDivisor.util.savePlayerData = function() {
      * There is a limit to how much data one can store via localStorage - approximately 5MB.
      * If you are dealing with a lot of data you could soon reach that limit.
      */
-    if (luckyDivisor.global.playerData) {
+    if (luckyDivisor.global.playerData != undefined) {
         window.localStorage.setItem('luckyDivisorPlayerData', JSON.stringify(luckyDivisor.global.playerData));
     }
 }
@@ -331,7 +332,7 @@ luckyDivisor.util.cubeActiveMilliSeconds = function(cubeStartDate) {
  * @return none.
  */
 luckyDivisor.util.showPlayerScore = function() {
-    if (luckyDivisor.global.currentWorld.player.score) {
+    if (luckyDivisor.global.currentWorld.player.score != undefined) {
         luckyDivisor.global.currentWorld.player.score.show();
     }
 }
@@ -358,9 +359,9 @@ luckyDivisor.util.getDefaultSpeed = function(number) {
  *
  * @return number.
  */
-luckyDivisor.util.getIncrementalSpeed = function(number) {
-    if (luckyDivisor.global.numberOfPlay) {
-        return luckyDivisor.util.getDefaultSpeed(number) * floor(luckyDivisor.global.numberOfPlay / 3) * 0.1;
+luckyDivisor.util.getIncrementalSpeed = function(number, numberOfPlay) {
+    if (numberOfPlay != undefined) {
+        return luckyDivisor.util.getDefaultSpeed(number) * floor(numberOfPlay / 3) * 0.1;
     }
     return 0;
 }
@@ -392,7 +393,7 @@ luckyDivisor.util.showPlayerLifeStars = function() {
  * @return string.
  */
 luckyDivisor.util.padWithZero = function(number) {
-    return ((number < 10) ? "0" + number : number);
+    return ((number < 10) ? "0" + number : "" + number);
 }
 
 

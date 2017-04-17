@@ -12,173 +12,173 @@
  */
 
 class PnCube extends Cube {
-	/**
-	 * @description a constructor
-	 *
-	 * @param 
-	 *
-	 * @return none.
-	 */
-	constructor(primeNumber, id, position, columnIndex) {
-		super(primeNumber, id, position);
+    /**
+     * @description a constructor
+     *
+     * @param 
+     *
+     * @return none.
+     */
+    constructor(primeNumber, id, position, columnIndex) {
+        super(primeNumber, id, position);
 
-		/**
-		 * Every pn cube has a specific colour.
-		 * e.g. 1 is yellow, 2 is red, 3 is blue etc...
-		 */
-		this.colour = luckyDivisor.config.CUBE_COLOUR_MAP[this.number];
+        /**
+         * Every pn cube has a specific colour.
+         * e.g. 1 is yellow, 2 is red, 3 is blue etc...
+         */
+        this.colour = luckyDivisor.config.CUBE_COLOUR_MAP[this.number];
 
-		this.setSpeed();
+        this.setSpeed();
 
-		/**
-		 * Specifies the height at wich this cube should schedule a start ne cube event.
-		 */
-		this.demarcationHeight = floor(random(luckyDivisor.config.HEIGHT_OF_CANVAS * 0.2, luckyDivisor.config.HEIGHT_OF_CANVAS * 0.45));
+        /**
+         * Specifies the height at wich this cube should schedule a start ne cube event.
+         */
+        this.demarcationHeight = floor(random(luckyDivisor.config.HEIGHT_OF_CANVAS * 0.2, luckyDivisor.config.HEIGHT_OF_CANVAS * 0.45));
 
-		/**
-		 * The following is a variable that advises on the visibility of this Cube. This
-		 * is mostly useful when displaying the Cube on the canvas. As such a non
-		 * visible (i.e. this.visibility == false) will never be displayed on the canvas.
-		 */
-		this.visibility = true;
+        /**
+         * The following is a variable that advises on the visibility of this Cube. This
+         * is mostly useful when displaying the Cube on the canvas. As such a non
+         * visible (i.e. this.visibility == false) will never be displayed on the canvas.
+         */
+        this.visibility = true;
 
-		/**
-		 * Keeps track which column this cube is falling in. Having the column, we can
-		 * initiate a new cube start/fall similar to this, columns[columnIndex].startNewCube().
-		 */
-		this.columnIndex = columnIndex;
+        /**
+         * Keeps track which column this cube is falling in. Having the column, we can
+         * initiate a new cube start/fall similar to this, columns[columnIndex].startNewCube().
+         */
+        this.columnIndex = columnIndex;
 
-		/**
-		 * A confirmation on whether this cube is falling or not, reason why it is initially
-		 * set to false.
-		 */
-		this.hasStarted = false;
+        /**
+         * A confirmation on whether this cube is falling or not, reason why it is initially
+         * set to false.
+         */
+        this.hasStarted = false;
 
-		/**
-		 * Keeps a record of when this cube started falling. At first start date may seem a
-		 * extreme, because intuitively a time should be just fine. In fact I started
-		 * out with a time. However with the introduction of the pause feature and the possibility
-		 * of the game being paused for as long as the player may want (which may well be days,
-		 * weeks or months). As such it became a requirement to change from start time to start
-		 * date as the latter is more complete.
-		 */
-		this.startDate;
+        /**
+         * Keeps a record of when this cube started falling. At first start date may seem a
+         * extreme, because intuitively a time should be just fine. In fact I started
+         * out with a time. However with the introduction of the pause feature and the possibility
+         * of the game being paused for as long as the player may want (which may well be days,
+         * weeks or months). As such it became a requirement to change from start time to start
+         * date as the latter is more complete.
+         */
+        this.startDate;
 
-		/**
-		 * Safety measure to stop this cube from initiating more than one new cube start.
-		 * This is by default false;
-		 */
-		this.hasAlreadyInitiatedNewCubeStart = false;
+        /**
+         * Safety measure to stop this cube from initiating more than one new cube start.
+         * This is by default false;
+         */
+        this.hasAlreadyInitiatedNewCubeStart = false;
 
-		/**
-		 * Handles the pn cube motion.
-		 */
-		this.motionHandler = new PnCubeMotionHandler(this);
+        /**
+         * Handles the pn cube motion.
+         */
+        this.motionHandler = new PnCubeMotionHandler(this);
 
-		/**
-		 * Handles collision with other pn.
-		 */
-		this.collisionHandler = new CubeCollisionHandler(this);
-	}
-
-
-	/**
-	 * @description a function that displays this Cube.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	show() {
-		if (this.visibility == true) {
-			this.showSquare();
-			this.showNumberOnCube();
-		}
-	}
+        /**
+         * Handles collision with other pn.
+         */
+        this.collisionHandler = new CubeCollisionHandler(this);
+    }
 
 
-	/**
-	 * @description changes the number on this cube to new greater one.
-	 *
-	 * @param integer newNumber.
-	 *
-	 * @return none.
-	 */
-	changeNumber(newNumber) {
-		if (newNumber > this.number) {
-			this.number = newNumber;
-			this.setSpeed();
-		}
-	}
+    /**
+     * @description a function that displays this Cube.
+     *
+     * @param none.
+     *
+     * @return none.
+     */
+    show() {
+        if (this.visibility == true) {
+            this.showSquare();
+            this.showNumberOnCube();
+        }
+    }
 
 
-
-	/**
-	 * @description sets the speed of this cube.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	setSpeed() {
-		this.speed = luckyDivisor.util.getDefaultSpeed(this.number) + luckyDivisor.util.getIncrementalSpeed(this.number);
-	}
+    /**
+     * @description changes the number on this cube to new greater one.
+     *
+     * @param integer newNumber.
+     *
+     * @return none.
+     */
+    changeNumber(newNumber) {
+        if (newNumber > this.number) {
+            this.number = newNumber;
+            this.setSpeed();
+        }
+    }
 
 
 
-	/**
-	 * @description a function that makes this cube fall.
-	 *
-	 * @param none.
-	 *
-	 * @return none.
-	 */
-	fall() {
-		this.motionHandler.fall();
-	}
+    /**
+     * @description sets the speed of this cube.
+     *
+     * @param none.
+     *
+     * @return none.
+     */
+    setSpeed() {
+        this.speed = luckyDivisor.util.getDefaultSpeed(this.number) + luckyDivisor.util.getIncrementalSpeed(this.number, luckyDivisor.global.numberOfPlay);
+    }
+
+
+
+    /**
+     * @description a function that makes this cube fall.
+     *
+     * @param none.
+     *
+     * @return none.
+     */
+    fall() {
+        this.motionHandler.fall();
+    }
 
 
 
 
-	/**
-	 * @description Makes a copy of this pn cube.
-	 *
-	 * @param none.
-	 *
-	 * @return PnCube.
-	 */
-	clone() {
-		var clone = new PnCube(this.number, this.id, this.position, this.columnIndex);
-		clone.visibility = this.visibility;
-		clone.demarcationHeight = this.demarcationHeight;
-		clone.hasStarted = this.hasStarted;
-		clone.startDate = this.startDate;
-		clone.hasAlreadyInitiatedNewCubeStart = this.hasAlreadyInitiatedNewCubeStart;
-		return clone;
-	}
+    /**
+     * @description Makes a copy of this pn cube.
+     *
+     * @param none.
+     *
+     * @return PnCube.
+     */
+    clone() {
+        var clone = new PnCube(this.number, this.id, this.position, this.columnIndex);
+        clone.visibility = this.visibility;
+        clone.demarcationHeight = this.demarcationHeight;
+        clone.hasStarted = this.hasStarted;
+        clone.startDate = this.startDate;
+        clone.hasAlreadyInitiatedNewCubeStart = this.hasAlreadyInitiatedNewCubeStart;
+        return clone;
+    }
 
 
-	/**
-	 * @description Tests equality of two pn cubes.
-	 *
-	 * @param PnCube.
-	 *
-	 * @return boolean.
-	 */
-	equals(otherPnCube) {
-		return (super.equals(otherPnCube) && this.columnIndex == otherPnCube.columnIndex);
-	}
+    /**
+     * @description Tests equality of two pn cubes.
+     *
+     * @param PnCube.
+     *
+     * @return boolean.
+     */
+    equals(otherPnCube) {
+        return (super.equals(otherPnCube) && this.columnIndex == otherPnCube.columnIndex);
+    }
 
 
 
-	/**
-	 * @description Returns a representation of this cube.
-	 *
-	 * @param another cube.
-	 *
-	  @return string.
-	 */
-	toString() {
-		return (super.toString() + ", " + this.columnIndex);
-	}
+    /**
+     * @description Returns a representation of this cube.
+     *
+     * @param another cube.
+     *
+      @return string.
+     */
+    toString() {
+        return (super.toString() + ", " + this.columnIndex);
+    }
 }

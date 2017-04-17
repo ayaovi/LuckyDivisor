@@ -67,3 +67,23 @@ QUnit.test("player name test", function(assert) {
     luckyDivisor.util.initPlayerData();
     assert.equal(luckyDivisor.util.playerName(), "Ayaovi", "player name should be \"Ayaovi\"");
 });
+
+
+QUnit.test("GetDefaultSpeed test", function(assert) {
+    var speed = luckyDivisor.util.getDefaultSpeed(1);
+    assert.equal(toDecimalPlace(speed, 1), 1.4, "default speed for pn cube with number 1 should be 1.8");
+});
+
+
+
+QUnit.test("GetIncrementalSpeed test", function(assert) {
+    var speed = luckyDivisor.util.getIncrementalSpeed(1, 6);
+    assert.equal(toDecimalPlace(speed, 2), 0.28, "incremental speed for pn cube with number 1 at the 6th play should be 0.28");
+});
+
+
+
+QUnit.test("Pad with zero test", function(assert) {
+    assert.equal(luckyDivisor.util.padWithZero(6), "06", "6 padded with zero should be \"06\"");
+    assert.equal(luckyDivisor.util.padWithZero(11), "11", "11 padded with zero should still be \"11\"");
+});
