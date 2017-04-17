@@ -90,7 +90,7 @@ luckyDivisor.util.initPlayerData = function() {
     if (window.localStorage.getItem('luckyDivisorPlayerData')) {
         luckyDivisor.global.playerData = JSON.parse(window.localStorage.getItem('luckyDivisorPlayerData'));
     } else {
-        luckyDivisor.util.createNewPlayerData();
+        luckyDivisor.global.playerData = luckyDivisor.util.createNewPlayerData();
     }
 }
 
@@ -103,7 +103,7 @@ luckyDivisor.util.initPlayerData = function() {
  * @return string.
  */
 luckyDivisor.util.playerName = function() {
-    return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['name'] : 'PLAYER';
+    return (luckyDivisor.global.playerData != undefined) ? luckyDivisor.global.playerData.name : 'PLAYER';
 }
 
 
@@ -115,7 +115,7 @@ luckyDivisor.util.playerName = function() {
  * @return number.
  */
 luckyDivisor.util.playerBestScore = function() {
-    return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['bestScore'] : 0;
+    return (luckyDivisor.global.playerData != undefined) ? luckyDivisor.global.playerData.bestScore : 0;
 }
 
 
@@ -127,7 +127,7 @@ luckyDivisor.util.playerBestScore = function() {
  * @return number.
  */
 luckyDivisor.util.playerCreditPoints = function() {
-    return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData['creditPoints'] : 0;
+    return (luckyDivisor.global.playerData) ? luckyDivisor.global.playerData.creditPoints : 0;
 }
 
 
@@ -153,13 +153,13 @@ luckyDivisor.util.makeEmotionalFace = function(type) {
  *
  * @param none.
  *
- * @return none.
+ * @return json.
  */
 luckyDivisor.util.createNewPlayerData = function() {
     /**
      * Create an empty JSON.
      */
-    luckyDivisor.global.playerData = {};
+    var playerData = {};
 
     /**
      * prompt the player for a name.
@@ -170,18 +170,20 @@ luckyDivisor.util.createNewPlayerData = function() {
      * Should the player name be valid, then add it to the JSON.
      */
     if (playerName) {
-        luckyDivisor.global.playerData['name'] = playerName;
+        playerData['name'] = playerName;
     }
 
     /**
      * The player best score is 0 by default.
      */
-    luckyDivisor.global.playerData['bestScore'] = 0;
+    playerData['bestScore'] = 0;
 
     /**
      * The player credit point is 0 by default.
      */
-    luckyDivisor.global.playerData['creditPoints'] = 0;
+    playerData['creditPoints'] = 0;
+
+    return playerData;
 }
 
 
@@ -249,7 +251,7 @@ luckyDivisor.util.savePlayerData = function() {
  * @return none.
  */
 luckyDivisor.util.newID = function() {
-    return (luckyDivisor.global.ID != undefined) ? ++luckyDivisor.global.ID : 0;
+    return (luckyDivisor.global.currentWorld.cubeIDs != undefined) ? ++luckyDivisor.global.currentWorld.cubeIDs : 0;
 }
 
 
@@ -261,8 +263,8 @@ luckyDivisor.util.newID = function() {
  * @return none.
  */
 luckyDivisor.util.burnPlayer = function() {
-    if (luckyDivisor.global.player != undefined) {
-        luckyDivisor.global.player.burn();
+    if (luckyDivisor.global.currentWorld.player != undefined) {
+        luckyDivisor.global.currentWorld.player.burn();
     }
 }
 
@@ -275,8 +277,8 @@ luckyDivisor.util.burnPlayer = function() {
  * @return none.
  */
 luckyDivisor.util.updatePlayerScore = function(number) {
-    if (luckyDivisor.global.player) {
-        luckyDivisor.global.player.updateScore(number);
+    if (luckyDivisor.global.currentWorld.player != undefined) {
+        luckyDivisor.global.currentWorld.player.updateScore(number);
     }
 }
 
@@ -289,8 +291,8 @@ luckyDivisor.util.updatePlayerScore = function(number) {
  * @return none.
  */
 luckyDivisor.util.pushNewEventToQueue = function(newEvent) {
-    if (luckyDivisor.global.eventQueue) {
-        luckyDivisor.global.eventQueue.push(newEvent);
+    if (luckyDivisor.global.currentWorld.eventQueue != undefined) {
+        luckyDivisor.global.currentWorld.eventQueue.push(newEvent);
     }
 }
 
@@ -303,7 +305,7 @@ luckyDivisor.util.pushNewEventToQueue = function(newEvent) {
  * @return none.
  */
 luckyDivisor.util.playerCubeDivsors = function() {
-    return (luckyDivisor.global.playerCube) ? luckyDivisor.global.playerCube.divisors : [];
+    return (luckyDivisor.global.currentWorld.playerCube != undefined) ? luckyDivisor.global.currentWorld.playerCube.divisors : [];
 }
 
 
@@ -329,8 +331,8 @@ luckyDivisor.util.cubeActiveMilliSeconds = function(cubeStartDate) {
  * @return none.
  */
 luckyDivisor.util.showPlayerScore = function() {
-    if (luckyDivisor.global.player.score) {
-        luckyDivisor.global.player.score.show();
+    if (luckyDivisor.global.currentWorld.player.score) {
+        luckyDivisor.global.currentWorld.player.score.show();
     }
 }
 
@@ -373,8 +375,8 @@ luckyDivisor.util.getIncrementalSpeed = function(number) {
  * @return none.
  */
 luckyDivisor.util.showPlayerLifeStars = function() {
-    if (luckyDivisor.global.player.playerLifeStars) {
-        luckyDivisor.global.player.playerLifeStars.forEach(function(lifeStar) {
+    if (luckyDivisor.global.currentWorld.player.playerLifeStars) {
+        luckyDivisor.global.currentWorld.player.playerLifeStars.forEach(function(lifeStar) {
             lifeStar.show();
         });
     }
@@ -406,11 +408,11 @@ luckyDivisor.util.checkAndProcessNextEvent = function() {
     /**
      * Check whether there is any current event sitting in the event queue.
      */
-    if (luckyDivisor.global.eventQueue.hasEvents()) {
+    if (luckyDivisor.global.currentWorld.eventQueue.hasEvents()) {
         /**
          * The next to be fired event would be the one in front of the queue.
          */
-        var nextToBeFiredEvent = luckyDivisor.global.eventQueue.peek();
+        var nextToBeFiredEvent = luckyDivisor.global.currentWorld.eventQueue.peek();
 
         /**
          * Should the event time be same as the system time.
@@ -424,7 +426,7 @@ luckyDivisor.util.checkAndProcessNextEvent = function() {
             /**
              * Delete the event once it has been processed.
              */
-            luckyDivisor.global.eventQueue.remove(0);
+            luckyDivisor.global.currentWorld.eventQueue.remove(0);
         }
     }
 }
@@ -473,10 +475,10 @@ luckyDivisor.util.checkForPnCubeCollection = function() {
     /**
      * The simplest way to go about this is going through very column and checking whether every cube in that column is colliding with the player cube.
      */
-    luckyDivisor.global.columns.forEach(function(column) {
+    luckyDivisor.global.currentWorld.columns.forEach(function(column) {
         column.cubes.forEach(function(cube) {
-            if (!luckyDivisor.global.playHasEnded && cube.visibility && luckyDivisor.util.checkForCollision(cube, luckyDivisor.global.playerCube)) {
-                luckyDivisor.global.playerCube.collisionHandler.handleCollisionWith(cube);
+            if (!luckyDivisor.global.playHasEnded && cube.visibility && luckyDivisor.util.checkForCollision(cube, luckyDivisor.global.currentWorld.playerCube)) {
+                luckyDivisor.global.currentWorld.playerCube.collisionHandler.handleCollisionWith(cube);
                 cube.visibility = false;
             }
         });
@@ -495,7 +497,7 @@ luckyDivisor.util.checkForTimeOut = function() {
     /**
      * The game is ended (i.e. game over) if the clock reaches "00:00".
      */
-    if (luckyDivisor.global.topPanel.clock.stringTimeTillEndOfPlay == "00:00") {
+    if (luckyDivisor.global.currentWorld.topPanel.clock.stringTimeTillEndOfPlay == "00:00") {
         /**
          * End the game with code 1 (i.e. TIME OUT).
          */
@@ -515,7 +517,7 @@ luckyDivisor.util.checkForRunningClock = function() {
     /**
      * Start the clock if it not started.
      */
-    if (!luckyDivisor.global.topPanel.clock.hasStarted) {
+    if (!luckyDivisor.global.currentWorld.topPanel.clock.hasStarted) {
         luckyDivisor.global.currentWorld.topPanel.clock.start();
     }
 }
@@ -529,15 +531,15 @@ luckyDivisor.util.checkForRunningClock = function() {
  * @return none.
  */
 luckyDivisor.util.showGameComponents = function() {
-    luckyDivisor.global.playerCube.show();
+    luckyDivisor.global.currentWorld.playerCube.show();
 
-    luckyDivisor.global.columns.forEach(function(column) {
+    luckyDivisor.global.currentWorld.columns.forEach(function(column) {
         column.show();
     });
 
     luckyDivisor.util.checkForPnCubeCollection();
-    luckyDivisor.global.topPanel.show();
-    luckyDivisor.global.sidePanel.show();
+    luckyDivisor.global.currentWorld.topPanel.show();
+    luckyDivisor.global.currentWorld.sidePanel.show();
 }
 
 
@@ -588,10 +590,25 @@ luckyDivisor.util.initialiseCubeColourMap = function() {
  */
 luckyDivisor.util.createGameComponents = function() {
     luckyDivisor.util.createNewGameButton();
+    luckyDivisor.util.createNewWorld();
+}
+
+
+
+/**
+ * @description creates a new game world.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.createNewWorld = function() {
+    luckyDivisor.global.worlds = [];
     luckyDivisor.global.currentWorld = new World();
     luckyDivisor.global.currentWorld.init();
     luckyDivisor.global.worlds.push(luckyDivisor.global.currentWorld);
 }
+
 
 
 /**

@@ -30,10 +30,13 @@ var color = function(r, g, b) {
 }
 
 var random = function(lower, upper) {
-    if (upper != undefined) {
-        return Math.random(lower, upper);
+    if (lower instanceof Array) {
+        var randomIndex = Math.floor(Math.random() * lower.length);
+        return lower[randomIndex];
+    } else if (upper != undefined) {
+        return (Math.random() * (upper - lower)) + lower;
     }
-    return Math.random(upper);
+    return Math.random() * lower;
 }
 
 var push = function() {

@@ -198,16 +198,6 @@ class World {
      * @return boolean.
      */
     equals(otherWorld) {
-        console.log("this.cubeIDs == otherWorld.cubeIDs is: " + (this.cubeIDs == otherWorld.cubeIDs));
-        console.log("this.player.equals(otherWorld.player) is: " + this.player.equals(otherWorld.player));
-        console.log("this.playerCube.equals(otherWorld.playerCube) is: " + this.playerCube.equals(otherWorld.playerCube));
-        console.log("this.playerCube: " + this.playerCube + " otherWorld.playerCube: " + otherWorld.playerCube);
-        console.log("this.pnCubeCreationReccordMap.length == otherWorld.pnCubeCreationReccordMap.length is: " + (this.pnCubeCreationReccordMap.length == otherWorld.pnCubeCreationReccordMap.length));
-        console.log("this.columns.length == otherWorld.columns.length is: " + (this.columns.length == otherWorld.columns.length));
-        console.log("this.eventQueue.equals(otherWorld.eventQueue) is: " + this.eventQueue.equals(otherWorld.eventQueue));
-        console.log("this.sidePanel.equals(otherWorld.sidePanel) is: " + this.sidePanel.equals(otherWorld.sidePanel));
-        console.log("this.topPanel.equals(otherWorld.topPanel) is: " + this.topPanel.equals(otherWorld.topPanel));
-
         return (this.cubeIDs == otherWorld.cubeIDs &&
             this.player.equals(otherWorld.player) &&
             this.playerCube.equals(otherWorld.playerCube) &&

@@ -20,18 +20,19 @@ luckyDivisor.util.date = {};
  * @return ExtendedDate.
  */
 luckyDivisor.util.date.getNewColumnStartingDate = function() {
-	var newColumnStartingDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate().getTime() + random(luckyDivisor.global.cubeDelays) * 1000);
-	
-	/**
-	 * We want the new date generated to be at least 0.5 seconds into the future.
-	 */
-	while(luckyDivisor.global.previousColumnStartingDate != undefined && newColumnStartingDate.minus(previousColumnStartingDate).getTime() <= 500) {
-		newColumnStartingDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate() + random(luckyDivisor.global.cubeDelays) * 1000);
-	}
-	
-	previousColumnStartingDate = newColumnStartingDate;
-	
-	return newColumnStartingDate;
+    var previousColumnStartingDate = luckyDivisor.global.currentWorld.previousColumnStartingDate;
+    var newColumnStartingDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate().getTime() + random(luckyDivisor.config.CUBE_DELAYS) * 1000);
+
+    /**
+     * We want the new date generated to be at least 0.5 seconds into the future.
+     */
+    while (previousColumnStartingDate != undefined && newColumnStartingDate.minus(previousColumnStartingDate).getTime() <= 500) {
+        newColumnStartingDate = new ExtendedDate(luckyDivisor.util.date.getCurrentDate() + random(luckyDivisor.config.CUBE_DELAYS) * 1000);
+    }
+
+    previousColumnStartingDate = newColumnStartingDate;
+
+    return newColumnStartingDate;
 }
 
 
@@ -43,6 +44,6 @@ luckyDivisor.util.date.getNewColumnStartingDate = function() {
  * @return ExtendedDate.
  */
 luckyDivisor.util.date.getCurrentDate = function() {
-	var currentDate = new Date();
-	return new ExtendedDate(currentDate.getTime());
+    var currentDate = new Date();
+    return new ExtendedDate(currentDate.getTime());
 }

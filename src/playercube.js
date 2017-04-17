@@ -141,10 +141,6 @@ class PlayerCube extends Cube {
      * @return boolean.
      */
     equals(otherPlayerCube) {
-        console.log(">>>>>> INSIDE PLAYER CUBE");
-        console.log("super.equals(otherPlayerCube) is: " + super.equals(otherPlayerCube));
-        console.log("this.speed == otherPlayerCube.speed is: " + (this.speed == otherPlayerCube.speed));
-        console.log("<<<<<< LEAVING PLAYER CUBE");
         return (super.equals(otherPlayerCube) && this.speed == otherPlayerCube.speed);
     }
 }

@@ -15,6 +15,7 @@ QUnit.test("pn cube basics", function(assert) {
      */
     luckyDivisor.global.pauseDuration = 0;
     luckyDivisor.util.createGameComponents();
+    luckyDivisor.global.currentWorld.reset();
 
     /**
      * Let's create a PnCube with:
