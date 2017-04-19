@@ -67,3 +67,6 @@ luckyDivisor.global.worlds = [];
  * A pointer to the current world.
  */
 luckyDivisor.global.currentWorld;
+
+
+luckyDivisor.global.keyMap = {};

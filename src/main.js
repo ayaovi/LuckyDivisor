@@ -57,7 +57,7 @@ function preload() {
  * @return none.
  */
 function mouseClicked() {
-    if (luckyDivisor.global.newGameButton) {
+    if (luckyDivisor.global.newGameButton != undefined) {
         luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
     }
 }
