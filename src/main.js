@@ -124,10 +124,10 @@ function setup() {
  */
 function draw() {
     luckyDivisor.util.drawCanvasBackground();
-    luckyDivisor.util.checkForRunningClock();
-    luckyDivisor.util.showGameComponents();
-    luckyDivisor.util.checkForPnCubeCollection();
-    luckyDivisor.util.checkAndProcessNextEvent();
-    luckyDivisor.util.checkForTimeOut();
+    luckyDivisor.util.checkForRunningClock(luckyDivisor.global.currentWorld);
+    luckyDivisor.util.showGameComponents(luckyDivisor.global.currentWorld);
+    luckyDivisor.util.checkForPnCubeCollection(luckyDivisor.global.currentWorld);
+    luckyDivisor.util.checkAndProcessNextEvent(luckyDivisor.global.currentWorld.eventQueue);
+    luckyDivisor.util.checkForTimeOut(luckyDivisor.global.currentWorld);
     luckyDivisor.util.checkIfGamePaused();
 }

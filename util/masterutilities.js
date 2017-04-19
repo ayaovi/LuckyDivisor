@@ -401,19 +401,19 @@ luckyDivisor.util.padWithZero = function(number) {
 /**
  * @description check whether there is an event scheduled to be executed at this time. If so it executes it.
  *
- * @param none.
+ * @param EventQueue.
  *
  * @return none.
  */
-luckyDivisor.util.checkAndProcessNextEvent = function() {
+luckyDivisor.util.checkAndProcessNextEvent = function(eventQueue) {
     /**
      * Check whether there is any current event sitting in the event queue.
      */
-    if (luckyDivisor.global.currentWorld.eventQueue.hasEvents()) {
+    if (eventQueue.hasEvents()) {
         /**
          * The next to be fired event would be the one in front of the queue.
          */
-        var nextToBeFiredEvent = luckyDivisor.global.currentWorld.eventQueue.peek();
+        var nextToBeFiredEvent = eventQueue.peek();
 
         /**
          * Should the event time be same as the system time.
@@ -427,7 +427,7 @@ luckyDivisor.util.checkAndProcessNextEvent = function() {
             /**
              * Delete the event once it has been processed.
              */
-            luckyDivisor.global.currentWorld.eventQueue.remove(0);
+            eventQueue.remove(0);
         }
     }
 }
@@ -468,18 +468,18 @@ luckyDivisor.util.drawCanvasBackground = function() {
 /**
  * @description checks whether the player has collected a Pn Cube.
  *
- * @param none.
+ * @param World.
  *
  * @return none.
  */
-luckyDivisor.util.checkForPnCubeCollection = function() {
+luckyDivisor.util.checkForPnCubeCollection = function(world) {
     /**
      * The simplest way to go about this is going through very column and checking whether every cube in that column is colliding with the player cube.
      */
-    luckyDivisor.global.currentWorld.columns.forEach(function(column) {
+    world.columns.forEach(function(column) {
         column.cubes.forEach(function(cube) {
-            if (!luckyDivisor.global.playHasEnded && cube.visibility && luckyDivisor.util.checkForCollision(cube, luckyDivisor.global.currentWorld.playerCube)) {
-                luckyDivisor.global.currentWorld.playerCube.collisionHandler.handleCollisionWith(cube);
+            if (!luckyDivisor.global.playHasEnded && cube.visibility && luckyDivisor.util.checkForCollision(cube, world.playerCube)) {
+                world.playerCube.collisionHandler.handleCollisionWith(cube);
                 cube.visibility = false;
             }
         });
@@ -490,15 +490,15 @@ luckyDivisor.util.checkForPnCubeCollection = function() {
 /**
  * @description makes sure the game is ended when a time out occurs.
  *
- * @param none.
+ * @param World.
  *
  * @return none.
  */
-luckyDivisor.util.checkForTimeOut = function() {
+luckyDivisor.util.checkForTimeOut = function(world) {
     /**
      * The game is ended (i.e. game over) if the clock reaches "00:00".
      */
-    if (luckyDivisor.global.currentWorld.topPanel.clock.stringTimeTillEndOfPlay == "00:00") {
+    if (world.topPanel.clock.stringTimeTillEndOfPlay == "00:00") {
         /**
          * End the game with code 1 (i.e. TIME OUT).
          */
@@ -510,16 +510,16 @@ luckyDivisor.util.checkForTimeOut = function() {
 /**
  * @description makes sure the clock is started.
  *
- * @param none.
+ * @param World.
  *
  * @return none.
  */
-luckyDivisor.util.checkForRunningClock = function() {
+luckyDivisor.util.checkForRunningClock = function(world) {
     /**
      * Start the clock if it not started.
      */
-    if (!luckyDivisor.global.currentWorld.topPanel.clock.hasStarted) {
-        luckyDivisor.global.currentWorld.topPanel.clock.start();
+    if (!world.topPanel.clock.hasStarted) {
+        world.topPanel.clock.start();
     }
 }
 
@@ -527,20 +527,19 @@ luckyDivisor.util.checkForRunningClock = function() {
 /**
  * @description displays the game components on-screen.
  *
- * @param none.
+ * @param World.
  *
  * @return none.
  */
-luckyDivisor.util.showGameComponents = function() {
-    luckyDivisor.global.currentWorld.playerCube.show();
+luckyDivisor.util.showGameComponents = function(world) {
+    world.playerCube.show();
 
-    luckyDivisor.global.currentWorld.columns.forEach(function(column) {
+    world.columns.forEach(function(column) {
         column.show();
     });
 
-    luckyDivisor.util.checkForPnCubeCollection();
-    luckyDivisor.global.currentWorld.topPanel.show();
-    luckyDivisor.global.currentWorld.sidePanel.show();
+    world.topPanel.show();
+    world.sidePanel.show();
 }
 
 
@@ -565,21 +564,6 @@ luckyDivisor.util.initialiseCubeColourMap = function() {
     luckyDivisor.config.CUBE_COLOUR_MAP[7] = color('#805B00');
 }
 
-
-/**
- * @description Initialises the cube colour map.
- *
- * @param none.
- *
- * @return none.
- */
-// luckyDivisor.util.initialisePnCubeCreationRecord = function() {
-//     luckyDivisor.global.pnCubeCreationReccordMap[1] = 0;
-//     luckyDivisor.global.pnCubeCreationReccordMap[2] = 0;
-//     luckyDivisor.global.pnCubeCreationReccordMap[3] = 0;
-//     luckyDivisor.global.pnCubeCreationReccordMap[5] = 0;
-//     luckyDivisor.global.pnCubeCreationReccordMap[7] = 0;
-// }
 
 
 /**
