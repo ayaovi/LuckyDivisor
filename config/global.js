@@ -68,5 +68,12 @@ luckyDivisor.global.worlds = [];
  */
 luckyDivisor.global.currentWorld;
 
-
+/**
+ * Keeps track of all key presses.
+ */
 luckyDivisor.global.keyMap = {};
+
+/**
+ * A flag to confirm whether there is an ongoing testing.
+ */
+luckyDivisor.global.testing = true;
