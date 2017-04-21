@@ -129,9 +129,12 @@ function draw() {
         luckyDivisor.util.drawCanvasBackground();
     }
     luckyDivisor.util.checkForRunningClock(luckyDivisor.global.currentWorld);
-    luckyDivisor.util.showGameComponents(luckyDivisor.global.currentWorld);
-    luckyDivisor.util.checkForPnCubeCollection(luckyDivisor.global.currentWorld);
+    if (!luckyDivisor.global.testing) {
+        luckyDivisor.util.showGameComponents(luckyDivisor.global.currentWorld);
+        luckyDivisor.util.checkForPnCubeCollection(luckyDivisor.global.currentWorld);
+    }
     luckyDivisor.util.checkAndProcessNextEvent(luckyDivisor.global.currentWorld.eventQueue);
-    luckyDivisor.util.checkForTimeOut(luckyDivisor.global.currentWorld);
+    luckyDivisor.util.checkForTimeOut(luckyDivisor.global.currentWorld.topPanel.clock);
     luckyDivisor.util.checkIfGamePaused();
+    luckyDivisor.util.checkIfTimeToSaveNewHistory();
 }

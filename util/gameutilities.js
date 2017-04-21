@@ -122,7 +122,8 @@ luckyDivisor.util.game.startNewPlay = function() {
      * Reset the new game button to invisible.
      */
     luckyDivisor.global.newGameButton.isVisible = false;
-
+    
+    // luckyDivisor.util.createNewWorld();
     luckyDivisor.global.currentWorld.reset();
 }
 
@@ -142,6 +143,8 @@ luckyDivisor.util.game.endCurrentPlay = function() {
     luckyDivisor.global.currentWorld.player.rewardLifeStar();
 
     luckyDivisor.util.checkForNewPlayerData();
+
+    luckyDivisor.global.worlds = [];
 
     /**
      * Then start a new play.

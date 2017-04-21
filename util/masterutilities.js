@@ -449,6 +449,37 @@ luckyDivisor.util.checkIfGamePaused = function() {
 
 
 /**
+ * @description check whether it is time to save a new world history. If it is, it then saves the current world.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.checkIfTimeToSaveNewHistory() = function(worlds, currentWorld) {
+    var historyScheduleTimes = ["00:15", "00:10", "00:05"];
+    var clock = currentWorld.topPanel.clock;
+    if (historyScheduleTimes.includes(clock.stringTimeTillEndOfPlay)) {
+        luckyDivisor.util.saveCurrentWorld(worlds, currentWorld);
+    }
+}
+
+
+
+/**
+ * @description backs up the current world and creates a fresh one from when the current one left off.
+ *
+ * @param none.
+ *
+ * @return none.
+ */
+luckyDivisor.util.saveCurrentWorld = function(worlds, currentWorld) {
+    worlds.push(currentWorld);
+    currentWorld = currentWorld.clone();
+}
+
+
+
+/**
  * @description sets the canvas background as an image or a plain dark gray colour.
  *
  * @param none.
@@ -494,11 +525,11 @@ luckyDivisor.util.checkForPnCubeCollection = function(world) {
  *
  * @return none.
  */
-luckyDivisor.util.checkForTimeOut = function(world) {
+luckyDivisor.util.checkForTimeOut = function(clock) {
     /**
      * The game is ended (i.e. game over) if the clock reaches "00:00".
      */
-    if (world.topPanel.clock.stringTimeTillEndOfPlay == "00:00") {
+    if (clock.stringTimeTillEndOfPlay == "00:00") {
         /**
          * End the game with code 1 (i.e. TIME OUT).
          */
@@ -588,10 +619,10 @@ luckyDivisor.util.createGameComponents = function() {
  * @return none.
  */
 luckyDivisor.util.createNewWorld = function() {
-    luckyDivisor.global.worlds = [];
     luckyDivisor.global.currentWorld = new World();
     luckyDivisor.global.currentWorld.init();
     luckyDivisor.global.worlds.push(luckyDivisor.global.currentWorld);
+    luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
 }
 
 
