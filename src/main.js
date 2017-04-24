@@ -90,7 +90,9 @@ function keyPressed() {
      * }
      */
 
-    luckyDivisor.global.keyMap[keyCode] = true;
+    if (!luckyDivisor.global.testing) {
+        luckyDivisor.global.keyMap[keyCode] = true;
+    }
 
     /**
      * Check whether the key pressed is SPACE_BAR
@@ -107,16 +109,23 @@ function keyPressed() {
          */
         luckyDivisor.global.keyMap[17] = false;
         luckyDivisor.global.keyMap[90] = false;
-        var lastWorldIndex = luckyDivisor.global.worlds.length - 1;
-        if (lastWorldIndex > 0) {
+        var worlds = luckyDivisor.global.worlds;
+        var currentWorld = luckyDivisor.global.currentWorld;
+        var lastWorldIndex = worlds.length - 1;
+
+        if (lastWorldIndex >= 0) {
+            var currentClock = currentWorld.topPanel.clock;
+
             /**
              * Set the current world back to the one before it.
              */
-            luckyDivisor.global.currentWorld = luckyDivisor.global.worlds[lastWorldIndex];
+            currentWorld = worlds[lastWorldIndex];
+            currentWorld.topPanel.clock = currentClock;
+
             /**
              * The remove that world from the list of worlds.
              */
-            luckyDivisor.global.worlds.splice(lastWorldIndex, 1);
+            worlds.splice(lastWorldIndex, 1);
         }
     }
 }

@@ -166,7 +166,8 @@ class PnCube extends Cube {
      * @return boolean.
      */
     equals(otherPnCube) {
-        return (super.equals(otherPnCube) && this.columnIndex == otherPnCube.columnIndex);
+        return (super.equals(otherPnCube) && 
+        this.columnIndex == otherPnCube.columnIndex);
     }
 
 

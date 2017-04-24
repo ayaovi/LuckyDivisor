@@ -91,7 +91,10 @@ class Cube {
 	 * @return boolean.
 	 */
 	equals(otherCube) {
-		return (this.number == otherCube.number && this.id == otherCube.id);
+		return (this.number == otherCube.number && 
+		this.id == otherCube.id &&
+		this.position.x == otherCube.position.x &&
+        this.position.y == otherCube.position.y);
 	}
 
 
