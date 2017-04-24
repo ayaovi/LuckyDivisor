@@ -71,7 +71,16 @@ luckyDivisor.global.currentWorld;
 /**
  * Keeps track of all key presses.
  */
-luckyDivisor.global.keyMap = {};
+luckyDivisor.global.keyMap = {
+    /** ctrl */
+    17: false,
+    /** spacebar */
+    32: false,
+    /** s */
+    82: false,
+    /** z */
+    90: false
+};
 
 /**
  * A flag to confirm whether there is an ongoing testing.

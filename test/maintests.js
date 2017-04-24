@@ -9,6 +9,14 @@
  */
 
 
+QUnit.test("world reversion test", function(assert) {
+    luckyDivisor.util.createInitialWorld();
+    luckyDivisor.global.currentWorld.reset();
+    // TODO
+});
+
+
+
 QUnit.test("global draw function test", function(assert) {
     luckyDivisor.util.createGameComponents();
     luckyDivisor.global.currentWorld.reset();

@@ -72,15 +72,52 @@ function mouseClicked() {
  * @return none.
  */
 function keyPressed() {
-    // luckyDivisor.global.keyMap[keyCode] = true;
+    /**
+     * http://stackoverflow.com/questions/5203407/javascript-multiple-keys-pressed-at-once
+     * var map = {}; // You could also use an array
+     * onkeydown = onkeyup = function(e){
+     *  e = e || event; // to deal with IE
+     *  map[e.keyCode] = e.type == 'keydown';
+     *  ... then do what you have to do.
+     * 
+     *  if(map[17] && map[16] && map[65]){ // CTRL+SHIFT+A
+     *      alert('Control Shift A');
+     *  }else if(map[17] && map[16] && map[66]){ // CTRL+SHIFT+B
+     *      alert('Control Shift B');
+     *  }else if(map[17] && map[16] && map[67]){ // CTRL+SHIFT+C
+     *      alert('Control Shift C');
+     *  }
+     * }
+     */
+
+    luckyDivisor.global.keyMap[keyCode] = true;
+
     /**
      * Check whether the key pressed is SPACE_BAR
      */
-    if (keyCode == luckyDivisor.config.gameControls[0]) {
+    if (luckyDivisor.global.keyMap[32]) {
         /**
          * If so, pause or play the game.
          */
+        luckyDivisor.global.keyMap[32] = false;
         luckyDivisor.util.game.pauseOrPlay();
+    } else if (luckyDivisor.global.keyMap[17] && luckyDivisor.global.keyMap[90]) {
+        /**
+         * If possible, take us back to previous world.
+         */
+        luckyDivisor.global.keyMap[17] = false;
+        luckyDivisor.global.keyMap[90] = false;
+        var lastWorldIndex = luckyDivisor.global.worlds.length - 1;
+        if (lastWorldIndex > 0) {
+            /**
+             * Set the current world back to the one before it.
+             */
+            luckyDivisor.global.currentWorld = luckyDivisor.global.worlds[lastWorldIndex];
+            /**
+             * The remove that world from the list of worlds.
+             */
+            luckyDivisor.global.worlds.splice(lastWorldIndex, 1);
+        }
     }
 }
 
