@@ -99,3 +99,15 @@ QUnit.test("timeToSaveNewHistory test", function(assert) {
     clock.stringTimeTillEndOfPlay = "00:05";
     assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock), "when the game clock is @ \"00:05\", it is time to save the current world.");
 });
+
+
+QUnit.test("saveCurrentWorld test", function(assert) {
+    luckyDivisor.util.createInitialWorld();
+    /**
+     * The way things are set up currently requires one to reset the current world before cloning it.
+     */
+    luckyDivisor.global.currentWorld.reset();
+    assert.equal(luckyDivisor.global.worlds.length, 1, "upon initial world creation, the number of worlds should be 1");
+    luckyDivisor.util.saveCurrentWorld(luckyDivisor.global.worlds, luckyDivisor.global.currentWorld);
+    assert.equal(luckyDivisor.global.worlds.length, 2, "upon saving a current world, the number of worlds should increase by 1");
+});
