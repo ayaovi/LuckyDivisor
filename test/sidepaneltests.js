@@ -10,7 +10,7 @@
 
 
 QUnit.test("side panel basics", function(assert) {
-    luckyDivisor.util.createGameComponents();
+    luckyDivisor.util.createInitialWorld();
     luckyDivisor.global.currentWorld.reset();
 
     var sidePanel = luckyDivisor.global.currentWorld.sidePanel;

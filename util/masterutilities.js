@@ -451,16 +451,13 @@ luckyDivisor.util.checkIfGamePaused = function() {
 /**
  * @description check whether it is time to save a new world history. If it is, it then saves the current world.
  *
- * @param none.
+ * @param Clock.
  *
- * @return none.
+ * @return boolean.
  */
-luckyDivisor.util.checkIfTimeToSaveNewHistory() = function(worlds, currentWorld) {
+luckyDivisor.util.timeToSaveNewHistory = function(clock) {
     var historyScheduleTimes = ["00:15", "00:10", "00:05"];
-    var clock = currentWorld.topPanel.clock;
-    if (historyScheduleTimes.includes(clock.stringTimeTillEndOfPlay)) {
-        luckyDivisor.util.saveCurrentWorld(worlds, currentWorld);
-    }
+    return historyScheduleTimes.includes(clock.stringTimeTillEndOfPlay);
 }
 
 
@@ -468,7 +465,7 @@ luckyDivisor.util.checkIfTimeToSaveNewHistory() = function(worlds, currentWorld)
 /**
  * @description backs up the current world and creates a fresh one from when the current one left off.
  *
- * @param none.
+ * @param World[], World.
  *
  * @return none.
  */
@@ -606,7 +603,7 @@ luckyDivisor.util.initialiseCubeColourMap = function() {
  */
 luckyDivisor.util.createGameComponents = function() {
     luckyDivisor.util.createNewGameButton();
-    luckyDivisor.util.createNewWorld();
+    luckyDivisor.util.createInitialWorld();
 }
 
 
@@ -618,11 +615,11 @@ luckyDivisor.util.createGameComponents = function() {
  *
  * @return none.
  */
-luckyDivisor.util.createNewWorld = function() {
+luckyDivisor.util.createInitialWorld = function() {
+    luckyDivisor.global.worlds = [];
     luckyDivisor.global.currentWorld = new World();
     luckyDivisor.global.currentWorld.init();
     luckyDivisor.global.worlds.push(luckyDivisor.global.currentWorld);
-    luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
 }
 
 

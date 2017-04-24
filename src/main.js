@@ -65,9 +65,7 @@ function mouseClicked() {
 
 
 /**
- * @description this function is called once every time a key is pressed.
- * The keyCode for the key that was pressed is stored in the keyCode variable.
- * (this description is taken from https://p5js.org/reference/#/p5/keyPressed).
+ * @description this function is called once every time a key is pressed. The keyCode for the key that was pressed is stored in the keyCode variable. (this description is taken from https://p5js.org/reference/#/p5/keyPressed).
  *
  * @param none.
  *
@@ -128,13 +126,19 @@ function draw() {
     if (!luckyDivisor.global.testing) {
         luckyDivisor.util.drawCanvasBackground();
     }
+
     luckyDivisor.util.checkForRunningClock(luckyDivisor.global.currentWorld);
+
     if (!luckyDivisor.global.testing) {
         luckyDivisor.util.showGameComponents(luckyDivisor.global.currentWorld);
         luckyDivisor.util.checkForPnCubeCollection(luckyDivisor.global.currentWorld);
     }
+
     luckyDivisor.util.checkAndProcessNextEvent(luckyDivisor.global.currentWorld.eventQueue);
     luckyDivisor.util.checkForTimeOut(luckyDivisor.global.currentWorld.topPanel.clock);
     luckyDivisor.util.checkIfGamePaused();
-    luckyDivisor.util.checkIfTimeToSaveNewHistory();
+
+    if (luckyDivisor.util.timeToSaveNewHistory(luckyDivisor.global.currentWorld.topPanel.clock)) {
+        luckyDivisor.util.saveCurrentWorld(luckyDivisor.global.worlds, luckyDivisor.global.currentWorld);
+    }
 }

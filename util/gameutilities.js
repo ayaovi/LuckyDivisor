@@ -122,9 +122,13 @@ luckyDivisor.util.game.startNewPlay = function() {
      * Reset the new game button to invisible.
      */
     luckyDivisor.global.newGameButton.isVisible = false;
-    
-    // luckyDivisor.util.createNewWorld();
+
     luckyDivisor.global.currentWorld.reset();
+
+    /** 
+     * The reason why we need to do the following is so we can have the option to go back in time until the start of the play.
+     */
+    luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
 }
 
 
@@ -145,6 +149,7 @@ luckyDivisor.util.game.endCurrentPlay = function() {
     luckyDivisor.util.checkForNewPlayerData();
 
     luckyDivisor.global.worlds = [];
+    luckyDivisor.global.worlds.push(luckyDivisor.global.currentWorld);
 
     /**
      * Then start a new play.
@@ -199,6 +204,8 @@ luckyDivisor.util.game.endGame = function(endOfGameCode) {
 luckyDivisor.util.game.restart = function() {
     luckyDivisor.config.gameStatus = "Running";
     luckyDivisor.global.numberOfPlay = 0;
+    luckyDivisor.global.worlds = [];
+    luckyDivisor.global.worlds.push(luckyDivisor.global.currentWorld);
     luckyDivisor.util.game.startNewPlay();
 
     /**

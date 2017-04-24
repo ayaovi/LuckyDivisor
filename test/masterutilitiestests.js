@@ -41,8 +41,8 @@ QUnit.test("player score update test", function(assert) {
 });
 
 
-QUnit.test("new game world creation test", function(assert) {
-    luckyDivisor.util.createNewWorld();
+QUnit.test("initial game world creation test", function(assert) {
+    luckyDivisor.util.createInitialWorld();
     assert.equal(luckyDivisor.global.worlds.length, 1, "upon game components creation, a game world should be created");
 });
 
@@ -86,4 +86,16 @@ QUnit.test("GetIncrementalSpeed test", function(assert) {
 QUnit.test("Pad with zero test", function(assert) {
     assert.equal(luckyDivisor.util.padWithZero(6), "06", "6 padded with zero should be \"06\"");
     assert.equal(luckyDivisor.util.padWithZero(11), "11", "11 padded with zero should still be \"11\"");
+});
+
+
+QUnit.test("timeToSaveNewHistory test", function(assert) {
+    luckyDivisor.util.createInitialWorld();
+    var clock = luckyDivisor.global.currentWorld.topPanel.clock;
+    clock.stringTimeTillEndOfPlay = "00:15";
+    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock), "when the game clock is @ \"00:15\", it is time to save the current world.");
+    clock.stringTimeTillEndOfPlay = "00:10";
+    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock), "when the game clock is @ \"00:10\", it is time to save the current world.");
+    clock.stringTimeTillEndOfPlay = "00:05";
+    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock), "when the game clock is @ \"00:05\", it is time to save the current world.");
 });
