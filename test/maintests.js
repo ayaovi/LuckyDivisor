@@ -23,6 +23,10 @@ QUnit.test("global draw function test", function(assert) {
 });
 
 
+QUnit.test("config test", function(assert) {
+    assert.equal(luckyDivisor.config.WIDTH_OF_CANVAS, luckyDivisor.config.WIDTH_OF_GAME_FRAME * 0.8, "blablabla");
+});
+
 
 // QUnit.test("world reversion test", function(assert) {
 //     luckyDivisor.util.createInitialWorld();
