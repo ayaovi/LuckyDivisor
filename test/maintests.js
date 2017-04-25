@@ -24,33 +24,33 @@ QUnit.test("global draw function test", function(assert) {
 
 
 
-QUnit.test("world reversion test", function(assert) {
-    luckyDivisor.util.createInitialWorld();
-    var worlds = luckyDivisor.global.worlds;
-    var currentWorld = luckyDivisor.global.currentWorld;
-    currentWorld.reset();
-    currentWorld = currentWorld.clone();
+// QUnit.test("world reversion test", function(assert) {
+//     luckyDivisor.util.createInitialWorld();
+//     var worlds = luckyDivisor.global.worlds;
+//     var currentWorld = luckyDivisor.global.currentWorld;
+//     currentWorld.reset();
+//     currentWorld = currentWorld.clone();
 
-    /**
-     * Let's make some cubes fall.
-     */
-    currentWorld.columns.forEach(function(column) {
-        if (column.cubes.length == 0) {
-            column.addCube();
-        }
-        column.cubes[0].fall();
-    }, this);
+//     /**
+//      * Let's make some cubes fall.
+//      */
+//     currentWorld.columns.forEach(function(column) {
+//         if (column.cubes.length == 0) {
+//             column.addCube();
+//         }
+//         column.cubes[0].fall();
+//     }, this);
     
-    // currentWorld.topPanel.clock.stringTimeTillEndOfPlay = "00:15";
-    draw();
+//     // currentWorld.topPanel.clock.stringTimeTillEndOfPlay = "00:15";
+//     draw();
 
-    assert.notOk(currentWorld.equals(worlds[0]), "because we have made cubes in all columns fall, the initial and current worlds should not be same.");
+//     assert.notOk(currentWorld.equals(worlds[0]), "because we have made cubes in all columns fall, the initial and current worlds should not be same.");
 
-    luckyDivisor.global.keyMap[17] = true;
-    luckyDivisor.global.keyMap[90] = true;
+//     luckyDivisor.global.keyMap[17] = true;
+//     luckyDivisor.global.keyMap[90] = true;
 
-    keyPressed();
+//     keyPressed();
 
-    assert.ok(worlds.length == 1, "upon reverting back to previous world, the number of worlds should decrease by 1");
-    assert.ok(currentWorld.equals(worlds[0]), "because we did \"ctrl+z\", we revert back to initial world");
-});
+//     assert.ok(worlds.length == 1, "upon reverting back to previous world, the number of worlds should decrease by 1");
+//     assert.ok(currentWorld.equals(worlds[0]), "because we did \"ctrl+z\", we revert back to initial world");
+// });

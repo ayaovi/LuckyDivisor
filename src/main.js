@@ -90,7 +90,7 @@ function keyPressed() {
      * }
      */
 
-    if (!luckyDivisor.global.testing) {
+    if (!luckyDivisor.defines.DEBUG) {
         luckyDivisor.global.keyMap[keyCode] = true;
     }
 
@@ -140,7 +140,6 @@ function keyPressed() {
  * @return none.
  */
 function setup() {
-    luckyDivisor.global.testing = false;
     luckyDivisor.util.initialiseHTMLContainer();
 
     var gameCanvas = createCanvas(luckyDivisor.config.WIDTH_OF_GAME_FRAME, luckyDivisor.config.HEIGHT_OF_CANVAS);
@@ -169,13 +168,13 @@ function setup() {
  * @return none.
  */
 function draw() {
-    if (!luckyDivisor.global.testing) {
+    if (!luckyDivisor.defines.DEBUG) {
         luckyDivisor.util.drawCanvasBackground();
     }
 
     luckyDivisor.util.checkForRunningClock(luckyDivisor.global.currentWorld);
 
-    if (!luckyDivisor.global.testing) {
+    if (!luckyDivisor.defines.DEBUG) {
         luckyDivisor.util.showGameComponents(luckyDivisor.global.currentWorld);
         luckyDivisor.util.checkForPnCubeCollection(luckyDivisor.global.currentWorld);
     }
