@@ -8,6 +8,7 @@
  * @version : v1
  */
 
+
 var luckyDivisor = luckyDivisor || {};
 luckyDivisor.util = {};
 

@@ -72,23 +72,9 @@ function mouseClicked() {
  * @return none.
  */
 function keyPressed() {
-    /**
-     * http://stackoverflow.com/questions/5203407/javascript-multiple-keys-pressed-at-once
-     * var map = {}; // You could also use an array
-     * onkeydown = onkeyup = function(e){
-     *  e = e || event; // to deal with IE
-     *  map[e.keyCode] = e.type == 'keydown';
-     *  ... then do what you have to do.
-     * 
-     *  if(map[17] && map[16] && map[65]){ // CTRL+SHIFT+A
-     *      alert('Control Shift A');
-     *  }else if(map[17] && map[16] && map[66]){ // CTRL+SHIFT+B
-     *      alert('Control Shift B');
-     *  }else if(map[17] && map[16] && map[67]){ // CTRL+SHIFT+C
-     *      alert('Control Shift C');
-     *  }
-     * }
-     */
+    if (luckyDivisor.global.gameStatus != "Running") {
+        return;
+    }
 
     if (!luckyDivisor.defines.DEBUG) {
         luckyDivisor.global.keyMap[keyCode] = true;
@@ -114,18 +100,18 @@ function keyPressed() {
         var lastWorldIndex = worlds.length - 1;
 
         if (lastWorldIndex >= 0) {
-            var currentClock = currentWorld.topPanel.clock;
+            var currentClock = luckyDivisor.global.currentWorld.topPanel.clock;
 
             /**
              * Set the current world back to the one before it.
              */
-            currentWorld = worlds[lastWorldIndex];
-            currentWorld.topPanel.clock = currentClock;
+            luckyDivisor.global.currentWorld = worlds[lastWorldIndex].clone();
+            luckyDivisor.global.currentWorld.topPanel.clock = currentClock;
 
             /**
              * The remove that world from the list of worlds.
              */
-            worlds.splice(lastWorldIndex, 1);
+            // worlds.splice(lastWorldIndex, 1);
         }
     }
 }

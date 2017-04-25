@@ -208,4 +208,23 @@ class World {
             this.topPanel.equals(otherWorld.topPanel)
         );
     }
+
+
+
+    /**
+     * @description returns a string representation of this world.
+     *
+     * @param none.
+     *
+     * @return string.
+     */
+    toString() {
+        var representation = "======================= World =======================\n" + "CubeIDs: " + this.cubeIDs +
+            "\nColumns:\n[";
+        this.columns.forEach(function(column) {
+            representation += "\n\tcolumn " + column.index + " has " + column.cubes.length + " cubes.";
+        }, this);
+        representation += "\n]";
+        return representation;
+    }
 }

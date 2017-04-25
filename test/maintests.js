@@ -23,38 +23,46 @@ QUnit.test("global draw function test", function(assert) {
 });
 
 
+
 QUnit.test("config test", function(assert) {
     assert.equal(luckyDivisor.config.WIDTH_OF_CANVAS, luckyDivisor.config.WIDTH_OF_GAME_FRAME * 0.8, "blablabla");
 });
 
 
-// QUnit.test("world reversion test", function(assert) {
-//     luckyDivisor.util.createInitialWorld();
-//     var worlds = luckyDivisor.global.worlds;
-//     var currentWorld = luckyDivisor.global.currentWorld;
-//     currentWorld.reset();
-//     currentWorld = currentWorld.clone();
 
-//     /**
-//      * Let's make some cubes fall.
-//      */
-//     currentWorld.columns.forEach(function(column) {
-//         if (column.cubes.length == 0) {
-//             column.addCube();
-//         }
-//         column.cubes[0].fall();
-//     }, this);
-    
-//     // currentWorld.topPanel.clock.stringTimeTillEndOfPlay = "00:15";
-//     draw();
+QUnit.test("world reversion test", function(assert) {
+    luckyDivisor.util.createInitialWorld();
+    var worlds = luckyDivisor.global.worlds;
+    luckyDivisor.global.currentWorld.reset();
+    luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
+    luckyDivisor.global.gameStatus = "Running";
 
-//     assert.notOk(currentWorld.equals(worlds[0]), "because we have made cubes in all columns fall, the initial and current worlds should not be same.");
+    console.log(luckyDivisor.global.currentWorld.toString());
 
-//     luckyDivisor.global.keyMap[17] = true;
-//     luckyDivisor.global.keyMap[90] = true;
+    /**
+     * Let's make some cubes fall.
+     */
+    luckyDivisor.global.currentWorld.columns.forEach(function(column) {
+        if (column.cubes.length == 0) {
+            column.addCube();
+        }
+        column.cubes[0].fall();
+    }, this);
 
-//     keyPressed();
+    console.log(luckyDivisor.global.currentWorld.toString());
 
-//     assert.ok(worlds.length == 1, "upon reverting back to previous world, the number of worlds should decrease by 1");
-//     assert.ok(currentWorld.equals(worlds[0]), "because we did \"ctrl+z\", we revert back to initial world");
-// });
+    // currentWorld.topPanel.clock.stringTimeTillEndOfPlay = "00:15";
+    draw();
+
+    assert.notOk(luckyDivisor.global.currentWorld.equals(worlds[0]), "because we have made cubes in all columns fall, the initial and current worlds should not be same.");
+
+    var previousWorld = luckyDivisor.global.currentWorld;
+
+    luckyDivisor.global.keyMap[17] = true;
+    luckyDivisor.global.keyMap[90] = true;
+
+    keyPressed();
+
+    assert.ok(worlds.length == 1, "upon reverting back to previous world, the number of worlds should decrease by 1");
+    assert.notOk(luckyDivisor.global.currentWorld.equals(previousWorld), "because we did \"ctrl+z\", we revert back to initial world");
+});
