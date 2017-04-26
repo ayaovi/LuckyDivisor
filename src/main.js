@@ -35,7 +35,7 @@ function preload() {
         http.send();
 
         if (http.status != 404) {
-            luckyDivisor.global.img = loadImage(luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE);
+            luckyDivisor.global.img = loadImage("../assets/flame.png");
 
             /**
              * We will use this variable later to decided whether to load an image for the background or a plain dark gray colour.
@@ -49,72 +49,7 @@ function preload() {
 
 
 
-/**
- * @description a mouse click handler.
- *
- * @param none.
- *
- * @return none.
- */
-function mouseClicked() {
-    if (luckyDivisor.global.newGameButton != undefined) {
-        luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
-    }
-}
 
-
-
-/**
- * @description this function is called once every time a key is pressed. The keyCode for the key that was pressed is stored in the keyCode variable. (this description is taken from https://p5js.org/reference/#/p5/keyPressed).
- *
- * @param none.
- *
- * @return none.
- */
-function keyPressed() {
-    if (luckyDivisor.global.gameStatus != "Running") {
-        return;
-    }
-
-    if (!luckyDivisor.defines.DEBUG) {
-        luckyDivisor.global.keyMap[keyCode] = true;
-    }
-
-    /**
-     * Check whether the key pressed is SPACE_BAR
-     */
-    if (luckyDivisor.global.keyMap[32]) {
-        /**
-         * If so, pause or play the game.
-         */
-        luckyDivisor.global.keyMap[32] = false;
-        luckyDivisor.util.game.pauseOrPlay();
-    } else if (luckyDivisor.global.keyMap[17] && luckyDivisor.global.keyMap[90]) {
-        /**
-         * If possible, take us back to previous world.
-         */
-        luckyDivisor.global.keyMap[17] = false;
-        luckyDivisor.global.keyMap[90] = false;
-        var worlds = luckyDivisor.global.worlds;
-        var currentWorld = luckyDivisor.global.currentWorld;
-        var lastWorldIndex = worlds.length - 1;
-
-        if (lastWorldIndex >= 0) {
-            var currentClock = luckyDivisor.global.currentWorld.topPanel.clock;
-
-            /**
-             * Set the current world back to the one before it.
-             */
-            luckyDivisor.global.currentWorld = worlds[lastWorldIndex].clone();
-            luckyDivisor.global.currentWorld.topPanel.clock = currentClock;
-
-            /**
-             * The remove that world from the list of worlds.
-             */
-            // worlds.splice(lastWorldIndex, 1);
-        }
-    }
-}
 
 
 
@@ -135,16 +70,20 @@ function setup() {
      */
     gameCanvas.parent('gameCanvasContainer');
 
-    luckyDivisor.util.initialiseCubeColourMap();
-    luckyDivisor.util.initialisePnCubeCreationRecord();
-    luckyDivisor.util.initPlayerData();
-    luckyDivisor.util.createGameComponents();
-    luckyDivisor.config.gameStatus = "Running";
-    luckyDivisor.global.numberOfPlay = 0;
-    luckyDivisor.util.game.startNewPlay();
+    // luckyDivisor.util.initialiseCubeColourMap();
+    // luckyDivisor.util.initialisePnCubeCreationRecord();
+    // luckyDivisor.util.initPlayerData();
+    // luckyDivisor.util.createGameComponents();
+    // luckyDivisor.config.gameStatus = "Running";
+    // luckyDivisor.global.numberOfPlay = 0;
+    // luckyDivisor.util.game.startNewPlay();
+    // image(luckyDivisor.global.img, width / 2, height / 2, 100, 100);
+    imagePosition = createVector(30, 0);
+    scale = createVector(1, 1);
 }
 
-
+var imagePosition;
+var scale;
 
 /**
  * @description required by p5.js to operate properly.
@@ -154,27 +93,22 @@ function setup() {
  * @return none.
  */
 function draw() {
-    if (!luckyDivisor.defines.DEBUG) {
-        luckyDivisor.util.drawCanvasBackground();
+    background(125);
+    imagePosition.add(createVector(0, 5));
+
+    var s = random();
+    scale.mult(s);
+    // scale.x = constrain(scale.x, 1, 2);
+    // scale.y = constrain(scale.y, 1, 2);
+    console.log(s);
+
+    if (imagePosition.y < height) {
+        var nx = (30 * scale.x);
+        var ny = (30 * scale.y);
+        image(luckyDivisor.global.img, imagePosition.x - (nx / 2), imagePosition.y - (ny / 2), nx, ny);
     }
-
-    luckyDivisor.util.checkForRunningClock(luckyDivisor.global.currentWorld);
-
-    if (!luckyDivisor.defines.DEBUG) {
-        luckyDivisor.util.showGameComponents(luckyDivisor.global.currentWorld);
-        luckyDivisor.util.checkForPnCubeCollection(luckyDivisor.global.currentWorld);
+    else {
+        imagePosition = createVector(30, 0);
     }
-
-    try {
-        luckyDivisor.util.checkAndProcessNextEvent(luckyDivisor.global.currentWorld.eventQueue);
-    } catch (exception) {
-        alert(exception.message);
-    }
-
-    luckyDivisor.util.checkForTimeOut(luckyDivisor.global.currentWorld.topPanel.clock);
-    luckyDivisor.util.checkIfGamePaused();
-
-    if (luckyDivisor.util.timeToSaveNewHistory(luckyDivisor.global.currentWorld.topPanel.clock)) {
-        luckyDivisor.util.saveCurrentWorld(luckyDivisor.global.worlds, luckyDivisor.global.currentWorld);
-    }
+    
 }
