@@ -77,14 +77,15 @@ class Clock {
 
 
     /**
-     * @description computes the time till end of play. The result of this computation is automatically stored in the internal variable stringTimeTillEndOfPlay.
+     * @description computes the time till end of play
      *
      * @param none.
      *
-     * @return none.
+     * @return ExtendedDate.
      */
     timeTillEndOfPlay() {
-        this.stringTimeTillEndOfPlay = this.date.plus(this.playDuration).minus(luckyDivisor.util.date.getCurrentDate()).toString();
+        // this.stringTimeTillEndOfPlay = this.date.plus(this.playDuration).minus(luckyDivisor.util.date.getCurrentDate()).toString();
+        return this.date.plus(this.playDuration).minus(luckyDivisor.util.date.getCurrentDate());
     }
 
     /**
@@ -118,7 +119,7 @@ class Clock {
          * Before updating time till end of play, check that the clock has indeed been started.
          */
         if (this.hasStarted) {
-            this.timeTillEndOfPlay();
+            this.stringTimeTillEndOfPlay = this.timeTillEndOfPlay().toString();
         }
 
         fill(0);

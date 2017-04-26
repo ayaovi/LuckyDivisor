@@ -71,7 +71,7 @@ QUnit.test("world reversion test", function(assert) {
 
 
 
-QUnit.test("play game for a certain time test", function(assert) {
+QUnit.test("play game for a certain time test", async assert => {
     luckyDivisor.util.createInitialWorld();
     luckyDivisor.global.currentWorld.reset();
     luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
@@ -81,30 +81,28 @@ QUnit.test("play game for a certain time test", function(assert) {
      * A generic runner
      */
     var runOnInterval = (interval, stop, work) => {
-        var $working = true;
-        
-        setTimeout(() => {
-            $working = false; 
-        }, stop);
-        
-        var temp = () => {
-            work();
-            if($working) {
-                setTimeout(() => temp(), interval);
-            }
-            else {
-                alert("Done Running");
-                luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay();
-                console.log("The game was played for " + luckyDivisor.global.currentWorld.topPanel.clock.stringTimeTillEndOfPlay);
-            }
-        };
-        temp();
+        return new Promise(resolve => {
+            var $working = true;
+            
+            setTimeout(() => {
+                $working = false;
+                resolve(luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay());
+            }, stop);
+            
+            var temp = () => {
+                work();
+                if($working) {
+                    setTimeout(() => temp(), interval);
+                }
+            };
+            temp();
+        });
     };
 
     /**
      * Play game for 6 seconds
      */
-    runOnInterval(100, 6000, () => {
+    var time = await runOnInterval(100, 6000, () => {
         luckyDivisor.global.currentWorld.columns.forEach((column) => {
             if (column.visibleCubes().length == 0) {
                 column.addCube();
@@ -116,9 +114,6 @@ QUnit.test("play game for a certain time test", function(assert) {
 
         draw();
     });
-
-    // luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay();
-    // console.log("The game was played for " + luckyDivisor.global.currentWorld.topPanel.clock.stringTimeTillEndOfPlay);
-
-    assert.ok(true, "the game should be played for about 6 seconds");
+    
+    assert.ok(time.getTime() <= (20000 - 6000), "upon running the game for 6 seconds there should be @ most " + floor((20000 - 6000) / 1000) + " seconds on the clock");
 });
