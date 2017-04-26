@@ -31,13 +31,14 @@ QUnit.test("config test", function(assert) {
 
 
 QUnit.test("world reversion test", function(assert) {
+    /**
+     * https://github.com/CodingTrain/Rainbow-Code/tree/master/challenges
+     */
     luckyDivisor.util.createInitialWorld();
     var worlds = luckyDivisor.global.worlds;
     luckyDivisor.global.currentWorld.reset();
     luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
     luckyDivisor.global.gameStatus = "Running";
-
-    // console.log(luckyDivisor.global.currentWorld.toString());
 
     /**
      * Let's make some cubes fall.
@@ -51,9 +52,6 @@ QUnit.test("world reversion test", function(assert) {
         }, this);
     }, this);
 
-    // console.log(luckyDivisor.global.currentWorld.toString());
-
-    // currentWorld.topPanel.clock.stringTimeTillEndOfPlay = "00:15";
     draw();
 
     assert.notOk(luckyDivisor.global.currentWorld.equals(worlds[0]), "because we have made cubes in all columns fall, the initial and current worlds should not be same.");
