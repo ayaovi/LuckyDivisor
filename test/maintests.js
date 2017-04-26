@@ -78,31 +78,9 @@ QUnit.test("play game for a certain time test", async assert => {
     luckyDivisor.global.gameStatus = "Running";
 
     /**
-     * A generic runner
-     */
-    var runOnInterval = (interval, stop, work) => {
-        return new Promise(resolve => {
-            var $working = true;
-            
-            setTimeout(() => {
-                $working = false;
-                resolve(luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay());
-            }, stop);
-            
-            var temp = () => {
-                work();
-                if($working) {
-                    setTimeout(() => temp(), interval);
-                }
-            };
-            temp();
-        });
-    };
-
-    /**
      * Play game for 6 seconds
      */
-    var time = await runOnInterval(100, 6000, () => {
+    var time = await luckyDivisor.util.runOnInterval(100, 6000, () => {
         luckyDivisor.global.currentWorld.columns.forEach((column) => {
             if (column.visibleCubes().length == 0) {
                 column.addCube();

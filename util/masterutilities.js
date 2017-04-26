@@ -659,3 +659,30 @@ luckyDivisor.util.initialiseHTMLContainer = function() {
     gameCanvasContainer.style.left = (displayWidth - luckyDivisor.config.WIDTH_OF_GAME_FRAME) / 2 + 'px';
     gameCanvasContainer.style.top = (windowHeight - luckyDivisor.config.HEIGHT_OF_GAME_FRAME) / 2 + 'px';
 }
+
+
+/**
+ * @description Generic runner.
+ *
+ * @param number, number and function.
+ *
+ * @return ExtendedDate.
+ */
+luckyDivisor.util.runOnInterval = function(interval, stop, work) {
+    return new Promise(resolve => {
+        var $working = true;
+        
+        setTimeout(() => {
+            $working = false;
+            resolve(luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay());
+        }, stop);
+        
+        var temp = () => {
+            work();
+            if($working) {
+                setTimeout(() => temp(), interval);
+            }
+        };
+        temp();
+    });
+}
