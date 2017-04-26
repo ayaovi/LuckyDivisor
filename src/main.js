@@ -49,10 +49,6 @@ function preload() {
 
 
 
-
-
-
-
 /**
  * @description required by p5.js to operate properly.
  *
@@ -70,20 +66,18 @@ function setup() {
      */
     gameCanvas.parent('gameCanvasContainer');
 
-    // luckyDivisor.util.initialiseCubeColourMap();
-    // luckyDivisor.util.initialisePnCubeCreationRecord();
-    // luckyDivisor.util.initPlayerData();
-    // luckyDivisor.util.createGameComponents();
-    // luckyDivisor.config.gameStatus = "Running";
-    // luckyDivisor.global.numberOfPlay = 0;
-    // luckyDivisor.util.game.startNewPlay();
-    // image(luckyDivisor.global.img, width / 2, height / 2, 100, 100);
     imagePosition = createVector(30, 0);
-    scale = createVector(1, 1);
+    scale = 1;
+    switchInterval = floor(random(8, 12));
+    count = 0;
 }
+
 
 var imagePosition;
 var scale;
+var switchInterval;
+var count;
+
 
 /**
  * @description required by p5.js to operate properly.
@@ -94,21 +88,22 @@ var scale;
  */
 function draw() {
     background(125);
+
     imagePosition.add(createVector(0, 5));
 
-    var s = random();
-    scale.mult(s);
-    // scale.x = constrain(scale.x, 1, 2);
-    // scale.y = constrain(scale.y, 1, 2);
-    console.log(s);
-
     if (imagePosition.y < height) {
-        var nx = (30 * scale.x);
-        var ny = (30 * scale.y);
-        image(luckyDivisor.global.img, imagePosition.x - (nx / 2), imagePosition.y - (ny / 2), nx, ny);
+        var nx = 40;
+        var ny = 40 * scale;
+
+        if (imagePosition.y % this.switchInterval == 0) {
+            ++count;
+            scale = 1 + (count % 2) * 0.4;
+        }
+        
+        image(luckyDivisor.global.img, imagePosition.x - (nx / 2), imagePosition.y - ny, nx, ny);
     }
     else {
         imagePosition = createVector(30, 0);
-    }
-    
+        count = 0;
+    }    
 }
