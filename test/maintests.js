@@ -37,19 +37,21 @@ QUnit.test("world reversion test", function(assert) {
     luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
     luckyDivisor.global.gameStatus = "Running";
 
-    console.log(luckyDivisor.global.currentWorld.toString());
+    // console.log(luckyDivisor.global.currentWorld.toString());
 
     /**
      * Let's make some cubes fall.
      */
     luckyDivisor.global.currentWorld.columns.forEach(function(column) {
-        if (column.cubes.length == 0) {
+        if (column.visibleCubes().length == 0) {
             column.addCube();
         }
-        column.cubes[0].fall();
+        column.visibleCubes().forEach(function(cube) {
+            cube.fall();
+        }, this);
     }, this);
 
-    console.log(luckyDivisor.global.currentWorld.toString());
+    // console.log(luckyDivisor.global.currentWorld.toString());
 
     // currentWorld.topPanel.clock.stringTimeTillEndOfPlay = "00:15";
     draw();
@@ -65,4 +67,58 @@ QUnit.test("world reversion test", function(assert) {
 
     assert.ok(worlds.length == 1, "upon reverting back to previous world, the number of worlds should decrease by 1");
     assert.notOk(luckyDivisor.global.currentWorld.equals(previousWorld), "because we did \"ctrl+z\", we revert back to initial world");
+});
+
+
+
+QUnit.test("play game for a certain time test", function(assert) {
+    luckyDivisor.util.createInitialWorld();
+    luckyDivisor.global.currentWorld.reset();
+    luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
+    luckyDivisor.global.gameStatus = "Running";
+
+    /**
+     * A generic runner
+     */
+    var runOnInterval = (interval, stop, work) => {
+        var $working = true;
+        
+        setTimeout(() => {
+            $working = false; 
+        }, stop);
+        
+        var temp = () => {
+            work();
+            if($working) {
+                setTimeout(() => temp(), interval);
+            }
+            else {
+                alert("Done Running");
+                luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay();
+                console.log("The game was played for " + luckyDivisor.global.currentWorld.topPanel.clock.stringTimeTillEndOfPlay);
+            }
+        };
+        temp();
+    };
+
+    /**
+     * Play game for 6 seconds
+     */
+    runOnInterval(100, 6000, () => {
+        luckyDivisor.global.currentWorld.columns.forEach((column) => {
+            if (column.visibleCubes().length == 0) {
+                column.addCube();
+            }
+            column.visibleCubes().forEach((cube) => {
+                cube.fall();
+            });
+        });
+
+        draw();
+    });
+
+    // luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay();
+    // console.log("The game was played for " + luckyDivisor.global.currentWorld.topPanel.clock.stringTimeTillEndOfPlay);
+
+    assert.ok(true, "the game should be played for about 6 seconds");
 });

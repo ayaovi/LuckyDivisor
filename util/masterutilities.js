@@ -420,10 +420,14 @@ luckyDivisor.util.checkAndProcessNextEvent = function(eventQueue) {
          * Should the event time be same as the system time.
          */
         if (nextToBeFiredEvent.date.isLessOrEqualTo(luckyDivisor.util.date.getCurrentDate())) {
-            /**
-             * Then process the event.
-             */
-            nextToBeFiredEvent.process();
+            try {
+                /**
+                 * Then process the event.
+                 */
+                nextToBeFiredEvent.process();
+            } catch (exception) {
+                throw exception;
+            }
 
             /**
              * Delete the event once it has been processed.

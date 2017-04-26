@@ -165,7 +165,12 @@ function draw() {
         luckyDivisor.util.checkForPnCubeCollection(luckyDivisor.global.currentWorld);
     }
 
-    luckyDivisor.util.checkAndProcessNextEvent(luckyDivisor.global.currentWorld.eventQueue);
+    try {
+        luckyDivisor.util.checkAndProcessNextEvent(luckyDivisor.global.currentWorld.eventQueue);
+    } catch (exception) {
+        alert(exception.message);
+    }
+
     luckyDivisor.util.checkForTimeOut(luckyDivisor.global.currentWorld.topPanel.clock);
     luckyDivisor.util.checkIfGamePaused();
 
