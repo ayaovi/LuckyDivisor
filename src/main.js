@@ -11,7 +11,9 @@
 
 var flameImages = [];
 var fireballImages = [];
+var iceballImages = [];
 var fireObjects = [];
+var iceObjects = [];
 
 
 /**
@@ -54,6 +56,8 @@ function preload() {
             fireballImages[4] = loadImage("../assets/fireball/05.png");
             fireballImages[5] = loadImage("../assets/fireball/06.png");
 
+            iceballImages[0] = loadImage("../assets/iceball/01.png");
+
             /**
              * We will use this variable later to decided whether to load an image for the background or a plain dark gray colour.
              */
@@ -83,8 +87,9 @@ function setup() {
      */
     gameCanvas.parent('gameCanvasContainer');
 
-    fireObjects[0] = new Flame(createVector(0, 0), flameImages, 30, 35, 5);
-    fireObjects[1] = new Flame(createVector(50, 0), fireballImages, 40, 45, 7);
+    fireObjects[0] = new Sprite(createVector(0, 0), flameImages, 30, 35, createVector(0, 5));
+    fireObjects[1] = new Sprite(createVector(50, 0), fireballImages, 40, 45, createVector(0, 7));
+    iceObjects[0] = new Sprite(createVector(100, height), iceballImages, 20, 35, createVector(0, -5));
 }
 
 
@@ -99,10 +104,23 @@ function setup() {
 function draw() {
     background(125);
 
+    /**
+     * Render fireobjects
+     */
     fireObjects.forEach(fireObject => {
         fireObject.show();
         if (fireObject.position.y > height) {
             fireObject.resetPosition();
+        }
+    }, this);
+
+    /**
+     * Render iceObjects.
+     */
+    iceObjects.forEach(iceObject => {
+        iceObject.show();
+        if (iceObject.position.y < 0) {
+            iceObject.resetPosition();
         }
     }, this);
 }

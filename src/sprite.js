@@ -10,7 +10,7 @@
 
 
 
-class Flame {
+class Sprite {
     /**
      * @description constructor.
      *
@@ -41,7 +41,7 @@ class Flame {
     show() {
         if (this.isVisible) {
             image(this.images[this.currentImageIndex++], this.position.x, this.position.y, this.width, this.height);
-            this.position.add(createVector(0, this.speed));
+            this.position.add(this.speed);
             this.currentImageIndex %= this.images.length;
         }
     }
