@@ -12,7 +12,7 @@
 QUnit.test("player basics", function(assert) {
     var player = new Player();
 
-    assert.equal(player.name, "PLAYER", "upon creation player.name equals PLAYER succeeds");
+    // assert.equal(player.name, "PLAYER", "upon creation player.name equals PLAYER succeeds");
     assert.equal(player.bestScore, 0, "upon creation player.bestScore equals 0 succeeds");
     assert.equal(player.creditPoints, 0, "upon creation player.creditPoints equals 0 succeeds");
 
@@ -34,7 +34,7 @@ QUnit.test("player basics", function(assert) {
 
 
 
-QUnit.test("player basics", function(assert) {
+QUnit.test("player cloning tests", function(assert) {
     var original = new Player();
     original.init();
     var clone = original.clone();

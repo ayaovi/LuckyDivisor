@@ -671,15 +671,15 @@ luckyDivisor.util.initialiseHTMLContainer = function() {
 luckyDivisor.util.runOnInterval = function(interval, stop, work) {
     return new Promise(resolve => {
         var $working = true;
-        
+
         setTimeout(() => {
             $working = false;
             resolve(luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay());
         }, stop);
-        
+
         var temp = () => {
             work();
-            if($working) {
+            if ($working) {
                 setTimeout(() => temp(), interval);
             }
         };

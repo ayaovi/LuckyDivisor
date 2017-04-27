@@ -34,7 +34,7 @@ function preload() {
         http.open('HEAD', luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE, false);
         http.send();
 
-        if (http.status != 404) {
+        if (http.status !== 404) {
             luckyDivisor.global.img = loadImage(luckyDivisor.config.DEFAULT_CANVAS_BACKGROUND_IMAGE);
 
             /**
@@ -57,7 +57,7 @@ function preload() {
  * @return none.
  */
 function mouseClicked() {
-    if (luckyDivisor.global.newGameButton != undefined) {
+    if (luckyDivisor.global.newGameButton !== undefined) {
         luckyDivisor.global.newGameButton.mouseClick(mouseX, mouseY);
     }
 }
@@ -72,7 +72,7 @@ function mouseClicked() {
  * @return none.
  */
 function keyPressed() {
-    if (luckyDivisor.global.gameStatus != "Running") {
+    if (luckyDivisor.global.gameStatus !== "Running") {
         return;
     }
 

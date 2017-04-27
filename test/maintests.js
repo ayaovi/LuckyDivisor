@@ -90,6 +90,7 @@ QUnit.test("play game for a certain time test", async assert => {
 
         draw();
     });
-    
+
     assert.ok(time.getTime() <= (20000 - 6000), "upon running the game for 6 seconds there should be @ most " + floor((20000 - 6000) / 1000) + " seconds on the clock");
+    assert.ok(luckyDivisor.global.worlds.length > 1, "6 seconds of game time and there should @ least be 2 worlds in the list of worlds");
 });

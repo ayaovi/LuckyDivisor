@@ -10,6 +10,7 @@
  * @version : v1
  */
 
+
 var abs = function(number) {
     return Math.abs(number);
 }

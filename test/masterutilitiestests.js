@@ -48,10 +48,10 @@ QUnit.test("initial game world creation test", function(assert) {
 
 
 
-QUnit.test("new player data creation test", function(assert) {
-    var playerData = luckyDivisor.util.createNewPlayerData();
-    assert.equal(Object.keys(playerData).length, 3, "upon initialisation, playerData should 3 elements.");
-});
+// QUnit.test("new player data creation test", function(assert) {
+//     var playerData = luckyDivisor.util.createNewPlayerData();
+//     assert.equal(Object.keys(playerData).length, 3, "upon initialisation, playerData should 3 elements.");
+// });
 
 
 
@@ -62,11 +62,11 @@ QUnit.test("player data initialisation test", function(assert) {
 });
 
 
-QUnit.test("player name test", function(assert) {
-    luckyDivisor.global.playerData = undefined;
-    luckyDivisor.util.initPlayerData();
-    assert.equal(luckyDivisor.util.playerName(), "Ayaovi", "player name should be \"Ayaovi\"");
-});
+// QUnit.test("player name test", function(assert) {
+//     luckyDivisor.global.playerData = undefined;
+//     luckyDivisor.util.initPlayerData();
+//     assert.equal(luckyDivisor.util.playerName(), "Ayaovi", "player name should be \"Ayaovi\"");
+// });
 
 
 QUnit.test("GetDefaultSpeed test", function(assert) {
