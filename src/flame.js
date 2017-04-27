@@ -32,7 +32,7 @@ class Flame {
 
 
     /**
-     * @description constructor.
+     * @description dosplays this flame.
      *
      * @param none.
      *
@@ -44,9 +44,19 @@ class Flame {
             this.position.add(createVector(0, this.speed));
             this.currentImageIndex %= this.images.length;
 
-            if (this.position.y > height) {
-                this.position = createVector(this.startingPositionX, this.startingPositionY);
-            }
+            
         }
+    }
+
+
+    /**
+     * @description resets the position of this flame to its starting posisition.
+     *
+     * @param none.
+     *
+     * @return none.
+     */
+    resetPosition() {
+        this.position = createVector(this.startingPositionX, this.startingPositionY);
     }
 }

@@ -11,8 +11,7 @@
 
 var flameImages = [];
 var fireballImages = [];
-var flame;
-var fireball;
+var fireObjects = [];
 
 
 /**
@@ -84,8 +83,8 @@ function setup() {
      */
     gameCanvas.parent('gameCanvasContainer');
 
-    flame = new Flame(createVector(0, 0), flameImages, 30, 35, 5);
-    fireball = new Flame(createVector(50, 0), fireballImages, 40, 45, 7);
+    fireObjects[0] = new Flame(createVector(0, 0), flameImages, 30, 35, 5);
+    fireObjects[1] = new Flame(createVector(50, 0), fireballImages, 40, 45, 7);
 }
 
 
@@ -99,6 +98,11 @@ function setup() {
  */
 function draw() {
     background(125);
-    flame.show();
-    fireball.show();
+
+    fireObjects.forEach(fireObject => {
+        fireObject.show();
+        if (fireObject.position.y > height) {
+            fireObject.resetPosition();
+        }
+    }, this);
 }
