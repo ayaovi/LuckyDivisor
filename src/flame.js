@@ -43,8 +43,6 @@ class Flame {
             image(this.images[this.currentImageIndex++], this.position.x, this.position.y, this.width, this.height);
             this.position.add(createVector(0, this.speed));
             this.currentImageIndex %= this.images.length;
-
-            
         }
     }
 
