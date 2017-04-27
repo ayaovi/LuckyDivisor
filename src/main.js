@@ -9,6 +9,12 @@
  */
 
 
+var flameImages = [];
+var fireballImages = [];
+var flame;
+var fireball;
+
+
 /**
  * @description required by p5.js to operate properly.
  *
@@ -35,7 +41,19 @@ function preload() {
         http.send();
 
         if (http.status != 404) {
-            luckyDivisor.global.img = loadImage("../assets/flame.png");
+            flameImages[0] = loadImage("../assets/flame_1/flame_a_0001.png");
+            flameImages[1] = loadImage("../assets/flame_1/flame_a_0002.png");
+            flameImages[2] = loadImage("../assets/flame_1/flame_a_0003.png");
+            flameImages[3] = loadImage("../assets/flame_1/flame_a_0004.png");
+            flameImages[4] = loadImage("../assets/flame_1/flame_a_0005.png");
+            flameImages[5] = loadImage("../assets/flame_1/flame_a_0006.png");
+
+            fireballImages[0] = loadImage("../assets/fireball/01.png");
+            fireballImages[1] = loadImage("../assets/fireball/02.png");
+            fireballImages[2] = loadImage("../assets/fireball/03.png");
+            fireballImages[3] = loadImage("../assets/fireball/04.png");
+            fireballImages[4] = loadImage("../assets/fireball/05.png");
+            fireballImages[5] = loadImage("../assets/fireball/06.png");
 
             /**
              * We will use this variable later to decided whether to load an image for the background or a plain dark gray colour.
@@ -66,17 +84,10 @@ function setup() {
      */
     gameCanvas.parent('gameCanvasContainer');
 
-    imagePosition = createVector(30, 0);
-    scale = 1;
-    switchInterval = floor(random(8, 12));
-    count = 0;
+    flame = new Flame(createVector(0, 0), flameImages, 30, 35);
+    fireball = new Flame(createVector(50, 0), fireballImages, 40, 45);
 }
 
-
-var imagePosition;
-var scale;
-var switchInterval;
-var count;
 
 
 /**
@@ -88,22 +99,6 @@ var count;
  */
 function draw() {
     background(125);
-
-    imagePosition.add(createVector(0, 5));
-
-    if (imagePosition.y < height) {
-        var nx = 40;
-        var ny = 40 * scale;
-
-        if (imagePosition.y % this.switchInterval == 0) {
-            ++count;
-            scale = 1 + (count % 2) * 0.4;
-        }
-        
-        image(luckyDivisor.global.img, imagePosition.x - (nx / 2), imagePosition.y - ny, nx, ny);
-    }
-    else {
-        imagePosition = createVector(30, 0);
-        count = 0;
-    }    
+    flame.show();
+    fireball.show();
 }
