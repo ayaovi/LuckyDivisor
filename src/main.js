@@ -84,8 +84,8 @@ function setup() {
      */
     gameCanvas.parent('gameCanvasContainer');
 
-    flame = new Flame(createVector(0, 0), flameImages, 30, 35);
-    fireball = new Flame(createVector(50, 0), fireballImages, 40, 45);
+    flame = new Flame(createVector(0, 0), flameImages, 30, 35, 5);
+    fireball = new Flame(createVector(50, 0), fireballImages, 40, 45, 7);
 }
 
 

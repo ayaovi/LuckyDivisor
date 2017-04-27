@@ -18,8 +18,9 @@ class Flame {
      *
      * @return none.
      */
-    constructor(position, images, width, height) {
+    constructor(position, images, width, height, speed) {
         this.position = position;
+        this.speed = speed;
         this.startingPositionX = position.x;
         this.startingPositionY = position.y;
         this.width = width;
@@ -40,7 +41,7 @@ class Flame {
     show() {
         if (this.isVisible) {
             image(this.images[this.currentImageIndex++], this.position.x, this.position.y, this.width, this.height);
-            this.position.add(createVector(0, 5));
+            this.position.add(createVector(0, this.speed));
             this.currentImageIndex %= this.images.length;
 
             if (this.position.y > height) {
