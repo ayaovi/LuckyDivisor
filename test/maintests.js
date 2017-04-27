@@ -13,9 +13,12 @@
 QUnit.test("global draw function test", function(assert) {
     luckyDivisor.util.createInitialWorld();
     luckyDivisor.global.currentWorld.reset();
-    luckyDivisor.global.currentWorld.topPanel.clock.stringTimeTillEndOfPlay = "00:15";
+    var clock = luckyDivisor.global.currentWorld.topPanel.clock;
+    clock.start();
+    
     assert.equal(luckyDivisor.global.worlds.length, 1, "before draw() execution, the number of worlds should be 1");
-
+    
+    clock.date = clock.date.minus(new ExtendedDate(5000));  /** The reason why we need to reset the clock date 5 sec back in time is so it would appear as if have run down 5 seconds. */
     draw();
 
     assert.ok(true, "This mainly to test if anything fails along the way.");
@@ -76,7 +79,7 @@ QUnit.test("play game for a certain time test", async assert => {
     luckyDivisor.global.gameStatus = "Running";
 
     /**
-     * Play game for 6 seconds
+     * Run the game for 6 seconds
      */
     var time = await luckyDivisor.util.runOnInterval(100, 6000, () => {
         luckyDivisor.global.currentWorld.columns.forEach((column) => {

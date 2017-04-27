@@ -72,20 +72,19 @@ class Clock {
          */
         this.hasStarted = true;
         this.date = luckyDivisor.util.date.getCurrentDate();
-        this.timeTillEndOfPlay();
+        this.stringTimeTillEndOfPlay = this.timeTillEndOfPlay(luckyDivisor.util.date.getCurrentDate()).toString();
     }
 
 
     /**
      * @description computes the time till end of play
      *
-     * @param none.
+     * @param ExtendedDate.
      *
      * @return ExtendedDate.
      */
-    timeTillEndOfPlay() {
-        // this.stringTimeTillEndOfPlay = this.date.plus(this.playDuration).minus(luckyDivisor.util.date.getCurrentDate()).toString();
-        return this.date.plus(this.playDuration).minus(luckyDivisor.util.date.getCurrentDate());
+    timeTillEndOfPlay(currentDate) {
+        return this.date.plus(this.playDuration).minus(currentDate);
     }
 
     /**
@@ -119,7 +118,7 @@ class Clock {
          * Before updating time till end of play, check that the clock has indeed been started.
          */
         if (this.hasStarted) {
-            this.stringTimeTillEndOfPlay = this.timeTillEndOfPlay().toString();
+            this.stringTimeTillEndOfPlay = this.timeTillEndOfPlay(luckyDivisor.util.date.getCurrentDate()).toString();
         }
 
         fill(0);

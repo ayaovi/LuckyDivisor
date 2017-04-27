@@ -174,7 +174,7 @@ function draw() {
     luckyDivisor.util.checkForTimeOut(luckyDivisor.global.currentWorld.topPanel.clock);
     luckyDivisor.util.checkIfGamePaused();
 
-    if (luckyDivisor.util.timeToSaveNewHistory(luckyDivisor.global.currentWorld.topPanel.clock)) {
+    if (luckyDivisor.util.timeToSaveNewHistory(luckyDivisor.global.currentWorld.topPanel.clock, luckyDivisor.util.date.getCurrentDate())) {
         luckyDivisor.util.saveCurrentWorld(luckyDivisor.global.worlds, luckyDivisor.global.currentWorld);
     }
 }

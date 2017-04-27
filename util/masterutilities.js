@@ -456,13 +456,13 @@ luckyDivisor.util.checkIfGamePaused = function() {
 /**
  * @description check whether it is time to save a new world history. If it is, it then saves the current world.
  *
- * @param Clock.
+ * @param Clock and ExtendedDate.
  *
  * @return boolean.
  */
-luckyDivisor.util.timeToSaveNewHistory = function(clock) {
+luckyDivisor.util.timeToSaveNewHistory = function(clock, currentDate) {
     var historyScheduleTimes = ["00:15", "00:10", "00:05"];
-    return historyScheduleTimes.includes(clock.stringTimeTillEndOfPlay);
+    return historyScheduleTimes.includes(clock.timeTillEndOfPlay(currentDate).toString());
 }
 
 
@@ -674,7 +674,7 @@ luckyDivisor.util.runOnInterval = function(interval, stop, work) {
 
         setTimeout(() => {
             $working = false;
-            resolve(luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay());
+            resolve(luckyDivisor.global.currentWorld.topPanel.clock.timeTillEndOfPlay(luckyDivisor.util.date.getCurrentDate()));
         }, stop);
 
         var temp = () => {

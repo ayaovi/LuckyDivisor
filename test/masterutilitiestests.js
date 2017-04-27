@@ -92,12 +92,10 @@ QUnit.test("Pad with zero test", function(assert) {
 QUnit.test("timeToSaveNewHistory test", function(assert) {
     luckyDivisor.util.createInitialWorld();
     var clock = luckyDivisor.global.currentWorld.topPanel.clock;
-    clock.stringTimeTillEndOfPlay = "00:15";
-    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock), "when the game clock is @ \"00:15\", it is time to save the current world.");
-    clock.stringTimeTillEndOfPlay = "00:10";
-    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock), "when the game clock is @ \"00:10\", it is time to save the current world.");
-    clock.stringTimeTillEndOfPlay = "00:05";
-    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock), "when the game clock is @ \"00:05\", it is time to save the current world.");
+    clock.start();
+    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock, clock.date.plus(new ExtendedDate(5000))), "game clock @ \"00:15\", should be time to save the current world.");
+    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock, clock.date.plus(new ExtendedDate(10000))), "game clock @ \"00:10\", should be time to save the current world.");
+    assert.ok(luckyDivisor.util.timeToSaveNewHistory(clock, clock.date.plus(new ExtendedDate(15000))), "game clock @ \"00:05\", should be time to save the current world.");
 });
 
 
