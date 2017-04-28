@@ -686,3 +686,23 @@ luckyDivisor.util.runOnInterval = function(interval, stop, work) {
         temp();
     });
 }
+
+
+
+/**
+ * @description Generic runner.
+ *
+ * @param number, number and function.
+ *
+ * @return ExtendedDate.
+ */
+luckyDivisor.util.makeCubesFall = function(world) {
+    world.columns.forEach(function(column) {
+        if (column.visibleCubes().length == 0) {
+            column.addCube();
+        }
+        column.visibleCubes().forEach(function(cube) {
+            cube.fall();
+        }, this);
+    }, this);
+}

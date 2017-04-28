@@ -27,13 +27,7 @@ QUnit.test("global draw function test", function(assert) {
 
 
 
-QUnit.test("config test", function(assert) {
-    assert.equal(luckyDivisor.config.WIDTH_OF_CANVAS, luckyDivisor.config.WIDTH_OF_GAME_FRAME * 0.8, "blablabla");
-});
-
-
-
-QUnit.test("world reversion test", function(assert) {
+QUnit.test("single world reversion test", function(assert) {
     /**
      * https://github.com/CodingTrain/Rainbow-Code/tree/master/challenges
      */
@@ -43,18 +37,7 @@ QUnit.test("world reversion test", function(assert) {
     luckyDivisor.global.currentWorld = luckyDivisor.global.currentWorld.clone();
     luckyDivisor.global.gameStatus = "Running";
 
-    /**
-     * Let's make some cubes fall.
-     */
-    luckyDivisor.global.currentWorld.columns.forEach(function(column) {
-        if (column.visibleCubes().length == 0) {
-            column.addCube();
-        }
-        column.visibleCubes().forEach(function(cube) {
-            cube.fall();
-        }, this);
-    }, this);
-
+    luckyDivisor.util.makeCubesFall(luckyDivisor.global.currentWorld);
     draw();
 
     assert.notOk(luckyDivisor.global.currentWorld.equals(worlds[0]), "because we have made cubes in all columns fall, the initial and current worlds should not be same.");
@@ -82,18 +65,18 @@ QUnit.test("play game for a certain time test", async assert => {
      * Run the game for 6 seconds
      */
     var time = await luckyDivisor.util.runOnInterval(100, 6000, () => {
-        luckyDivisor.global.currentWorld.columns.forEach((column) => {
-            if (column.visibleCubes().length == 0) {
-                column.addCube();
-            }
-            column.visibleCubes().forEach((cube) => {
-                cube.fall();
-            });
-        });
-
+        luckyDivisor.util.makeCubesFall(luckyDivisor.global.currentWorld);
         draw();
     });
 
-    assert.ok(time.getTime() <= (20000 - 6000), "upon running the game for 6 seconds there should be @ most " + floor((20000 - 6000) / 1000) + " seconds on the clock");
+    assert.ok(time.getTime() <= (20000 - 6000), `upon running the game for 6 seconds there should be @ most ${floor((20000 - 6000) / 1000)} seconds on the clock`);
     assert.ok(luckyDivisor.global.worlds.length > 1, "6 seconds of game time and there should @ least be 2 worlds in the list of worlds");
 });
+
+
+
+// QUnit.test("successive world reversion test", async assert => {
+//     /**
+//      * In other words what should happen when we do ctrl+z followed by another ctrl+z
+//      */
+// });
