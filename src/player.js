@@ -295,4 +295,16 @@ class Player {
 
         return clone;
     }
+
+
+    /**
+	 * @description Returns a representation of this Player.
+	 *
+	 * @param none.
+	 *
+	 * @return string.
+	 */
+	toString() {
+		return `[Player: \n\tname: ${this.name}, \n\tscore: ${this.score.score}, \n\tbest score: ${this.bestScore}, \n\t# life stars: ${this.playerLifeStars.length}\n]`;
+	}
 }

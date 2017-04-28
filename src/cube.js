@@ -118,6 +118,6 @@ class Cube {
 	 * @return boolean.
 	 */
 	toString() {
-		return `Cube: ${this.number}`;
+		return `[Cube: ${this.id}, ${this.number}]`;
 	}
 }

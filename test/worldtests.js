@@ -16,8 +16,3 @@ QUnit.test("world cloning tests", function(assert) {
     var clone = original.clone();
     assert.ok(clone.equals(original), "clone equals original should succeed");
 });
-
-
-// QUnit.test("world start time tests", function(assert) {
-//     var world = new World();
-// });

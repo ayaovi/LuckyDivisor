@@ -15,11 +15,11 @@ QUnit.test("cube basics", function( assert ) {
 	assert.equal(cube.number, 10, "upon creation cube.number equal 10 succeeds");
 	assert.equal(cube.id, 3, "upon creation cube.id equal 3 succeeds");
 	assert.equal(cube.position.x, 0, "upon creation cube.position.x equal 0 succeeds");
-	assert.equal(cube.position.y, 0, "upon creation cube.position.y equal 0 succeeds");	
-	assert.equal(cube.toString(), "Cube: 10", "cube.toString() equal Cube: 10 succeeds");
+	assert.equal(cube.position.y, 0, "upon creation cube.position.y equal 0 succeeds");
+	assert.equal(cube.toString(), "[Cube: 3, 10]", "cube.toString() equal Cube: 10 succeeds");
 
 	var otherCube = new Cube(10, 5, createVector(50, 30));
-	assert.equal(otherCube.toString(), "Cube: 10", "otherCube.toString() equal Cube: 10 succeeds");
+	assert.equal(otherCube.toString(), "[Cube: 5, 10]", "otherCube.toString() equal Cube: 10 succeeds");
 	assert.notOk(cube.equals(otherCube), "cube and otherCube equality does not succeeds");
 });
 

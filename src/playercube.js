@@ -143,4 +143,16 @@ class PlayerCube extends Cube {
     equals(otherPlayerCube) {
         return (super.equals(otherPlayerCube) && this.speed == otherPlayerCube.speed);
     }
+
+
+    /**
+	 * @description Returns a representation of this PlayerCube.
+	 *
+	 * @param none.
+	 *
+	 * @return string.
+	 */
+	toString() {
+		return super.toString();
+	}
 }

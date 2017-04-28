@@ -96,4 +96,16 @@ class Score {
         clone.score = this.score;
         return clone;
     }
+
+
+    /**
+	 * @description Returns a representation of this score.
+	 *
+	 * @param none.
+	 *
+	 * @return string.
+	 */
+	toString() {
+		return `[Score: ${this.score}]`;
+	}
 }
