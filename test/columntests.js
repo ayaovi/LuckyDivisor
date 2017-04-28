@@ -16,9 +16,11 @@ QUnit.test("column basics", function(assert) {
      * column.index = 0;
      */
     var column = new Column(0, 0);
+    column.cubes = [];
 
     assert.equal(column.x, 0, "upon creation, column.xCoordinate equals 0 succeeds");
     assert.equal(column.index, 0, "upon creation, column.index equals 0 succeeds");
+    assert.equal(column.toString(), "[Column: 0, 0]", "upon creation, column.toString() equals \"[Column: 0, 0]\" succeeds");
 });
 
 

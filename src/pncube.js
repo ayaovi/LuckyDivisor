@@ -180,6 +180,6 @@ class PnCube extends Cube {
       @return string.
      */
     toString() {
-        return (super.toString() + ", " + this.columnIndex);
+        return `${super.toString()}, ${this.columnIndex}`;
     }
 }

@@ -72,6 +72,11 @@ class World {
          * Keeps track of the starting time of the previous column during start up.
          */
         this.previousColumnStartingDate;
+
+        /**
+         * Records the last time this world was taken on as a currentWorld.
+         */
+        this.lastVisitDate;
     }
 
 
@@ -103,6 +108,7 @@ class World {
      */
     reset() {
         this.cubeIDs = 0;
+        this.lastVisitDate = luckyDivisor.util.date.getCurrentDate();
         this.previousColumnStartingDate = undefined; /** Not sure about this. */
         this.columns = [];
         this.numberOfPnCubeCreated = 0;
@@ -162,6 +168,7 @@ class World {
         var clone = new World();
 
         clone.cubeIDs = this.cubeIDs;
+        clone.lastVisitDate = this.lastVisitDate.clone();
         clone.player = this.player.clone();
         clone.playerCube = this.playerCube.clone();
 
@@ -199,6 +206,7 @@ class World {
      */
     equals(otherWorld) {
         return (this.cubeIDs == otherWorld.cubeIDs &&
+            this.lastVisitDate.equals(otherWorld.lastVisitDate) &&
             this.player.equals(otherWorld.player) &&
             this.playerCube.equals(otherWorld.playerCube) &&
             this.pnCubeCreationReccordMap.length == otherWorld.pnCubeCreationReccordMap.length &&
@@ -219,10 +227,9 @@ class World {
      * @return string.
      */
     toString() {
-        var representation = "======================= World =======================\n" + "CubeIDs: " + this.cubeIDs +
-            "\nColumns:\n[";
+        var representation = `======================= World =======================\nCubeIDs: ${this.cubeIDs}\nColumns:\n[`;
         this.columns.forEach(function(column) {
-            representation += "\n\tcolumn " + column.index + " has " + column.cubes.length + " cubes.";
+            representation += `\n\t${column.toString()}`;
         }, this);
         representation += "\n]";
         return representation;

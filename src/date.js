@@ -116,6 +116,6 @@ class ExtendedDate extends Date {
      * @return string.
      */
     toString() {
-        return (luckyDivisor.util.padWithZero(this.getMinutes()) + ":" + luckyDivisor.util.padWithZero(this.getSeconds()));
+        return `${luckyDivisor.util.padWithZero(this.getMinutes())}:${luckyDivisor.util.padWithZero(this.getSeconds())}`;
     }
 }

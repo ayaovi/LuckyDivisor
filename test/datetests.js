@@ -15,8 +15,8 @@ QUnit.test("date basics", function(assert) {
     /**
      * Test getTime().
      */
-    assert.equal(date.getTime(), 10000, "10000, 10000; equal succeeds");
-    assert.equal(date.toString(), "00:10", "00:10, 00:10; equal succeeds");
+    assert.equal(date.getTime(), 10000, "date.getTime() equal 10000 succeeds");
+    assert.equal(date.toString(), "00:10", "date.toString() equal \"00:10\" succeeds");
 
     var anotherDate = new ExtendedDate(5000);
     var dateAddition = date.plus(anotherDate);
@@ -24,16 +24,16 @@ QUnit.test("date basics", function(assert) {
     /**
      * Test dates addition.
      */
-    assert.equal(dateAddition.getTime(), 15000, "15000, 15000; equal succeeds");
-    assert.equal(dateAddition.toString(), "00:15", "00:15, 00:15; equal succeeds");
+    assert.equal(dateAddition.getTime(), 15000, "dateAddition.getTime() equal 15000 succeeds");
+    assert.equal(dateAddition.toString(), "00:15", "dateAddition.toString() equal \"00:15\" succeeds");
 
     var dateDifference = date.minus(anotherDate);
 
     /**
      * Test dates difference.
      */
-    assert.equal(dateDifference.getTime(), 5000, "5000, 5000; equal succeeds");
-    assert.equal(dateDifference.toString(), "00:05", "00:05, 00:05; equal succeeds");
+    assert.equal(dateDifference.getTime(), 5000, "dateDifference.getTime() equal 5000 succeeds");
+    assert.equal(dateDifference.toString(), "00:05", "dateDifference.toString() equal \"00:05\" equal succeeds");
 
     /**
      * Test date comparison.

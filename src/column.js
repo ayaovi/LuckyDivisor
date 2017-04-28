@@ -230,4 +230,16 @@ class Column {
         }
         return areEqual;
     }
+
+
+    /**
+     * @description returns a string representation of the columns.
+     *
+     * @param none.
+     *
+     * @return string.
+     */
+    toString() {
+        return `[Column: ${this.index}, ${this.cubes.length}]`;
+    }
 }
