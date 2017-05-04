@@ -35,15 +35,15 @@ luckyDivisor.util.math.addRGBs = function(rgb1, rgb2) {
 /** 
  * @description randomly generate a player cube number. The number must be in the range 1-99 inclusive. None of the number's prime factors must be bigger than 10.
  *
- * @param none.
+ * @param number and number.
  *
  * @return number.
  */
-luckyDivisor.util.math.generatePlayerCubeNumber = function() {
+luckyDivisor.util.math.generatePlayerCubeNumber = function(startOfRange, endOfRange) {
 	/**
 	 * The player number is a number between 2-99.
 	 */
-	var number = floor(random(2, 100));
+	var number = floor(random(startOfRange, endOfRange));
 
 	/**
 	 * All of the prime divisors of this number.

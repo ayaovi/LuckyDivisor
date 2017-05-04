@@ -119,8 +119,9 @@ class World {
 
         /**
          * Create a new player cube.
+         * Down the line, the range that is supplied for the player number generation should be dynamically calculated.
          */
-        var playerCubeNumber = luckyDivisor.util.math.generatePlayerCubeNumber();
+        var playerCubeNumber = luckyDivisor.util.math.generatePlayerCubeNumber(2, 100);
         this.playerCube = new PlayerCube(playerCubeNumber, 0, createVector((luckyDivisor.config.WIDTH_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE) / 2, luckyDivisor.config.HEIGHT_OF_CANVAS - luckyDivisor.config.SIDE_OF_CUBE - 1));
 
         /**

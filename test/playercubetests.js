@@ -114,7 +114,7 @@ QUnit.test("player cube cloning tests", function(assert) {
      * playerCube.id = 0;
      * playerCube.position = (20, 770);
      */
-    var original = new PlayerCube(luckyDivisor.util.math.generatePlayerCubeNumber(), 0, createVector(20, 770));
+    var original = new PlayerCube(luckyDivisor.util.math.generatePlayerCubeNumber(20, 40), 0, createVector(20, 770));
     var clone = original.clone();
 
     assert.ok(clone.equals(original), "clone equals original should succeed");
