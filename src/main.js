@@ -72,7 +72,7 @@ function mouseClicked() {
  * @return none.
  */
 function keyPressed() {
-    if (luckyDivisor.global.gameStatus !== "Running") {
+    if (luckyDivisor.global.gameStatus === undefined) {
         return;
     }
 
@@ -90,13 +90,13 @@ function keyPressed() {
         luckyDivisor.global.keyMap[32] = false;
         luckyDivisor.util.game.pauseOrPlay();
     } else if (luckyDivisor.global.keyMap[17] && luckyDivisor.global.keyMap[90]) {
+        console.log("Handling state reversion");
         /**
          * If possible, take us back to previous world.
          */
         luckyDivisor.global.keyMap[17] = false;
         luckyDivisor.global.keyMap[90] = false;
         var worlds = luckyDivisor.global.worlds;
-        var currentWorld = luckyDivisor.global.currentWorld;
         var lastWorldIndex = worlds.length - 1;
 
         if (lastWorldIndex >= 0) {
@@ -136,10 +136,9 @@ function setup() {
     gameCanvas.parent('gameCanvasContainer');
 
     luckyDivisor.util.initialiseCubeColourMap();
-    luckyDivisor.util.initialisePnCubeCreationRecord();
     luckyDivisor.util.initPlayerData();
     luckyDivisor.util.createGameComponents();
-    luckyDivisor.config.gameStatus = "Running";
+    luckyDivisor.global.gameStatus = "Running";
     luckyDivisor.global.numberOfPlay = 0;
     luckyDivisor.util.game.startNewPlay();
 }

@@ -12,6 +12,6 @@
 var luckyDivisor = luckyDivisor || {};
 
 luckyDivisor.defines = {
-    DEBUG : true,
+    DEBUG : false,
     PRODUCTION : false
 };

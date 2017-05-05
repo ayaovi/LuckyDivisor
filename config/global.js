@@ -24,6 +24,9 @@ luckyDivisor.global = {
         82: false,
         /** z */
         90: false
-    },
-    testing : true
+    }
+    // playerData : {},
+    // gameStatus : "Stopped",
+    // numberOfPlay : 0,
+    // pauseDuration : 0
 };

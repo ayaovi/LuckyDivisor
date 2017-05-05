@@ -66,11 +66,11 @@ luckyDivisor.util.game.displayNewGameButton = function() {
  * @return none.
  */
 luckyDivisor.util.game.pauseOrPlay = function() {
-    if (luckyDivisor.config.gameStatus == "Running") {
+    if (luckyDivisor.global.gameStatus == "Running") {
         /**
          * Set the game status to Paused.
          */
-        luckyDivisor.config.gameStatus = "Paused";
+        luckyDivisor.global.gameStatus = "Paused";
 
         /**
          * Record this pause date.
@@ -81,17 +81,17 @@ luckyDivisor.util.game.pauseOrPlay = function() {
          * Stop the looping of the draw() in main.js.
          */
         noLoop();
-    } else if (luckyDivisor.config.gameStatus == "Paused") {
+    } else if (luckyDivisor.global.gameStatus == "Paused") {
         /**
          * Set the game status to Running.
          */
-        luckyDivisor.config.gameStatus = "Running";
+        luckyDivisor.global.gameStatus = "Running";
 
         /**
          * Update the play duration of the clock.
          */
         luckyDivisor.global.pauseDuration = luckyDivisor.util.date.getCurrentDate().minus(luckyDivisor.global.pauseDate).getTime();
-        luckyDivisor.global.topPanel.clock.playDuration = luckyDivisor.global.topPanel.clock.playDuration.plus(new ExtendedDate(luckyDivisor.global.pauseDuration));
+        luckyDivisor.global.currentWorld.topPanel.clock.playDuration = luckyDivisor.global.currentWorld.topPanel.clock.playDuration.plus(new ExtendedDate(luckyDivisor.global.pauseDuration));
 
         /**
          * Bring back the draw() looping.

@@ -446,7 +446,7 @@ luckyDivisor.util.checkAndProcessNextEvent = function(eventQueue) {
  * @return none.
  */
 luckyDivisor.util.checkIfGamePaused = function() {
-    if (luckyDivisor.config.gameStatus == "Paused") {
+    if (luckyDivisor.global.gameStatus == "Paused") {
         luckyDivisor.util.game.displayMessageOnCanvas("PAUSED");
     }
 }
@@ -686,7 +686,6 @@ luckyDivisor.util.runOnInterval = function(interval, stop, work) {
         temp();
     });
 }
-
 
 
 /**
